@@ -1,0 +1,15 @@
+{{#unless controller.isLogin}}
+    {{partial 'navbar'}}
+{{/unless}}
+
+{{outlet}}
+
+<div class="container">
+    <div class="row" style="margin-top: 40px">
+        <div class="col-lg-12">
+            {{outlet 'search-result'}}
+        </div>
+    </div>
+</div>
+
+{{outlet 'overview'}}

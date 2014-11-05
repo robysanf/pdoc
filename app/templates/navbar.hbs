@@ -1,0 +1,47 @@
+
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+
+                {{#link-to 'dashboard/main'}}
+                    <div class="navbar-brand"> Dashboard </div>
+                {{/link-to}}
+
+                {{!{{#link-to 'login'}}
+                <!--<div class="navbar-brand">Login </div>-->
+                {{!{{/link-to}}
+
+
+                <!--<a href="../" class="navbar-brand">Bootswatch</a>-->
+                <!--<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--</button>-->
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Your Profile<span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="themes">
+                            <li>{{!{{#link-to 'profile' controller.userId}}item 1{{!{{/link-to}}</li>
+
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Company<span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="themes">
+
+                            <li>{{!{{#link-to 'company/searchCompany'}}Item 1{{!{{/link-to}}</li>
+                            <li>{{!{{#link-to 'company/company' controller.userId}}Item 2{{!{{/link-to}}</li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><button type="button" class="btn btn-default btn-130"{{action 'logout'}}>Logout</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
