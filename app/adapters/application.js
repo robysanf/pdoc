@@ -1,8 +1,8 @@
 import DS from 'ember-data';
 
 export default DS.RESTAdapter.extend({
-    //host: 'https://test.zenointelligence.com',
-    namespace: "p-doc/api",
+    //host: 'http://localhost:3001/',
+    //namespace: "seaoracle/api",
 
     buildURL: function() {
         var token = this.globals.get('token');
