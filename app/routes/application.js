@@ -5,8 +5,9 @@ export default Ember.Route.extend({
         var app_controller = this.controllerFor('application');
 
 //        if( app_controller.company ) {
-////            this.store.find('company', app_controller.company).then(function( val ){
+////            this.store.find('company', app_controller.company_id).then(function( val ){
 ////                app_controller.set('company_record', val);
+//        app_controller.set('actualCompany', val);
 ////            });
 //        } else {
 //            app_controller.send('logout');
@@ -88,7 +89,74 @@ export default Ember.Route.extend({
             });
         },
 
-        /*     INFINITE SCROLL    */
+        changeLanguage: function(val){
+            this.controllerFor('application').set('isEnglish', val);
+        },
+
+        /**
+         Link-to alla tab da cui si è arrivati
+
+         @action return
+         @for your-profile/driver-id
+         @param {string} route della pagina - (your-profile.main-page)
+         @param {string} tab selezionata dall'utente - (tabList.company/tabList.driver/tabList.truck/tabList.trailer/tabList.clerk)
+         @param {key} tab selezionata dall'utente - (company/driver/truck/trailer/clerk)
+         */
+        return: function( page, tab, id ) {
+            var controller = this.controllerFor( page );
+
+            switch(page) {
+                case 'your-profile/main-page':
+                    controller.set('tabList.company', false);
+                    controller.set('tabList.driver', false);
+                    controller.set('tabList.truck', false);
+                    controller.set('tabList.trailer', false);
+                    controller.set('tabList.clerk', false);
+
+                    controller.set(tab, true);
+
+                    //this.transitionTo(page, id);
+                    break;
+//                case 'links/main-page':
+//                    this.transitionTo(page, id);
+//                    break;
+            }
+
+            this.transitionTo(page, id);
+        },
+
+        /**
+         Cambio di una singola pagina da View a Edit mode. Nel caso in cui si passi da Edit a View verrà fatto un
+         salvataggio del modello in questione.
+
+         @action change_state
+         @for [ partials/-company-field; ...]
+         @param {string} route della pagina - [links/company; ]
+         @param {boolean} valore con cui viene aggiornata variabile locale isView - true/false
+         @param {string} nome di un model
+         @param {number} unique key
+         */
+        change_state: function( route, value, model, id ) {
+            var controller = this.controllerFor(route);
+
+            if ( value === true ) {
+                this.store.find(model, id).then(function(val){
+                    val.save();
+                });
+            }
+
+            controller.set('isView', value);
+        },
+
+        set_value: function( route, variable, value ) {
+            var controller = this.controllerFor(route);
+
+            controller.set(variable, value);
+        },
+
+        /*****************************
+         * INFINITE SCROLL
+         */
         getMore: function(){
             var self = this, controller = self.controllerFor('application'),
                 items = [];

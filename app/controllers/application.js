@@ -1,67 +1,88 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-    isLogin: false,
-
+    is_login: false,
     LOG_TRANSITIONS: true,
+
     visibility: [
         'private',
         'public'
     ],
-    /*     ***local storage***     */
+
+    actualCompany: null,
+
+    /*****************************
+     * LOCAL STORAGE
+     */
     user_record: JSON.parse(localStorage["user_record"] ? localStorage["user_record"] : "[\" \"]"),
     company_record: null,
 
-    company: localStorage['company'],
+    company_id: localStorage['company'],
     token: localStorage['token'],
-    companyType: localStorage['companyType'],
-    userId: localStorage['userId'],
-    username: localStorage['username'],  //univoco per un utente
-    userProfile: localStorage['userProfile'],
-    companyProfile: localStorage['companyProfile'],
-    selectedDepot: localStorage['selectedDepot'],
-    isAdmin: localStorage['isAdmin'],
+    company_type: localStorage['companyType'],
+    user_id: localStorage['userId'],
+    //username: localStorage['username'],  //univoco per un utente
+    //userProfile: localStorage['userProfile'],
+    //companyProfile: localStorage['companyProfile'],
+    //selectedDepot: localStorage['selectedDepot'],
+    //isAdmin: localStorage['isAdmin'],
 
-    companyChanged: function() { localStorage.company = this.company; }.observes('company'),
+    companyChanged: function() { localStorage.company_id = this.company_id; }.observes('company_id'),
     tokenChanged: function() {
         localStorage.token = this.token;
         this.globals.set('token', this.token);
     }.observes('token'),
 
-    companyTypeChanged: function() { localStorage.companyType = this.companyType; }.observes('companyType'),
-    userIdChanged: function() { localStorage.userId = this.userId; }.observes('userId'),
-    usernameChanged: function() { localStorage.username = this.username; }.observes('username'),
-    userProfileChanged: function() { localStorage.userProfile = this.userProfile; }.observes('userProfile'),
-    companyProfileChanged: function() { localStorage.companyProfile = this.companyProfile; }.observes('companyProfile'),
+    companyTypeChanged: function() { localStorage.company_type = this.company_type; }.observes('company_type'),
+    userIdChanged: function() { localStorage.user_id = this.user_id; }.observes('user_id'),
+    //usernameChanged: function() { localStorage.username = this.username; }.observes('username'),
+    //userProfileChanged: function() { localStorage.userProfile = this.userProfile; }.observes('userProfile'),
+    //companyProfileChanged: function() { localStorage.companyProfile = this.companyProfile; }.observes('companyProfile'),
 
-    selectedDepotChanged: function() { localStorage.selectedDepot = this.selectedDepot; }.observes('selectedDepot'),
-    isAdminChanged: function() { localStorage.isAdmin = this.isAdmin; }.observes('isAdmin'),
+    //selectedDepotChanged: function() { localStorage.selectedDepot = this.selectedDepot; }.observes('selectedDepot'),
+    //isAdminChanged: function() { localStorage.isAdmin = this.isAdmin; }.observes('isAdmin'),
 
-    /*     ***auto complete***     */
-    autocompleteUser: Ember.A(),
-    autocompleteCompany: Ember.A(),
-    autocompleteCharge: Ember.A(),
-    autocompletePoi: Ember.A(),
-    autocompletePoiPort: Ember.A(),
-    autocompletePoiDepot: Ember.A(),
-    autocompletePoiWarehouse: Ember.A(),
-    autocompleteEquipment: Ember.A(),
-    autocompleteEquipmentCode: Ember.A(),
-    autocompleteEqClassification: Ember.A(),
-    autocompleteEqClassificationContainer: Ember.A(),
-    autocompleteVoyage: Ember.A(),
-    autocompleteBooking: Ember.A(),
-    autocompleteRoRo: Ember.A(),
 
-    autocompleteStamp: Ember.A(),
-    autocompleteSegment: Ember.A(),
-    autocompleteVessel: Ember.A(),
-    autocompleteTemplate: Ember.A(),
-    autocompleteDocument: Ember.A(),
-    autocompleteChassisNum: Ember.A(),
-    autocompletePaymentPlan: Ember.A(),
-    autocompleteLink: Ember.A(),
-    /*     ***infinite scroll***     */
+    /**********************
+     auto-suggest
+     */
+    auto_suggest_Services: [],
+    auto_suggest_Segments: [],
+    auto_suggest_Areas: [],
+    auto_suggest_Configurations: [],
+
+    /*****************************
+     * AUTOCOMPLETE
+     */
+    autocompleteUser: [],
+    autocompleteCompany: [],
+//    autocompleteCharge: Ember.A(),
+//    autocompletePoi: Ember.A(),
+//    autocompletePoiPort: Ember.A(),
+//    autocompletePoiDepot: Ember.A(),
+//    autocompletePoiWarehouse: Ember.A(),
+//    autocompleteEquipment: Ember.A(),
+//    autocompleteEquipmentCode: Ember.A(),
+//    autocompleteEqClassification: Ember.A(),
+//    autocompleteEqClassificationContainer: Ember.A(),
+//    autocompleteVoyage: Ember.A(),
+//    autocompleteBooking: Ember.A(),
+//    autocompleteRoRo: Ember.A(),
+//
+//    autocompleteStamp: Ember.A(),
+//    autocompleteSegment: Ember.A(),
+//    autocompleteVessel: Ember.A(),
+//    autocompleteTemplate: Ember.A(),
+//    autocompleteDocument: Ember.A(),
+//    autocompleteChassisNum: Ember.A(),
+//    autocompletePaymentPlan: Ember.A(),
+//    autocompleteLink: Ember.A(),
+
+
+
+    /*****************************
+     * INFINITE SCROLL
+     */
     firstIndex: 0,
     perPage: 25,
     queryExpressResults: null,
@@ -71,6 +92,99 @@ export default Ember.Controller.extend({
     searchResultList: Ember.A(),
     searchResults: function() { return this.searchResultList; }.property('searchResultList'),
 
+
+    /*****************************
+     * LANGUAGE
+     */
+    isEnglish: 'default',
+    translation: function(){
+        switch(this.isEnglish){
+            case 'english':
+                return this.lan_en;
+            case 'italian':
+                return this.lan_it;
+            default:
+                return this.lan_en;
+        }
+    }.property('isEnglish'),
+
+    lan_it: {
+        invoiceNumber: 'Numero fattura', rate: 'Punteggio', limit: 'Limite', goodsConfiscation: 'Confisca', vehicleConfiscation: 'Sequestro', fiscalResponsibility: 'Resp.Fiscale', emas: 'Emas', validity: 'Validità', alert: 'Avviso', grace: 'Grazia', loadModel: 'Carica modello', attach: 'Allega', premium: 'Avanzato', medium: 'Intermedio', smart: 'Base', for: 'Per', euro: 'Euro', byNow: 'Acquista ora!', amount: 'Totale', cardNumber: 'Numero di carta', account: 'Cliente', general: 'Generale', postToYourLinks: 'Pubblica alla tua rete di contatti', submit: 'Pubblica', news: 'Nuove', hideNotifications: 'Notifiche nascoste',
+        paymentDetails: 'dettagli pagamento', credits: 'Crediti', orderHistory: 'Storico cliente', buyCredits: 'Acquisto crediti', newDocument: 'Nuovo documento', hideLinkRequests: 'Richieste di connessione nascoste',
+        showHideLinkRequests: 'Mostra le richieste di connessione nascoste...', resume: 'Rigenera', date: 'Data', close: 'Chiudi', gracePeriod: 'Periodo di grazia',
+        more: 'Dettagli', deadline: 'Scadenza', value: 'Valore', certificate: 'Certifica', download: 'Scarica', hide: 'Nascondi', note: 'Note', highlight: 'In evidenza',
+        showHideNotifications: 'Mostra le notifiche nascoste...', linkRequests: 'Richieste di connessione', notifications: 'Notifiche', save: 'Salva', type: 'Tipo',
+        edit: 'Modifica', country: 'Paese', logo: 'Logo', links: 'Links', new: 'Nuovo', return: 'Indietro', chassisNumber: 'Targa', registrationYear: 'Anno di immatricolazione',
+        configuration: 'Configurazione', category: 'Categoria', tare: 'Tara', weight: 'Peso complessivo',
+        model: 'Modello', brand: 'Marca', view: 'Visualizza', goTo: 'Vai', delete: 'Cancella', lastName: 'Cognome', firstName: 'Nome', curriculum: 'Curriculum',
+        languages: 'Lingue', skype: 'Contatto Skype', phone: 'Telefono', patents: 'Patenti', language: 'Lingua', english: 'Inglese', italian: 'Italiano', yourProfile: 'Il tuo profilo', name: "Nome",
+        profile: "Profilo", company: 'Società', transportListCode: "Num. iscrizione all'albo", chamberOfCommerce: "Camera di commercio", emails: "E-mail", password: "Password",
+        description: "Descrizione", services: "Servizi offerti", segments: "Tratte coperte", areas: "Aree coperte", driver: 'Autista', drivers: 'Autisti', truck: 'Camion', trucks: 'Camions',  trailer: 'Rimorchio', trailers: 'Rimorchi',
+        clerks: 'Impiegati', changePassword: 'Cambia password'
+    },
+    lan_en: {
+        invoiceNumber: 'Invoice number', rate: 'Rate', limit: 'Limit', goodsConfiscation: 'Goods Confisc.', vehicleConfiscation: 'Vehicle Confisc.', fiscalResponsibility: 'Fiscal Resp.', emas: 'Emas', validity: 'Validity', alert: 'Alert', grace: 'Grace', loadModel: 'Load model', attach: 'Attach', premium: 'Premium', medium: 'Medium', smart: 'Smart', for: 'For', euro: 'Euro', buyNow: 'Buy now!', amount: 'Amount', cardNumber: 'Card number', account: 'Account', general: 'General', postToYourLinks: 'Post to your links', submit: 'Submit', news: 'News', hideNotifications: 'Hide notifications',
+        paymentDetails: 'Payment details', credits: 'Credits', orderHistory: 'Order history', buyCredits: 'Buy credits', newDocument: 'Nuovo documento', hideLinkRequests: 'Hide link requests',
+        showHideLinkRequests: 'Show hidden link requests...', resume: 'Resume', date: 'Date', close: 'Close', gracePeriod: 'Grace period', more: 'More', deadline: 'Deadline',
+        value: 'Value', certificate: 'Certificate', download: 'Download', hide: 'Hide', note: 'Note', highlight: 'Highlight', showHideNotifications: 'Show hidden notifications...',
+        linkRequests: 'Link requests', notifications: 'Notifications', save: 'Save', type: 'Type', edit: 'Edit', country: 'Country', logo: 'Logo', links: 'Links', new: 'New',
+        return: 'Return', chassisNumber: 'Chassis number', registrationYear: 'Registration year', configuration: 'Configuration', category: 'Category', tare: 'Tare',
+        weight: 'Weight', model: 'Model', brand: 'Brand', view: 'View',goTo: 'Go to', delete: 'Delete', lastName: 'Last Name', firstName: 'First Name', curriculum: 'Curriculum',
+        languages: 'Languages', skype: 'Skype', phone: 'Phone', patents: 'Patents', language: 'Language', english: 'English', italian: 'Italian', yourProfile: 'Your Profile', name: "Name",
+        profile: "Profile", company: 'Company', transportListCode: "Transport List Code", chamberOfCommerce: "Chamber Of Commerce", emails: "E-mail", password: "Password", description: "Description",
+        services: "Services", segments: "Segments", areas: "Areas", driver: 'Driver', drivers: 'Drivers', truck: 'Truck', trucks: 'Trucks', trailer: 'Trailer', trailers: 'Trailers', clerks: 'Clerks', changePassword: 'Change password'
+    },
+
+    actions:{
+//        /*     ***infinite scroll***     */
+        getMore: function() {
+            if (this.get('loadingMore')) { return; } // don't load new data if we already are
+            this.set('loadingMore', true);
+
+            this.get('target').send('getMore'); // pass this action up the chain to the events hash on the route
+        },
+
+        gotMore: function(items, page) {
+            this.set('loadingMore', false);
+            this.set('page', page);
+            //this.pushObjects(items);
+        },
+
+        /*     ***logout***     */
+        logout: function(){
+            this.set('grantsValue', null);
+            this.set('user_record', null);
+            this.set('userId', null);
+            this.set('token', null);
+            this.globals.set('token', this.token);
+            this.set('username', null);
+            this.set('selectedDepot', null);
+            this.set('userProfile', null);
+            this.set('company', null);
+            this.set('companyType', null);
+            this.set('isAdmin', null);
+
+            localStorage.removeItem('user_record');
+            localStorage.removeItem('grantsValue');
+            localStorage.removeItem('userId');
+            localStorage.removeItem('token');
+            localStorage.removeItem('username');
+            localStorage.removeItem('selectedDepot');
+            localStorage.removeItem('userProfile');
+            localStorage.removeItem('company');
+            localStorage.removeItem('companyType');
+            localStorage.removeItem('isAdmin');
+
+            localStorage.clear();
+
+            this.transitionToRoute('login/main');
+        }
+    },
+
+
+    /*****************************
+     * NATIONS
+     */
     nations_name: [
         'Afganistan', 'Aland Islands', 'Albania', 'Algeria', 'American Samoa', 'Andorra', 'Angola', 'Anguilla', 'Antigua & Barbuda', 'Argentina', 'Armenia', 'Aruba', 'Australia', 'Austria',
         'Azerbaijan', 'Bahamas', 'Bahrain', 'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin', 'Bermuda', 'Bhutan', 'Bolivia', 'Bonaire','Bosnia-Herzegovina','Botswana',
@@ -2144,54 +2258,7 @@ export default Ember.Controller.extend({
             "isonum": "716",
             "country": "Zimbabwe"
         }
-    ],
-
-    actions:{
-//        /*     ***infinite scroll***     */
-        getMore: function() {
-            if (this.get('loadingMore')) { return; } // don't load new data if we already are
-            this.set('loadingMore', true);
-
-            this.get('target').send('getMore'); // pass this action up the chain to the events hash on the route
-        },
-
-        gotMore: function(items, page) {
-            this.set('loadingMore', false);
-            this.set('page', page);
-            //this.pushObjects(items);
-        },
-
-        /*     ***logout***     */
-        logout: function(){
-            this.set('grantsValue', null);
-            this.set('user_record', null);
-            this.set('userId', null);
-            this.set('token', null);
-            this.globals.set('token', this.token);
-            this.set('username', null);
-            this.set('selectedDepot', null);
-            this.set('userProfile', null);
-            this.set('company', null);
-            this.set('companyType', null);
-            this.set('isAdmin', null);
-
-            localStorage.removeItem('user_record');
-
-            localStorage.removeItem('grantsValue');
-            localStorage.removeItem('userId');
-            localStorage.removeItem('token');
-            localStorage.removeItem('username');
-            localStorage.removeItem('selectedDepot');
-            localStorage.removeItem('userProfile');
-            localStorage.removeItem('company');
-            localStorage.removeItem('companyType');
-            localStorage.removeItem('isAdmin');
-
-            localStorage.clear();
-
-            this.transitionToRoute('login/main');
-        }
-    }
+    ]
 });
 
 

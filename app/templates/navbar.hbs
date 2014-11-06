@@ -1,47 +1,38 @@
-
-    <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-
-                {{#link-to 'dashboard/main'}}
-                    <div class="navbar-brand"> Dashboard </div>
-                {{/link-to}}
-
-                {{!{{#link-to 'login'}}
-                <!--<div class="navbar-brand">Login </div>-->
-                {{!{{/link-to}}
-
-
-                <!--<a href="../" class="navbar-brand">Bootswatch</a>-->
-                <!--<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-                <!--</button>-->
-            </div>
-            <div class="navbar-collapse collapse" id="navbar-main">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Your Profile<span class="caret"></span></a>
-                        <ul class="dropdown-menu" aria-labelledby="themes">
-                            <li>{{!{{#link-to 'profile' controller.userId}}item 1{{!{{/link-to}}</li>
-
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Company<span class="caret"></span></a>
-                        <ul class="dropdown-menu" aria-labelledby="themes">
-
-                            <li>{{!{{#link-to 'company/searchCompany'}}Item 1{{!{{/link-to}}</li>
-                            <li>{{!{{#link-to 'company/company' controller.userId}}Item 2{{!{{/link-to}}</li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><button type="button" class="btn btn-default btn-130"{{action 'logout'}}>Logout</button></li>
-                </ul>
-            </div>
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            {{#link-to 'dashboard/main'}}
+                <div class="navbar-brand">Dashboard</div>
+            {{/link-to}}
+        </div>
+        <div class="navbar-collapse navbar-responsive-collapse collapse in" aria-expanded="true">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Active</a></li>
+                <li><a href="#">Link</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Dropdown header</li>
+                        <li><a href="#">Separated link</a></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <input type="text" class="form-control col-lg-8" placeholder="Search">
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="#" {{action 'logout'}}>Logout</a></li>
+            </ul>
         </div>
     </div>
+</div>
