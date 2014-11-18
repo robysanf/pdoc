@@ -1,0 +1,51 @@
+<div class="container container-outer">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8">
+                    <div class="panel-title1" style="text-align: center">{{app_controller.translation.links}}</div>
+                </div>
+                <div class="col-lg-2">
+                    <div style="margin-top: 2px">
+                        <button type="button" class="btn btn-default pull-right btn-90" {{!{{action 'create_record' this 'your-profile/main' false}}>
+                            <span class="glyphicon glyphicon-plus btn-font-color"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row" style="margin-top: 45px">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>{{app_controller.translation.logo}}</th>
+                            <th>{{app_controller.translation.name}}</th>
+                            <th>{{app_controller.translation.type}}</th>
+                            <th>{{app_controller.translation.country}}</th>
+
+                            <th>{{app_controller.translation.delete}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each link in links}}
+                            <tr>
+                                <td {{action 'transition_to' 'your-profile/main' link}} style="cursor: pointer"> </td>
+                                <td {{action 'transition_to' 'your-profile/main' link}} style="cursor: pointer">{{link.name}}</td>
+                                <td {{action 'transition_to' 'your-profile/main' link}} style="cursor: pointer">{{link.type}}</td>
+                                <td {{action 'transition_to' 'your-profile/main' link}} style="cursor: pointer">{{link.country}}</td>
+
+                                <td><a {{action 'open_modal' 'your-profile/modals/delete-record' link this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+        </div>
+    </div>
+</div>

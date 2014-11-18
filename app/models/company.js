@@ -32,11 +32,11 @@ export default DS.Model.extend({
 //    refills: DS.hasMany('refill',{
 //        async: true
 //    }),
-//    links: DS.hasMany('company',{
-//        async: true
-//    }),
+    links: DS.hasMany('company',{
+        async: true
+    }),
 //    notifications: DS.hasMany('notification', {
-//        polymorphic: true,
+////        polymorphic: true,
 //        async: true
 //    }),
 //    docTemplates: DS.hasMany('docTemplate', {
