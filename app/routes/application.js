@@ -231,7 +231,37 @@ export default Ember.Route.extend({
             controller.set('tabListFiles', false);
 
             this.transitionTo(path, record_id);
+        },
+
+        message_manager: function( type, text ){
+
+            switch ( type ){
+                case 'success':
+                    new PNotify({
+                        title: 'Success',
+                        text: text,
+                        type: 'success',
+                        delay: 2000
+                    });
+                    break;
+                case 'warning':
+                    new PNotify({
+                        title: 'Attention',
+                        text: text,
+                        delay: 2000
+                    });
+                    break;
+                case 'error':
+                    new PNotify({
+                        title: 'Error',
+                        text: text,
+                        type: 'error',
+                        delay: 2000
+                    });
+                    break;
+            }
         }
 
     }
 });
+

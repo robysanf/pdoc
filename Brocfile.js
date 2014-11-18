@@ -21,16 +21,21 @@ var extraAssets = pickFiles('vendor/bootstrap/dist/fonts',{
 app.import('vendor/pnotify/pnotify.custom.css');
 app.import('vendor/pnotify/pnotify.custom.js');
 
-// IMPORT MOMENT.JS
+// IMPORT FLIPPANT
+//app.import('vendor/flippant/flippant.css');
+//app.import('vendor/flippant/flippant.js');
+
+//// IMPORT MOMENT.JS
 app.import('vendor/moment/moment.js');
-
-// IMPORT EMBER-SPIN-BOX
-app.import('vendor/ember-spin-box/dist/ember-spin-box.min.css');
-app.import('vendor/ember-spin-box/dist/ember-spin-box.min.js');
-
-// IMPORT EMBER-DATE-PICKER
-app.import('vendor/ember-date-picker/dist/ember-date-picker-custom.css');
-app.import('vendor/ember-date-picker/dist/ember-date-picker-custom.js');
+//
+//// IMPORT EMBER-SPIN-BOX
+//app.import('vendor/ember-spin-box/dist/ember-spin-box.min.css');
+//app.import('vendor/ember-spin-box/dist/ember-spin-box.min.js');
+//
+//// IMPORT EMBER-DATE-PICKER
+//app.import('vendor/ember-date-picker/dist/ember-date-picker-custom.css');
+//app.import('vendor/ember-date-picker/dist/ember-date-picker-custom.js');
 
 
 module.exports = mergeTrees([app.toTree(), extraAssets]);
+

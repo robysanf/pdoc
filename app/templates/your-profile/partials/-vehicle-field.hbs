@@ -1,0 +1,153 @@
+<form class="form-horizontal">
+    <fieldset>
+        <legend>{{app_controller.translation.details}}</legend>
+        <div class="form-group">
+            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.name}}</label>
+            <div class="col-lg-9">
+                {{#if controller.isView}}
+                    {{#if controller.sub_record.name}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.sub_record.name}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value = controller.sub_record.name type = "text" class = "form-control"  disabled= controller.isView}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.brand}}</label>
+            <div class="col-lg-9">
+                {{#if controller.isView}}
+                    {{#if controller.sub_record.brand}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.sub_record.brand}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value = controller.sub_record.brand type = "text" class = "form-control"  disabled= controller.isView}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.model}}</label>
+            <div class="col-lg-9">
+                {{#if controller.isView}}
+                    {{#if controller.sub_record.model}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.sub_record.model}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value = controller.sub_record.vehicleModel type = "text" class = "form-control"  disabled= controller.isView}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.description}}</label>
+            <div class="col-lg-9">
+                {{#if controller.isView}}
+                    {{#if controller.sub_record.description}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.sub_record.description}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value = controller.sub_record.description type = "text" class = "form-control"  disabled= controller.isView}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.configuration}}</label>
+            <div class="col-lg-9">
+                {{#if controller.isView}}
+                    {{#if controller.sub_record.configurations}}
+                        {{#each configurations}}
+                            <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{this}}</p>
+                        {{/each}}
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{auto-suggest source=app_controller.auto_suggest_Configurations destination=controller.sub_record.configurations searchPath="value" usecase="customMode" minChars=0}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.registrationYear}}</label>
+            <div class="col-lg-9">
+                {{#if controller.isView}}
+                    {{#if controller.sub_record.registrationYear}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.sub_record.registrationYear}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value = controller.sub_record.registrationYear type = "date" class="form-control" disabled= controller.isView}}
+                {{/if}}
+            </div>
+        </div>
+
+    {{#if isTrailer}}
+        <div class="form-group">
+            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.chassisNumber}}</label>
+            <div class="col-lg-9">
+                {{#if controller.isView}}
+                    {{#if controller.sub_record.chassisNumber}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.sub_record.chassisNumber}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value = controller.sub_record.chassisNumber type = "text" class="form-control" disabled= controller.isView}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.weight}}</label>
+            <div class="col-lg-9">
+                {{#if controller.isView}}
+                    {{#if controller.sub_record.weight}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.sub_record.weight}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value = controller.sub_record.weight type = "number" class="form-control" disabled= controller.isView}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.tare}}</label>
+            <div class="col-lg-9">
+                {{#if controller.isView}}
+                    {{#if controller.sub_record.tare}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.sub_record.tare}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value = controller.sub_record.tare type = "number" class="form-control" disabled= controller.isView}}
+                {{/if}}
+            </div>
+        </div>
+    {{else}}
+        <div class="form-group">
+            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.category}}</label>
+            <div class="col-lg-9">
+                {{#if controller.isView}}
+                    {{#if controller.sub_record.category}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.sub_record.category}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value = controller.sub_record.category type = "string" class="form-control" disabled= controller.isView}}
+                {{/if}}
+            </div>
+        </div>
+
+    {{/if}}
+
+    </fieldset>
+</form>

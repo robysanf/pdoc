@@ -3,8 +3,8 @@
     "document",
     "window",
     "-Promise",
-    "$",
-    "PNotify"
+    "PNotify",
+    "$"
   ],
   "browser" : true,
   "boss" : true,

@@ -2,6 +2,11 @@ import Ember from 'ember';
 import Resolver from 'ember/resolver';
 import loadInitializers from 'ember/load-initializers';
 import config from './config/environment';
+import displayHelper from './helpers/display-helper';
+import showSelectionsHelper from './helpers/show-selections-helper';
+
+Ember.Handlebars.registerBoundHelper('display-helper', displayHelper);
+Ember.Handlebars.registerBoundHelper('show-selections-helper', showSelectionsHelper);
 
 Ember.MODEL_FACTORY_INJECTIONS = true;
 

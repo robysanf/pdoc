@@ -2,7 +2,52 @@
 /*margin: 20px;*/
 /*}*/
 
+/**************************************************************************************************
+  CUSTOM STYLE
+*/
 
+.container-outer {
+    margin-top: 80px;
+    margin-bottom: 25px;
+}
+
+.panel-title1 {
+    margin-top: 10px;
+    margin-left: 5px;
+    font-size: 24px;
+    font-weight: bold
+}
+
+.row-margin-top-bottom {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.row-margin-bottom {
+    margin-bottom: 15px;
+}
+.row-margin-top {
+    margin-top: 15px;
+}
+
+/*********************************/
+/*BUTTON STYLE*/
+/***/
+.btn-90 {
+    width: 90px !important;
+}
+.btn-130 {
+    width: 130px !important;
+}
+.btn-140 {
+    width: 160px !important;
+}
+.btn-160 {
+    width: 160px !important;
+}
+
+.btn-font-color {
+    color: #4582ec;
+}
 /*************************************/
 /*BUTTON DOWNLOAD FILE*/
 /***/
@@ -55,17 +100,7 @@ input[readonly] {
     cursor: text !important;
 }
 
-/*********************************/
-/*BUTTON STYLE*/
-/***/
 
-.btn-130 {
-    width: 130px !important;
-}
-
-.btn-160 {
-    width: 160px !important;
-}
 
 /***************************************************/
 /*AUTO-COMPLETE*/
@@ -486,48 +521,85 @@ fieldset[disabled] .btn-amazon.active {
 
 
 /* MONDO */
-#mondo {
-    text-align: center;
-}
-#mondo {
+/*#mondo {*/
+    /*text-align: center;*/
+/*}*/
+/*#mondo {*/
     /*position: relative;*/
-    text-align: center;
-}
-#mondo .mondo-wrap-outer {
-    background-image: url('../img/mondo2000x800.jpg');
+    /*text-align: center;*/
+/*}*/
+/*#mondo .mondo-wrap-outer {*/
+    /*background-image: url('../img/mondo2000x800.jpg');*/
     /*background-image: url(http://zenointelligence.com/img/mondo2000x800.jpg);*/
-    background-repeat: no-repeat;
-    background-position: top center;
-}
+    /*background-repeat: no-repeat;*/
+    /*background-position: top center;*/
+/*}*/
 
-.mondo-fade {
+/*.mondo-fade {*/
     /*background: #FFFFFF;*/
-}
-.mondo-fade .mondo-wrap-outer {
+/*}*/
+/*.mondo-fade .mondo-wrap-outer {*/
     /*-moz-background-size: cover;*/
     /*-webkit-background-size: cover;*/
-    position: relative;
-    background-size: cover;
-}
+    /*position: relative;*/
+    /*background-size: cover;*/
+/*}*/
 
-.mondo-wrap-outer {
-    margin: 0 auto;
-}
+/*.mondo-wrap-outer {*/
+    /*margin: 0 auto;*/
+/*}*/
 
-#mondo.mondo-tall .mondo-wrap-outer {
-    min-height: 2px;
-    background-position: center;
-}
-#mondo.mondo-tall .mondo-wrap-outer {
-    min-height: 979px;
-    background-size: cover;
-}
+/*#mondo.mondo-tall .mondo-wrap-outer {*/
+    /*min-height: 2px;*/
+    /*background-position: center;*/
+/*}*/
+/*#mondo.mondo-tall .mondo-wrap-outer {*/
+    /*min-height: 800px;*/
+    /*background-size: cover;*/
+/*}*/
 /*INNER*/
-#mondo.mondo-tall .mondo-wrap-inner {
-    height: 200px;
+/*#mondo.mondo-tall .mondo-wrap-inner {*/
+    /*height: 200px;*/
+/*}*/
+
+/*#mondo.mondo-tall .mondo-wrap-inner {*/
+    /*height: 300px;*/
+    /*overflow: visible;*/
+/*}*/
+
+
+/****************************************************************************************************************
+            FOOTER
+*/
+
+/*footer#globalfooter {*/
+/*z-index: 4;*/
+/*background: #f4f4f4;*/
+/*padding: 18px 0 0;*/
+/*position: absolute;*/
+/*bottom: 0;*/
+/*width: 100%;*/
+/*height: 60px;*/
+/*}*/
+/*.row-fluid {*/
+/*width: 100%;*/
+/*}*/
+#hero {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+#hero {
+    position: relative;
+    text-align: center;
+}
+section.hero-medium {
+    height: 470px;
+    /*background-color: ;*/
+    background-image: url('../img/pattern_green.png');
+    /*background-image: url("http://colourlovers.com.s3.amazonaws.com/images/patterns/4548/4548852.png?1415286273");*/
 }
 
-#mondo.mondo-tall .mondo-wrap-inner {
-    height: 300px;
-    overflow: visible;
-}
+/*section.large {*/
+/*background-color: rgba(249,236,206); border: 0px;*/
+/*}*/

@@ -1,0 +1,30 @@
+<!-------------------------------------
+    FORM company details
+------>
+
+<!--<div class="page-header"></div>-->
+<div class="row">
+    <div class="col-lg-12">
+
+        {{#if controller.isView}}
+            <div class="row row-margin-top-bottom">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    {{partial 'your-profile/partials/-company-field'}}
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+        {{else}}
+            <div class="well well-sm">
+                <div class="row row-margin-top-bottom">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-10">
+                        {{partial 'your-profile/partials/-company-field'}}
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+            </div>
+        {{/if}}
+
+    </div>
+</div>

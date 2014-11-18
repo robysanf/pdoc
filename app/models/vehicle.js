@@ -1,14 +1,19 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-    registrationYear: DS.attr('date'),
+    registrationYear: DS.attr('custom-date'),
 
+    weight: DS.attr('number'),  //peso complessivo
+    tare: DS.attr('number'),
+
+    chassisNumber: DS.attr('string'),
+    brand: DS.attr('string'),        //marca: iveco
+    category: DS.attr('string'),   //euro1, euro2, ... euro6
+    description: DS.attr('string'),
     key:DS.attr('string'),     // company key / name
     name: DS.attr('string'),
-    brand: DS.attr('string'),        //marca: iveco
+    type: DS.attr('string'),    // truck/trailer
     vehicleModel:  DS.attr('string'),       //modello: Stralis
-    type: DS.attr('string'),    //inserito di default utilizzando le sotto-classi
-    description: DS.attr('string'),
 
     configurations: DS.attr('raw'),
 
@@ -17,9 +22,8 @@ export default DS.Model.extend({
     //files: DS.hasMany('file'),
     //documents: DS.hasMany('document'),
     //certificationRating: DS.belongsTo('certificationRating'),
-    /****************************************************
-     * PROPERTIES
-     */
+
+    /**************************  PROPERTIES  **************************/
     isTruck: function(){
         return this.get('type') === 'truck';
     }.property('type'),
@@ -27,3 +31,4 @@ export default DS.Model.extend({
         return this.get('type') === 'trailer';
     }.property('type')
 });
+

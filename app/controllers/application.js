@@ -17,24 +17,24 @@ export default Ember.Controller.extend({
     user_record: JSON.parse(localStorage["user_record"] ? localStorage["user_record"] : "[\" \"]"),
     company_record: null,
 
-    company_id: localStorage['company'],
+    company_id: localStorage['company_id'],
     token: localStorage['token'],
-    company_type: localStorage['companyType'],
-    user_id: localStorage['userId'],
+    company_type: localStorage['company_type'],
+    user_id: localStorage['user_id'],
     //username: localStorage['username'],  //univoco per un utente
     //userProfile: localStorage['userProfile'],
     //companyProfile: localStorage['companyProfile'],
     //selectedDepot: localStorage['selectedDepot'],
     //isAdmin: localStorage['isAdmin'],
 
-    companyChanged: function() { localStorage.company_id = this.company_id; }.observes('company_id'),
+    company_idChanged: function() { localStorage.company_id = this.company_id; }.observes('company_id'),
     tokenChanged: function() {
         localStorage.token = this.token;
-        this.globals.set('token', this.token);
+        this.app_init.set('token', this.token);
     }.observes('token'),
 
-    companyTypeChanged: function() { localStorage.company_type = this.company_type; }.observes('company_type'),
-    userIdChanged: function() { localStorage.user_id = this.user_id; }.observes('user_id'),
+    company_typeChanged: function() { localStorage.company_type = this.company_type; }.observes('company_type'),
+    user_idChanged: function() { localStorage.user_id = this.user_id; }.observes('user_id'),
     //usernameChanged: function() { localStorage.username = this.username; }.observes('username'),
     //userProfileChanged: function() { localStorage.userProfile = this.userProfile; }.observes('userProfile'),
     //companyProfileChanged: function() { localStorage.companyProfile = this.companyProfile; }.observes('companyProfile'),
@@ -46,11 +46,10 @@ export default Ember.Controller.extend({
     /**********************
      auto-suggest
      */
-    auto_suggest_Services: [],
-    auto_suggest_Segments: [],
-    auto_suggest_Areas: [],
-    auto_suggest_Configurations: [],
-
+    auto_suggest_Services: Ember.A(),
+    auto_suggest_Segments: Ember.A(),
+    auto_suggest_Areas: Ember.A(),
+    auto_suggest_Configurations: Ember.A(),
     /*****************************
      * AUTOCOMPLETE
      */
@@ -109,7 +108,7 @@ export default Ember.Controller.extend({
     }.property('isEnglish'),
 
     lan_it: {
-        invoiceNumber: 'Numero fattura', rate: 'Punteggio', limit: 'Limite', goodsConfiscation: 'Confisca', vehicleConfiscation: 'Sequestro', fiscalResponsibility: 'Resp.Fiscale', emas: 'Emas', validity: 'Validità', alert: 'Avviso', grace: 'Grazia', loadModel: 'Carica modello', attach: 'Allega', premium: 'Avanzato', medium: 'Intermedio', smart: 'Base', for: 'Per', euro: 'Euro', byNow: 'Acquista ora!', amount: 'Totale', cardNumber: 'Numero di carta', account: 'Cliente', general: 'Generale', postToYourLinks: 'Pubblica alla tua rete di contatti', submit: 'Pubblica', news: 'Nuove', hideNotifications: 'Notifiche nascoste',
+        companyDetails: "Anagrafica", invoiceNumber: 'Numero fattura', rate: 'Punteggio', limit: 'Limite', goodsConfiscation: 'Confisca', vehicleConfiscation: 'Sequestro', fiscalResponsibility: 'Resp.Fiscale', emas: 'Emas', validity: 'Validità', alert: 'Avviso', grace: 'Grazia', loadModel: 'Carica modello', attach: 'Allega', premium: 'Avanzato', medium: 'Intermedio', smart: 'Base', for: 'Per', euro: 'Euro', byNow: 'Acquista ora!', amount: 'Totale', cardNumber: 'Numero di carta', account: 'Cliente', general: 'Generale', postToYourLinks: 'Pubblica alla tua rete di contatti', submit: 'Pubblica', news: 'Nuove', hideNotifications: 'Notifiche nascoste',
         paymentDetails: 'dettagli pagamento', credits: 'Crediti', orderHistory: 'Storico cliente', buyCredits: 'Acquisto crediti', newDocument: 'Nuovo documento', hideLinkRequests: 'Richieste di connessione nascoste',
         showHideLinkRequests: 'Mostra le richieste di connessione nascoste...', resume: 'Rigenera', date: 'Data', close: 'Chiudi', gracePeriod: 'Periodo di grazia',
         more: 'Dettagli', deadline: 'Scadenza', value: 'Valore', certificate: 'Certifica', download: 'Scarica', hide: 'Nascondi', note: 'Note', highlight: 'In evidenza',
@@ -119,11 +118,12 @@ export default Ember.Controller.extend({
         model: 'Modello', brand: 'Marca', view: 'Visualizza', goTo: 'Vai', delete: 'Cancella', lastName: 'Cognome', firstName: 'Nome', curriculum: 'Curriculum',
         languages: 'Lingue', skype: 'Contatto Skype', phone: 'Telefono', patents: 'Patenti', language: 'Lingua', english: 'Inglese', italian: 'Italiano', yourProfile: 'Il tuo profilo', name: "Nome",
         profile: "Profilo", company: 'Società', transportListCode: "Num. iscrizione all'albo", chamberOfCommerce: "Camera di commercio", emails: "E-mail", password: "Password",
-        description: "Descrizione", services: "Servizi offerti", segments: "Tratte coperte", areas: "Aree coperte", driver: 'Autista', drivers: 'Autisti', truck: 'Camion', trucks: 'Camions',  trailer: 'Rimorchio', trailers: 'Rimorchi',
-        clerks: 'Impiegati', changePassword: 'Cambia password'
+        description: "Descrizione", services: "Servizi offerti", segments: "Tratte coperte", areas: "Aree coperte", driver: 'Autista', drivers: 'Autisti', truck: 'Camion', trucks: 'Camions',
+        trailer: 'Rimorchio', trailers: 'Rimorchi', clerks: 'Impiegati', changePassword: 'Cambia password', driversList: "Lista autisti", driverDetails: "Anagrafica autista", trucksList: 'Lista camions',
+        list: "Lista", vehicleDetails: "Dettagli veicolo", clerksList: 'Lista impiegati', clerk: 'Impiegato', trailersList: 'Lista rimorchi', details:'Dettagli', username: 'Username', birthDate: 'Data di nascita'
     },
     lan_en: {
-        invoiceNumber: 'Invoice number', rate: 'Rate', limit: 'Limit', goodsConfiscation: 'Goods Confisc.', vehicleConfiscation: 'Vehicle Confisc.', fiscalResponsibility: 'Fiscal Resp.', emas: 'Emas', validity: 'Validity', alert: 'Alert', grace: 'Grace', loadModel: 'Load model', attach: 'Attach', premium: 'Premium', medium: 'Medium', smart: 'Smart', for: 'For', euro: 'Euro', buyNow: 'Buy now!', amount: 'Amount', cardNumber: 'Card number', account: 'Account', general: 'General', postToYourLinks: 'Post to your links', submit: 'Submit', news: 'News', hideNotifications: 'Hide notifications',
+        companyDetails: 'Company Details', invoiceNumber: 'Invoice number', rate: 'Rate', limit: 'Limit', goodsConfiscation: 'Goods Confisc.', vehicleConfiscation: 'Vehicle Confisc.', fiscalResponsibility: 'Fiscal Resp.', emas: 'Emas', validity: 'Validity', alert: 'Alert', grace: 'Grace', loadModel: 'Load model', attach: 'Attach', premium: 'Premium', medium: 'Medium', smart: 'Smart', for: 'For', euro: 'Euro', buyNow: 'Buy now!', amount: 'Amount', cardNumber: 'Card number', account: 'Account', general: 'General', postToYourLinks: 'Post to your links', submit: 'Submit', news: 'News', hideNotifications: 'Hide notifications',
         paymentDetails: 'Payment details', credits: 'Credits', orderHistory: 'Order history', buyCredits: 'Buy credits', newDocument: 'Nuovo documento', hideLinkRequests: 'Hide link requests',
         showHideLinkRequests: 'Show hidden link requests...', resume: 'Resume', date: 'Date', close: 'Close', gracePeriod: 'Grace period', more: 'More', deadline: 'Deadline',
         value: 'Value', certificate: 'Certificate', download: 'Download', hide: 'Hide', note: 'Note', highlight: 'Highlight', showHideNotifications: 'Show hidden notifications...',
@@ -132,7 +132,9 @@ export default Ember.Controller.extend({
         weight: 'Weight', model: 'Model', brand: 'Brand', view: 'View',goTo: 'Go to', delete: 'Delete', lastName: 'Last Name', firstName: 'First Name', curriculum: 'Curriculum',
         languages: 'Languages', skype: 'Skype', phone: 'Phone', patents: 'Patents', language: 'Language', english: 'English', italian: 'Italian', yourProfile: 'Your Profile', name: "Name",
         profile: "Profile", company: 'Company', transportListCode: "Transport List Code", chamberOfCommerce: "Chamber Of Commerce", emails: "E-mail", password: "Password", description: "Description",
-        services: "Services", segments: "Segments", areas: "Areas", driver: 'Driver', drivers: 'Drivers', truck: 'Truck', trucks: 'Trucks', trailer: 'Trailer', trailers: 'Trailers', clerks: 'Clerks', changePassword: 'Change password'
+        services: "Services", segments: "Segments", areas: "Areas", driver: 'Driver', drivers: 'Drivers', truck: 'Truck', trucks: 'Trucks', trailer: 'Trailer', trailers: 'Trailers', clerks: 'Clerks',
+        changePassword: 'Change password', driversList: "Drivers list", driverDetails: "Driver details", trucksList: 'Trucks list', list: "List", vehicleDetails: 'Vehicle details', clerksList: 'Clerks list',
+        clerk: 'Clerk', trailersList: 'Trailers list', details:'Details', username: 'Username', birthDate: 'Birth date'
     },
 
     actions:{
@@ -156,7 +158,7 @@ export default Ember.Controller.extend({
             this.set('user_record', null);
             this.set('userId', null);
             this.set('token', null);
-            this.globals.set('token', this.token);
+            this.app_init.set('token', this.token);
             this.set('username', null);
             this.set('selectedDepot', null);
             this.set('userProfile', null);
@@ -2261,7 +2263,6 @@ export default Ember.Controller.extend({
     ]
 });
 
-
 //unique function
 Array.prototype.unique = function () {
     var r = [];
@@ -2278,4 +2279,3 @@ Array.prototype.unique = function () {
     }
     return r;
 };
-

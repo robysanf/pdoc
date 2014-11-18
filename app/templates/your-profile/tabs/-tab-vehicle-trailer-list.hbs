@@ -1,0 +1,60 @@
+
+<!-------------------- SHOW DRIVERS LIST ---------------------->
+{{#if controller.transition_to_list}}
+    <div class="row" style="margin-top: 45px">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>{{app_controller.translation.description}}</th>
+                    <th>{{app_controller.translation.brand}}</th>
+                    <th>{{app_controller.translation.model}}</th>
+                    <th>{{app_controller.translation.weight}}</th>
+                    <th>{{app_controller.translation.tare}}</th>
+
+                    <th>{{app_controller.translation.delete}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each vehicle in vehicles}}
+                    {{#if vehicle.isTrailer}}
+                        <tr>
+                            <td {{action 'transition_to' 'your-profile/partials/-vehicle-field' vehicle}} style="cursor: pointer">{{vehicle.description}}</td>
+                            <td {{action 'transition_to' 'your-profile/partials/-vehicle-field' vehicle}} style="cursor: pointer">{{vehicle.brand}}</td>
+                            <td {{action 'transition_to' 'your-profile/partials/-vehicle-field' vehicle}} style="cursor: pointer">{{vehicle.model}}</td>
+                            <td {{action 'transition_to' 'your-profile/partials/-vehicle-field' vehicle}} style="cursor: pointer">{{vehicle.weight}}</td>
+                            <td {{action 'transition_to' 'your-profile/partials/-vehicle-field' vehicle}} style="cursor: pointer">{{vehicle.tare}}</td>
+
+                            <td><a {{action 'open_modal' 'your-profile/modals/delete-record' vehicle this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
+                        </tr>
+                    {{/if}}
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+{{else}}
+
+    <!-------------------- SHOW DRIVER RECORD ---------------------->
+    {{#if controller.isView}}
+        <div class="row row-margin-top-bottom">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                {{partial 'your-profile/partials/-vehicle-field'}}
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
+    {{else}}
+        <div class="well well-sm">
+            <div class="row row-margin-top-bottom">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    {{partial 'your-profile/partials/-vehicle-field'}}
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+        </div>
+    {{/if}}
+{{/if}}

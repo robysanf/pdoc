@@ -1,0 +1,138 @@
+<div class="container container-outer">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <!-------------------- HEADER ---------------------->
+            <div class="row">
+                <div class="col-lg-2">
+                    <!-------------------- button return-to-list ---------------------->
+                    {{#unless controller.tabList.company}}
+                        {{#unless controller.transition_to_list}}
+                            <button type="button" class="btn btn-default pull-left btn-90" {{action 'transition_to' 'your-profile/tabs/-tabs-list' null}}>
+                                <span class="glyphicon glyphicon-chevron-left btn-font-color"></span> <strong class="btn-font-color" style="font-size: 21">{{app_controller.translation.list}}</strong>
+                            </button>
+                        {{/unless}}
+                    {{/unless}}
+                </div>
+                <!-------------------- nome company ---------------------->
+                <div class="col-lg-8">
+                    <div class="panel-title1" style="text-align: center">{{name}}</div>
+                </div>
+                <div class="col-lg-2">
+                    <div style="margin-top: 2px">
+                        <!-------------------- tab company - cambio button tra edit/view ---------------------->
+                        {{#if controller.tabList.company}}
+                            {{#if controller.isView}}
+                                <button type="button" class="btn btn-default pull-right btn-90" {{action 'change_state' 'your-profile/main' false}}>
+                                    <span class="glyphicon glyphicon-pencil btn-font-color"></span>
+                                </button>
+                            {{else}}
+                                <button type="button" class="btn btn-default pull-right btn-90" {{action 'change_state' 'your-profile/main' true 'company' id}}>
+                                    <span class="glyphicon glyphicon-ok btn-font-color"></span>
+                                </button>
+                            {{/if}}
+                        {{/if}}
+                        <!-------------------- altre tab - cambio button tra edit/view/add ---------------------->
+                        {{#unless controller.tabList.company}}
+                            {{#if controller.transition_to_list}}
+                                <button type="button" class="btn btn-default pull-right btn-90" {{action 'create_record' this 'your-profile/main' false}}{{!{{action 'change_state' 'your-profile/main' false}}>
+                                    <span class="glyphicon glyphicon-plus btn-font-color"></span>
+                                </button>
+                            {{else}}
+                                {{#if controller.isView}}
+                                    <button type="button" class="btn btn-default pull-right btn-90" {{action 'change_state' 'your-profile/main' false}}>
+                                        <span class="glyphicon glyphicon-pencil btn-font-color"></span>
+                                    </button>
+                                {{else}}
+                                    <button type="button" class="btn btn-default pull-right btn-90" {{action 'set_record' 'your-profile/main' false}}{{!{{action 'change_state' 'your-profile/main' true 'company' id}}>
+                                        <span class="glyphicon glyphicon-ok btn-font-color"></span>
+                                    </button>
+                                {{/if}}
+                            {{/if}}
+                        {{/unless}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-------------------- BODY ---------------------->
+        <!-------------------- TAB-HEAD ---------------------->
+        <div class="panel-body">
+            <ul class="nav nav-pills nav-justified" style="margin-bottom: 15px;">
+                <!-------------------- label: company ---------------------->
+                <li {{bind-attr class="controller.tabList.company:active"}}>
+                    <a href="#"{{action setTabs "company"}}><h5>{{app_controller.translation.company}}</h5></a>
+                </li>
+                <!-------------------- label: drivers-list / driver ---------------------->
+                <li {{bind-attr class="controller.tabList.driver:active"}}>
+                    <a href="#" {{action setTabs "driver"}}>
+                        <h5>
+                            {{#if controller.tabList.driver}}
+                                {{#if controller.transition_to_list}}
+                                    {{app_controller.translation.driversList}} {{else}} {{app_controller.translation.driver}} {{/if}}
+                            {{else}}
+                                {{app_controller.translation.driversList}}
+                            {{/if}}
+                        </h5>
+                    </a>
+                </li>
+                <!-------------------- label: trucks-list / truck ---------------------->
+                <li {{bind-attr class="controller.tabList.truck:active"}}>
+                    <a href="#" {{action setTabs "truck"}}>
+                        <h5>
+                            {{#if controller.tabList.truck}}
+                                {{#if controller.transition_to_list}} {{app_controller.translation.trucksList}} {{else}} {{app_controller.translation.truck}} {{/if}}
+                            {{else}}
+                                {{app_controller.translation.trucksList}}
+                            {{/if}}
+                        </h5>
+                    </a>
+                </li>
+                <!-------------------- label: trailers-list / trailer ---------------------->
+                <li {{bind-attr class="controller.tabList.trailer:active"}}>
+                    <a href="#" {{action setTabs "trailer"}}>
+                        <h5>
+                            {{#if controller.tabList.trailer}}
+                                {{#if controller.transition_to_list}} {{app_controller.translation.trailersList}} {{else}} {{app_controller.translation.trailer}} {{/if}}
+                            {{else}}
+                                {{app_controller.translation.trailersList}}
+                            {{/if}}
+                        </h5>
+                    </a>
+                </li>
+                <!-------------------- label: clerks-list / clerk ---------------------->
+                <li {{bind-attr class="controller.tabList.clerk:active"}}>
+                    <a href="#" {{action setTabs "clerk"}}>
+                        <h5>
+                            {{#if controller.tabList.clerk}}
+                                {{#if controller.transition_to_list}} {{app_controller.translation.clerksList}} {{else}} {{app_controller.translation.clerk}} {{/if}}
+                            {{else}}
+                                {{app_controller.translation.clerksList}}
+                            {{/if}}
+                        </h5>
+                    </a>
+                </li>
+            </ul>
+            <!-------------------- TAB BODY ---------------------->
+            <div class="tab-content">
+                <div class="tab-pane fade active in">
+                    {{#if controller.tabList.company}}
+                        {{partial "your-profile/tabs/-tab-company"}}
+                    {{/if}}
+                    {{#if controller.tabList.driver}}
+                        {{partial "your-profile/tabs/-tab-user-driver-list"}}
+                    {{/if}}
+                    {{#if controller.tabList.truck}}
+                        {{partial "your-profile/tabs/-tab-vehicle-truck-list"}}
+                    {{/if}}
+                    {{#if controller.tabList.trailer}}
+                        {{partial "your-profile/tabs/-tab-vehicle-trailer-list"}}
+                    {{/if}}
+                    {{#if controller.tabList.clerk}}
+                        {{partial "your-profile/tabs/-tab-user-clerk-list"}}
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,15 +1,18 @@
-{{#unless controller.is_login}}
-    {{partial 'navbar'}}
-{{/unless}}
+<div >
+    {{#unless controller.is_login}}
+        {{partial 'navbar'}}
+    {{/unless}}
 
-{{outlet}}
+    {{outlet}}
 
-<div class="container">
-    <div class="row" style="margin-top: 40px">
-        <div class="col-lg-12">
-            {{outlet 'search-result'}}
+    <div class="container">
+        <div class="row" style="margin-top: 40px">
+            <div class="col-lg-12">
+                {{outlet 'search-result'}}
+            </div>
         </div>
     </div>
+
+    {{outlet 'overview'}}
 </div>
 
-{{outlet 'overview'}}
