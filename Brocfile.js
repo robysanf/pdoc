@@ -1,11 +1,15 @@
 /* global require, module */
 
+//var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
+//
+//var app = new EmberAddon();
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
-
+//
 var app = new EmberApp();
 
 // IMPORT BOOTSTRAP
 app.import('vendor/bootstrap/dist/css/bootstrap.min.css');
+app.import('vendor/bootstrap/dist/css/select2-bootstrap.css');
 app.import('vendor/bootstrap/dist/js/bootstrap.min.js');
 
 // IMPORT GLYPHICONS
@@ -37,5 +41,6 @@ app.import('vendor/moment/moment.js');
 //app.import('vendor/ember-date-picker/dist/ember-date-picker-custom.js');
 
 
+//module.exports = app.toTree();
 module.exports = mergeTrees([app.toTree(), extraAssets]);
 

@@ -3,7 +3,14 @@ import DS from 'ember-data';
 export default DS.Model.extend({
     credit:DS.attr('number'),
     cardNumber:DS.attr('number'),
-    
+
+//    id: function(){
+//       return this.get('vat');
+//    }.property('vat'),
+//    text: function(){
+//        return this.get('name');
+//    }.property('name'),
+
     name: DS.attr('string'),
     vat: DS.attr('string'),                  //partita iva
     transportListCode: DS.attr('string'),    //codice albo

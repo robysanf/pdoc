@@ -30,6 +30,7 @@
     "express": "^4.8.5",
     "glob": "^4.0.5",
     "broccoli-merge-trees": "~0.2.1",
-    "broccoli-static-compiler": "~0.2.1"
+    "broccoli-static-compiler": "~0.2.1",
+    "ember-select-2": "~1.1.1-beta1"
   }
 }
