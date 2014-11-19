@@ -8,14 +8,49 @@
                 </div>
                 <div class="col-lg-2">
                     <div style="margin-top: 2px">
-                        <button type="button" class="btn btn-default pull-right btn-90" {{!{{action 'create_record' this 'your-profile/main' false}}>
-                            <span class="glyphicon glyphicon-plus btn-font-color"></span>
-                        </button>
+                        {{#unless view_new_link}}
+                            <button type="button" class="btn btn-default pull-right btn-90" {{action 'change_mode' 'view_new_link' true}}>
+                                <span class="glyphicon glyphicon-plus btn-font-color"></span>
+                            </button>
+                        {{else}}
+                            <button type="button" class="btn btn-default pull-right btn-90" {{action 'change_mode' 'view_new_link' false}}>
+                                <span class="glyphicon glyphicon-minus btn-font-color"></span>
+                            </button>
+                        {{/unless}}
+
                     </div>
                 </div>
             </div>
         </div>
         <div class="panel-body">
+            {{#if view_new_link}}
+                <div class="well">
+                    <h4 class="page-header">New Connection</h4>
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-8">
+                            {{select-2
+                                content=app_controller.records_company
+                                value=controller.company_to_link
+                                optionLabelPath="name"
+                                placeholder="Choose a company to connect"
+                                typeaheadNoMatchesText="No company found for '%@'"
+                                typeaheadErrorText="Loading failed: %@"
+                                enabled=true
+                                allowClear=true
+                            }}
+                        </div>
+                        <div class="col-lg-2">
+                            <button type="button" class="btn btn-primary btn-group-justified" {{action 'change_mode' 'view_new_link' false}}>
+                               connection
+                            </button>
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+
+                </div>
+            {{/if}}
+
             <div class="row" style="margin-top: 45px">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">

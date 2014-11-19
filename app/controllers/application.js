@@ -53,6 +53,30 @@ export default Ember.Controller.extend({
     /*****************************
      * AUTOCOMPLETE
      */
+
+    records_company: Ember.A(),
+//    selectedTags: null,
+//    foodGroupsSorting: ['name:asc'],
+//    foodGroupsLookup: Ember.computed.sort('foodGroupsAll', 'foodGroupsSorting'),
+//    pizzas: Ember.A([
+//        {
+//            id: "mar",
+//            text: "Margherita",
+//            description: "The original italian one"
+//        }, {
+//            id: "pep",
+//            text: "Peperoni",
+//            description: "For the Peperoni lovers"
+//        }, {
+//            id: "ham",
+//            text: "Ham",
+//            description: "Another well known classic"
+//        }, {
+//            id: "haw",
+//            text: "Hawaii",
+//            description: "For the exotic ones"
+//        }
+//    ]),
     autocompleteUser: [],
     autocompleteCompany: [],
 //    autocompleteCharge: Ember.A(),
