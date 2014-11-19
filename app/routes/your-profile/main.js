@@ -75,13 +75,34 @@ export default Ember.Route.extend({
         },
 
         create_record: function( record_company, path, value ){
-            var _this = this, app_controller = _this.controllerFor('application');
+            var _this = this, app_controller = _this.controllerFor('application'), new_user;
 
-            var new_user = this.store.createRecord('user', {
-                type: 'powerUser',
-                company: record_company,
-                profile: 'clerk'
-            });
+            if ( _this.controller.tabList.driver ) {
+                new_user = this.store.createRecord('user', {
+                    type: 'powerUser',
+                    company: record_company,
+                    profile: 'driver'
+                });
+
+            } else if ( _this.controller.tabList.clerk ) {
+                new_user = this.store.createRecord('user', {
+                    type: 'powerUser',
+                    company: record_company,
+                    profile: 'clerk'
+                });
+
+            } else if ( _this.controller.tabList.truck ) {
+                new_user = this.store.createRecord('vehicle', {
+                    type: 'truck',
+                    company: record_company
+                });
+
+            } else if ( _this.controller.tabList.trailer ) {
+                new_user = this.store.createRecord('vehicle', {
+                    type: 'trailer',
+                    company: record_company
+                });
+            }
 
             _this.controller.set( 'sub_record', new_user );
             _this.controller.set( 'transition_to_list', false );

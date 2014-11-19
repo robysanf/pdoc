@@ -11,8 +11,8 @@ export default DS.Model.extend({
     category: DS.attr('string'),   //euro1, euro2, ... euro6
     description: DS.attr('string'),
     key:DS.attr('string'),     // company key / name
-    name: DS.attr('string'),
     type: DS.attr('string'),    // truck/trailer
+    name: DS.attr('string'),
     vehicleModel:  DS.attr('string'),       //modello: Stralis
 
     configurations: DS.attr('raw'),
