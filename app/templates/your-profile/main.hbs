@@ -15,7 +15,7 @@
                 </div>
                 <!-------------------- nome company ---------------------->
                 <div class="col-lg-8">
-                    <div class="panel-title1" style="text-align: center">{{app_controller.translation.list}}</div>
+                    <div class="panel-title1" style="text-align: center">{{name}}</div>
                 </div>
                 <div class="col-lg-2">
                     <div style="margin-top: 2px">
@@ -34,7 +34,7 @@
                         <!-------------------- altre tab - cambio button tra edit/view/add ---------------------->
                         {{#unless controller.tabList.company}}
                             {{#if controller.transition_to_list}}
-                                <button type="button" class="btn btn-default pull-right btn-90" {{action 'create_record' this 'your-profile/main' false}}{{!{{action 'change_state' 'your-profile/main' false}}>
+                                <button type="button" class="btn btn-default pull-right btn-90" {{action 'create_record' this 'your-profile/main' false}}>
                                     <span class="glyphicon glyphicon-plus btn-font-color"></span>
                                 </button>
                             {{else}}
@@ -43,7 +43,7 @@
                                         <span class="glyphicon glyphicon-pencil btn-font-color"></span>
                                     </button>
                                 {{else}}
-                                    <button type="button" class="btn btn-default pull-right btn-90" {{action 'set_record' 'your-profile/main' false}}{{!{{action 'change_state' 'your-profile/main' true 'company' id}}>
+                                    <button type="button" class="btn btn-default pull-right btn-90" {{action 'set_record' 'your-profile/main' false}}>
                                         <span class="glyphicon glyphicon-ok btn-font-color"></span>
                                     </button>
                                 {{/if}}

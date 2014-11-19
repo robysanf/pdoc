@@ -83,7 +83,8 @@
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{input value = controller.sub_record.registrationYear type = "date" class="form-control" disabled= controller.isView}}
+                    {{date-picker date=controller.sub_record.registrationYear valueFormat='YYYY-MM-DD' class="form-control" disabled= controller.isView}}
+                    {{!{{input value = controller.sub_record.registrationYear type = "date" class="form-control" disabled= controller.isView}}
                 {{/if}}
             </div>
         </div>
