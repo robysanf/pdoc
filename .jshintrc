@@ -4,6 +4,7 @@
     "window",
     "-Promise",
     "PNotify",
+     "moment",
     "$"
   ],
   "browser" : true,
