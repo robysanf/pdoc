@@ -114,7 +114,7 @@ export default Ember.Route.extend({
             var _this = this, app_controller = _this.controllerFor('application');
 
             _this.controller.sub_record.save().then(function(saved_record){
-                app_controller.send( 'message_manager', 'success', 'You have successfully save the record.' );
+                app_controller.send( 'message_manager', 'success', 'You have successfully saved the record.' );
 
                 _this.controller.set( 'transition_to_list', true );
                 app_controller.send( 'change_state', path, value );
