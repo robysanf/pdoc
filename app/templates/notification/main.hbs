@@ -1,0 +1,44 @@
+<div class="container container-outer">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8">
+                    <div class="panel-title1" style="text-align: center">{{app_controller.translation.notifications}}</div>
+                </div>
+                <div class="col-lg-2">
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <ul class="nav nav-pills nav-justified" style="margin-bottom: 15px;">
+                <!-------------------- label: company ---------------------->
+                <li {{bind-attr class="tabList.general:active"}}>
+                    <a href="#"{{action 'setTabs' "general"}}><h5>{{app_controller.translation.generals}}</h5></a>
+                </li>
+                <li {{bind-attr class="tabList.linksRequest:active"}}>
+                    <a href="#"{{action 'setTabs' "linksRequest"}}><h5>{{app_controller.translation.linksRequest}}</h5></a>
+                </li>
+            </ul>
+            <!-------------------- TAB BODY ---------------------->
+            <div class="tab-content">
+                <div class="tab-pane fade active in">
+                    {{#if tabList.general}}
+                        {{#if status_hide}}
+                            {{partial "notification/partials/-general-status-hide"}}
+                        {{else}}
+                            {{partial "notification/tabs/-tab-general"}}
+                        {{/if}}
+                    {{/if}}
+                    {{#if tabList.linksRequest}}
+                        {{#if status_hide}}
+                            {{partial "notification/partials/-linksRequest-status-hide"}}
+                        {{else}}
+                            {{partial "notification/tabs/-tab-linksRequest"}}
+                        {{/if}}
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

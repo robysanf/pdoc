@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-    registrationYear: DS.attr('custom-date'),
+    registrationYear: DS.attr('custom-time'),
 
     weight: DS.attr('number'),  //peso complessivo
     tare: DS.attr('number'),

@@ -1,0 +1,76 @@
+<div class="container container-outer">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-lg-2">
+                    {{#if view_new_link}}
+                        <button type="button" class="btn btn-default pull-left btn-90" {{action 'change_mode' 'view_new_link' false}}>
+                            <span class="glyphicon glyphicon-chevron-left btn-font-color"></span> <strong class="btn-font-color" style="font-size: 21">{{app_controller.translation.return}}</strong>
+                        </button>
+                    {{/if}}
+                </div>
+                <div class="col-lg-8">
+                    <div class="panel-title1" style="text-align: center">{{app_controller.translation.admin}}</div>
+                </div>
+                <div class="col-lg-2">
+                    <div style="margin-top: 2px">
+                        {{#unless view_new_link}}
+                            <button type="button" class="btn btn-default pull-right btn-90" {{action 'create_record' this 'view_new_link' true}}>
+                                <span class="glyphicon glyphicon-plus btn-font-color"></span>
+                            </button>
+                        {{else}}
+                            <button type="button" class="btn btn-default pull-right btn-90" {{action 'set_record' new_record 'view_new_link' false}}>
+                                <span class="glyphicon glyphicon-ok btn-font-color"></span>
+                            </button>
+                        {{/unless}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <ul class="nav nav-pills nav-justified" style="margin-bottom: 15px;">
+                <li {{bind-attr class="tabList.general:active"}}>
+                    <a href="#" {{action setTabs "general"}}><h4>{{app_controller.translation.general}}</h4></a>
+                </li>
+                <li {{bind-attr class="tabList.company:active"}}>
+                    <a href="#"{{action setTabs "company"}}><h4>{{app_controller.translation.company}}</h4></a>
+                </li>
+                <li {{bind-attr class="tabList.driver:active"}}>
+                    <a href="#" {{action setTabs "driver"}}><h4>{{app_controller.translation.drivers}}</h4></a>
+                </li>
+                <li {{bind-attr class="tabList.truck:active"}}>
+                    <a href="#" {{action setTabs "truck"}}><h4>{{app_controller.translation.trucks}}</h4></a>
+                </li>
+                <li {{bind-attr class="tabList.trailer:active"}}>
+                    <a href="#" {{action setTabs "trailer"}}><h4>{{app_controller.translation.trailers}}</h4></a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade active in">
+                    {{#unless view_new_link}}
+                        {{partial "admin/partials/-progress-bar"}}
+                    {{/unless}}
+
+                    {{#if controller.tabList.general}}
+                        {{#if view_new_link}}
+                            <div class="well well-sm">
+                                <div class="row row-margin-top-bottom">
+                                    <div class="col-lg-1"></div>
+                                    <div class="col-lg-10">
+                                        {{partial "admin/tabs/-tab-new-doc"}}
+                                    </div>
+                                    <div class="col-lg-1"></div>
+                                </div>
+                            </div>
+                        {{/if}}
+                    {{else}}
+                        {{partial "admin/tabs/-tab-docs-list"}}
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

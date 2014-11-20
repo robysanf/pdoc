@@ -9,13 +9,11 @@ export default Ember.Controller.extend({
         'public'
     ],
 
-    actualCompany: null,
-
+    company_record: null,
     /*****************************
      * LOCAL STORAGE
      */
     user_record: JSON.parse(localStorage["user_record"] ? localStorage["user_record"] : "[\" \"]"),
-    company_record: null,
 
     company_id: localStorage['company_id'],
     token: localStorage['token'],
@@ -135,13 +133,13 @@ export default Ember.Controller.extend({
         companyDetails: "Anagrafica", invoiceNumber: 'Numero fattura', rate: 'Punteggio', limit: 'Limite', goodsConfiscation: 'Confisca', vehicleConfiscation: 'Sequestro', fiscalResponsibility: 'Resp.Fiscale',
         validity: 'Validità', alert: 'Avviso', grace: 'Grazia', loadModel: 'Carica modello', attach: 'Allega', premium: 'Avanzato', medium: 'Intermedio', smart: 'Base', for: 'Per', euro: 'Euro',
         byNow: 'Acquista ora!', amount: 'Totale', cardNumber: 'Numero di carta', account: 'Cliente', general: 'Generale', postToYourLinks: 'Pubblica alla tua rete di contatti', submit: 'Pubblica',
-        news: 'Nuove', hideNotifications: 'Notifiche nascoste', emas: 'Emas',
-        paymentDetails: 'dettagli pagamento', credits: 'Crediti', orderHistory: 'Storico cliente', buyCredits: 'Acquisto crediti', newDocument: 'Nuovo documento', hideLinkRequests: 'Richieste di connessione nascoste',
+        news: 'Nuove', hideNotifications: 'Notifiche nascoste', emas: 'Emas', admin: 'Admin', extra: 'Extra',
+        paymentDetails: 'dettagli pagamento', credits: 'Crediti', orderHistory: 'Storico cliente', buyCredits: 'Acquisto crediti', newDocument: 'documento', hideLinkRequests: 'Richieste di connessione nascoste',
         showHideLinkRequests: 'Mostra le richieste di connessione nascoste...', resume: 'Rigenera', date: 'Data', close: 'Chiudi', gracePeriod: 'Periodo di grazia',
         more: 'Dettagli', deadline: 'Scadenza', value: 'Valore', certificate: 'Certifica', download: 'Scarica', hide: 'Nascondi', note: 'Note', highlight: 'In evidenza',
         showHideNotifications: 'Mostra le notifiche nascoste...', linkRequests: 'Richieste di connessione', notifications: 'Notifiche', save: 'Salva', type: 'Tipo',
         edit: 'Modifica', country: 'Paese', logo: 'Logo', links: 'Links', new: 'Nuovo', return: 'Indietro', chassisNumber: 'Targa', registrationYear: 'Anno di immatricolazione',
-        configuration: 'Configurazione', category: 'Categoria', tare: 'Tara', weight: 'Peso complessivo',
+        configuration: 'Configurazione', category: 'Categoria', tare: 'Tara', weight: 'Peso complessivo', linksRequest: 'Richieste di collegamento', generals: 'Generali',
         model: 'Modello', brand: 'Marca', view: 'Visualizza', goTo: 'Vai', delete: 'Cancella', lastName: 'Cognome', firstName: 'Nome', curriculum: 'Curriculum',
         languages: 'Lingue', skype: 'Contatto Skype', phone: 'Telefono', patents: 'Patenti', language: 'Lingua', english: 'Inglese', italian: 'Italiano', yourProfile: 'Il tuo profilo', name: "Nome",
         profile: "Profilo", company: 'Società', transportListCode: "Num. iscrizione all'albo", chamberOfCommerce: "Camera di commercio", emails: "E-mail", password: "Password",
@@ -153,8 +151,8 @@ export default Ember.Controller.extend({
         companyDetails: 'Company Details', invoiceNumber: 'Invoice number', rate: 'Rate', limit: 'Limit', goodsConfiscation: 'Goods Confisc.', vehicleConfiscation: 'Vehicle Confisc.',
         fiscalResponsibility: 'Fiscal Resp.', emas: 'Emas', validity: 'Validity', alert: 'Alert', grace: 'Grace', loadModel: 'Load model', attach: 'Attach', premium: 'Premium', medium: 'Medium',
         smart: 'Smart', for: 'For', euro: 'Euro', buyNow: 'Buy now!', amount: 'Amount', cardNumber: 'Card number', account: 'Account', general: 'General', postToYourLinks: 'Post to your links',
-        submit: 'Submit', news: 'News', hideNotifications: 'Hide notifications',
-        paymentDetails: 'Payment details', credits: 'Credits', orderHistory: 'Order history', buyCredits: 'Buy credits', newDocument: 'Nuovo documento', hideLinkRequests: 'Hide link requests',
+        submit: 'Submit', news: 'News', hideNotifications: 'Hide notifications', linksRequest: 'Links request', generals: 'Generals', admin: 'Admin', extra: 'Extra',
+        paymentDetails: 'Payment details', credits: 'Credits', orderHistory: 'Order history', buyCredits: 'Buy credits', document: 'document', hideLinkRequests: 'Hide link requests',
         showHideLinkRequests: 'Show hidden link requests...', resume: 'Resume', date: 'Date', close: 'Close', gracePeriod: 'Grace period', more: 'More', deadline: 'Deadline',
         value: 'Value', certificate: 'Certificate', download: 'Download', hide: 'Hide', note: 'Note', highlight: 'Highlight', showHideNotifications: 'Show hidden notifications...',
         linkRequests: 'Link requests', notifications: 'Notifications', save: 'Save', type: 'Type', edit: 'Edit', country: 'Country', logo: 'Logo', links: 'Links', new: 'New',

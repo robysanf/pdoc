@@ -6,9 +6,10 @@ export default DS.Model.extend({
     vehicleConfiscation: attr('boolean'),    //sequestro
     fiscalResponsibility: attr('boolean'),   //responsabilità economica
     emas: attr('boolean'),
+
     isLimited: attr('boolean'),    // se il certificato è scaduto il suo punteggio può arrivare ad un massimo prestabilito
 
-    deadline: attr('date'),         //scadenza
+    deadline: attr('custom-time'),         //scadenza
 
     validityNum: attr('number'),     //durata validità della certificazione
     alertNum: attr('number'),       //quanto tempo prima della scadenza deve essere mostrato l'avviso di scadenza
@@ -39,5 +40,25 @@ export default DS.Model.extend({
     }.property('type'),
     isTrailer: function() {
         return (this.get('type') === 'trailer' );
-    }.property('type')
+    }.property('type'),
+
+    setBool: function(){
+        if(this.get('goodsConfiscation')){
+            this.set('vehicleConfiscation', false);
+            this.set('fiscalResponsibility', false);
+            this.set('emas', false);
+        } else if(this.get('vehicleConfiscation')){
+            this.set('goodsConfiscation', false);
+            this.set('fiscalResponsibility', false);
+            this.set('emas', false);
+        }  else if(this.get('fiscalResponsibility')){
+            this.set('goodsConfiscation', false);
+            this.set('vehicleConfiscation', false);
+            this.set('emas', false);
+        } else if(this.get('emas')){
+            this.set('goodsConfiscation', false);
+            this.set('fiscalResponsibility', false);
+            this.set('vehicleConfiscation', false);
+        }
+    }.property('goodsConfiscation', 'vehicleConfiscation', 'fiscalResponsibility', 'emas')
 });
