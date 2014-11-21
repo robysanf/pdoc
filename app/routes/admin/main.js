@@ -49,14 +49,31 @@ export default Ember.Route.extend({
         set_record: function( record, attr, value ){
             var _this = this;
 
-            if(attr !== 'view_new_field'){
-                record.set(attr, value);
-            } else {
-                record.save().then(function(){
-                    _this.send('change_mode', attr, value );
-                });
+            switch (attr){
+                case 'view_new_field':
+                    record.save().then(function(){
+                        _this.send('change_mode', attr, value );
+                    });
+                    break;
+                case 'mode_view':
+                    record.save().then(function(){
+                        _this.send('change_mode', attr, value );
+                    });
+                    break;
+                default :
+                    record.set(attr, value);
+                    break
             }
+        },
 
+        remove_record: function( record ){
+            var _this = this, app_controller = _this.controllerFor('application');
+            record.deleteRecord();
+            record.save().then(function(){
+                app_controller.send('message_manager', 'success', 'The document was successfully removed.');
+            }, function(){
+                app_controller.send('message_manager', 'error', 'A problem eas occurred.');
+            });
         }
     }
 });

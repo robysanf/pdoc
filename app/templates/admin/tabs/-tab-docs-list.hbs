@@ -1,6 +1,6 @@
 <div class="row" style="margin-top: 45px">
     <div class="col-lg-12">
-        <table class="table table-hover">
+        <table class="table table-condensed">
             <thead>
             <tr>
                 <th style="width: 32%">Document</th>
@@ -12,148 +12,27 @@
             </thead>
             <tbody>
             {{#each docTemp in docTemplates}}
-                {{#if controller.tabList.driver}}
-                    {{#if docTemp.isDriver}}
-                        <tr>
-                            <td rowspan="4"><span class="label label-primary" style="display: block; text-align: left; width: 300px; white-space: normal;">
-                                <h4>
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <span class="glyphicon glyphicon-download"></span>  &nbsp
-                                            <span class="glyphicon glyphicon-trash"></span>
-                                        </div>
-                                        <div class="col-lg-8">
-                                            {{docTemp.name}}
-                                        </div>
-                                    </div>
-                                </h4>
-                                </span>
-                            </td>
-                            <td>
-                                {{#if mode_view}}
-                                    {{#if new_record.goodsConfiscation}}
-                                        <span class="glyphicon glyphicon glyphicon-check"></span>
-                                    {{else}}
-                                        <span class="glyphicon glyphicon glyphicon-unchecked"></span>
-                                    {{/if}}
-                                    &nbsp
-                                    {{app_controller.translation.goodsConfiscation}}
-                                {{else}}
-                                    {{#if new_record.goodsConfiscation}}
-                                        <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'goodsConfiscation' false}}></span>
-                                    {{else}}
-                                        <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'goodsConfiscation' true}}></span>
-                                    {{/if}}
-                                    &nbsp
-                                    {{app_controller.translation.goodsConfiscation}}
+                {{#if controller.tabList.company}}
+                    {{#if docTemp.isCompany}}
+                        {{partial 'admin/partials/-docs-list'}}
+                    {{/if}}
+                {{else}}
+                    {{#if controller.tabList.driver}}
+                        {{#if docTemp.isDriver}}
+                            {{partial 'admin/partials/-docs-list'}}
+                        {{/if}}
+                    {{else}}
+                        {{#if controller.tabList.truck}}
+                            {{#if docTemp.isTruck}}
+                                {{partial 'admin/partials/-docs-list'}}
+                            {{/if}}
+                        {{else}}
+                            {{#if controller.tabList.trailer}}
+                                {{#if docTemp.isTrailer}}
+                                    {{partial 'admin/partials/-docs-list'}}
                                 {{/if}}
-                            </td>
-                            <td>
-                                {{#if mode_view}}
-                                    {{#if new_record.vehicleConfiscation}}
-                                        <span class="glyphicon glyphicon glyphicon-check"></span>
-                                    {{else}}
-                                        <span class="glyphicon glyphicon glyphicon-unchecked"></span>
-                                    {{/if}}
-                                    &nbsp
-                                    {{app_controller.translation.vehicleConfiscation}}
-                                {{else}}
-                                    {{#if new_record.vehicleConfiscation}}
-                                        <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'vehicleConfiscation' false}}></span>
-                                    {{else}}
-                                        <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'vehicleConfiscation' true}}></span>
-                                    {{/if}}
-                                    &nbsp
-                                    {{app_controller.translation.vehicleConfiscation}}
-                                {{/if}}
-                            </td>
-
-                            <td rowspan="2">
-                                <div class="form-group">
-                                    <label class="control-label">{{app_controller.translation.rate}}</label>
-                                    {{input type="number" class="form-control" value=docTemp.rateValue disabled = mode_view}}
-                                </div>
-                            </td>
-                            <td rowspan="2">
-                                <div class="form-group">
-                                    <label class="control-label">{{app_controller.translation.limit}}</label>
-                                    {{input type="number" class="form-control" value=docTemp.limit disabled = mode_view}}
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                {{#if mode_view}}
-                                    {{#if new_record.fiscalResponsibility}}
-                                        <span class="glyphicon glyphicon glyphicon-check"></span>
-                                    {{else}}
-                                        <span class="glyphicon glyphicon glyphicon-unchecked"></span>
-                                    {{/if}}
-                                    &nbsp
-                                    {{app_controller.translation.fiscalResponsibility}}
-                                {{else}}
-                                    {{#if new_record.fiscalResponsibility}}
-                                        <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'fiscalResponsibility' false}}></span>
-                                    {{else}}
-                                        <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'fiscalResponsibility' true}}></span>
-                                    {{/if}}
-                                    &nbsp
-                                    {{app_controller.translation.fiscalResponsibility}}
-                                {{/if}}
-                            </td>
-
-                            <td>
-                                {{#if mode_view}}
-                                    {{#if new_record.emas}}
-                                        <span class="glyphicon glyphicon glyphicon-check"></span>
-                                    {{else}}
-                                        <span class="glyphicon glyphicon glyphicon-unchecked"></span>
-                                    {{/if}}
-                                    &nbsp
-                                    {{app_controller.translation.emas}}
-                                {{else}}
-                                    {{#if new_record.emas}}
-                                        <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'emas' false}}></span>
-                                    {{else}}
-                                        <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'emas' true}}></span>
-                                    {{/if}}
-                                    &nbsp
-                                    {{app_controller.translation.emas}}
-                                {{/if}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group">
-                                    <label class="control-label">{{app_controller.translation.validity}}</label>
-                                {{input value = new_record.validityNum type = "number" class = 'form-control' disabled = mode_view }}
-                                </div>
-                            </td>
-                            <td style="padding-top: 35px">{{view Ember.Select content=type_period value=new_record.validityType placeholder="Choose a period" class='form-control' disabled = mode_view}}</td>
-                            <td colspan="2">
-                                <div class="form-group">
-                                    <label class="control-label">{{app_controller.translation.deadline}}</label>
-                                    {{input value = new_record.deadline type = "date" class = 'form-control' disabled = mode_view}}
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group">
-                                    <label class="control-label">{{app_controller.translation.alert}}</label>
-                                    {{input type="number" class="form-control" value=docTemp.alertNum disabled = mode_view}}
-                                </div>
-                            </td>
-                            <td style="padding-top: 35px">{{view Ember.Select content=type_period value=docTemp.alertType placeholder="Choose a period" class='form-control' disabled = mode_view }}</td>
-                            <td>
-                                <div class="form-group">
-                                    <label class="control-label">{{app_controller.translation.grace}}</label>
-                                    {{input type="number" class="form-control" value=docTemp.graceNum disabled = mode_view}}
-                                </div>
-                            </td>
-                            <td style="padding-top: 35px">{{view Ember.Select content=type_period value=docTemp.graceType placeholder="Choose a period" class='form-control'disabled = mode_view }}</td>
-                        </tr>
-
+                            {{/if}}
+                        {{/if}}
                     {{/if}}
                 {{/if}}
             {{/each}}

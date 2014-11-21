@@ -2,6 +2,17 @@
 /*margin: 20px;*/
 /*}*/
 
+.square-icon {
+    background: url(../img/driver200x255.png) 50% 50% no-repeat; /* 50% 50% centers image in div */
+    width: 75px;
+    height: 75px;
+    opacity:0.7;
+}
+.square {
+    width: 125px;
+    height: 125px;
+}
+
 /**************************************************************************************************
   CUSTOM STYLE
 */

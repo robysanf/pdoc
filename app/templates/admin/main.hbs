@@ -29,15 +29,15 @@
                                 </button>
                             {{/unless}}
                         {{else}}
-                            {{#unless view_new_field}}
-                                <button type="button" class="btn btn-default pull-right btn-90" {{!{{action 'create_record' this 'view_new_field' true}}>
+                            {{#if mode_view}}
+                                <button type="button" class="btn btn-default pull-right btn-90" {{action 'change_mode' 'mode_view' false}}>
                                     <span class="glyphicon glyphicon-pencil btn-font-color"></span>
                                 </button>
                             {{else}}
-                                <button type="button" class="btn btn-default pull-right btn-90" {{!{{action 'set_record' new_record 'view_new_field' false}}>
+                                <button type="button" class="btn btn-default pull-right btn-90" {{action 'set_record' this 'mode_view' true}}>
                                     <span class="glyphicon glyphicon-ok btn-font-color"></span>
                                 </button>
-                            {{/unless}}
+                            {{/if}}
                         {{/if}}
                     </div>
                 </div>
@@ -48,19 +48,19 @@
             <!-------------------- tabs head - general/company/driver/truck/trailer ---------------------->
             <ul class="nav nav-pills nav-justified" style="margin-bottom: 15px;">
                 <li {{bind-attr class="tabList.general:active"}}>
-                    <a href="#" {{action setTabs "general"}}><h4>{{app_controller.translation.general}}</h4></a>
+                    <a href="#" {{action setTabs "general"}}><h5>{{app_controller.translation.general}}</h5></a>
                 </li>
                 <li {{bind-attr class="tabList.company:active"}}>
-                    <a href="#"{{action setTabs "company"}}><h4>{{app_controller.translation.company}}</h4></a>
+                    <a href="#"{{action setTabs "company"}}><h5>{{app_controller.translation.company}}</h5></a>
                 </li>
                 <li {{bind-attr class="tabList.driver:active"}}>
-                    <a href="#" {{action setTabs "driver"}}><h4>{{app_controller.translation.drivers}}</h4></a>
+                    <a href="#" {{action setTabs "driver"}}><h5>{{app_controller.translation.drivers}}</h5></a>
                 </li>
                 <li {{bind-attr class="tabList.truck:active"}}>
-                    <a href="#" {{action setTabs "truck"}}><h4>{{app_controller.translation.trucks}}</h4></a>
+                    <a href="#" {{action setTabs "truck"}}><h5>{{app_controller.translation.trucks}}</h5></a>
                 </li>
                 <li {{bind-attr class="tabList.trailer:active"}}>
-                    <a href="#" {{action setTabs "trailer"}}><h4>{{app_controller.translation.trailers}}</h4></a>
+                    <a href="#" {{action setTabs "trailer"}}><h5>{{app_controller.translation.trailers}}</h5></a>
                 </li>
             </ul>
             <div class="tab-content">
