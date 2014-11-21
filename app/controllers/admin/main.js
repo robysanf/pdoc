@@ -4,9 +4,10 @@ export default Ember.ObjectController.extend({
     needs: ['application'],
     app_controller: Ember.computed.alias('controllers.application'),
 
-    view_new_link: false,
-    isView: true,
+    view_new_field: false,
+    mode_view: true,
     new_record: null,
+
     type_document: [
        'company',
         'driver',

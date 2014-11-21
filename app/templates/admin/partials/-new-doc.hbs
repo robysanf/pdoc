@@ -1,12 +1,11 @@
+<!------------------------------- RECORD FIELD ------------------------------------->
 <form class="form-horizontal">
     <fieldset>
         <legend>{{app_controller.translation.new}} {{new_record.type}} {{app_controller.translation.document}}</legend>
-
-
-        <!------------------------------- record field ------------------------------------->
+        <!------------------------------- type - company/trailer/driver/truck ------------------------------------->
         <div class="form-group">
-            <label for="areas" class="col-lg-3 control-label">{{app_controller.translation.type}}</label>
-            <div class="col-lg-9">
+            <label  class="col-lg-2 control-label">{{app_controller.translation.type}}</label>
+            <div class="col-lg-10">
                 {{view Ember.Select
                 content=type_document
                 value=new_record.type
@@ -15,17 +14,20 @@
                 }}
             </div>
         </div>
+        <!------------------------------- name  ------------------------------------->
         <div class="form-group">
-            <label for="areas" class="col-lg-3 control-label">{{app_controller.translation.name}}</label>
-            <div class="col-lg-9">
+            <label  class="col-lg-2 control-label">{{app_controller.translation.name}}</label>
+            <div class="col-lg-10">
                 {{input value = new_record.name type = "text" class = 'form-control'}}
             </div>
         </div>
+        <!------------------------------- rate value ------------------------------------->
         <div class="form-group">
-            <label for="areas" class="col-lg-3 control-label">{{app_controller.translation.rate}}</label>
+            <label  class="col-lg-2 control-label">{{app_controller.translation.rate}}</label>
             <div class=col-lg-4>
                 {{input value = new_record.rateValue type = "number" class = 'form-control'}}
             </div>
+            <!------------------------------- rate value with progress bar ------------------------------------->
             <div class=col-lg-4>
                 {{#if controller.new_record.isCompany}}
                     <div class="progress" style="background-color: #ffffff; border: 1px; border-color: #000000;  margin-top: 10px">
@@ -48,7 +50,7 @@
                     </div>
                 {{/if}}
             </div>
-            <div class=col-lg-1>
+            <div class=col-lg-2>
                 {{#if controller.new_record.isCompany}}
                     <h4>{{companyRating}} %</h4>
                 {{/if}}
@@ -63,26 +65,25 @@
                 {{/if}}
             </div>
         </div>
+        <!------------------------------- limit ------------------------------------->
         <div class="form-group">
-            <label class="col-lg-3 control-label"></label>
-            <div class=col-lg-1>
+            <label class="col-lg-2 control-label">{{app_controller.translation.limit}}</label>
+            <div class=col-lg-4>
                 {{#if new_record.limit}}
-                   <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'limit' false}}></span>
+                    {{input value = new_record.limit type = "number" class = 'form-control' placeholder="0-100"}}
                 {{else}}
                     <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'limit' true}}></span>
                 {{/if}}
             </div>
-            <label class="col-lg-3">
-                {{app_controller.translation.limit}}
-            </label>
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 {{#if new_record.limit}}
-                    {{input value = new_record.limit type = "number" class = 'form-control' placeholder="0-100"}}
+                    <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'limit' false}}></span>
                 {{/if}}
             </div>
         </div>
+        <!------------------------------- goods confiscation - boolean ------------------------------------->
         <div class="form-group">
-            <label class="col-lg-3 control-label"></label>
+            <label class="col-lg-2 control-label"></label>
             <div class="col-lg-1">
                 {{#if new_record.goodsConfiscation}}
                     <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'goodsConfiscation' false}}></span>
@@ -90,10 +91,11 @@
                     <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'goodsConfiscation' true}}></span>
                 {{/if}}
             </div>
-            <label class="col-lg-8">{{app_controller.translation.goodsConfiscation}}</label>
+            <label class="col-lg-9">{{app_controller.translation.goodsConfiscation}}</label>
         </div>
+        <!------------------------------- vehicle confiscation - boolean ------------------------------------->
         <div class="form-group">
-            <label class="col-lg-3 control-label"></label>
+            <label class="col-lg-2 control-label"></label>
             <div class="col-lg-1">
                 {{#if new_record.vehicleConfiscation}}
                     <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'vehicleConfiscation' false}}></span>
@@ -101,10 +103,11 @@
                     <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'vehicleConfiscation' true}}></span>
                 {{/if}}
             </div>
-            <label class="col-lg-8">{{app_controller.translation.fiscalResponsibility}}</label>
+            <label class="col-lg-9">{{app_controller.translation.vehicleConfiscation}}</label>
         </div>
+        <!------------------------------- fiscal Responsibility - boolean ------------------------------------->
         <div class="form-group">
-            <label class="col-lg-3"></label>
+            <label class="col-lg-2"></label>
             <div class="col-lg-1">
                 {{#if new_record.fiscalResponsibility}}
                     <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'fiscalResponsibility' false}}></span>
@@ -112,10 +115,11 @@
                     <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'fiscalResponsibility' true}}></span>
                 {{/if}}
             </div>
-            <label class="col-lg-8">{{app_controller.translation.emas}}</label>
+            <label class="col-lg-9">{{app_controller.translation.fiscalResponsibility}}</label>
         </div>
+        <!------------------------------- emas - boolean ------------------------------------->
         <div class="form-group">
-            <label class="col-lg-3 control-label"></label>
+            <label class="col-lg-2 control-label"></label>
             <div class="col-lg-1">
                 {{#if new_record.emas}}
                     <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'emas' false}}></span>
@@ -123,12 +127,13 @@
                     <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'emas' true}}></span>
                 {{/if}}
             </div>
-            <label class="col-lg-8">{{app_controller.translation.emas}}</label>
+            <label class="col-lg-9">{{app_controller.translation.emas}}</label>
         </div>
+        <!------------------------------- validity ------------------------------------->
         <div class="form-group" style="margin-top: 20px">
-            <label for="areas" class="col-lg-3 control-label">{{app_controller.translation.validity}}</label>
+            <label  class="col-lg-2 control-label">{{app_controller.translation.validity}}</label>
             <div class="col-lg-2">
-                {{input value = new_record.validityNum type = "number" class = 'form-control'}}
+                {{input value = new_record.validityNum type = "number" class = 'form-control' disabled=new_record.isDeadline }}
             </div>
             <div class="col-lg-2">
                 {{view Ember.Select
@@ -138,13 +143,15 @@
                 class='form-control'
                 }}
             </div>
-            <label for="areas" class="col-lg-2 control-label">{{app_controller.translation.deadline}}</label>
-            <div class="col-lg-3">
-                {{input value = new_record.deadline type = "date" class = 'form-control'}}
+            <!------------------------------- deadline ------------------------------------->
+            <label  class="col-lg-2 control-label">{{app_controller.translation.deadline}}</label>
+            <div class="col-lg-4">
+                {{input value = new_record.deadline type = "date" class = 'form-control' disabled=new_record.isValidity}}
             </div>
         </div>
+        <!------------------------------- alert ------------------------------------->
         <div class="form-group" style="margin-top: 20px">
-            <label for="areas" class="col-lg-3 control-label">{{app_controller.translation.alert}}</label>
+            <label  class="col-lg-2 control-label">{{app_controller.translation.alert}}</label>
             <div class="col-lg-2">
                 {{input value = new_record.alertNum type = "number" class = 'form-control'}}
             </div>
@@ -156,10 +163,8 @@
                 class='form-control'
                 }}
             </div>
-            <div class="col-lg-7"></div>
-        </div>
-        <div class="form-group" style="margin-top: 20px">
-            <label for="areas" class="col-lg-3 control-label">{{app_controller.translation.grace}}</label>
+            <!------------------------------- grace ------------------------------------->
+            <label class="col-lg-2 control-label">{{app_controller.translation.grace}}</label>
             <div class="col-lg-2">
                 {{input value = new_record.graceNum type = "number" class = 'form-control'}}
             </div>
@@ -172,12 +177,14 @@
                 }}
 
             </div>
-            <div class="col-lg-7"></div>
         </div>
+        
+
+        <!------------------------------- add model ------------------------------------->
         <div class="page-header"></div>
         <div class="form-group">
-            <label for="areas" class="col-lg-3 control-label">{{app_controller.translation.loadModel}}</label>
-            <div class="col-lg-9">
+            <label  class="col-lg-2 control-label">{{app_controller.translation.loadModel}}</label>
+            <div class="col-lg-10">
                 <div class="input-group input-group">
                     {{input placeholder="Search..." type = "number" class = 'form-control'}}
                     <span class="input-group-btn">

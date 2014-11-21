@@ -1,34 +1,51 @@
 <div class="container container-outer">
     <div class="panel panel-primary">
         <div class="panel-heading">
+            <!-------------------- HEADER ---------------------->
             <div class="row">
+                <!-------------------- button return-to-list ---------------------->
                 <div class="col-lg-2">
-                    {{#if view_new_link}}
-                        <button type="button" class="btn btn-default pull-left btn-90" {{action 'change_mode' 'view_new_link' false}}>
+                    {{#if view_new_field}}
+                        <button type="button" class="btn btn-default pull-left btn-90" {{action 'change_mode' 'view_new_field' false}}>
                             <span class="glyphicon glyphicon-chevron-left btn-font-color"></span> <strong class="btn-font-color" style="font-size: 21">{{app_controller.translation.return}}</strong>
                         </button>
                     {{/if}}
                 </div>
+                <!-------------------- nome company ---------------------->
                 <div class="col-lg-8">
                     <div class="panel-title1" style="text-align: center">{{app_controller.translation.admin}}</div>
                 </div>
+                <!-------------------- cambio button tra new/save ---------------------->
                 <div class="col-lg-2">
                     <div style="margin-top: 2px">
-                        {{#unless view_new_link}}
-                            <button type="button" class="btn btn-default pull-right btn-90" {{action 'create_record' this 'view_new_link' true}}>
-                                <span class="glyphicon glyphicon-plus btn-font-color"></span>
-                            </button>
+                        {{#if controller.tabList.general}}
+                            {{#unless view_new_field}}
+                                <button type="button" class="btn btn-default pull-right btn-90" {{action 'create_record' this 'view_new_field' true}}>
+                                    <span class="glyphicon glyphicon-plus btn-font-color"></span>
+                                </button>
+                            {{else}}
+                                <button type="button" class="btn btn-default pull-right btn-90" {{action 'set_record' new_record 'view_new_field' false}}>
+                                    <span class="glyphicon glyphicon-ok btn-font-color"></span>
+                                </button>
+                            {{/unless}}
                         {{else}}
-                            <button type="button" class="btn btn-default pull-right btn-90" {{action 'set_record' new_record 'view_new_link' false}}>
-                                <span class="glyphicon glyphicon-ok btn-font-color"></span>
-                            </button>
-                        {{/unless}}
-
+                            {{#unless view_new_field}}
+                                <button type="button" class="btn btn-default pull-right btn-90" {{!{{action 'create_record' this 'view_new_field' true}}>
+                                    <span class="glyphicon glyphicon-pencil btn-font-color"></span>
+                                </button>
+                            {{else}}
+                                <button type="button" class="btn btn-default pull-right btn-90" {{!{{action 'set_record' new_record 'view_new_field' false}}>
+                                    <span class="glyphicon glyphicon-ok btn-font-color"></span>
+                                </button>
+                            {{/unless}}
+                        {{/if}}
                     </div>
                 </div>
             </div>
         </div>
+        <!-------------------- BODY ---------------------->
         <div class="panel-body">
+            <!-------------------- tabs head - general/company/driver/truck/trailer ---------------------->
             <ul class="nav nav-pills nav-justified" style="margin-bottom: 15px;">
                 <li {{bind-attr class="tabList.general:active"}}>
                     <a href="#" {{action setTabs "general"}}><h4>{{app_controller.translation.general}}</h4></a>
@@ -48,23 +65,26 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane fade active in">
-                    {{#unless view_new_link}}
+                    <!-------------------- tabs body - progress bar - mode view ---------------------->
+                    {{#unless view_new_field}}
                         {{partial "admin/partials/-progress-bar"}}
                     {{/unless}}
-
+                    <!-------------------- TAB BODY - GENERAL ---------------------->
                     {{#if controller.tabList.general}}
-                        {{#if view_new_link}}
+                        <!-------------------- mode new document ---------------------->
+                        {{#if view_new_field}}
                             <div class="well well-sm">
                                 <div class="row row-margin-top-bottom">
                                     <div class="col-lg-1"></div>
                                     <div class="col-lg-10">
-                                        {{partial "admin/tabs/-tab-new-doc"}}
+                                        {{partial "admin/partials/-new-doc"}}
                                     </div>
                                     <div class="col-lg-1"></div>
                                 </div>
                             </div>
                         {{/if}}
                     {{else}}
+                        <!-------------------- TAB BODY - COMPANY / DRIVER / TRUCK / TRAILER ---------------------->
                         {{partial "admin/tabs/-tab-docs-list"}}
                     {{/if}}
                 </div>

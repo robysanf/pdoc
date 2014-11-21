@@ -29,6 +29,7 @@ export default Ember.Route.extend({
             this.controller.set('tabList.trailer',false);
 
             this.controller.set('tabList.' + tabToActive, true);
+            this.controller.set('view_new_field', false);
         },
 
         change_mode: function( attr, value ){
@@ -47,7 +48,8 @@ export default Ember.Route.extend({
 
         set_record: function( record, attr, value ){
             var _this = this;
-            if(attr !== 'view_new_link'){
+
+            if(attr !== 'view_new_field'){
                 record.set(attr, value);
             } else {
                 record.save().then(function(){

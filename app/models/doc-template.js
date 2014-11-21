@@ -29,6 +29,13 @@ export default DS.Model.extend({
     /***************************************************
      * PROPERTIES
      */
+    isDeadline: function(){
+        return ( this.get('deadline') !== null && this.get('deadline') !== '' && this.get('validityNum') !== undefined );
+    }.property('deadline'),
+    isValidity: function(){
+        return ( this.get('validityNum') !== null && this.get('validityNum') !== '' && this.get('validityNum') !== undefined );
+    }.property('validityNum'),
+
     isCompany: function() {
         return (this.get('type') === 'company' );
     }.property('type'),
