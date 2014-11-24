@@ -12,14 +12,13 @@ export default DS.Model.extend({
         async: true }),
     company: DS.belongsTo('company', {
         async: true }),
-
+    files: DS.hasMany('files', {
+        async: true}),
     /*************************************************
      * PROPERTIES
      */
     timeFrom: function(){
-        var timeFrom =  moment(this.get('date')).fromNow() ;
-
-        return timeFrom;
+        return moment(this.get('date')).fromNow() ;
     }.property('date')
 
 });

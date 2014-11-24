@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <span class="glyphicon glyphicon-download" style="cursor: pointer"></span>  &nbsp
-                    <span class="glyphicon glyphicon-trash" {{action 'remove_record' docTemp}} style="cursor: pointer"></span>
+                    <span class="glyphicon glyphicon-trash" {{action 'open_modal' 'admin/modals/delete-record' docTemp this}}  style="cursor: pointer"></span>
                 </div>
                 <div class="col-lg-8">
                     {{docTemp.name}}
@@ -113,7 +113,7 @@
             {{input value = new_record.validityNum type = "number" class = 'form-control' disabled = mode_view }}
         </div>
     </td>
-    <td style="padding-top: 35px">{{view Ember.Select content=type_period value=new_record.validityType placeholder="Choose a period" class='form-control' disabled = mode_view}}</td>
+    <td style="padding-top: 32px">{{view Ember.Select content=type_period value=new_record.validityType placeholder="Choose a period" class='form-control' disabled = mode_view}}</td>
     <td colspan="2">
         <div class="form-group">
             <label class="control-label">{{app_controller.translation.deadline}}</label>
@@ -128,12 +128,12 @@
             {{input type="number" class="form-control" value=docTemp.alertNum disabled = mode_view}}
         </div>
     </td>
-    <td style="padding-top: 35px">{{view Ember.Select content=type_period value=docTemp.alertType placeholder="Choose a period" class='form-control' disabled = mode_view }}</td>
+    <td style="padding-top: 32px">{{view Ember.Select content=type_period value=docTemp.alertType placeholder="Choose a period" class='form-control' disabled = mode_view }}</td>
     <td>
         <div class="form-group">
             <label class="control-label">{{app_controller.translation.grace}}</label>
             {{input type="number" class="form-control" value=docTemp.graceNum disabled = mode_view}}
         </div>
     </td>
-    <td style="padding-top: 35px">{{view Ember.Select content=type_period value=docTemp.graceType placeholder="Choose a period" class='form-control'disabled = mode_view }}</td>
+    <td style="padding-top: 32px">{{view Ember.Select content=type_period value=docTemp.graceType placeholder="Choose a period" class='form-control'disabled = mode_view }}</td>
 </tr>

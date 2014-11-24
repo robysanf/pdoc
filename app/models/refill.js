@@ -8,5 +8,7 @@ export default DS.Model.extend({
 
     key: DS.attr('string'),
 
-    company: DS.belongsTo('company')
+    company: DS.belongsTo('company'),
+    files: DS.hasMany('files', {
+        async: true})
 });

@@ -7,6 +7,7 @@ export default Ember.ObjectController.extend({
     view_new_field: false,
     mode_view: true,
     new_record: null,
+    record_to_delete: null,
 
     type_document: [
        'company',

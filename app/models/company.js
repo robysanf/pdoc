@@ -4,13 +4,6 @@ export default DS.Model.extend({
     credit:DS.attr('number'),
     cardNumber:DS.attr('number'),
 
-//    id: function(){
-//       return this.get('vat');
-//    }.property('vat'),
-//    text: function(){
-//        return this.get('name');
-//    }.property('name'),
-
     name: DS.attr('string'),
     vat: DS.attr('string'),                  //partita iva
     transportListCode: DS.attr('string'),    //codice albo
@@ -35,9 +28,8 @@ export default DS.Model.extend({
         async: true }),
     vehicles: DS.hasMany('vehicle',{
         async: true }),
-//    refills: DS.hasMany('refill',{
-//        async: true
-//    }),
+    refills: DS.hasMany('refill',{
+        async: true}),
     links: DS.hasMany('company',{
         async: true}),
     notifications: DS.hasMany('notification', {
@@ -50,7 +42,8 @@ export default DS.Model.extend({
     //parentCompany: DS.belongsTo('company'),
     //childCompanies: DS.hasMany('company'),
     //documents: DS.hasMany('document'),
-    //files: DS.hasMany('document'),
+    files: DS.hasMany('file', {
+        async: true}),
     grants: DS.hasMany('grant',{
         async:true }),
     /****************************************************

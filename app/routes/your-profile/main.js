@@ -142,7 +142,7 @@ export default Ember.Route.extend({
             });
         },
 
-        remove_record: function() {
+        delete_record: function() {
             var _this = this, app_controller = _this.controllerFor('application'), controller = _this.controllerFor('your-profile/main');
 
             controller.record_to_delete.deleteRecord();

@@ -66,13 +66,31 @@ export default Ember.Route.extend({
             }
         },
 
-        remove_record: function( record ){
+        delete_record: function( record ){
             var _this = this, app_controller = _this.controllerFor('application');
             record.deleteRecord();
             record.save().then(function(){
                 app_controller.send('message_manager', 'success', 'The document was successfully removed.');
             }, function(){
                 app_controller.send('message_manager', 'error', 'A problem eas occurred.');
+            });
+        },
+
+        open_modal: function( path, record_to_delete, record) {
+            var _this = this, app_controller = _this.controllerFor('application'), controller = _this.controllerFor('your-profile/main');
+
+            switch (path){
+                case 'admin/modals/delete-record':
+//                    controller.set('main_record', record);
+                    controller.set('record_to_delete', record_to_delete);
+
+                    break;
+            }
+
+            this.render(path, {
+                into: 'application',
+                outlet: 'overview',
+                view: 'modal-manager'
             });
         }
     }

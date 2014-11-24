@@ -25,7 +25,8 @@ export default DS.Model.extend({
 
     company: DS.belongsTo('company', {
         async: true }),
-    //models: DS.hasMany('file')
+    files: DS.hasMany('file', {
+        async: true}),
     /***************************************************
      * PROPERTIES
      */

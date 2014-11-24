@@ -14,6 +14,7 @@ Router.map(function() {
     this.route('notification/main', {path: 'notifications/:company_id'});
 
     this.route('admin/main', {path: 'admin/:company_id'});
+    this.route('account/main', {path: 'account/:company_id'});
 });
 
 export default Router;

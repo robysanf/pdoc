@@ -1,10 +1,4 @@
 <div class="container container-outer">
-
-
-
-
-
-
     <div class="panel panel-primary">
         <div class="panel-heading"><h2>Pubblica alla tua rete contatti <button type="button" class="btn btn-default pull-right" style="width: 200px" {{action 'submit' }}>Submit</button></h2></div>
 
@@ -65,9 +59,6 @@
             <br>
         </div>
     </div>
-
-
-
     {{#each}}
         <div class="alert alert-dismissable alert-default" style="background-color: #4582ec">
             <button type="button" class="close" data-dismiss="alert">×</button>
@@ -77,20 +68,24 @@
                         <div class= "well well square-icon" style="border: 0; margin-bottom: 0"></div>
                     </div>
                 </div>
-                <div class="col-lg-7">
+                <div class="col-lg-9">
                     <div class="row">
-                        <div class= "well well-sm" style="background-color: rgba(245, 245, 245, 0.4); border: 0px; margin-left: 10px">
-                            <h4 style="color: #f5f5f5; padding-top: 10px; padding-left: 10px"><strong>{{title}}</strong></h4>
+                        <div class="col-lg-6">
+                            <div class= "well well-sm" style="background-color: rgba(245, 245, 245, 0.4); border: 0px; margin-left: 10px">
+                                <h4 style="color: #f5f5f5; padding-top: 10px; padding-left: 10px"><strong>{{title}}</strong></h4>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <h5 class="pull-right" style="color: #f5f5f5; margin-top: 2px;">{{timeFrom}}</h5>
                         </div>
                     </div>
                     <div class="row">
-                        <div class= "well well-sm" style="background-color: rgba(245, 245, 245, 0.4); border: 0px; margin-left: 10px">
-                            <h5 style="color: #f5f5f5; padding-top: 5px; padding-left: 10px"><strong>Description: </strong>{{description}}</h5>
+                        <div class="col-lg-12">
+                            <div class= "well well-sm" style="background-color: rgba(245, 245, 245, 0.4); border: 0px; margin-left: 10px">
+                                <h5 style="color: #f5f5f5; padding-top: 5px; padding-left: 10px"><strong>Description: </strong>{{description}}</h5>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-2">
-                    <h5 class="pull-right" style="color: #f5f5f5; margin-top: 2px;">{{timeFrom}}</h5>
                 </div>
                 <div class="col-lg-1"></div>
             </div>

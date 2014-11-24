@@ -27,7 +27,17 @@
             <ul class="nav navbar-nav">
                 <li>{{#link-to 'admin/main' company_id}} {{controller.translation.admin}} {{/link-to}}</li>
             </ul>
+            <ul class="nav navbar-nav">
+                <li>{{#link-to 'account/main' company_id}} {{controller.translation.account}} {{/link-to}}</li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{controller.translation.language}}<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" {{action 'changeLanguage' 'english'}}>{{controller.translation.english}}</a></li>
+                        <li><a href="#" {{action 'changeLanguage' 'italian'}}>{{controller.translation.italian}}</a></li>
+                    </ul>
+                </li>
                 <li class="active"><a href="#" {{action 'logout'}}>Logout</a></li>
             </ul>
         </div>
