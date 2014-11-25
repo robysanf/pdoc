@@ -53,6 +53,8 @@ export default Ember.Controller.extend({
      */
 
     records_company: Ember.A(),
+    records_docTemplate: Ember.A(),
+    records_companyCertifier: Ember.A(),
 //    selectedTags: null,
 //    foodGroupsSorting: ['name:asc'],
 //    foodGroupsLookup: Ember.computed.sort('foodGroupsAll', 'foodGroupsSorting'),
@@ -130,10 +132,10 @@ export default Ember.Controller.extend({
     }.property('isEnglish'),
 
     lan_it: {
-        companyDetails: "Anagrafica", invoiceNumber: 'Numero fattura', rate: 'Punteggio', limit: 'Limite', goodsConfiscation: 'Confisca', vehicleConfiscation: 'Sequestro', fiscalResponsibility: 'Resp.Fiscale',
+        publicToYourContactsNetwork: 'Pubblica alla tua rete di contatti', companyDetails: "Anagrafica", invoiceNumber: 'Numero fattura', rate: 'Punteggio', limit: 'Limite', goodsConfiscation: 'Confisca', vehicleConfiscation: 'Sequestro', fiscalResponsibility: 'Resp.Fiscale',
         validity: 'Validità', alert: 'Avviso', grace: 'Grazia', loadModel: 'Carica modello', attach: 'Allega', premium: 'Avanzato', medium: 'Intermedio', smart: 'Base', for: 'Per', euro: 'Euro',
         byNow: 'Acquista ora!', amount: 'Totale', cardNumber: 'Numero di carta', account: 'Cliente', general: 'Generale', postToYourLinks: 'Pubblica alla tua rete di contatti', submit: 'Pubblica',
-        news: 'Nuove', hideNotifications: 'Notifiche nascoste', emas: 'Emas', admin: 'Admin', extra: 'Extra',
+        news: 'Nuove', hideNotifications: 'Notifiche nascoste', emas: 'Emas', admin: 'Admin', extra: 'Extra', certifier: 'Certificatore',
         paymentDetails: 'dettagli pagamento', credits: 'Crediti', orderHistory: 'Storico cliente', buyCredits: 'Acquisto crediti', newDocument: 'documento', hideLinkRequests: 'Richieste di connessione nascoste',
         showHideLinkRequests: 'Mostra le richieste di connessione nascoste...', resume: 'Rigenera', date: 'Data', close: 'Chiudi', gracePeriod: 'Periodo di grazia',
         more: 'Dettagli', deadline: 'Scadenza', value: 'Valore', certificate: 'Certifica', download: 'Scarica', hide: 'Nascondi', note: 'Note', highlight: 'In evidenza',
@@ -145,10 +147,11 @@ export default Ember.Controller.extend({
         profile: "Profilo", company: 'Società', transportListCode: "Num. iscrizione all'albo", chamberOfCommerce: "Camera di commercio", emails: "E-mail", password: "Password",
         description: "Descrizione", services: "Servizi offerti", segments: "Tratte coperte", areas: "Aree coperte", driver: 'Autista', drivers: 'Autisti', truck: 'Camion', trucks: 'Camions',
         trailer: 'Rimorchio', trailers: 'Rimorchi', clerks: 'Impiegati', changePassword: 'Cambia password', driversList: "Lista autisti", driverDetails: "Anagrafica autista", trucksList: 'Lista camions',
-        list: "Lista", vehicleDetails: "Dettagli veicolo", clerksList: 'Lista impiegati', clerk: 'Impiegato', trailersList: 'Lista rimorchi', details:'Dettagli', username: 'Username', birthDate: 'Data di nascita'
+        list: "Lista", vehicleDetails: "Dettagli veicolo", clerksList: 'Lista impiegati', clerk: 'Impiegato', trailersList: 'Lista rimorchi', details:'Dettagli', username: 'Username',
+        birthDate: 'Data di nascita', title: 'Titolo', text: 'Testo', loadImage: 'Carica immagine', attached: 'Allega', documents: 'Documenti', validityDate: 'Inizio validità', deadLine: 'Scadenza'
     },
     lan_en: {
-        companyDetails: 'Company Details', invoiceNumber: 'Invoice number', rate: 'Rate', limit: 'Limit', goodsConfiscation: 'Goods Confisc.', vehicleConfiscation: 'Vehicle Confisc.',
+        publicToYourContactsNetwork: 'Public to your contacts network', companyDetails: 'Company Details', invoiceNumber: 'Invoice number', rate: 'Rate', limit: 'Limit', goodsConfiscation: 'Goods Confisc.', vehicleConfiscation: 'Vehicle Confisc.',
         fiscalResponsibility: 'Fiscal Resp.', emas: 'Emas', validity: 'Validity', alert: 'Alert', grace: 'Grace', loadModel: 'Load model', attach: 'Attach', premium: 'Premium', medium: 'Medium',
         smart: 'Smart', for: 'For', euro: 'Euro', buyNow: 'Buy now!', amount: 'Amount', cardNumber: 'Card number', account: 'Account', general: 'General', postToYourLinks: 'Post to your links',
         submit: 'Submit', news: 'News', hideNotifications: 'Hide notifications', linksRequest: 'Links request', generals: 'Generals', admin: 'Admin', extra: 'Extra',
@@ -156,13 +159,14 @@ export default Ember.Controller.extend({
         showHideLinkRequests: 'Show hidden link requests...', resume: 'Resume', date: 'Date', close: 'Close', gracePeriod: 'Grace period', more: 'More', deadline: 'Deadline',
         value: 'Value', certificate: 'Certificate', download: 'Download', hide: 'Hide', note: 'Note', highlight: 'Highlight', showHideNotifications: 'Show hidden notifications...',
         linkRequests: 'Link requests', notifications: 'Notifications', save: 'Save', type: 'Type', edit: 'Edit', country: 'Country', logo: 'Logo', links: 'Links', new: 'New',
-        return: 'Return', chassisNumber: 'Chassis number', registrationYear: 'Registration year', configuration: 'Configuration', category: 'Category', tare: 'Tare',
+        return: 'Return', chassisNumber: 'Chassis number', registrationYear: 'Registration year', configuration: 'Configuration', category: 'Category', tare: 'Tare', certifier: 'Certifier',
         weight: 'Weight', model: 'Model', brand: 'Brand', view: 'View',goTo: 'Go to', delete: 'Delete', lastName: 'Last Name', firstName: 'First Name', curriculum: 'Curriculum',
         languages: 'Languages', skype: 'Skype', phone: 'Phone', patents: 'Patents', language: 'Language', english: 'English', italian: 'Italian', yourProfile: 'Your Profile', name: "Name",
         profile: "Profile", company: 'Company', transportListCode: "Transport List Code", chamberOfCommerce: "Chamber Of Commerce", emails: "E-mail", password: "Password", description: "Description",
         services: "Services", segments: "Segments", areas: "Areas", driver: 'Driver', drivers: 'Drivers', truck: 'Truck', trucks: 'Trucks', trailer: 'Trailer', trailers: 'Trailers', clerks: 'Clerks',
         changePassword: 'Change password', driversList: "Drivers list", driverDetails: "Driver details", trucksList: 'Trucks list', list: "List", vehicleDetails: 'Vehicle details', clerksList: 'Clerks list',
-        clerk: 'Clerk', trailersList: 'Trailers list', details:'Details', username: 'Username', birthDate: 'Birth date'
+        clerk: 'Clerk', trailersList: 'Trailers list', details:'Details', username: 'Username', birthDate: 'Birth date', title: 'Title', text: 'Testo', loadImage: 'Load image', attached: 'Attached',
+        documents: 'Documents', validityDate: 'Validity date', deadLine: 'DeadLine'
     },
 
     actions:{

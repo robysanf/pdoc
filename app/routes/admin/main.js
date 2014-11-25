@@ -70,9 +70,9 @@ export default Ember.Route.extend({
             var _this = this, app_controller = _this.controllerFor('application');
             record.deleteRecord();
             record.save().then(function(){
-                app_controller.send('message_manager', 'success', 'The document was successfully removed.');
+                app_controller.send('message_manager', 'Success', 'The document was successfully removed.');
             }, function(){
-                app_controller.send('message_manager', 'error', 'A problem eas occurred.');
+                app_controller.send('message_manager', 'Failure', 'A problem eas occurred.');
             });
         },
 

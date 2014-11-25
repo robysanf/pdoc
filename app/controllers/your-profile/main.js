@@ -5,6 +5,10 @@ export default Ember.ObjectController.extend({
     app_controller: Ember.computed.alias('controllers.application'),
 
     isView: true,
+
+    isView_docList: true,
+    isView_docDetails: true,
+
     main_record: null,
     record_to_delete: null,
 

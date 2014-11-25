@@ -9,7 +9,7 @@ export default DS.Model.extend({
     phone: DS.attr('string'),
     skype: DS.attr('string'),
     profile: DS.attr('string'), //clerk/driver
-    type: DS.attr('string'),   //powerUser/
+    type: DS.attr('string'),   //powerUser/user/admin
     curriculum: DS.attr('string'),
 
     patents: DS.attr('raw'),
@@ -17,6 +17,8 @@ export default DS.Model.extend({
     languages: DS.attr('raw'),
 
     company: DS.belongsTo('company'),
+    files: DS.hasMany('files', {
+        async: true}),
     /*************************************************
      * PROPERTIES
      */
@@ -25,5 +27,9 @@ export default DS.Model.extend({
     }.property('profile'),
     isDriver: function(){
         return this.get('profile') === 'driver';
-    }.property('profile')
+    }.property('profile'),
+
+    birthDate_toString: function(){
+        return moment(this.get('birthDate')).format('YYYY-MM-DD');
+    }.property('birthDate')
 });

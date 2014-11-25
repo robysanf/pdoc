@@ -1,0 +1,116 @@
+<form class="form-horizontal" style="margin-top: 25px">
+    <fieldset>
+        <legend>
+            {{#if isView_docDetails}}
+                <a {{action 'set_variable' 'isView_docDetails' false}} style="cursor: pointer"><span class="glyphicon glyphicon-pencil btn-font-color"></span></a>
+                &nbsp;
+            {{else}}
+                <a {{action 'set_record' 'document' 'isView_docList' true this}} style="cursor: pointer"><span class="glyphicon glyphicon-ok btn-font-color"></span></a>
+                &nbsp;
+            {{/if}}
+            {{app_controller.translation.documents}}
+            <span {{action 'transition_to' 'your-profile/partials/-company-document-edit' null 'isView_docList' true 'isView_docDetails' false}} style="cursor: pointer" class="pull-right">
+                <strong style="color: #4582ec;">List</strong>
+                <span class="glyphicon glyphicon-chevron-right btn-font-color"></span>
+            </span>
+        </legend>
+
+        <div class="form-group">
+            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.name}}</label>
+            <div class="col-lg-9">
+                {{#if isView_docDetails}}
+                    {{#if sub_record.name}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.name}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value = sub_record.name type = "text" class = "form-control"}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.type}}</label>
+            <div class="col-lg-9">
+                {{#if isView_docDetails}}
+                    {{#if sub_record.template}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.template.name}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{select-2
+                    content=app_controller.records_docTemplate
+                    value=sub_record.docTemplate
+                    optionLabelPath="name"
+                    placeholder="Choose a document type"
+                    typeaheadNoMatchesText="No document type found for '%@'"
+                    typeaheadErrorText="Loading failed: %@"
+                    enabled=true
+                    allowClear=true
+                    }}
+                    {{!{{input value = sub_record.template.name type = "text" class = "form-control"}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.validityDate}}</label>
+            <div class="col-lg-6">
+                {{#if isView_docDetails}}
+                    {{#if sub_record.validityDate}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.validityDate_toString}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value = sub_record.validityDate type = "date" class = "form-control"}}
+                {{/if}}
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.deadLine}}</label>
+            <div class="col-lg-6">
+                {{#if isView_docDetails}}
+                    {{#if sub_record.deadLine}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.deadLine_toString}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value = sub_record.deadLine type = "date" class = "form-control"}}
+                {{/if}}
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.grace}}</label>
+            <div class="col-lg-6">
+                {{#if isView_docDetails}}
+                    {{#if sub_record.grace}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.grace_toString}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value = sub_record.grace type = "date" class = "form-control"}}
+                {{/if}}
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.note}}</label>
+            <div class="col-lg-9">
+                {{#if isView_docDetails}}
+                    {{#if sub_record.note}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.note}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{textarea value=sub_record.note class = "form-control" rows= 4}}
+                {{/if}}
+            </div>
+        </div>
+    </fieldset>
+</form>

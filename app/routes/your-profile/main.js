@@ -9,20 +9,17 @@ export default Ember.Route.extend({
             controller.set('tabList.company', true);
         }
 
+        app_controller.set('records_docTemplate', this.store.findAll('doc-template'));
+        app_controller.set('records_companyCertifier', this.store.findAll('company', { type: "certifier" }));
+
 //        //, {name: 'service'}
-//        this.store.find("tag").then(function(val){
-//            app_controller.set("auto_suggest_Services", val);
-//        });
+//        this.store.find("tag").then(function(val){ app_controller.set("auto_suggest_Services", val); });
 //
 //        //, {name: 'segment'}
-//        this.store.find("tag").then(function(val){
-//            app_controller.set("auto_suggest_Segments", val);
-//        });
+//        this.store.find("tag").then(function(val){ app_controller.set("auto_suggest_Segments", val); });
 //
 //        //, {name: 'area'}
-//        this.store.find("tag").then(function(val){
-//            app_controller.set("auto_suggest_Areas", val);
-//        });
+//        this.store.find("tag").then(function(val){ app_controller.set("auto_suggest_Areas", val); });
     },
 
     model: function( company ) {
@@ -46,6 +43,16 @@ export default Ember.Route.extend({
 
             this.controller.set('tabList.' + tabToActive, true);
             this.controller.set('transition_to_list', true);
+
+            switch ( tabToActive ){
+                case 'company':
+                    this.controller.set('isView', true);
+                    this.controller.set('isView_docList', true);
+                    this.controller.set('isView_docDetails', true);
+                    break;
+                default:
+                break;
+            }
         },
 
         /**
@@ -56,74 +63,146 @@ export default Ember.Route.extend({
          @param {string} path del parziale che si vuole a lyout
          @param {record} entità legate a company - (driver/truck/trailer/clerk)
          */
-        transition_to: function( path, record ) {
+        transition_to: function( path, record, var1, value1, var2, value2 ) {
            switch ( path ) {
                case 'your-profile/partials/-user-field':
                    this.controller.set( 'sub_record', record );
                    this.controller.set( 'transition_to_list', false );
+                   this.send('set_variable', var1, value1);
                    break;
                case 'your-profile/partials/-vehicle-field':
                    this.controller.set( 'sub_record', record );
                    this.controller.set( 'transition_to_list', false );
+                   this.send('set_variable', var1, value1);
                    break;
                case 'your-profile/tabs/-tabs-list':
                    this.controller.set( 'sub_record', record );         //record === null
                    this.controller.set( 'transition_to_list', true );
+                   this.send('set_variable', var1, value1);
                    break;
-
+               case 'your-profile/partials/-company-document-edit':
+                   this.controller.set( 'sub_record', record );
+                   this.send('set_variable', var1, value1);
+                   this.send('set_variable', var2, value2);
+                   break;
+               case 'your-profile/partials/-tab-user-driver-list':
+                   this.controller.set( 'sub_record', record );
+                   this.send('set_variable', var1, value1);
+                   this.send('set_variable', var2, value2);
+                   break;
            }
         },
 
-        create_record: function( record_company, path, value ){
-            var _this = this, app_controller = _this.controllerFor('application'), new_user;
+        /************************************************************
+         * viene richiamata l'azione PUT
+         * 
+         * @param type
+         * @param path
+         * @param value
+         */
+        set_record: function( type, path, value, companyRecord ) {
+            var _this = this, app_controller = _this.controllerFor('application');
 
-            if ( _this.controller.tabList.driver ) {
-                new_user = this.store.createRecord('user', {
+            switch (type) {
+                case 'document':
+
+                    companyRecord.get('certifier').then(function( certifier ){
+                        _this.controller.sub_record.set( 'certifier', certifier );
+
+                        Ember.RSVP.all([
+                            _this.controller.sub_record.get('certifier'),
+                        ]).then(function() {
+                            _this.controller.sub_record.save().then(function(saved_record){
+                                app_controller.send( 'message_manager', 'Success', 'You have successfully saved the document.' );
+                                app_controller.send( 'set_variable', path, value );
+
+                            }, function( text ){
+                                app_controller.send( 'message_manager', 'Failure', text );
+                            });
+                        }, function( error ){
+                            app_controller.send( 'message_manager', 'Failure', 'Something went wrong, the record was not saved.' );
+                        });
+                    });
+                    break;
+                case 'companyDetails':
+                    _this.controller.sub_record.save().then(function(saved_record){
+                        app_controller.send( 'message_manager', 'Success', 'You have successfully saved the post.' );
+
+                        _this.controller.set( 'transition_to_list', true );
+                        app_controller.send( 'change_state', path, value );
+                    }, function( text ){
+                        app_controller.send( 'message_manager', 'Failure', text );
+                    });
+
+                    break;
+            }
+        },
+        
+        set_variable: function( attr, value ){
+            this.controller.set( attr, value );
+        },
+
+        create_record: function( record_company, path, value ){
+            var _this = this, app_controller = _this.controllerFor('application'), new_record;
+
+            if ( _this.controller.tabList.company ) {
+                var today = new Date();
+
+                new_record = this.store.createRecord('document', {
+                    company: record_company,
+                    entityType: 'company',
+                    date: moment(today).format(),
+                    type: 'document',
+                    status: 'active'
+                });
+
+                app_controller.send( 'set_variable', 'isView_docDetails', false );
+
+
+            } else if ( _this.controller.tabList.driver ) {
+                new_record = this.store.createRecord('user', {
                     type: 'powerUser',
                     company: record_company,
                     profile: 'driver'
                 });
+                _this.controller.set( 'isView', false );
 
             } else if ( _this.controller.tabList.clerk ) {
-                new_user = this.store.createRecord('user', {
+                new_record = this.store.createRecord('user', {
                     type: 'powerUser',
                     company: record_company,
                     profile: 'clerk'
                 });
+                _this.controller.set( 'isView', false );
 
             } else if ( _this.controller.tabList.truck ) {
-                new_user = this.store.createRecord('vehicle', {
+                new_record = this.store.createRecord('vehicle', {
                     type: 'truck',
                     company: record_company
                 });
+                _this.controller.set( 'isView', false );
 
             } else if ( _this.controller.tabList.trailer ) {
-                new_user = this.store.createRecord('vehicle', {
+                new_record = this.store.createRecord('vehicle', {
                     type: 'trailer',
                     company: record_company
                 });
+                _this.controller.set( 'isView', false );
             }
 
-            _this.controller.set( 'sub_record', new_user );
+            _this.controller.set( 'sub_record', new_record );
             _this.controller.set( 'transition_to_list', false );
-            app_controller.send( 'change_state', path, value );
+            app_controller.send( 'set_variable', path, value );
 
         },
 
-        set_record: function( path, value ) {
-            var _this = this, app_controller = _this.controllerFor('application');
-
-            _this.controller.sub_record.save().then(function(saved_record){
-                app_controller.send( 'message_manager', 'success', 'You have successfully saved the record.' );
-
-                _this.controller.set( 'transition_to_list', true );
-                app_controller.send( 'change_state', path, value );
-            }, function( text ){
-                app_controller.send( 'message_manager', 'error', text );
-            });
-
-        },
-
+        /************************************************************
+         * apertura di un modale nella pagina corrente
+         * 
+         * @param path
+         * @param record_to_delete
+         * @param record
+         */
         open_modal: function( path, record_to_delete, record) {
             var _this = this, app_controller = _this.controllerFor('application'), controller = _this.controllerFor('your-profile/main');
 
@@ -149,7 +228,6 @@ export default Ember.Route.extend({
             controller.record_to_delete.save().then(function(){
                 controller.main_record.reload();
             });
-
         }
     }
 });

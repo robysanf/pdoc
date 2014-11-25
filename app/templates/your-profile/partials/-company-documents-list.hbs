@@ -1,0 +1,41 @@
+<form class="form-horizontal" style="margin-top: 25px">
+    <fieldset>
+        <legend>
+            <a {{action 'create_record' this 'isView_docList' false}} style="cursor: pointer"><span class="glyphicon glyphicon-plus btn-font-color"></span></a>
+            <!--&nbsp;-->
+            <!--<a {{!{{action 'set_variable' 'isView_docList' false}} style="cursor: pointer"><span class="glyphicon glyphicon-pencil btn-font-color"></span></a>-->
+            &nbsp;
+            {{app_controller.translation.documents}}
+        </legend>
+        <div class="row" style="margin-top: 15px">
+            <div class="col-lg-12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>{{app_controller.translation.name}}</th>
+                        <th>{{app_controller.translation.type}}</th>
+                        <th>{{app_controller.translation.deadline}}</th>
+
+                        <th>{{app_controller.translation.download}}</th>
+                        <th>{{app_controller.translation.delete}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each document in documents}}
+                        {{#if document.isDocument}}
+                            <tr>
+                                <td {{action 'transition_to' 'your-profile/partials/-company-document-edit' document 'isView_docList' false 'isView_docDetails' true}} style="cursor: pointer">{{document.name}}</td>
+                                <td {{action 'transition_to' 'your-profile/partials/-company-document-edit' document 'isView_docList' false 'isView_docDetails' true}} style="cursor: pointer">{{document.docTemplate.name}}</td>
+                                <td {{action 'transition_to' 'your-profile/partials/-company-document-edit' document 'isView_docList' false 'isView_docDetails' true}} style="cursor: pointer">{{document.deadline_toString}}</td>
+
+                                <td><a {{!{{action 'open_modal' 'your-profile/modals/delete-record' document this}} style="cursor: pointer"><span class="glyphicon glyphicon-circle-arrow-down"></span></a></td>
+                                <td><a {{action 'open_modal' 'your-profile/modals/delete-record' document this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
+                            </tr>
+                        {{/if}}
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </fieldset>
+</form>

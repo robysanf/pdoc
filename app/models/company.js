@@ -24,6 +24,12 @@ export default DS.Model.extend({
     segments:DS.attr('raw'),         //tratte coperte
     areas:DS.attr('raw'),            //areee coperte
 
+    certifier: DS.belongsTo('company',{
+        async: true,
+        inverse: 'childCertifiers'}),
+    childCertifiers: DS.hasMany('company',{
+        async: true,
+        inverse: 'certifier'}),
     users : DS.hasMany('user',{
         async: true }),
     vehicles: DS.hasMany('vehicle',{
@@ -31,17 +37,25 @@ export default DS.Model.extend({
     refills: DS.hasMany('refill',{
         async: true}),
     links: DS.hasMany('company',{
-        async: true}),
+        async: true,
+        inverse: 'childLinks'}),
+    childLinks: DS.hasMany('company',{
+        async: true,
+        inverse: 'links'}),
     notifications: DS.hasMany('notification', {
         inverse: 'company',
         async: true}),
     docTemplates: DS.hasMany('docTemplate', {
         async: true}),
+    posts: DS.hasMany('post', {
+        async: true}),
     //serviceRatings: DS.hasMany('serviceRating'),
     //certificationRatings: DS.hasMany('certificationRating')
     //parentCompany: DS.belongsTo('company'),
     //childCompanies: DS.hasMany('company'),
-    //documents: DS.hasMany('document'),
+    documents: DS.hasMany('document', {
+        async: true,
+        inverse: 'company' }),
     files: DS.hasMany('file', {
         async: true}),
     grants: DS.hasMany('grant',{

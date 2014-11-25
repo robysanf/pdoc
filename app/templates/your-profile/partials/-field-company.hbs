@@ -1,6 +1,16 @@
 <form class="form-horizontal">
     <fieldset>
-        <legend>{{app_controller.translation.details}}</legend>
+        <legend>
+            <!-------------------- tab company - cambio button tra edit/view ---------------------->
+            {{#if controller.isView}}
+                <a {{action 'change_state' 'your-profile/main' false}} style="cursor: pointer"><span class="glyphicon glyphicon-pencil btn-font-color"></span></a>
+            {{else}}
+                <a {{action 'change_state' 'your-profile/main' true 'company' id}} style="cursor: pointer"><span class="glyphicon glyphicon-ok btn-font-color"></span></a>
+            {{/if}}
+            &nbsp;
+            {{app_controller.translation.details}}
+        </legend>
+
         <div class="form-group">
             <label for="name" class="col-lg-3 control-label">{{app_controller.translation.name}}</label>
             <div class="col-lg-9">
@@ -26,6 +36,30 @@
                     {{/if}}
                 {{else}}
                     {{view Ember.Select content = types value = type optionValuePath = "content.id" optionLabelPath = "content.name" class = "form-control" disabled= controller.isView}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="profile" class="col-lg-3 control-label">{{app_controller.translation.certifier}}</label>
+            <div class="col-lg-9">
+                {{#if controller.isView}}
+                    {{#if certifier}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{certifier.name}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{select-2
+                    content=app_controller.records_companyCertifier
+                    value= certifier
+                    optionLabelPath="name"
+                    placeholder="Choose a document type"
+                    typeaheadNoMatchesText="No document type found for '%@'"
+                    typeaheadErrorText="Loading failed: %@"
+                    enabled=true
+                    allowClear=true
+                    disabled= controller.isView
+                    }}
                 {{/if}}
             </div>
         </div>

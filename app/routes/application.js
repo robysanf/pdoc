@@ -235,7 +235,7 @@ export default Ember.Route.extend({
         message_manager: function( type, text ){
 
             switch ( type ){
-                case 'success':
+                case 'Success':
                     new PNotify({
                         title: 'Success',
                         text: text,
@@ -243,14 +243,14 @@ export default Ember.Route.extend({
                         delay: 2000
                     });
                     break;
-                case 'warning':
+                case 'Warning':
                     new PNotify({
                         title: 'Attention',
                         text: text,
                         delay: 2000
                     });
                     break;
-                case 'error':
+                case 'Failure':
                     new PNotify({
                         title: 'Error',
                         text: text,
