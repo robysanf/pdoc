@@ -33,29 +33,47 @@
             <label for="name" class="col-lg-3 control-label">{{app_controller.translation.type}}</label>
             <div class="col-lg-9">
                 {{#if isView_docDetails}}
-                    {{#if sub_record.template}}
-                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.template.name}}</p>
+                    {{#if sub_record.type}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.type}}</p>
                     {{else}}
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{select-2
-                    content=app_controller.records_docTemplate
-                    value=sub_record.docTemplate
-                    optionLabelPath="name"
-                    placeholder="Choose a document type"
-                    typeaheadNoMatchesText="No document type found for '%@'"
-                    typeaheadErrorText="Loading failed: %@"
-                    enabled=true
-                    allowClear=true
-                    }}
-                    {{!{{input value = sub_record.template.name type = "text" class = "form-control"}}
+                    {{view Ember.Select content = documentTypes value = sub_record.type class = "form-control"}}
                 {{/if}}
             </div>
         </div>
+        {{#if sub_record.isDocument}}
+            <div class="form-group">
+                <label for="name" class="col-lg-3 control-label">{{app_controller.translation.template}}</label>
+                <div class="col-lg-9">
+                    {{#if isView_docDetails}}
+                        {{#if sub_record.docTemplate}}
+                            <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.docTemplate.name}}</p>
+                        {{else}}
+                            <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                        {{/if}}
+                    {{else}}
+                    {{!{{auto-complete source=app_controller.records_docTemplate destination=sub_record.docTemplate searchPath="name" minChars=0}}
+                        {{select-2
+                        content=app_controller.records_docTemplate
+                        value=sub_record.docTemplate
+                        optionLabelPath="name"
+                        placeholder="Choose a document type"
+                        typeaheadNoMatchesText="No document type found for '%@'"
+                        typeaheadErrorText="Loading failed: %@"
+                        enabled=true
+                        allowClear=true
+                        }}
+                    {{!{{input value = sub_record.template.name type = "text" class = "form-control"}}
+                    {{/if}}
+                </div>
+            </div>
+        {{/if}}
+
         <div class="form-group">
             <label for="name" class="col-lg-3 control-label">{{app_controller.translation.validityDate}}</label>
-            <div class="col-lg-6">
+            <div class="col-lg-9">
                 {{#if isView_docDetails}}
                     {{#if sub_record.validityDate}}
                         <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.validityDate_toString}}</p>
@@ -63,14 +81,14 @@
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{input value = sub_record.validityDate type = "date" class = "form-control"}}
+                    {{date-picker date=sub_record.validityDate valueFormat='YYYY-MM-DD' class="form-control"}}
+                    {{!{{input value = sub_record.validityDate type = "date" class = "form-control"}}
                 {{/if}}
             </div>
-            <div class="col-lg-3"></div>
         </div>
         <div class="form-group">
             <label for="name" class="col-lg-3 control-label">{{app_controller.translation.deadLine}}</label>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 {{#if isView_docDetails}}
                     {{#if sub_record.deadLine}}
                         <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.deadLine_toString}}</p>
@@ -78,14 +96,14 @@
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{input value = sub_record.deadLine type = "date" class = "form-control"}}
+                    {{date-picker date=sub_record.deadLine valueFormat='YYYY-MM-DD' class="form-control" disabled= true}}
+                    {{!{{input value = sub_record.deadLine type = "date" class = "form-control"}}
                 {{/if}}
             </div>
-            <div class="col-lg-3"></div>
-        </div>
-        <div class="form-group">
-            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.grace}}</label>
-            <div class="col-lg-6">
+            <div class="col-lg-1">
+                <label for="name" class="col-lg-3 control-label">{{app_controller.translation.grace}}</label>
+            </div>
+            <div class="col-lg-4">
                 {{#if isView_docDetails}}
                     {{#if sub_record.grace}}
                         <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.grace_toString}}</p>
@@ -93,10 +111,10 @@
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{input value = sub_record.grace type = "date" class = "form-control"}}
+                    {{date-picker date=sub_record.grace valueFormat='YYYY-MM-DD' class="form-control" disabled= true}}
+                {{!{{input value = sub_record.grace type = "date" class = "form-control"}}
                 {{/if}}
             </div>
-            <div class="col-lg-3"></div>
         </div>
         <div class="form-group">
             <label for="name" class="col-lg-3 control-label">{{app_controller.translation.note}}</label>
@@ -112,5 +130,6 @@
                 {{/if}}
             </div>
         </div>
+        <div class="page-header"></div>
     </fieldset>
 </form>

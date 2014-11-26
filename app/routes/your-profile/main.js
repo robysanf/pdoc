@@ -9,7 +9,12 @@ export default Ember.Route.extend({
             controller.set('tabList.company', true);
         }
 
-        app_controller.set('records_docTemplate', this.store.findAll('doc-template'));
+//        app_controller.set('records_docTemplate', this.store.findAll('doc-template'));
+        app_controller.company_record.get('certifier').then(function( certifier ){
+            certifier.get('docTemplate').then(function(doctemp){
+                app_controller.set('records_docTemplate', doctemp);
+            });
+        });
         app_controller.set('records_companyCertifier', this.store.find('company', { type: "certifier" }));
 
 //        //, {name: 'service'}
@@ -135,18 +140,6 @@ export default Ember.Route.extend({
 
                     break;
                 case 'company_details':
-                    var certifier = companyRecord.get('certifier').content;
-                    if( certifier === undefined || certifier === null ) {
-                        companyRecord.set('certifier', null).then(function(){
-                            companyRecord.save().then(function(saved_record){
-                                app_controller.send( 'message_manager', 'Success', 'You have successfully saved the post.' );
-
-                                app_controller.send( 'set_variable', path, value );
-                            }, function( text ){
-                                app_controller.send( 'message_manager', 'Failure', text );
-                            });
-                        });
-                    } else {
                         companyRecord.save().then(function(saved_record){
                             app_controller.send( 'message_manager', 'Success', 'You have successfully saved the post.' );
 
@@ -154,11 +147,6 @@ export default Ember.Route.extend({
                         }, function( text ){
                             app_controller.send( 'message_manager', 'Failure', text );
                         });
-                    }
-
-
-
-
                     break;
             }
         },
@@ -187,6 +175,12 @@ export default Ember.Route.extend({
                 ]).then(function() {
 
                     var onSuccess = function() {
+                        app_controller.company_record.get('certifier').then(function( certifier ){
+                            certifier.get('docTemplate').then(function(doctemp){
+                                app_controller.set('records_docTemplate', doctemp);
+                            });
+                        });
+
                         app_controller.send( 'message_manager', 'Success', 'You have successfully saved the record.' );
                         app_controller.send( 'set_variable', 'isView_docDetails', false );
                     }.bind(this);

@@ -27,10 +27,11 @@ export default DS.Model.extend({
 
     certifier: DS.belongsTo('company',{
         async: true,
-        inverse: 'childCompanies'}),
-    childCompanies: DS.hasMany('company',{
+        inverse: 'certifiedCompanies'}),
+    certifiedCompanies: DS.hasMany('company',{
         async: true,
         inverse: 'certifier'}),
+
     users : DS.hasMany('user',{
         async: true }),
     vehicles: DS.hasMany('vehicle',{

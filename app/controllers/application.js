@@ -135,7 +135,7 @@ export default Ember.Controller.extend({
         publicToYourContactsNetwork: 'Pubblica alla tua rete di contatti', companyDetails: "Anagrafica", invoiceNumber: 'Numero fattura', rate: 'Punteggio', limit: 'Limite', goodsConfiscation: 'Confisca', vehicleConfiscation: 'Sequestro', fiscalResponsibility: 'Resp.Fiscale',
         validity: 'Validità', alert: 'Avviso', grace: 'Grazia', loadModel: 'Carica modello', attach: 'Allega', premium: 'Avanzato', medium: 'Intermedio', smart: 'Base', for: 'Per', euro: 'Euro',
         byNow: 'Acquista ora!', amount: 'Totale', cardNumber: 'Numero di carta', account: 'Cliente', general: 'Generale', postToYourLinks: 'Pubblica alla tua rete di contatti', submit: 'Pubblica',
-        news: 'Nuove', hideNotifications: 'Notifiche nascoste', emas: 'Emas', admin: 'Admin', extra: 'Extra', certifier: 'Certificatore',
+        news: 'Nuove', hideNotifications: 'Notifiche nascoste', emas: 'Emas', admin: 'Admin', extra: 'Extra', certifier: 'Certificatore', send: 'Certifica', template: 'Template',
         paymentDetails: 'dettagli pagamento', credits: 'Crediti', orderHistory: 'Storico cliente', buyCredits: 'Acquisto crediti', newDocument: 'documento', hideLinkRequests: 'Richieste di connessione nascoste',
         showHideLinkRequests: 'Mostra le richieste di connessione nascoste...', resume: 'Rigenera', date: 'Data', close: 'Chiudi', gracePeriod: 'Periodo di grazia',
         more: 'Dettagli', deadline: 'Scadenza', value: 'Valore', certificate: 'Certifica', download: 'Scarica', hide: 'Nascondi', note: 'Note', highlight: 'In evidenza',
@@ -154,7 +154,7 @@ export default Ember.Controller.extend({
         publicToYourContactsNetwork: 'Public to your contacts network', companyDetails: 'Company Details', invoiceNumber: 'Invoice number', rate: 'Rate', limit: 'Limit', goodsConfiscation: 'Goods Confisc.', vehicleConfiscation: 'Vehicle Confisc.',
         fiscalResponsibility: 'Fiscal Resp.', emas: 'Emas', validity: 'Validity', alert: 'Alert', grace: 'Grace', loadModel: 'Load model', attach: 'Attach', premium: 'Premium', medium: 'Medium',
         smart: 'Smart', for: 'For', euro: 'Euro', buyNow: 'Buy now!', amount: 'Amount', cardNumber: 'Card number', account: 'Account', general: 'General', postToYourLinks: 'Post to your links',
-        submit: 'Submit', news: 'News', hideNotifications: 'Hide notifications', linksRequest: 'Links request', generals: 'Generals', admin: 'Admin', extra: 'Extra',
+        submit: 'Submit', news: 'News', hideNotifications: 'Hide notifications', linksRequest: 'Links request', generals: 'Generals', admin: 'Admin', extra: 'Extra', send: 'Send',
         paymentDetails: 'Payment details', credits: 'Credits', orderHistory: 'Order history', buyCredits: 'Buy credits', document: 'document', hideLinkRequests: 'Hide link requests',
         showHideLinkRequests: 'Show hidden link requests...', resume: 'Resume', date: 'Date', close: 'Close', gracePeriod: 'Grace period', more: 'More', deadline: 'Deadline',
         value: 'Value', certificate: 'Certificate', download: 'Download', hide: 'Hide', note: 'Note', highlight: 'Highlight', showHideNotifications: 'Show hidden notifications...',
@@ -166,7 +166,7 @@ export default Ember.Controller.extend({
         services: "Services", segments: "Segments", areas: "Areas", driver: 'Driver', drivers: 'Drivers', truck: 'Truck', trucks: 'Trucks', trailer: 'Trailer', trailers: 'Trailers', clerks: 'Clerks',
         changePassword: 'Change password', driversList: "Drivers list", driverDetails: "Driver details", trucksList: 'Trucks list', list: "List", vehicleDetails: 'Vehicle details', clerksList: 'Clerks list',
         clerk: 'Clerk', trailersList: 'Trailers list', details:'Details', username: 'Username', birthDate: 'Birth date', title: 'Title', text: 'Testo', loadImage: 'Load image', attached: 'Attached',
-        documents: 'Documents', validityDate: 'Validity date', deadLine: 'DeadLine'
+        documents: 'Documents', validityDate: 'Validity date', deadLine: 'DeadLine', template: 'Template'
     },
 
     actions:{

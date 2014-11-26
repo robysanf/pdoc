@@ -1,7 +1,10 @@
 <form class="form-horizontal" style="margin-top: 25px">
     <fieldset>
         <legend>
-            <a {{action 'create_record' this 'isView_docList' false}} style="cursor: pointer"><span class="glyphicon glyphicon-plus btn-font-color"></span></a>
+            {{#if certifier}}
+                <a {{action 'create_record' this 'isView_docList' false}} style="cursor: pointer"><span class="glyphicon glyphicon-plus btn-font-color"></span></a>
+            {{/if}}
+
             <!--&nbsp;-->
             <!--<a {{!{{action 'set_variable' 'isView_docList' false}} style="cursor: pointer"><span class="glyphicon glyphicon-pencil btn-font-color"></span></a>-->
             &nbsp;
@@ -17,6 +20,7 @@
                         <th>{{app_controller.translation.deadline}}</th>
 
                         <th>{{app_controller.translation.download}}</th>
+                        <th>{{app_controller.translation.send}}</th>
                         <th>{{app_controller.translation.delete}}</th>
                     </tr>
                     </thead>
@@ -29,6 +33,7 @@
                                 <td {{action 'transition_to' 'your-profile/partials/-company-document-edit' document 'isView_docList' false 'isView_docDetails' true}} style="cursor: pointer">{{document.deadline_toString}}</td>
 
                                 <td><a {{!{{action 'open_modal' 'your-profile/modals/delete-record' document this}} style="cursor: pointer"><span class="glyphicon glyphicon-circle-arrow-down"></span></a></td>
+                                <td><a {{!{{action 'open_modal' 'your-profile/modals/delete-record' document this}} style="cursor: pointer"><span class="glyphicon glyphicon-send"></span></a></td>
                                 <td><a {{action 'open_modal' 'your-profile/modals/delete-record' document this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
                             </tr>
                         {{/if}}

@@ -13,12 +13,17 @@ export default Ember.ObjectController.extend({
     record_to_delete: null,
     record_certifier: null,
     types: [
-        {name: "Shipper", id: "Shipper"},
-        {name: "Carrier", id: "Carrier"},
-        {name: "Supplier", id: "Supplier"},
-        {name: "Certifier", id:"Certifier"}
+        "shipper",
+        "carrier",
+        "supplier",
+        "certifier"
     ],
 
+    documentTypes: [
+        "invoice",
+        "document",
+        "other"
+    ],
     //  *** define tab order
     tabList: Ember.A(
         {'company': false},

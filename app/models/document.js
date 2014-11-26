@@ -1,8 +1,7 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-    entity: DS.attr('number'),
-
+    entity: DS.attr('string'),
     name: DS.attr('string'),
     entityType: DS.attr('string'),   //user/company/vehicle
     note: DS.attr('string'),
