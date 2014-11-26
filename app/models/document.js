@@ -18,7 +18,8 @@ export default DS.Model.extend({
         async: true,
         inverse: 'documents' }),
     docTemplate: DS.belongsTo('doc-template', {
-        async: true }),
+        async: true}),
+
     certifier: DS.belongsTo('company', {
         async: true }),
 

@@ -4,7 +4,7 @@
             {{#if controller.isView}}
                 <a {{action 'change_state' 'your-profile/main' false}} style="cursor: pointer"> <span class="glyphicon glyphicon-pencil btn-font-color"></span></a>
             {{else}}
-                <a {{action 'set_record' 'companyDetails' 'your-profile/main' false}} style="cursor: pointer"><span class="glyphicon glyphicon-ok btn-font-color"></span></a>
+                <a {{action 'set_record' 'user_vehicle' 'your-profile/main' false}} style="cursor: pointer"><span class="glyphicon glyphicon-ok btn-font-color"></span></a>
             {{/if}}
             &nbsp;
             {{app_controller.translation.details}}

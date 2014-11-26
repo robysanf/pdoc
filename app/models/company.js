@@ -1,7 +1,8 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-    credit:DS.attr('number'),
+    visualizationCredit:DS.attr('number'),
+    certificationCredit:DS.attr('number'),
     cardNumber:DS.attr('number'),
 
     name: DS.attr('string'),
@@ -26,8 +27,8 @@ export default DS.Model.extend({
 
     certifier: DS.belongsTo('company',{
         async: true,
-        inverse: 'childCertifiers'}),
-    childCertifiers: DS.hasMany('company',{
+        inverse: 'childCompanies'}),
+    childCompanies: DS.hasMany('company',{
         async: true,
         inverse: 'certifier'}),
     users : DS.hasMany('user',{

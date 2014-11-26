@@ -5,7 +5,7 @@
             {{#if controller.isView}}
                 <a {{action 'change_state' 'your-profile/main' false}} style="cursor: pointer"><span class="glyphicon glyphicon-pencil btn-font-color"></span></a>
             {{else}}
-                <a {{action 'change_state' 'your-profile/main' true 'company' id}} style="cursor: pointer"><span class="glyphicon glyphicon-ok btn-font-color"></span></a>
+                <a {{action 'set_record' 'company_details' 'isView' true app_controller.company_record}} style="cursor: pointer"><span class="glyphicon glyphicon-ok btn-font-color"></span></a>
             {{/if}}
             &nbsp;
             {{app_controller.translation.details}}
@@ -21,7 +21,7 @@
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{input value = name type = "text" class = "form-control"}}
+                    {{input value = app_controller.company_record.name type = "text" class = "form-control"}}
                 {{/if}}
             </div>
         </div>
@@ -35,7 +35,7 @@
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{view Ember.Select content = types value = type optionValuePath = "content.id" optionLabelPath = "content.name" class = "form-control" disabled= controller.isView}}
+                    {{view Ember.Select content = types value = app_controller.company_record.type optionValuePath = "content.id" optionLabelPath = "content.name" class = "form-control" disabled= controller.isView}}
                 {{/if}}
             </div>
         </div>
@@ -51,7 +51,7 @@
                 {{else}}
                     {{select-2
                     content=app_controller.records_companyCertifier
-                    value= certifier
+                    value= app_controller.company_record.certifier
                     optionLabelPath="name"
                     placeholder="Choose a document type"
                     typeaheadNoMatchesText="No document type found for '%@'"
@@ -73,7 +73,7 @@
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{input value = transportListCode type = "number" class = "form-control" disabled= controller.isView}}
+                    {{input value = app_controller.company_record.transportListCode type = "number" class = "form-control" disabled= controller.isView}}
                 {{/if}}
             </div>
         </div>
@@ -87,7 +87,7 @@
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{input value = chamberOfCommerce type = "text" class="form-control" disabled= controller.isView}}
+                    {{input value = app_controller.company_record.chamberOfCommerce type = "text" class="form-control" disabled= controller.isView}}
                 {{/if}}
             </div>
         </div>
@@ -103,7 +103,7 @@
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{auto-suggest destination=emails usecase="customModeWithoutSource"}}
+                    {{auto-suggest destination=app_controller.company_record.emails usecase="customModeWithoutSource"}}
                 {{/if}}
             </div>
         </div>
@@ -117,7 +117,7 @@
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{input value = password type = "password" class = 'form-control' disabled= controller.isView}}
+                    {{input value = app_controller.company_record.password type = "password" class = 'form-control' disabled= controller.isView}}
                 {{/if}}
             </div>
             <div class="col-lg-3">
@@ -136,7 +136,7 @@
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{textarea value = description class = "form-control" rows = "3" disabled= controller.isView}}
+                    {{textarea value = app_controller.company_record.description class = "form-control" rows = "3" disabled= controller.isView}}
                 {{/if}}
 
             </div>
@@ -146,7 +146,7 @@
             <label for="services" class="col-lg-3 control-label">{{app_controller.translation.services}}</label>
             <div class="col-lg-9">
                 {{#unless controller.isView}}
-                    {{auto-suggest source=app_controller.auto_suggest_Services destination=services usecase="customMode" minChars=0}}
+                    {{auto-suggest source=app_controller.auto_suggest_Services destination=app_controller.company_record.services usecase="customMode" minChars=0}}
                 {{else}}
                     {{#if services}}
                         {{#each services}}
@@ -162,7 +162,7 @@
             <label for="segments" class="col-lg-3 control-label">{{app_controller.translation.segments}}</label>
             <div class="col-lg-9">
                 {{#unless controller.isView}}
-                    {{auto-suggest source=app_controller.auto_suggest_Segments destination=segments searchPath="value" usecase="customMode" minChars=0}}
+                    {{auto-suggest source=app_controller.auto_suggest_Segments destination=app_controller.company_record.segments searchPath="value" usecase="customMode" minChars=0}}
                 {{else}}
                     {{#if segments}}
                         {{#each segments}}
@@ -179,7 +179,7 @@
             <label for="areas" class="col-lg-3 control-label">{{app_controller.translation.areas}}</label>
             <div class="col-lg-9">
                 {{#unless controller.isView}}
-                    {{auto-suggest source=app_controller.auto_suggest_Areas destination=areas searchPath="value" usecase="customMode" minChars=0}}
+                    {{auto-suggest source=app_controller.auto_suggest_Areas destination=app_controller.company_record.areas searchPath="value" usecase="customMode" minChars=0}}
                 {{else}}
                     {{#if areas}}
                         {{#each areas}}

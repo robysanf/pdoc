@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
     beforeModel: function() {
-        var app_controller = this.controllerFor('application'), controller = this.controllerFor('your-profile.main');
+        var _this = this, app_controller = _this.controllerFor('application'), controller = _this.controllerFor('your-profile.main');
 
         //imposto la tab company come default per 'your-profile'
         if( controller.tabList.company !== true &&  controller.tabList.driver !== true &&  controller.tabList.truck !== true &&  controller.tabList.trailer !== true &&  controller.tabList.clerk !== true ) {
@@ -10,7 +10,7 @@ export default Ember.Route.extend({
         }
 
         app_controller.set('records_docTemplate', this.store.findAll('doc-template'));
-        app_controller.set('records_companyCertifier', this.store.findAll('company', { type: "certifier" }));
+        app_controller.set('records_companyCertifier', this.store.find('company', { type: "certifier" }));
 
 //        //, {name: 'service'}
 //        this.store.find("tag").then(function(val){ app_controller.set("auto_suggest_Services", val); });
@@ -105,7 +105,6 @@ export default Ember.Route.extend({
 
             switch (type) {
                 case 'document':
-
                     companyRecord.get('certifier').then(function( certifier ){
                         _this.controller.sub_record.set( 'certifier', certifier );
 
@@ -124,7 +123,7 @@ export default Ember.Route.extend({
                         });
                     });
                     break;
-                case 'companyDetails':
+                case 'user_vehicle':
                     _this.controller.sub_record.save().then(function(saved_record){
                         app_controller.send( 'message_manager', 'Success', 'You have successfully saved the post.' );
 
@@ -133,6 +132,32 @@ export default Ember.Route.extend({
                     }, function( text ){
                         app_controller.send( 'message_manager', 'Failure', text );
                     });
+
+                    break;
+                case 'company_details':
+                    var certifier = companyRecord.get('certifier').content;
+                    if( certifier === undefined || certifier === null ) {
+                        companyRecord.set('certifier', null).then(function(){
+                            companyRecord.save().then(function(saved_record){
+                                app_controller.send( 'message_manager', 'Success', 'You have successfully saved the post.' );
+
+                                app_controller.send( 'set_variable', path, value );
+                            }, function( text ){
+                                app_controller.send( 'message_manager', 'Failure', text );
+                            });
+                        });
+                    } else {
+                        companyRecord.save().then(function(saved_record){
+                            app_controller.send( 'message_manager', 'Success', 'You have successfully saved the post.' );
+
+                            app_controller.send( 'set_variable', path, value );
+                        }, function( text ){
+                            app_controller.send( 'message_manager', 'Failure', text );
+                        });
+                    }
+
+
+
 
                     break;
             }
@@ -149,14 +174,31 @@ export default Ember.Route.extend({
                 var today = new Date();
 
                 new_record = this.store.createRecord('document', {
-                    company: record_company,
                     entityType: 'company',
                     date: moment(today).format(),
                     type: 'document',
                     status: 'active'
                 });
 
-                app_controller.send( 'set_variable', 'isView_docDetails', false );
+                new_record.set('company', record_company);
+
+                Ember.RSVP.all([
+                    new_record.get('company'),
+                ]).then(function() {
+
+                    var onSuccess = function() {
+                        app_controller.send( 'message_manager', 'Success', 'You have successfully saved the record.' );
+                        app_controller.send( 'set_variable', 'isView_docDetails', false );
+                    }.bind(this);
+
+                    var onFail = function() {
+                        app_controller.send( 'message_manager', 'Failure', 'Something went wrong, the record was not saved.' );
+                    }.bind(this);
+
+                    // Save inside then() after I call get() on promises
+                    new_record.save().then(onSuccess, onFail);
+
+                }.bind(this));
 
 
             } else if ( _this.controller.tabList.driver ) {

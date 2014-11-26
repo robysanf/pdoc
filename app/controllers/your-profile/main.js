@@ -11,7 +11,7 @@ export default Ember.ObjectController.extend({
 
     main_record: null,
     record_to_delete: null,
-
+    record_certifier: null,
     types: [
         {name: "Shipper", id: "Shipper"},
         {name: "Carrier", id: "Carrier"},
