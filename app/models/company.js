@@ -5,6 +5,9 @@ export default DS.Model.extend({
     certificationCredit:DS.attr('number'),
     cardNumber:DS.attr('number'),
 
+    canRemove: DS.attr('string'),
+    canEdit: DS.attr('string'),
+
     name: DS.attr('string'),
     vat: DS.attr('string'),                  //partita iva
     transportListCode: DS.attr('string'),    //codice albo
@@ -19,6 +22,7 @@ export default DS.Model.extend({
     phone: DS.attr('string'),
     description: DS.attr('string'),
     type: DS.attr('string'),           //carrier/shipper/supplier/certifier
+    visibility: DS.attr('string'), //public, private, root
 
     emails:DS.attr('raw'),
     services:DS.attr('raw'),         //servizi offerti (ex: trasporto animali)
@@ -61,7 +65,9 @@ export default DS.Model.extend({
     files: DS.hasMany('file', {
         async: true}),
     grants: DS.hasMany('grant',{
-        async:true }),
+       async:true }),
+//    authorizedCompanies: DS.hasMany('company',{
+//        async: true}),
     /****************************************************
      *      PROPERTIES
      */

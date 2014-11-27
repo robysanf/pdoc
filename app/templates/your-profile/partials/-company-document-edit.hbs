@@ -16,7 +16,7 @@
         </legend>
 
         <div class="form-group">
-            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.name}}</label>
+            <label class="col-lg-3 control-label">{{app_controller.translation.name}}</label>
             <div class="col-lg-9">
                 {{#if isView_docDetails}}
                     {{#if sub_record.name}}
@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.type}}</label>
+            <label class="col-lg-3 control-label">{{app_controller.translation.type}}</label>
             <div class="col-lg-9">
                 {{#if isView_docDetails}}
                     {{#if sub_record.type}}
@@ -45,7 +45,7 @@
         </div>
         {{#if sub_record.isDocument}}
             <div class="form-group">
-                <label for="name" class="col-lg-3 control-label">{{app_controller.translation.template}}</label>
+                <label class="col-lg-3 control-label">{{app_controller.translation.template}}</label>
                 <div class="col-lg-9">
                     {{#if isView_docDetails}}
                         {{#if sub_record.docTemplate}}
@@ -72,8 +72,8 @@
         {{/if}}
 
         <div class="form-group">
-            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.validityDate}}</label>
-            <div class="col-lg-9">
+            <label class="col-lg-3 control-label">{{app_controller.translation.validityDate}}</label>
+            <div class="col-lg-3">
                 {{#if isView_docDetails}}
                     {{#if sub_record.validityDate}}
                         <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.validityDate_toString}}</p>
@@ -82,13 +82,14 @@
                     {{/if}}
                 {{else}}
                     {{date-picker date=sub_record.validityDate valueFormat='YYYY-MM-DD' class="form-control"}}
-                    {{!{{input value = sub_record.validityDate type = "date" class = "form-control"}}
+                {{!{{input value = sub_record.validityDate type = "date" class = "form-control"}}
                 {{/if}}
             </div>
-        </div>
-        <div class="form-group">
-            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.deadLine}}</label>
-            <div class="col-lg-4">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-2">
+                <label class="col-lg-3 control-label">{{app_controller.translation.deadLine}} </label>
+            </div>
+            <div class="col-lg-3">
                 {{#if isView_docDetails}}
                     {{#if sub_record.deadLine}}
                         <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.deadLine_toString}}</p>
@@ -96,14 +97,30 @@
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{date-picker date=sub_record.deadLine valueFormat='YYYY-MM-DD' class="form-control" disabled= true}}
-                    {{!{{input value = sub_record.deadLine type = "date" class = "form-control"}}
+                    {{date-picker date=sub_record.deadline valueFormat='YYYY-MM-DD' class="form-control" disabled= true}}
+                {{!{{input value = sub_record.grace type = "date" class = "form-control"}}
                 {{/if}}
             </div>
-            <div class="col-lg-1">
-                <label for="name" class="col-lg-3 control-label">{{app_controller.translation.grace}}</label>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">{{app_controller.translation.alert}}</label>
+            <div class="col-lg-3">
+                {{#if isView_docDetails}}
+                    {{#if sub_record.alert}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.alert_toString}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{date-picker date=sub_record.alert valueFormat='YYYY-MM-DD' class="form-control" disabled= true}}
+                {{!{{input value = sub_record.deadLine type = "date" class = "form-control"}}
+                {{/if}}
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-2">
+                <label class="col-lg-3 control-label">{{app_controller.translation.grace}}</label>
+            </div>
+            <div class="col-lg-3">
                 {{#if isView_docDetails}}
                     {{#if sub_record.grace}}
                         <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.grace_toString}}</p>
@@ -117,7 +134,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.note}}</label>
+            <label class="col-lg-3 control-label">{{app_controller.translation.note}}</label>
             <div class="col-lg-9">
                 {{#if isView_docDetails}}
                     {{#if sub_record.note}}

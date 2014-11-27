@@ -8,8 +8,8 @@ export default DS.Model.extend({
     lastName: DS.attr('string'),
     phone: DS.attr('string'),
     skype: DS.attr('string'),
-    profile: DS.attr('string'), //clerk/driver
-    type: DS.attr('string'),   //powerUser/user/admin
+    profile: DS.attr('string'), //powerUser/user/admin
+    type: DS.attr('string'),   //clerk/driver
     curriculum: DS.attr('string'),
 
     patents: DS.attr('raw'),
@@ -23,10 +23,10 @@ export default DS.Model.extend({
      * PROPERTIES
      */
     isClerk: function(){
-        return this.get('profile') === 'clerk';
+        return this.get('type') === 'clerk';
     }.property('profile'),
     isDriver: function(){
-        return this.get('profile') === 'driver';
+        return this.get('type') === 'driver';
     }.property('profile'),
 
     birthDate_toString: function(){

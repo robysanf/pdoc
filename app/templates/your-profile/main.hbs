@@ -25,7 +25,7 @@
                         <h5>
                             {{#if controller.tabList.driver}}
                                 {{#if controller.transition_to_list}}
-                                    {{app_controller.translation.driversList}} {{else}} {{app_controller.translation.driver}} {{/if}}
+                                    {{app_controller.translation.driversList}} {{else}} {{app_controller.translation.returnToList}} {{/if}}
                             {{else}}
                                 {{app_controller.translation.driversList}}
                             {{/if}}
@@ -37,7 +37,7 @@
                     <a href="#" {{action setTabs "truck"}}>
                         <h5>
                             {{#if controller.tabList.truck}}
-                                {{#if controller.transition_to_list}} {{app_controller.translation.trucksList}} {{else}} {{app_controller.translation.truck}} {{/if}}
+                                {{#if controller.transition_to_list}} {{app_controller.translation.trucksList}} {{else}} {{app_controller.translation.returnToList}} {{/if}}
                             {{else}}
                                 {{app_controller.translation.trucksList}}
                             {{/if}}
@@ -49,7 +49,7 @@
                     <a href="#" {{action setTabs "trailer"}}>
                         <h5>
                             {{#if controller.tabList.trailer}}
-                                {{#if controller.transition_to_list}} {{app_controller.translation.trailersList}} {{else}} {{app_controller.translation.trailer}} {{/if}}
+                                {{#if controller.transition_to_list}} {{app_controller.translation.trailersList}} {{else}} {{app_controller.translation.returnToList}} {{/if}}
                             {{else}}
                                 {{app_controller.translation.trailersList}}
                             {{/if}}
@@ -61,7 +61,7 @@
                     <a href="#" {{action setTabs "clerk"}}>
                         <h5>
                             {{#if controller.tabList.clerk}}
-                                {{#if controller.transition_to_list}} {{app_controller.translation.clerksList}} {{else}} {{app_controller.translation.clerk}} {{/if}}
+                                {{#if controller.transition_to_list}} {{app_controller.translation.clerksList}} {{else}} {{app_controller.translation.returnToList}} {{/if}}
                             {{else}}
                                 {{app_controller.translation.clerksList}}
                             {{/if}}

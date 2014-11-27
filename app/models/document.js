@@ -12,15 +12,53 @@ export default DS.Model.extend({
     validityDate: DS.attr('custom-time'),
     deadline: DS.attr('custom-time'),
     grace: DS.attr('custom-time'),
+    alert: DS.attr('custom-time'),
 
     company: DS.belongsTo('company', {
         async: true,
         inverse: 'documents' }),
     docTemplate: DS.belongsTo('doc-template', {
         async: true}),
-
     certifier: DS.belongsTo('company', {
         async: true }),
+
+    set_alert: function(){
+        var new_date;
+        switch (this.get('docTemplate').get('alertType')){
+            case 'days':
+                new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('alertNum'), 'day');
+                this.set('alert', new_date);
+                break;
+            case 'months':
+                new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('alertNum'), 'month');
+                this.set('alert', new_date);
+                break;
+            case 'years':
+                new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('alertNum'), 'year');
+                this.set('alert', new_date);
+                break;
+        }
+    }.observes('validityDate'),
+    set_grace: function(){
+        var new_date;
+        switch (this.get('docTemplate').get('graceType')){
+            case 'days':
+                new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('graceNum'), 'day');
+                this.set('grace', new_date);
+                break;
+            case 'months':
+                new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('graceNum'), 'month');
+                this.set('grace', new_date);
+                break;
+            case 'years':
+                new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('graceNum'), 'year');
+                this.set('grace', new_date);
+                break;
+        }
+    }.observes('validityDate'),
+    set_deadline: function(){
+       this.set('deadline', this.get('docTemplate').get('deadline'));
+    }.observes('docTemplate.deadline'),
 
     /*******************************************************
      * PROPERTIES
@@ -46,6 +84,10 @@ export default DS.Model.extend({
     }.property('deadline'),
     grace_toString: function() {
         return moment(this.get('grace')).format('YYYY-MM-DD');
-    }.property('grace')
+    }.property('grace'),
+    alert_toString: function() {
+        return moment(this.get('alert')).format('YYYY-MM-DD');
+    }.property('alert')
+
 
 });

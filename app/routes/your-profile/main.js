@@ -5,16 +5,13 @@ export default Ember.Route.extend({
         var _this = this, app_controller = _this.controllerFor('application'), controller = _this.controllerFor('your-profile.main');
 
         //imposto la tab company come default per 'your-profile'
-        if( controller.tabList.company !== true &&  controller.tabList.driver !== true &&  controller.tabList.truck !== true &&  controller.tabList.trailer !== true &&  controller.tabList.clerk !== true ) {
+//        var uno = controller.tabList.company, due = controller.tabList.driver, tre = controller.tabList.truck, quattro = controller.tabList.trailer, cinque = controller.tabList.clerk;
+//        if( uno !== true &&  due !== true &&  tre !== true &&  quattro !== true &&  cinque !== true ) {
             controller.set('tabList.company', true);
-        }
+            controller.set('isView', true);
+            controller.set('isView_docList', true);
+//        }
 
-//        app_controller.set('records_docTemplate', this.store.findAll('doc-template'));
-        app_controller.company_record.get('certifier').then(function( certifier ){
-            certifier.get('docTemplate').then(function(doctemp){
-                app_controller.set('records_docTemplate', doctemp);
-            });
-        });
         app_controller.set('records_companyCertifier', this.store.find('company', { type: "certifier" }));
 
 //        //, {name: 'service'}
@@ -69,6 +66,7 @@ export default Ember.Route.extend({
          @param {record} entità legate a company - (driver/truck/trailer/clerk)
          */
         transition_to: function( path, record, var1, value1, var2, value2 ) {
+            var _this = this, app_controller = _this.controllerFor('application');
            switch ( path ) {
                case 'your-profile/partials/-user-field':
                    this.controller.set( 'sub_record', record );
@@ -87,6 +85,11 @@ export default Ember.Route.extend({
                    break;
                case 'your-profile/partials/-company-document-edit':
                    this.controller.set( 'sub_record', record );
+
+                   app_controller.company_record.get('certifier').then(function( record ){
+                       app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id') }));
+                   });
+
                    this.send('set_variable', var1, value1);
                    this.send('set_variable', var2, value2);
                    break;
@@ -118,7 +121,7 @@ export default Ember.Route.extend({
                         ]).then(function() {
                             _this.controller.sub_record.save().then(function(saved_record){
                                 app_controller.send( 'message_manager', 'Success', 'You have successfully saved the document.' );
-                                app_controller.send( 'set_variable', path, value );
+                                _this.controller.set( path, value );
 
                             }, function( text ){
                                 app_controller.send( 'message_manager', 'Failure', text );
@@ -143,7 +146,7 @@ export default Ember.Route.extend({
                         companyRecord.save().then(function(saved_record){
                             app_controller.send( 'message_manager', 'Success', 'You have successfully saved the post.' );
 
-                            app_controller.send( 'set_variable', path, value );
+                            _this.controller.set( path, value );
                         }, function( text ){
                             app_controller.send( 'message_manager', 'Failure', text );
                         });
@@ -155,7 +158,7 @@ export default Ember.Route.extend({
             this.controller.set( attr, value );
         },
 
-        create_record: function( record_company, path, value ){
+        create_record: function( record_company, path, value, attr1, val1 ){
             var _this = this, app_controller = _this.controllerFor('application'), new_record;
 
             if ( _this.controller.tabList.company ) {
@@ -168,32 +171,23 @@ export default Ember.Route.extend({
                     status: 'active'
                 });
 
-                new_record.set('company', record_company);
+                app_controller.company_record.get('certifier').then(function( certifier ){
+                    new_record.set('company', record_company);
+                    new_record.set('certifier', certifier);
 
-                Ember.RSVP.all([
-                    new_record.get('company'),
-                ]).then(function() {
+                    Ember.RSVP.all([
+                        new_record.get('company'),
+                        new_record.get('certifier'),
+                    ]).then(function() {
 
-                    var onSuccess = function() {
-                        app_controller.company_record.get('certifier').then(function( certifier ){
-                            certifier.get('docTemplate').then(function(doctemp){
-                                app_controller.set('records_docTemplate', doctemp);
-                            });
+                        new_record.get('certifier').then(function( record ) {
+                            app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id') }));
                         });
+                    }.bind(this));
 
-                        app_controller.send( 'message_manager', 'Success', 'You have successfully saved the record.' );
-                        app_controller.send( 'set_variable', 'isView_docDetails', false );
-                    }.bind(this);
 
-                    var onFail = function() {
-                        app_controller.send( 'message_manager', 'Failure', 'Something went wrong, the record was not saved.' );
-                    }.bind(this);
-
-                    // Save inside then() after I call get() on promises
-                    new_record.save().then(onSuccess, onFail);
-
-                }.bind(this));
-
+                        _this.controller.set( attr1, val1 );
+                    });
 
             } else if ( _this.controller.tabList.driver ) {
                 new_record = this.store.createRecord('user', {
@@ -228,7 +222,7 @@ export default Ember.Route.extend({
 
             _this.controller.set( 'sub_record', new_record );
             _this.controller.set( 'transition_to_list', false );
-            app_controller.send( 'set_variable', path, value );
+            _this.controller.set( path, value );
 
         },
 

@@ -84,3 +84,9 @@ book.get('sharedWith').then(function(valShar){
         enabled=true                                  //attiva o disattiva input field
         allowClear=false                             // per avere il pulsante per cancellare il record selezionato
     }}
+
+*************************************************** OBSERVES, PROPERTIES ***************************************
+
+observes: funzione che contiene il comportamento che reagisce al cambiamento di un altra property
+
+computed properties: per creare nuove property che sintetizzano quelle esistenti

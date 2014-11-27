@@ -55,52 +55,34 @@ export default Ember.Controller.extend({
     records_company: Ember.A(),
     records_docTemplate: Ember.A(),
     records_companyCertifier: Ember.A(),
-//    selectedTags: null,
-//    foodGroupsSorting: ['name:asc'],
-//    foodGroupsLookup: Ember.computed.sort('foodGroupsAll', 'foodGroupsSorting'),
-//    pizzas: Ember.A([
-//        {
-//            id: "mar",
-//            text: "Margherita",
-//            description: "The original italian one"
-//        }, {
-//            id: "pep",
-//            text: "Peperoni",
-//            description: "For the Peperoni lovers"
-//        }, {
-//            id: "ham",
-//            text: "Ham",
-//            description: "Another well known classic"
-//        }, {
-//            id: "haw",
-//            text: "Hawaii",
-//            description: "For the exotic ones"
-//        }
-//    ]),
+
     autocompleteUser: [],
     autocompleteCompany: [],
-//    autocompleteCharge: Ember.A(),
-//    autocompletePoi: Ember.A(),
-//    autocompletePoiPort: Ember.A(),
-//    autocompletePoiDepot: Ember.A(),
-//    autocompletePoiWarehouse: Ember.A(),
-//    autocompleteEquipment: Ember.A(),
-//    autocompleteEquipmentCode: Ember.A(),
-//    autocompleteEqClassification: Ember.A(),
-//    autocompleteEqClassificationContainer: Ember.A(),
-//    autocompleteVoyage: Ember.A(),
-//    autocompleteBooking: Ember.A(),
-//    autocompleteRoRo: Ember.A(),
-//
-//    autocompleteStamp: Ember.A(),
-//    autocompleteSegment: Ember.A(),
-//    autocompleteVessel: Ember.A(),
-//    autocompleteTemplate: Ember.A(),
-//    autocompleteDocument: Ember.A(),
-//    autocompleteChassisNum: Ember.A(),
-//    autocompletePaymentPlan: Ember.A(),
-//    autocompleteLink: Ember.A(),
 
+    autocomplete_patents: Ember.A([
+        Ember.Object.create({id: 1, type: "AM"}),
+        Ember.Object.create({id: 2, type: "A1"}),
+        Ember.Object.create({id: 3, type: "A2"}),
+        Ember.Object.create({id: 4, type: "A"}),
+        Ember.Object.create({id: 5, type: "B"}),
+        Ember.Object.create({id: 6, type: "B1"}),
+        Ember.Object.create({id: 7, type: "BE"}),
+        Ember.Object.create({id: 8, type: "C1"}),
+        Ember.Object.create({id: 9, type: "C1E"}),
+        Ember.Object.create({id: 10, type: "C"}),
+        Ember.Object.create({id: 11, type: "CE"}),
+        Ember.Object.create({id: 12, type: "D1"}),
+        Ember.Object.create({id: 13, type: "D1E"}),
+        Ember.Object.create({id: 14, type: "D"}),
+        Ember.Object.create({id: 15, type: "KA"}),
+        Ember.Object.create({id: 16, type: "KB"})
+    ]),
+
+    autocomplete_languages: Ember.A([
+        Ember.Object.create({id: 1, type: "Italian"}),
+        Ember.Object.create({id: 2, type: "English"}),
+        Ember.Object.create({id: 3, type: "German"})
+    ]),
 
 
     /*****************************
@@ -130,7 +112,6 @@ export default Ember.Controller.extend({
                 return this.lan_en;
         }
     }.property('isEnglish'),
-
     lan_it: {
         publicToYourContactsNetwork: 'Pubblica alla tua rete di contatti', companyDetails: "Anagrafica", invoiceNumber: 'Numero fattura', rate: 'Punteggio', limit: 'Limite', goodsConfiscation: 'Confisca', vehicleConfiscation: 'Sequestro', fiscalResponsibility: 'Resp.Fiscale',
         validity: 'Validità', alert: 'Avviso', grace: 'Grazia', loadModel: 'Carica modello', attach: 'Allega', premium: 'Avanzato', medium: 'Intermedio', smart: 'Base', for: 'Per', euro: 'Euro',
@@ -148,7 +129,8 @@ export default Ember.Controller.extend({
         description: "Descrizione", services: "Servizi offerti", segments: "Tratte coperte", areas: "Aree coperte", driver: 'Autista', drivers: 'Autisti', truck: 'Camion', trucks: 'Camions',
         trailer: 'Rimorchio', trailers: 'Rimorchi', clerks: 'Impiegati', changePassword: 'Cambia password', driversList: "Lista autisti", driverDetails: "Anagrafica autista", trucksList: 'Lista camions',
         list: "Lista", vehicleDetails: "Dettagli veicolo", clerksList: 'Lista impiegati', clerk: 'Impiegato', trailersList: 'Lista rimorchi', details:'Dettagli', username: 'Username',
-        birthDate: 'Data di nascita', title: 'Titolo', text: 'Testo', loadImage: 'Carica immagine', attached: 'Allega', documents: 'Documenti', validityDate: 'Inizio validità', deadLine: 'Scadenza'
+        birthDate: 'Data di nascita', title: 'Titolo', text: 'Testo', loadImage: 'Carica immagine', attached: 'Allega', documents: 'Documenti', validityDate: 'Inizio validità', deadLine: 'Scadenza',
+        returnToList: 'Torna alla lista'
     },
     lan_en: {
         publicToYourContactsNetwork: 'Public to your contacts network', companyDetails: 'Company Details', invoiceNumber: 'Invoice number', rate: 'Rate', limit: 'Limit', goodsConfiscation: 'Goods Confisc.', vehicleConfiscation: 'Vehicle Confisc.',
@@ -166,7 +148,7 @@ export default Ember.Controller.extend({
         services: "Services", segments: "Segments", areas: "Areas", driver: 'Driver', drivers: 'Drivers', truck: 'Truck', trucks: 'Trucks', trailer: 'Trailer', trailers: 'Trailers', clerks: 'Clerks',
         changePassword: 'Change password', driversList: "Drivers list", driverDetails: "Driver details", trucksList: 'Trucks list', list: "List", vehicleDetails: 'Vehicle details', clerksList: 'Clerks list',
         clerk: 'Clerk', trailersList: 'Trailers list', details:'Details', username: 'Username', birthDate: 'Birth date', title: 'Title', text: 'Testo', loadImage: 'Load image', attached: 'Attached',
-        documents: 'Documents', validityDate: 'Validity date', deadLine: 'DeadLine', template: 'Template'
+        documents: 'Documents', validityDate: 'Validity date', deadLine: 'DeadLine', template: 'Template', returnToList: 'Return to list'
     },
 
     actions:{

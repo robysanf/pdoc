@@ -10,10 +10,10 @@
             {{app_controller.translation.details}}
 
             <!-------------------- button return-to-list ---------------------->
-            <span {{action 'transition_to' 'your-profile/partials/-tab-user-driver-list' null 'isView' true 'transition_to_list' true}} style="cursor: pointer" class="pull-right">
-                <strong style="color: #4582ec;">List</strong>
-                <span class="glyphicon glyphicon-chevron-right btn-font-color"></span>
-            </span>
+            <!--<span {{!{{action 'transition_to' 'your-profile/partials/-tab-user-driver-list' null 'isView' true 'transition_to_list' true}} style="cursor: pointer" class="pull-right">-->
+                <!--<strong style="color: #4582ec;">List</strong>-->
+                <!--<span class="glyphicon glyphicon-chevron-right btn-font-color"></span>-->
+            <!--</span>-->
         </legend>
         <div class="form-group">
             <label for="name" class="col-lg-3 control-label">{{app_controller.translation.firstName}}</label>
@@ -72,7 +72,7 @@
                             <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                         {{/if}}
                     {{else}}
-                        {{auto-suggest source=controller.autosuggest_patentsList destination= controller.sub_record.patents searchPath="type" usecase="customMode" minChars=0}}
+                        {{auto-suggest source=app_controller.autocomplete_patents destination=controller.sub_record.patents searchPath="type" usecase="customMode" minChars=0}}
                     {{/if}}
                 </div>
             </div>
@@ -171,7 +171,8 @@
                             <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                         {{/if}}
                     {{else}}
-                        {{auto-suggest destination=controller.sub_record.languages usecase="customModeWithoutSource"}}
+                        {{auto-suggest source=app_controller.autocomplete_languages destination=controller.sub_record.languages searchPath="type" usecase="customMode" minChars=0}}
+                        {{!{{auto-suggest destination=controller.sub_record.languages usecase="customModeWithoutSource"}}
                     {{/if}}
                 </div>
             </div>
