@@ -37,13 +37,15 @@ export default Ember.Route.extend({
         },
 
         create_record: function( record_company, attr, value ){
-
+            var _this = this;
             var new_record = this.store.createRecord('doc-template', {
                 company: record_company
             });
 
-            this.controller.set( 'new_record', new_record );
-            this.send('change_mode', attr, value );
+            new_record.save().then(function( recrod ){
+                _this.controller.set( 'new_record', recrod);
+                _this.send('change_mode', attr, value );
+            });
         },
 
         set_record: function( record, attr, value ){
@@ -66,15 +68,27 @@ export default Ember.Route.extend({
             }
         },
 
-        delete_record: function( record ){
-            var _this = this, app_controller = _this.controllerFor('application');
-            record.deleteRecord();
-            record.save().then(function(){
+        delete_record: function() {
+            var _this = this, app_controller = _this.controllerFor('application'), controller = _this.controllerFor('your-profile/main');
+
+            controller.record_to_delete.deleteRecord();
+            controller.record_to_delete.save().then(function(){
                 app_controller.send('message_manager', 'Success', 'The document was successfully removed.');
+//                controller.main_record.reload();
             }, function(){
                 app_controller.send('message_manager', 'Failure', 'A problem eas occurred.');
             });
         },
+
+//        delete_record: function( record ){
+//            var _this = this, app_controller = _this.controllerFor('application');
+//            record.deleteRecord();
+//            record.save().then(function(){
+//                app_controller.send('message_manager', 'Success', 'The document was successfully removed.');
+//            }, function(){
+//                app_controller.send('message_manager', 'Failure', 'A problem eas occurred.');
+//            });
+//        },
 
         open_modal: function( path, record_to_delete, record) {
             var _this = this, app_controller = _this.controllerFor('application'), controller = _this.controllerFor('your-profile/main');
@@ -91,6 +105,14 @@ export default Ember.Route.extend({
                 into: 'application',
                 outlet: 'overview',
                 view: 'modal-manager'
+            });
+        },
+
+        update_files: function(mod, val, $btn){
+            this.store.find( mod, val ).then(function( record ){
+                record.reload().then(function(){
+                    $btn.button('reset');
+                });
             });
         }
     }

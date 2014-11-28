@@ -123,8 +123,8 @@ export default Ember.Route.extend({
                                 app_controller.send( 'message_manager', 'Success', 'You have successfully saved the document.' );
                                 _this.controller.set( path, value );
 
-                            }, function( text ){
-                                app_controller.send( 'message_manager', 'Failure', text );
+//                            }, function( text ){
+//                                app_controller.send( 'message_manager', 'Failure', text );
                             });
                         }, function( error ){
                             app_controller.send( 'message_manager', 'Failure', 'Something went wrong, the record was not saved.' );
@@ -185,9 +185,8 @@ export default Ember.Route.extend({
                         });
                     }.bind(this));
 
-
-                        _this.controller.set( attr1, val1 );
-                    });
+                    _this.controller.set( attr1, val1 );
+                });
 
             } else if ( _this.controller.tabList.driver ) {
                 new_record = this.store.createRecord('user', {
@@ -276,6 +275,24 @@ export default Ember.Route.extend({
                     $btn.button('reset');
                 });
             });
+        },
+
+        /**
+         l'utente può scaricare un file
+
+         @action download_file
+         @for Booking Item List
+         @param {record}
+         */
+        download_file: function( fileId ) {
+            var self = this, app_controller = self.controllerFor('application'),
+                path = 'api/files/' + fileId + '?token=' + app_controller.token + '&download=true';
+
+            $.fileDownload(path)
+                // .done(function () { alert('File download a success!'); })
+                .fail(function ( text ) {
+                    app_controller.send( 'message_manager', 'Failure', text );
+                });
         }
     }
 });

@@ -21,6 +21,11 @@ export default DS.Model.extend({
         async: true}),
     certifier: DS.belongsTo('company', {
         async: true }),
+    files: DS.hasMany('file', {
+        async: true}),
+    /*******************************************************
+     * OBSERVES
+     */
 
     set_alert: function(){
         var new_date;
@@ -57,7 +62,7 @@ export default DS.Model.extend({
         }
     }.observes('validityDate'),
     set_deadline: function(){
-       this.set('deadline', this.get('docTemplate').get('deadline'));
+        this.set('deadline', this.get('docTemplate').get('deadline'));
     }.observes('docTemplate.deadline'),
 
     /*******************************************************

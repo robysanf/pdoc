@@ -1,4 +1,6 @@
-<div class="navbar navbar-default navbar-fixed-top">
+
+
+<div class="navbar navbar-default navbar-fixed-top" style="max-height: 40px">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -16,13 +18,18 @@
                 <li>{{#link-to 'link/main' company_id}} {{controller.translation.links}} {{/link-to}}</li>
             </ul>
             <ul class="nav navbar-nav">
-                <li>
-                {{#link-to 'notification/main' company_id}}{{controller.translation.notifications}}
-                    {{#if controller.company_record.firedNotifications}}
-                        <span class="badge">{{controller.company_record.firedNotifications}}</span>
-                    {{/if}}
-                {{/link-to}}
-                </li>
+            <li>
+                {{#if controller.company_record.firedNotifications}}
+                    {{#link-to 'notification/main' company_id}}
+                        {{controller.translation.notifications}}
+                        <span class="badge" style="max-height: 40px">{{controller.company_record.firedNotifications}}</span>
+                    {{/link-to}}
+                {{else}}
+                    {{#link-to 'notification/main' company_id}}
+                        {{controller.translation.notifications}}
+                    {{/link-to}}
+                {{/if}}
+            </li>
             </ul>
             <ul class="nav navbar-nav">
                 <li>{{#link-to 'admin/main' company_id}} {{controller.translation.admin}} {{/link-to}}</li>
@@ -30,6 +37,7 @@
             <ul class="nav navbar-nav">
                 <li>{{#link-to 'account/main' company_id}} {{controller.translation.account}} {{/link-to}}</li>
             </ul>
+
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{controller.translation.language}}<b class="caret"></b></a>
@@ -40,6 +48,8 @@
                 </li>
                 <li class="active"><a href="#" {{action 'logout'}}>Logout</a></li>
             </ul>
+
         </div>
     </div>
 </div>
+

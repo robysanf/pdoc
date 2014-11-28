@@ -175,22 +175,66 @@
                 placeholder="Choose a period"
                 class='form-control'
                 }}
-
             </div>
         </div>
-        
 
         <!------------------------------- add model ------------------------------------->
+        {{#if new_record.files}}
+            <div class="form-group">
+                <label class="col-lg-2 control-label">{{app_controller.translation.files}}</label>
+                <div class="col-lg-10">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form class="form-horizontal">
+                                <fieldset>
+                                    <div class="row" style="margin-top: 15px">
+                                        <div class="col-lg-12">
+                                            <table class="table table-bordered table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th>{{app_controller.translation.name}}</th>
+                                                    <th>{{app_controller.translation.type}}</th>
+
+                                                    <th>{{app_controller.translation.delete}}</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {{#each file in new_record.files}}
+                                                    <tr>
+                                                        <td>{{file.name}}</td>
+                                                        <td>{{file.type}}</td>
+
+                                                        <td><a {{action 'open_modal' 'your-profile/modals/delete-record' file this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                                    </tr>
+                                                {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/if}}
         <div class="page-header"></div>
         <div class="form-group">
             <label  class="col-lg-2 control-label">{{app_controller.translation.loadModel}}</label>
             <div class="col-lg-10">
-                <div class="input-group input-group">
-                    {{input placeholder="Search..." type = "number" class = 'form-control'}}
-                    <span class="input-group-btn">
-                <button class="btn btn-default" type="button" style="width: 120px">{{app_controller.translation.attach}}</button>
-            </span>
-                </div>
+                {{#view 'upload-file' record_model='doc-template'}}
+                    <div class="input-group">
+                            <span class="input-group-btn">
+                                <span class="btn btn-primary btn-file">
+                                    Browse file&hellip; <input type="file" multiple>
+                                </span>
+                            </span>
+                        {{input id="selected_file" type="text" placeholder="max. 10 MB" class='form-control'}}
+                        <span class="input-group-btn">
+                            <button id='button_upload' {{bind-attr value=new_record.id}} type="button" data-loading-text="Loading..." class="btn btn-primary btn-130 pull-right"><span class="glyphicon glyphicon-floppy-disk"></span> Upload</button>
+                        </span>
+                    </div>
+                {{/view}}
             </div>
         </div>
     </fieldset>

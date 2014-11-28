@@ -31,7 +31,10 @@ app.import('vendor/pnotify/pnotify.custom.js');
 
 //// IMPORT MOMENT.JS
 app.import('vendor/moment/moment.js');
-//
+
+// IMPORT FILE-DOWNLOAD.JS
+app.import('vendor/jquery-ui/jquery.fileDownload.js');
+
 //// IMPORT EMBER-SPIN-BOX
 //app.import('vendor/ember-spin-box/dist/ember-spin-box.min.css');
 //app.import('vendor/ember-spin-box/dist/ember-spin-box.min.js');
