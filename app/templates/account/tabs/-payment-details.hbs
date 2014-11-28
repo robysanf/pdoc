@@ -1,0 +1,46 @@
+<form class="form-horizontal">
+    <fieldset>
+        <div class="form-group">
+            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.name}}</label>
+            <div class="col-lg-9">
+                {{#if controller.mode_view}}
+                    {{#if name}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{name}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value = name type = "string" class = 'form-control'}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.credits}}</label>
+            <div class="col-lg-9">
+                {{#if controller.mode_view}}
+                    {{#if credits}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{credits}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value = credits type = "string" class = 'form-control'}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.cardNumber}}</label>
+            <div class="col-lg-9">
+                {{#if controller.mode_view}}
+                    {{#if cardNumber}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{hideCardNumber}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value = hideCardNumber type = "string" class = 'form-control'}}
+                {{/if}}
+            </div>
+        </div>
+    </fieldset>
+</form>

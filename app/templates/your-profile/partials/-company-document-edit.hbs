@@ -1,0 +1,267 @@
+<form class="form-horizontal" style="margin-top: 25px">
+    <fieldset>
+        <legend>
+            {{#if isView_docDetails}}
+                <a {{action 'set_variable' 'isView_docDetails' false}} style="cursor: pointer"><span class="glyphicon glyphicon-pencil btn-font-color"></span></a>
+                &nbsp;
+            {{else}}
+                <a {{action 'set_record' 'document' 'isView_docList' true this}} style="cursor: pointer"><span class="glyphicon glyphicon-ok btn-font-color"></span></a>
+                &nbsp;
+            {{/if}}
+            {{app_controller.translation.documents}}
+            <span {{action 'transition_to' 'your-profile/partials/-company-document-edit' null 'isView_docList' true 'isView_docDetails' false}} style="cursor: pointer" class="pull-right">
+                <strong style="color: #4582ec;">List</strong>
+                <span class="glyphicon glyphicon-chevron-right btn-font-color"></span>
+            </span>
+        </legend>
+
+        <div class="form-group">
+            <label class="col-lg-3 control-label">{{app_controller.translation.name}}</label>
+            <div class="col-lg-9">
+                {{#if isView_docDetails}}
+                    {{#if sub_record.name}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.name}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value = sub_record.name type = "text" class = "form-control"}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">{{app_controller.translation.type}}</label>
+            <div class="col-lg-9">
+                {{#if isView_docDetails}}
+                    {{#if sub_record.type}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.type}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{view Ember.Select content = documentTypes value = sub_record.type class = "form-control"}}
+                {{/if}}
+            </div>
+        </div>
+        {{#if sub_record.isDocument}}
+            <div class="form-group">
+                <label class="col-lg-3 control-label">{{app_controller.translation.template}}</label>
+                <div class="col-lg-9">
+                    {{#if isView_docDetails}}
+                        {{#if sub_record.docTemplate}}
+                            <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.docTemplate.name}}</p>
+                        {{else}}
+                            <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                        {{/if}}
+                    {{else}}
+                    {{!{{auto-complete source=app_controller.records_docTemplate destination=sub_record.docTemplate searchPath="name" minChars=0}}
+                        {{select-2
+                        content=app_controller.records_docTemplate
+                        value=sub_record.docTemplate
+                        optionLabelPath="name"
+                        placeholder="Choose a document type"
+                        typeaheadNoMatchesText="No document type found for '%@'"
+                        typeaheadErrorText="Loading failed: %@"
+                        enabled=true
+                        allowClear=true
+                        }}
+                    {{!{{input value = sub_record.template.name type = "text" class = "form-control"}}
+                    {{/if}}
+                </div>
+            </div>
+        {{/if}}
+
+        <div class="form-group">
+            <label class="col-lg-3 control-label">{{app_controller.translation.validityDate}}</label>
+            <div class="col-lg-3">
+                {{#if isView_docDetails}}
+                    {{#if sub_record.validityDate}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.validityDate_toString}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{date-picker date=sub_record.validityDate valueFormat='YYYY-MM-DD' class="form-control"}}
+                {{!{{input value = sub_record.validityDate type = "date" class = "form-control"}}
+                {{/if}}
+            </div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-2">
+                <label class="col-lg-3 control-label">{{app_controller.translation.deadLine}} </label>
+            </div>
+            <div class="col-lg-3">
+                {{#if isView_docDetails}}
+                    {{#if sub_record.deadLine}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.deadLine_toString}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{date-picker date=sub_record.deadline valueFormat='YYYY-MM-DD' class="form-control" disabled= true}}
+                {{!{{input value = sub_record.grace type = "date" class = "form-control"}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">{{app_controller.translation.alert}}</label>
+            <div class="col-lg-3">
+                {{#if isView_docDetails}}
+                    {{#if sub_record.alert}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.alert_toString}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{date-picker date=sub_record.alert valueFormat='YYYY-MM-DD' class="form-control" disabled= true}}
+                {{!{{input value = sub_record.deadLine type = "date" class = "form-control"}}
+                {{/if}}
+            </div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-2">
+                <label class="col-lg-3 control-label">{{app_controller.translation.grace}}</label>
+            </div>
+            <div class="col-lg-3">
+                {{#if isView_docDetails}}
+                    {{#if sub_record.grace}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.grace_toString}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{date-picker date=sub_record.grace valueFormat='YYYY-MM-DD' class="form-control" disabled= true}}
+                {{!{{input value = sub_record.grace type = "date" class = "form-control"}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">{{app_controller.translation.note}}</label>
+            <div class="col-lg-9">
+                {{#if isView_docDetails}}
+                    {{#if sub_record.note}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.note}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{textarea value=sub_record.note class = "form-control" rows= 4}}
+                {{/if}}
+            </div>
+        </div>
+        {{#if controller.sub_record.docTemplate.files}}
+            <div class="form-group">
+                <label class="col-lg-3 control-label">{{app_controller.translation.filesToDownload}}</label>
+                <div class="col-lg-9">
+                    {{#if isView_docDetails}}
+                        {{#each controller.sub_record.docTemplate.files}}
+                            <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{name}}</p>
+                        {{/each}}
+                    {{else}}
+                        {{#if controller.sub_record.docTemplate}}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <form class="form-horizontal">
+                                        <fieldset>
+                                            <div class="row" style="margin-top: 15px">
+                                                <div class="col-lg-12">
+                                                    <table class="table table-bordered table-hover">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>{{app_controller.translation.name}}</th>
+                                                            <th>{{app_controller.translation.type}}</th>
+
+                                                            <th>{{app_controller.translation.download}}</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {{#each file in controller.sub_record.docTemplate.files}}
+                                                            <tr>
+                                                                <td>{{file.name}}</td>
+                                                                <td>{{file.type}}</td>
+
+                                                                <td><a href="#" {{action "download_file" file.id}}><span class="glyphicon glyphicon-download"></span></a></td>
+                                                            </tr>
+                                                        {{/each}}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        {{else}}
+                            <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                        {{/if}}
+                    {{/if}}
+                </div>
+            </div>
+        {{/if}}
+
+        {{#if controller.sub_record.files}}
+            <div class="form-group">
+                <label class="col-lg-3 control-label">{{app_controller.translation.files}}</label>
+                <div class="col-lg-9">
+                    {{#if isView_docDetails}}
+                        {{#each controller.sub_record.files}}
+                            <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{name}}</p>
+                        {{/each}}
+                    {{else}}
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <form class="form-horizontal">
+                                    <fieldset>
+                                        <div class="row" style="margin-top: 15px">
+                                            <div class="col-lg-12">
+                                                <table class="table table-bordered table-hover">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>{{app_controller.translation.name}}</th>
+                                                        <th>{{app_controller.translation.type}}</th>
+
+                                                        <th>{{app_controller.translation.delete}}</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {{#each file in controller.sub_record.files}}
+                                                        <tr>
+                                                            <td>{{file.name}}</td>
+                                                            <td>{{file.type}}</td>
+
+                                                            <td><a {{action 'open_modal' 'your-profile/modals/delete-record' file this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                                        </tr>
+                                                    {{/each}}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+        {{/if}}
+        <div class="page-header"></div>
+        <div class="form-group">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-9">
+                {{#unless isView_docDetails}}
+                    {{#view 'upload-file' record_model='document'}}
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <span class="btn btn-primary btn-file">
+                                    Browse file&hellip; <input type="file" multiple>
+                                </span>
+                            </span>
+                            {{input id="selected_file" type="text" placeholder="max. 10 MB" class='form-control'}}
+                            <span class="input-group-btn">
+                                <button id='button_upload' {{bind-attr value=sub_record.id}} type="button" data-loading-text="Loading..." class="btn btn-primary btn-130 pull-right"><span class="glyphicon glyphicon-floppy-disk"></span> Upload</button>
+                            </span>
+                        </div>
+                    {{/view}}
+                {{/unless}}
+            </div>
+        </div>
+    </fieldset>
+</form>

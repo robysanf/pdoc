@@ -2,6 +2,30 @@
 /*margin: 20px;*/
 /*}*/
 
+.square-icon-lg {
+    background: url(../img/driver200x255.png) 50% 50% no-repeat; /* 50% 50% centers image in div */
+    width: 185px;
+    height: 185px;
+    opacity:0.7;
+}
+.square-lg {
+    width: 195px;
+    height: 195px;
+    padding: 5px;
+}
+
+.square-icon {
+    background: url(../img/driver200x255.png) 50% 50% no-repeat; /* 50% 50% centers image in div */
+    width: 85px;
+    height: 85px;
+    opacity:0.7;
+}
+.square {
+    width: 95px;
+    height: 95px;
+    padding: 5px;
+}
+
 /**************************************************************************************************
   CUSTOM STYLE
 */
@@ -19,7 +43,7 @@
 }
 
 .row-margin-top-bottom {
-    margin-top: 15px;
+    margin-top: 25px;
     margin-bottom: 15px;
 }
 .row-margin-bottom {
@@ -603,3 +627,12 @@ section.hero-medium {
 /*section.large {*/
 /*background-color: rgba(249,236,206); border: 0px;*/
 /*}*/
+
+/* custom class example */
+.select2-container.custom-class .select2-choice {
+    background: lightcyan;
+}
+
+.select2-drop.custom-class {
+    background: lightcyan;
+}

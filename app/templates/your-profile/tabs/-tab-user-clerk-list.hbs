@@ -1,31 +1,45 @@
 
 <!-------------------- SHOW DRIVERS LIST ---------------------->
 {{#if controller.transition_to_list}}
-    <div class="row" style="margin-top: 45px">
+    <div class="row row-margin-top-bottom" >
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
-            <table class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                    <th>{{app_controller.translation.firstName}}</th>
-                    <th>{{app_controller.translation.lastName}}</th>
+            <form class="form-horizontal">
+                <fieldset>
+                    <legend>
+                        <!-------------------- altre tab - cambio button tra edit/view/add ---------------------->
+                        <a {{action 'create_record' this 'your-profile/main' false}} style="cursor: pointer"><span class="glyphicon glyphicon-plus btn-font-color"></span></a>
+                        &nbsp;
+                        {{app_controller.translation.details}}
+                    </legend>
+                    <div class="row" style="margin-top: 15px">
+                        <div class="col-lg-12">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>{{app_controller.translation.firstName}}</th>
+                                    <th>{{app_controller.translation.lastName}}</th>
 
-                    <th>{{app_controller.translation.delete}}</th>
-                </tr>
-                </thead>
-                <tbody>
-                {{#each user in users}}
-                    {{#if user.isClerk}}
-                        <tr>
-                            <td {{action 'transition_to' 'your-profile/partials/-user-field' user}} style="cursor: pointer">{{user.firstName}}</td>
-                            <td {{action 'transition_to' 'your-profile/partials/-user-field' user}} style="cursor: pointer">{{user.lastName}}</td>
+                                    <th>{{app_controller.translation.delete}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {{#each user in users}}
+                                    {{#if user.isClerk}}
+                                        <tr>
+                                            <td {{action 'transition_to' 'your-profile/partials/-user-field' user 'isView' true}} style="cursor: pointer">{{user.firstName}}</td>
+                                            <td {{action 'transition_to' 'your-profile/partials/-user-field' user 'isView' true}} style="cursor: pointer">{{user.lastName}}</td>
 
-                            <td><a {{action 'open_modal' 'your-profile/modals/delete-record' user this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
-                        </tr>
-                    {{/if}}
-                {{/each}}
-                </tbody>
-            </table>
+                                            <td><a {{action 'open_modal' 'your-profile/modals/delete-record' user this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                        </tr>
+                                    {{/if}}
+                                {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
         </div>
         <div class="col-lg-1"></div>
     </div>

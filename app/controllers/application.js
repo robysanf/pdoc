@@ -9,13 +9,11 @@ export default Ember.Controller.extend({
         'public'
     ],
 
-    actualCompany: null,
-
+    company_record: null,
     /*****************************
      * LOCAL STORAGE
      */
     user_record: JSON.parse(localStorage["user_record"] ? localStorage["user_record"] : "[\" \"]"),
-    company_record: null,
 
     company_id: localStorage['company_id'],
     token: localStorage['token'],
@@ -53,30 +51,32 @@ export default Ember.Controller.extend({
     /*****************************
      * AUTOCOMPLETE
      */
+
+    records_company: Ember.A(),
+    records_docTemplate: Ember.A(),
+    records_companyCertifier: Ember.A(),
+
     autocompleteUser: [],
     autocompleteCompany: [],
-//    autocompleteCharge: Ember.A(),
-//    autocompletePoi: Ember.A(),
-//    autocompletePoiPort: Ember.A(),
-//    autocompletePoiDepot: Ember.A(),
-//    autocompletePoiWarehouse: Ember.A(),
-//    autocompleteEquipment: Ember.A(),
-//    autocompleteEquipmentCode: Ember.A(),
-//    autocompleteEqClassification: Ember.A(),
-//    autocompleteEqClassificationContainer: Ember.A(),
-//    autocompleteVoyage: Ember.A(),
-//    autocompleteBooking: Ember.A(),
-//    autocompleteRoRo: Ember.A(),
-//
-//    autocompleteStamp: Ember.A(),
-//    autocompleteSegment: Ember.A(),
-//    autocompleteVessel: Ember.A(),
-//    autocompleteTemplate: Ember.A(),
-//    autocompleteDocument: Ember.A(),
-//    autocompleteChassisNum: Ember.A(),
-//    autocompletePaymentPlan: Ember.A(),
-//    autocompleteLink: Ember.A(),
 
+    autocomplete_patents: Ember.A([
+        Ember.Object.create({id: 1, type: "AM"}),
+        Ember.Object.create({id: 2, type: "A1"}),
+        Ember.Object.create({id: 3, type: "A2"}),
+        Ember.Object.create({id: 4, type: "A"}),
+        Ember.Object.create({id: 5, type: "B"}),
+        Ember.Object.create({id: 6, type: "B1"}),
+        Ember.Object.create({id: 7, type: "BE"}),
+        Ember.Object.create({id: 8, type: "C1"}),
+        Ember.Object.create({id: 9, type: "C1E"}),
+        Ember.Object.create({id: 10, type: "C"}),
+        Ember.Object.create({id: 11, type: "CE"}),
+        Ember.Object.create({id: 12, type: "D1"}),
+        Ember.Object.create({id: 13, type: "D1E"}),
+        Ember.Object.create({id: 14, type: "D"}),
+        Ember.Object.create({id: 15, type: "KA"}),
+        Ember.Object.create({id: 16, type: "KB"})
+    ]),
 
 
     /*****************************
@@ -106,41 +106,43 @@ export default Ember.Controller.extend({
                 return this.lan_en;
         }
     }.property('isEnglish'),
-
     lan_it: {
-        companyDetails: "Anagrafica", invoiceNumber: 'Numero fattura', rate: 'Punteggio', limit: 'Limite', goodsConfiscation: 'Confisca', vehicleConfiscation: 'Sequestro', fiscalResponsibility: 'Resp.Fiscale',
+        publicToYourContactsNetwork: 'Pubblica alla tua rete di contatti', companyDetails: "Anagrafica", invoiceNumber: 'Numero fattura', rate: 'Punteggio', limit: 'Limite', goodsConfiscation: 'Confisca', vehicleConfiscation: 'Sequestro', fiscalResponsibility: 'Resp.Fiscale',
         validity: 'Validità', alert: 'Avviso', grace: 'Grazia', loadModel: 'Carica modello', attach: 'Allega', premium: 'Avanzato', medium: 'Intermedio', smart: 'Base', for: 'Per', euro: 'Euro',
         byNow: 'Acquista ora!', amount: 'Totale', cardNumber: 'Numero di carta', account: 'Cliente', general: 'Generale', postToYourLinks: 'Pubblica alla tua rete di contatti', submit: 'Pubblica',
-        news: 'Nuove', hideNotifications: 'Notifiche nascoste', emas: 'Emas',
-        paymentDetails: 'dettagli pagamento', credits: 'Crediti', orderHistory: 'Storico cliente', buyCredits: 'Acquisto crediti', newDocument: 'Nuovo documento', hideLinkRequests: 'Richieste di connessione nascoste',
+        news: 'Nuove', hideNotifications: 'Notifiche nascoste', emas: 'Emas', admin: 'Admin', extra: 'Extra', certifier: 'Certificatore', send: 'Certifica', template: 'Template',
+        paymentDetails: 'dettagli pagamento', credits: 'Crediti', orderHistory: 'Storico cliente', buyCredits: 'Acquisto crediti', newDocument: 'documento', hideLinkRequests: 'Richieste di connessione nascoste',
         showHideLinkRequests: 'Mostra le richieste di connessione nascoste...', resume: 'Rigenera', date: 'Data', close: 'Chiudi', gracePeriod: 'Periodo di grazia',
         more: 'Dettagli', deadline: 'Scadenza', value: 'Valore', certificate: 'Certifica', download: 'Scarica', hide: 'Nascondi', note: 'Note', highlight: 'In evidenza',
         showHideNotifications: 'Mostra le notifiche nascoste...', linkRequests: 'Richieste di connessione', notifications: 'Notifiche', save: 'Salva', type: 'Tipo',
         edit: 'Modifica', country: 'Paese', logo: 'Logo', links: 'Links', new: 'Nuovo', return: 'Indietro', chassisNumber: 'Targa', registrationYear: 'Anno di immatricolazione',
-        configuration: 'Configurazione', category: 'Categoria', tare: 'Tara', weight: 'Peso complessivo',
+        configuration: 'Configurazione', category: 'Categoria', tare: 'Tara', weight: 'Peso complessivo', linksRequest: 'Richieste di collegamento', generals: 'Generali',
         model: 'Modello', brand: 'Marca', view: 'Visualizza', goTo: 'Vai', delete: 'Cancella', lastName: 'Cognome', firstName: 'Nome', curriculum: 'Curriculum',
         languages: 'Lingue', skype: 'Contatto Skype', phone: 'Telefono', patents: 'Patenti', language: 'Lingua', english: 'Inglese', italian: 'Italiano', yourProfile: 'Il tuo profilo', name: "Nome",
         profile: "Profilo", company: 'Società', transportListCode: "Num. iscrizione all'albo", chamberOfCommerce: "Camera di commercio", emails: "E-mail", password: "Password",
         description: "Descrizione", services: "Servizi offerti", segments: "Tratte coperte", areas: "Aree coperte", driver: 'Autista', drivers: 'Autisti', truck: 'Camion', trucks: 'Camions',
         trailer: 'Rimorchio', trailers: 'Rimorchi', clerks: 'Impiegati', changePassword: 'Cambia password', driversList: "Lista autisti", driverDetails: "Anagrafica autista", trucksList: 'Lista camions',
-        list: "Lista", vehicleDetails: "Dettagli veicolo", clerksList: 'Lista impiegati', clerk: 'Impiegato', trailersList: 'Lista rimorchi', details:'Dettagli', username: 'Username', birthDate: 'Data di nascita'
+        list: "Lista", vehicleDetails: "Dettagli veicolo", clerksList: 'Lista impiegati', clerk: 'Impiegato', trailersList: 'Lista rimorchi', details:'Dettagli', username: 'Username',
+        birthDate: 'Data di nascita', title: 'Titolo', text: 'Testo', loadImage: 'Carica immagine', attached: 'Allega', documents: 'Documenti', validityDate: 'Inizio validità', deadLine: 'Scadenza',
+        returnToList: 'Torna alla lista', files: 'Files', filesToDownload: 'Files da scaricare'
     },
     lan_en: {
-        companyDetails: 'Company Details', invoiceNumber: 'Invoice number', rate: 'Rate', limit: 'Limit', goodsConfiscation: 'Goods Confisc.', vehicleConfiscation: 'Vehicle Confisc.',
+        publicToYourContactsNetwork: 'Public to your contacts network', companyDetails: 'Company Details', invoiceNumber: 'Invoice number', rate: 'Rate', limit: 'Limit', goodsConfiscation: 'Goods Confisc.', vehicleConfiscation: 'Vehicle Confisc.',
         fiscalResponsibility: 'Fiscal Resp.', emas: 'Emas', validity: 'Validity', alert: 'Alert', grace: 'Grace', loadModel: 'Load model', attach: 'Attach', premium: 'Premium', medium: 'Medium',
         smart: 'Smart', for: 'For', euro: 'Euro', buyNow: 'Buy now!', amount: 'Amount', cardNumber: 'Card number', account: 'Account', general: 'General', postToYourLinks: 'Post to your links',
-        submit: 'Submit', news: 'News', hideNotifications: 'Hide notifications',
-        paymentDetails: 'Payment details', credits: 'Credits', orderHistory: 'Order history', buyCredits: 'Buy credits', newDocument: 'Nuovo documento', hideLinkRequests: 'Hide link requests',
+        submit: 'Submit', news: 'News', hideNotifications: 'Hide notifications', linksRequest: 'Links request', generals: 'Generals', admin: 'Admin', extra: 'Extra', send: 'Send',
+        paymentDetails: 'Payment details', credits: 'Credits', orderHistory: 'Order history', buyCredits: 'Buy credits', document: 'document', hideLinkRequests: 'Hide link requests',
         showHideLinkRequests: 'Show hidden link requests...', resume: 'Resume', date: 'Date', close: 'Close', gracePeriod: 'Grace period', more: 'More', deadline: 'Deadline',
         value: 'Value', certificate: 'Certificate', download: 'Download', hide: 'Hide', note: 'Note', highlight: 'Highlight', showHideNotifications: 'Show hidden notifications...',
         linkRequests: 'Link requests', notifications: 'Notifications', save: 'Save', type: 'Type', edit: 'Edit', country: 'Country', logo: 'Logo', links: 'Links', new: 'New',
-        return: 'Return', chassisNumber: 'Chassis number', registrationYear: 'Registration year', configuration: 'Configuration', category: 'Category', tare: 'Tare',
+        return: 'Return', chassisNumber: 'Chassis number', registrationYear: 'Registration year', configuration: 'Configuration', category: 'Category', tare: 'Tare', certifier: 'Certifier',
         weight: 'Weight', model: 'Model', brand: 'Brand', view: 'View',goTo: 'Go to', delete: 'Delete', lastName: 'Last Name', firstName: 'First Name', curriculum: 'Curriculum',
         languages: 'Languages', skype: 'Skype', phone: 'Phone', patents: 'Patents', language: 'Language', english: 'English', italian: 'Italian', yourProfile: 'Your Profile', name: "Name",
         profile: "Profile", company: 'Company', transportListCode: "Transport List Code", chamberOfCommerce: "Chamber Of Commerce", emails: "E-mail", password: "Password", description: "Description",
         services: "Services", segments: "Segments", areas: "Areas", driver: 'Driver', drivers: 'Drivers', truck: 'Truck', trucks: 'Trucks', trailer: 'Trailer', trailers: 'Trailers', clerks: 'Clerks',
         changePassword: 'Change password', driversList: "Drivers list", driverDetails: "Driver details", trucksList: 'Trucks list', list: "List", vehicleDetails: 'Vehicle details', clerksList: 'Clerks list',
-        clerk: 'Clerk', trailersList: 'Trailers list', details:'Details', username: 'Username', birthDate: 'Birth date'
+        clerk: 'Clerk', trailersList: 'Trailers list', details:'Details', username: 'Username', birthDate: 'Birth date', title: 'Title', text: 'Testo', loadImage: 'Load image', attached: 'Attached',
+        documents: 'Documents', validityDate: 'Validity date', deadLine: 'DeadLine', template: 'Template', returnToList: 'Return to list', files: 'Files', filesToDownload: 'Files to download'
     },
 
     actions:{

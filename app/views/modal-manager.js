@@ -9,9 +9,9 @@ export default Ember.View.extend({
 
     layoutName: 'modal-layout',
     actions: {
-        remove_record: function(outlet, parentView){
+        delete_record: function(outlet, parentView){
 
-            this.controller.send('remove_record');
+            this.controller.send('delete_record');
             this.send( 'close', outlet, parentView);
         },
 

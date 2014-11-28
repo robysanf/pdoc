@@ -8,6 +8,4 @@ export default DS.Model.extend({
     access: DS.attr('string'),
     name: DS.attr('string'),
     value: DS.attr('string')
-
-
 });

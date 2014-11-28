@@ -1,0 +1,85 @@
+<div class="panel panel-default" style="margin-top: 20px">
+    <div class="panel-body">
+        {{#if controller.tabList.general}}
+            <div class="row">
+                <div class="col-lg-5">
+                    <h5>{{app_controller.translation.company}}</h5>
+                    <div class="progress">
+                        <div {{bind-attr class= isCompanyRatingOut}} {{bind-attr style = progressCompanyRating}}></div>
+                    </div>
+                </div>
+                <div class="col-lg-1">
+                    <h5 style="margin-top: 45px">{{companyRating}} %</h5>
+                </div>
+                <div class="col-lg-5">
+                    <h5>{{app_controller.translation.driver}}</h5>
+                    <div class="progress">
+                        <div {{bind-attr class= isDriverRatingOut}} {{bind-attr style = progressDriverRating}}></div>
+                    </div>
+                </div>
+                <div class="col-lg-1">
+                    <h5 style="margin-top: 45px">{{driverRating}} %</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-5">
+                    <h5>{{app_controller.translation.truck}}</h5>
+                    <div class="progress">
+                        <div {{bind-attr class= isTruckRatingOut}} {{bind-attr style = progressTruckRating}}></div>
+                    </div>
+                </div>
+                <div class="col-lg-1">
+                    <h5 style="margin-top: 45px">{{truckRating}} %</h5>
+                </div>
+                <div class="col-lg-5">
+                    <h5>{{app_controller.translation.trailer}}</h5>
+                    <div class="progress">
+                        <div {{bind-attr class= isTrailerRatingOut}} {{bind-attr style = progressTrailerRating}}></div>      <!-- progress-bar-danger  -->
+                    </div>
+                </div>
+                <div class="col-lg-1">
+                    <h5 style="margin-top: 45px">{{trailerRating}} %</h5>
+                </div>
+            </div>
+        {{else}}
+            <div class="row">
+                <div class="col-lg-11">
+                    {{#if controller.tabList.company}}
+                        <div class="progress" style="margin-top: 10px">
+                            <div {{bind-attr class= isCompanyRatingOut}} {{bind-attr style = progressCompanyRating}}></div>
+                        </div>
+                    {{/if}}
+                    {{#if controller.tabList.driver}}
+                        <div class="progress" style="margin-top: 10px">
+                            <div {{bind-attr class= isDriverRatingOut}} {{bind-attr style = progressDriverRating}}></div>
+                        </div>
+                    {{/if}}
+                    {{#if controller.tabList.truck}}
+                        <div class="progress" style="margin-top: 10px">
+                            <div {{bind-attr class= isTruckRatingOut}} {{bind-attr style = progressTruckRating}}></div>
+                        </div>
+                    {{/if}}
+                    {{#if controller.tabList.trailer}}
+                        <div class="progress" style="margin-top: 10px">
+                            <div {{bind-attr class= isTrailerRatingOut}} {{bind-attr style = progressTrailerRating}}></div>
+                        </div>
+                    {{/if}}
+                </div>
+                <div class="col-lg-1">
+                    {{#if controller.tabList.company}}
+                        <h5>{{companyRating}} %</h5>
+                    {{/if}}
+                    {{#if controller.tabList.driver}}
+                        <h5>{{driverRating}} %</h5>
+                    {{/if}}
+                    {{#if controller.tabList.truck}}
+                        <h5>{{truckRating}} %</h5>
+                    {{/if}}
+                    {{#if controller.tabList.trailer}}
+                        <h5>{{trailerRating}} %</h5>
+                    {{/if}}
+                </div>
+            </div>
+        {{/if}}
+    </div>
+</div>

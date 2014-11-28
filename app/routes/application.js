@@ -4,14 +4,13 @@ export default Ember.Route.extend({
     beforeModel: function() {
         var app_controller = this.controllerFor('application');
 
-//        if( app_controller.company ) {
-////            this.store.find('company', app_controller.company_id).then(function( val ){
-////                app_controller.set('company_record', val);
-//        app_controller.set('actualCompany', val);
-////            });
-//        } else {
-//            app_controller.send('logout');
-//        }
+        if( app_controller.company_id ) {
+            this.store.find('company', app_controller.company_id).then(function( val ){
+                app_controller.set('company_record', val);
+            });
+        } else {
+            app_controller.send('logout');
+        }
 
         /** se non è presente in memoria il token l'utente viene ri-direzionato alla pagina di login **/
         if ( !app_controller.token ){
@@ -236,7 +235,7 @@ export default Ember.Route.extend({
         message_manager: function( type, text ){
 
             switch ( type ){
-                case 'success':
+                case 'Success':
                     new PNotify({
                         title: 'Success',
                         text: text,
@@ -244,14 +243,14 @@ export default Ember.Route.extend({
                         delay: 2000
                     });
                     break;
-                case 'warning':
+                case 'Warning':
                     new PNotify({
                         title: 'Attention',
                         text: text,
                         delay: 2000
                     });
                     break;
-                case 'error':
+                case 'Failure':
                     new PNotify({
                         title: 'Error',
                         text: text,

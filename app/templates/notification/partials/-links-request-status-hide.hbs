@@ -1,0 +1,68 @@
+<div class="row" style="margin-top: 45px">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+        <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <!--<th style="width:5%"> </th>-->
+                    <th style="width:5%">{{app_controller.translation.news}}</th>
+                    <th style="width:20%">{{app_controller.translation.date}}</th>
+                    <th style="width:20%">{{app_controller.translation.company}}</th>
+                    <th style="width:20%">{{app_controller.translation.user}}</th>
+                    <th style="width:30%">{{app_controller.translation.note}}</th>
+                    <th style="width:5%">{{app_controller.translation.hide}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each notification in notifications}}
+                    {{#if notification.isLink}}
+                        {{#unless notification.viewNotification}}
+                            {{#if notification.isDeadline}}
+                                <tr {{bind-attr class = "notification.highlighted:error"}}>
+                                    <td align="center">
+                                        {{#if notification.highlighted}}
+                                            <a href="#"><span class="glyphicon glyphicon-check" style="text-align: center" {{action "set_record" notification 'highlighted' false}}></span></a>
+                                        {{else}}
+                                            <a href="#"><span class="glyphicon glyphicon-unchecked" style="text-align: center" {{action "set_record" notification 'highlighted' true}}></span></a>
+                                        {{/if}}
+                                    </td>
+                                    <td>{{notification.date}}</td>
+                                    <td>{{notification.fromCompanyDetails}}</td>
+                                    <td>{{notification.fromUserDetails}}</td>
+                                    <td>{{notification.detail}}</td>
+                                    <td>
+                                        <a href="#"><span class="glyphicon glyphicon-share" style="text-align: center" {{action "set_record" notification 'status' 'view'}}></span></a>
+                                    </td>
+                                </tr>
+                            {{else}}
+                                <tr {{bind-attr class = "notification.highlighted:warning"}}>
+                                    <td align="center">
+                                        {{#if notification.highlighted}}
+                                            <a href="#"><span class="glyphicon glyphicon-check" style="text-align: center" {{action "set_record" notification 'highlighted' false}}></span></a>
+                                        {{else}}
+                                            <a href="#"><span class="glyphicon glyphicon-unchecked" style="text-align: center" {{action "set_record" notification 'highlighted' true}}></span></a>
+                                        {{/if}}
+                                    </td>
+                                    <td>{{notification.date}}</td>
+                                    <td>{{notification.fromCompanyDetails}}</td>
+                                    <td>{{notification.fromUserDetails}}</td>
+                                    <td>{{notification.detail}}</td>
+                                    <td>
+                                        <a href="#"><span class="glyphicon glyphicon-share" style="text-align: center" {{action "set_record" notification 'status' 'view'}}></span></a>
+                                    </td>
+                                </tr>
+                            {{/if}}
+                        {{/unless}}
+                    {{/if}}
+                {{/each}}
+                </tbody>
+        </table>
+    </div>
+</div>
+<div class="row" style="margin-top: 20px">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+        <a href="#"><h5 class="pull-right" {{action 'show_hide_notifications' 'status_hide' false}}>{{app_controller.translation.return}}</h5></a>
+    </div>
+    <div class="col-lg-1"></div>
+</div>

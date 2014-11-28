@@ -1,0 +1,244 @@
+<!------------------------------- RECORD FIELD ------------------------------------->
+<form class="form-horizontal">
+    <fieldset>
+        <legend>{{app_controller.translation.new}} {{new_record.type}} {{app_controller.translation.document}}</legend>
+        <!------------------------------- type - company/trailer/driver/truck ------------------------------------->
+        <div class="form-group">
+            <label  class="col-lg-2 control-label">{{app_controller.translation.type}}</label>
+            <div class="col-lg-10">
+                {{view Ember.Select
+                content=type_document
+                value=new_record.type
+                placeholder="Choose a document type"
+                class='form-control'
+                }}
+            </div>
+        </div>
+        <!------------------------------- name  ------------------------------------->
+        <div class="form-group">
+            <label  class="col-lg-2 control-label">{{app_controller.translation.name}}</label>
+            <div class="col-lg-10">
+                {{input value = new_record.name type = "text" class = 'form-control'}}
+            </div>
+        </div>
+        <!------------------------------- rate value ------------------------------------->
+        <div class="form-group">
+            <label  class="col-lg-2 control-label">{{app_controller.translation.rate}}</label>
+            <div class=col-lg-4>
+                {{input value = new_record.rateValue type = "number" class = 'form-control'}}
+            </div>
+            <!------------------------------- rate value with progress bar ------------------------------------->
+            <div class=col-lg-4>
+                {{#if controller.new_record.isCompany}}
+                    <div class="progress" style="background-color: #ffffff; border: 1px; border-color: #000000;  margin-top: 10px">
+                        <div {{bind-attr class= isCompanyRatingOut}} {{bind-attr style = progressCompanyRating}}></div>
+                    </div>
+                {{/if}}
+                {{#if controller.new_record.isDriver}}
+                    <div class="progress" style="background-color: #ffffff; border: 1px; border-color: #000000;  margin-top: 10px">
+                        <div {{bind-attr class= isDriverRatingOut}} {{bind-attr style = progressDriverRating}}></div>
+                    </div>
+                {{/if}}
+                {{#if controller.new_record.isTruck}}
+                    <div class="progress" style="background-color: #ffffff; border: 1px; border-color: #000000;  margin-top: 10px">
+                        <div {{bind-attr class= isTruckRatingOut}} {{bind-attr style = progressTruckRating}}></div>
+                    </div>
+                {{/if}}
+                {{#if controller.new_record.isTrailer}}
+                    <div class="progress" style="background-color: #ffffff; border: 1px; border-color: #000000; margin-top: 10px">
+                        <div {{bind-attr class= isTrailerRatingOut}} {{bind-attr style = progressTrailerRating}}></div>
+                    </div>
+                {{/if}}
+            </div>
+            <div class=col-lg-2>
+                {{#if controller.new_record.isCompany}}
+                    <h4>{{companyRating}} %</h4>
+                {{/if}}
+                {{#if controller.new_record.isDriver}}
+                    <h4>{{driverRating}} %</h4>
+                {{/if}}
+                {{#if controller.new_record.isTruck}}
+                    <h4>{{truckRating}} %</h4>
+                {{/if}}
+                {{#if controller.new_record.isTrailer}}
+                    <h4>{{trailerRating}} %</h4>
+                {{/if}}
+            </div>
+        </div>
+        <!------------------------------- limit ------------------------------------->
+        <div class="form-group">
+            <label class="col-lg-2 control-label">{{app_controller.translation.limit}}</label>
+            <div class=col-lg-4>
+                {{#if new_record.limit}}
+                    {{input value = new_record.limit type = "number" class = 'form-control' placeholder="0-100"}}
+                {{else}}
+                    <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'limit' true}}></span>
+                {{/if}}
+            </div>
+            <div class="col-lg-6">
+                {{#if new_record.limit}}
+                    <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'limit' false}}></span>
+                {{/if}}
+            </div>
+        </div>
+        <!------------------------------- goods confiscation - boolean ------------------------------------->
+        <div class="form-group">
+            <label class="col-lg-2 control-label"></label>
+            <div class="col-lg-1">
+                {{#if new_record.goodsConfiscation}}
+                    <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'goodsConfiscation' false}}></span>
+                {{else}}
+                    <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'goodsConfiscation' true}}></span>
+                {{/if}}
+            </div>
+            <label class="col-lg-9">{{app_controller.translation.goodsConfiscation}}</label>
+        </div>
+        <!------------------------------- vehicle confiscation - boolean ------------------------------------->
+        <div class="form-group">
+            <label class="col-lg-2 control-label"></label>
+            <div class="col-lg-1">
+                {{#if new_record.vehicleConfiscation}}
+                    <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'vehicleConfiscation' false}}></span>
+                {{else}}
+                    <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'vehicleConfiscation' true}}></span>
+                {{/if}}
+            </div>
+            <label class="col-lg-9">{{app_controller.translation.vehicleConfiscation}}</label>
+        </div>
+        <!------------------------------- fiscal Responsibility - boolean ------------------------------------->
+        <div class="form-group">
+            <label class="col-lg-2"></label>
+            <div class="col-lg-1">
+                {{#if new_record.fiscalResponsibility}}
+                    <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'fiscalResponsibility' false}}></span>
+                {{else}}
+                    <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'fiscalResponsibility' true}}></span>
+                {{/if}}
+            </div>
+            <label class="col-lg-9">{{app_controller.translation.fiscalResponsibility}}</label>
+        </div>
+        <!------------------------------- emas - boolean ------------------------------------->
+        <div class="form-group">
+            <label class="col-lg-2 control-label"></label>
+            <div class="col-lg-1">
+                {{#if new_record.emas}}
+                    <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'emas' false}}></span>
+                {{else}}
+                    <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'emas' true}}></span>
+                {{/if}}
+            </div>
+            <label class="col-lg-9">{{app_controller.translation.emas}}</label>
+        </div>
+        <!------------------------------- validity ------------------------------------->
+        <div class="form-group" style="margin-top: 20px">
+            <label  class="col-lg-2 control-label">{{app_controller.translation.validity}}</label>
+            <div class="col-lg-2">
+                {{input value = new_record.validityNum type = "number" class = 'form-control' disabled=new_record.isDeadline }}
+            </div>
+            <div class="col-lg-2">
+                {{view Ember.Select
+                content=type_period
+                value=new_record.validityType
+                placeholder="Choose a period"
+                class='form-control'
+                }}
+            </div>
+            <!------------------------------- deadline ------------------------------------->
+            <label  class="col-lg-2 control-label">{{app_controller.translation.deadline}}</label>
+            <div class="col-lg-4">
+                {{input value = new_record.deadline type = "date" class = 'form-control' disabled=new_record.isValidity}}
+            </div>
+        </div>
+        <!------------------------------- alert ------------------------------------->
+        <div class="form-group" style="margin-top: 20px">
+            <label  class="col-lg-2 control-label">{{app_controller.translation.alert}}</label>
+            <div class="col-lg-2">
+                {{input value = new_record.alertNum type = "number" class = 'form-control'}}
+            </div>
+            <div class="col-lg-2">
+                {{view Ember.Select
+                content=type_period
+                value=new_record.alertType
+                placeholder="Choose a period"
+                class='form-control'
+                }}
+            </div>
+            <!------------------------------- grace ------------------------------------->
+            <label class="col-lg-2 control-label">{{app_controller.translation.grace}}</label>
+            <div class="col-lg-2">
+                {{input value = new_record.graceNum type = "number" class = 'form-control'}}
+            </div>
+            <div class="col-lg-2">
+                {{view Ember.Select
+                content=type_period
+                value=new_record.graceType
+                placeholder="Choose a period"
+                class='form-control'
+                }}
+            </div>
+        </div>
+
+        <!------------------------------- add model ------------------------------------->
+        {{#if new_record.files}}
+            <div class="form-group">
+                <label class="col-lg-2 control-label">{{app_controller.translation.files}}</label>
+                <div class="col-lg-10">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form class="form-horizontal">
+                                <fieldset>
+                                    <div class="row" style="margin-top: 15px">
+                                        <div class="col-lg-12">
+                                            <table class="table table-bordered table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th>{{app_controller.translation.name}}</th>
+                                                    <th>{{app_controller.translation.type}}</th>
+
+                                                    <th>{{app_controller.translation.delete}}</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {{#each file in new_record.files}}
+                                                    <tr>
+                                                        <td>{{file.name}}</td>
+                                                        <td>{{file.type}}</td>
+
+                                                        <td><a {{action 'open_modal' 'your-profile/modals/delete-record' file this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                                    </tr>
+                                                {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/if}}
+        <div class="page-header"></div>
+        <div class="form-group">
+            <label  class="col-lg-2 control-label">{{app_controller.translation.loadModel}}</label>
+            <div class="col-lg-10">
+                {{#view 'upload-file' record_model='doc-template'}}
+                    <div class="input-group">
+                            <span class="input-group-btn">
+                                <span class="btn btn-primary btn-file">
+                                    Browse file&hellip; <input type="file" multiple>
+                                </span>
+                            </span>
+                        {{input id="selected_file" type="text" placeholder="max. 10 MB" class='form-control'}}
+                        <span class="input-group-btn">
+                            <button id='button_upload' {{bind-attr value=new_record.id}} type="button" data-loading-text="Loading..." class="btn btn-primary btn-130 pull-right"><span class="glyphicon glyphicon-floppy-disk"></span> Upload</button>
+                        </span>
+                    </div>
+                {{/view}}
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+
+

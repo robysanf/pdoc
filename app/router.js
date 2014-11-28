@@ -11,6 +11,10 @@ Router.map(function() {
 
     this.route('your-profile/main', {path: 'yourProfile/:company_id'});
     this.route('link/main', {path: 'links/:company_id'});
+    this.route('notification/main', {path: 'notifications/:company_id'});
+
+    this.route('admin/main', {path: 'admin/:company_id'});
+    this.route('account/main', {path: 'account/:company_id'});
 });
 
 export default Router;

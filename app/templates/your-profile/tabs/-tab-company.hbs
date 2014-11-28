@@ -2,29 +2,50 @@
     FORM company details
 ------>
 
-<!--<div class="page-header"></div>-->
-<div class="row">
-    <div class="col-lg-12">
-
-        {{#if controller.isView}}
-            <div class="row row-margin-top-bottom">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-10">
-                    {{partial 'your-profile/partials/-company-field'}}
-                </div>
-                <div class="col-lg-1"></div>
-            </div>
-        {{else}}
-            <div class="well well-sm">
-                <div class="row row-margin-top-bottom">
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-10">
-                        {{partial 'your-profile/partials/-company-field'}}
-                    </div>
-                    <div class="col-lg-1"></div>
-                </div>
-            </div>
-        {{/if}}
-
+<div class="row row-margin-top-bottom">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+        <div class= "well well-lg square-lg">
+            <div class= "well well square-icon-lg" style="border: 0; margin-bottom: 0"></div>
+        </div>
     </div>
+    <div class="col-lg-1"></div>
 </div>
+{{#if controller.isView}}
+    <div class="row row-margin-top-bottom">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            {{partial 'your-profile/partials/-field-company'}}
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+{{else}}
+    <div class="well well-sm">
+        <div class="row row-margin-top-bottom">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                {{partial 'your-profile/partials/-field-company'}}
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
+    </div>
+{{/if}}
+{{#if controller.isView_docList}}
+    <div class="row row-margin-top-bottom">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            {{partial 'your-profile/partials/-company-documents-list'}}
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+{{else}}
+    <div class="well well-sm">
+        <div class="row row-margin-top-bottom">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                {{partial 'your-profile/partials/-company-document-edit'}}
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
+    </div>
+{{/if}}

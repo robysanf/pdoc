@@ -5,16 +5,25 @@ export default Ember.ObjectController.extend({
     app_controller: Ember.computed.alias('controllers.application'),
 
     isView: true,
+
+    isView_docList: true,
+    isView_docDetails: true,
+
     main_record: null,
     record_to_delete: null,
-
+    record_certifier: null,
     types: [
-        {name: "Shipper", id: "Shipper"},
-        {name: "Carrier", id: "Carrier"},
-        {name: "Supplier", id: "Supplier"},
-        {name: "Certifier", id:"Certifier"}
+        "shipper",
+        "carrier",
+        "supplier",
+        "certifier"
     ],
 
+    documentTypes: [
+        "invoice",
+        "document",
+        "other"
+    ],
     //  *** define tab order
     tabList: Ember.A(
         {'company': false},

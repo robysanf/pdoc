@@ -1,105 +1,89 @@
 <div class="container container-outer">
     <div class="panel panel-primary">
-        <div class="panel-heading"><h2>Pubblica alla tua rete contatti <button type="button" class="btn btn-default pull-right" style="width: 200px" {{action 'submit' }}>Submit</button></h2></div>
-
-        <div class="panel-body">
-            <br>
-            <br>
+        <div class="panel-heading">
+            <!-------------------- HEADER ---------------------->
             <div class="row">
-                <div class=col-lg-1></div>
-                <div class=col-lg-10>
-                    <div class="btn-group btn-group-justified">
-                        <a class="btn btn-default" onselect="true">All</a>
-                        <a class="btn btn-default">Shipper</a>
-                        <a class="btn btn-default">Carrier</a>
-                        <a class="btn btn-default">Supplier</a>
-                    </div>
+                <div class="col-lg-2">
                 </div>
-                <div class=col-lg-1></div>
+                <!-------------------- nome company ---------------------->
+                <div class="col-lg-8">
+                    <div class="panel-title1" style="text-align: center">{{app_controller.translation.publicToYourContactsNetwork}}</div>
+                </div>
+                <div class="col-lg-2">
+                    <button type="button" class="btn btn-default pull-right btn-90" {{action 'submit' app_controller.company_record}}>
+                        <strong class="btn-font-color" style="font-size: 21">{{app_controller.translation.submit}}</strong>
+                    </button>
+                </div>
             </div>
-            <br>
-            <div class="row">
+        </div>
+        <div class="panel-body">
+            <div class="row" style="margin-top: 15px">
                 <div class=col-lg-1></div>
                 <div class=col-lg-2>
-                    <h4>Title</h4>
+                    <h4>{{app_controller.translation.title}}</h4>
                 </div>
                 <div class=col-lg-8>
                     {{input type="text" value=postTitle class="form-control" placeholder="insert title"}}
                 </div>
                 <div class=col-lg-1></div>
             </div>
-            <br>
-            <div class="row">
+            <div class="row" style="margin-top: 15px">
                 <div class=col-lg-1></div>
                 <div class=col-lg-2>
-                    <h4>Text</h4>
+                    <h4>{{app_controller.translation.text}}</h4>
                 </div>
                 <div class=col-lg-8>
                    {{textarea class="form-control" value=postDescription rows="4" id="textArea"}}
                 </div>
                 <div class=col-lg-1></div>
             </div>
-            <br>
-            <div class="row">
+            <div class="row" style="margin-top: 15px">
                 <div class=col-lg-1></div>
                 <div class=col-lg-2>
-                    <h4>Load image</h4>
+                    <h4>{{app_controller.translation.loadImage}}</h4>
                 </div>
                 <div class=col-lg-8>
                     <div class="input-group input-group">
                         <input type="text" class="form-control" placeholder="Search...">
-                                    <span class="input-group-btn">
-                                      <button class="btn btn-default" type="button">Allega</button>
-                                    </span>
+                        <span class="input-group-btn"><button class="btn btn-default" type="button">{{app_controller.translation.attached}}</button></span>
                     </div>
                 </div>
                 <div class=col-lg-1></div>
             </div>
-            <br>
-            <br>
         </div>
     </div>
-</div>
-
-<div class="container container-outer">
-    <ul class="list-group">
-
-        {{#each}}
-            <li class="list-group-item">
-                <br>
+    {{#each}}
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <!--<button type="button" class="close" data-dismiss="alert">×</button>-->
                 <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-1">
+                        <div class= "well well-lg square pull-right">
+                            <div class= "well well square-icon" style="border: 0; margin-bottom: 0"></div>
+                        </div>
+                    </div>
                     <div class="col-lg-3">
-                        <div style="height: 200px" class="panel panel-default">
-                            <div class="panel-heading">
-                                <h2 class="panel-title">{{user.username}}</h2>
-                            </div>
+                        <div class="panel panel-default">
                             <div class="panel-body">
-                                <img style="height: 140px" src="img/driver200x255.png">
+                                <h5>{{company.name}} </h5>
+                                <h6 style="color: #d3d3d3">{{timeFrom}}</h6> <!--class="pull-right" -->
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-9">
-                        <div class="well well-lg" style="height: 300px">
-                            <div class="page-header">
-                                <h2> {{title}} <span class="label label-default pull-right">{{timeFrom}}</span></h2>
+                    <div class="col-lg-6">
+                        <div class="panel panel-default" style="min-height: 95px">
+                            <div class="panel-body">
+                                <h5>{{title}}</h5>
+                                <h6>{{description}}</h6>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    {{description}}
-
-                                </div>
-                                <div class="col-lg-4">
-
-                                </div>
-                            </div>
-
-                            <!--<p><a class="btn btn-default btn-lg">Learn more</a></p>-->
                         </div>
                     </div>
+                    <div class="col-lg-1"></div>
                 </div>
-            </li>
-        {{/each}}
-    </ul>
+            </div>
+        </div>
+    {{/each}}
 </div>
 
 

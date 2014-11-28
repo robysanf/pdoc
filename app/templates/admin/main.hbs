@@ -1,0 +1,96 @@
+<div class="container container-outer">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <!-------------------- HEADER ---------------------->
+            <div class="row">
+                <!-------------------- button return-to-list ---------------------->
+                <div class="col-lg-2">
+                    {{#if view_new_field}}
+                        <button type="button" class="btn btn-default pull-left btn-90" {{action 'change_mode' 'view_new_field' false}}>
+                            <span class="glyphicon glyphicon-chevron-left btn-font-color"></span> <strong class="btn-font-color" style="font-size: 21">{{app_controller.translation.return}}</strong>
+                        </button>
+                    {{/if}}
+                </div>
+                <!-------------------- nome company ---------------------->
+                <div class="col-lg-8">
+                    <div class="panel-title1" style="text-align: center">{{app_controller.translation.admin}}</div>
+                </div>
+                <!-------------------- cambio button tra new/save ---------------------->
+                <div class="col-lg-2">
+                    <div style="margin-top: 2px">
+                        {{#if controller.tabList.general}}
+                            {{#unless view_new_field}}
+                                <button type="button" class="btn btn-default pull-right btn-90" {{action 'create_record' this 'view_new_field' true}}>
+                                    <span class="glyphicon glyphicon-plus btn-font-color"></span>
+                                </button>
+                            {{else}}
+                                <button type="button" class="btn btn-default pull-right btn-90" {{action 'set_record' new_record 'view_new_field' false}}>
+                                    <span class="glyphicon glyphicon-ok btn-font-color"></span>
+                                </button>
+                            {{/unless}}
+                        {{else}}
+                            {{#if mode_view}}
+                                <button type="button" class="btn btn-default pull-right btn-90" {{action 'change_mode' 'mode_view' false}}>
+                                    <span class="glyphicon glyphicon-pencil btn-font-color"></span>
+                                </button>
+                            {{else}}
+                                <button type="button" class="btn btn-default pull-right btn-90" {{action 'set_record' this 'mode_view' true}}>
+                                    <span class="glyphicon glyphicon-ok btn-font-color"></span>
+                                </button>
+                            {{/if}}
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-------------------- BODY ---------------------->
+        <div class="panel-body">
+            <!-------------------- tabs head - general/company/driver/truck/trailer ---------------------->
+            <ul class="nav nav-pills nav-justified" style="margin-bottom: 15px;">
+                <li {{bind-attr class="tabList.general:active"}}>
+                    <a href="#" {{action setTabs "general"}}><h5>{{app_controller.translation.general}}</h5></a>
+                </li>
+                <li {{bind-attr class="tabList.company:active"}}>
+                    <a href="#"{{action setTabs "company"}}><h5>{{app_controller.translation.company}}</h5></a>
+                </li>
+                <li {{bind-attr class="tabList.driver:active"}}>
+                    <a href="#" {{action setTabs "driver"}}><h5>{{app_controller.translation.drivers}}</h5></a>
+                </li>
+                <li {{bind-attr class="tabList.truck:active"}}>
+                    <a href="#" {{action setTabs "truck"}}><h5>{{app_controller.translation.trucks}}</h5></a>
+                </li>
+                <li {{bind-attr class="tabList.trailer:active"}}>
+                    <a href="#" {{action setTabs "trailer"}}><h5>{{app_controller.translation.trailers}}</h5></a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade active in">
+                    <!-------------------- tabs body - progress bar - mode view ---------------------->
+                    {{#unless view_new_field}}
+                        {{partial "admin/partials/-progress-bar"}}
+                    {{/unless}}
+                    <!-------------------- TAB BODY - GENERAL ---------------------->
+                    {{#if controller.tabList.general}}
+                        <!-------------------- mode new document ---------------------->
+                        {{#if view_new_field}}
+                            <div class="well well-sm">
+                                <div class="row row-margin-top-bottom">
+                                    <div class="col-lg-1"></div>
+                                    <div class="col-lg-10">
+                                        {{partial "admin/partials/-new-doc"}}
+                                    </div>
+                                    <div class="col-lg-1"></div>
+                                </div>
+                            </div>
+                        {{/if}}
+                    {{else}}
+                        <!-------------------- TAB BODY - COMPANY / DRIVER / TRUCK / TRAILER ---------------------->
+                        {{partial "admin/tabs/-tab-docs-list"}}
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

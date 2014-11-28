@@ -1,0 +1,92 @@
+appunti.hbs*****************************************  how to use NEED  **********************************************
+
+dichiaro i need:
+        needs: ['company/main'],
+        companyRecord: Ember.computed.alias('controllers.company/main.companyRecord'),
+
+li utilizzo in questo modo:
+        this.set('companyRecord', value);
+
+per utilizzo pratico vedi:
+        controllers > company > search-company.js
+
+*********************************************************************************************************
+
+Route#transitionTo
+Controller#transitionToRoute
+
+
+********************************************  isDirty  **************************************************
+
+è buona regola prima di un salvataggio (PUT) per una relazione hasMany controllare se i dati sono "sporchi"
+ovvero se sono stati modificati; in caso contrario non sarà necessario fare l'azione.
+
+        elems.filter(function(val, index){
+             switch(val.get('isDirty')) {
+                   case true:
+                        val.save();
+                   break
+
+                   case false:
+                   break
+             }
+        })
+
+*********************************** chiamare un altro controller dalla view ***********************************
+
+
+view.get('controller.controllers.application').token      (dove application è il nome del controller)
+
+nb: sul controller deve esserci il 'needs' per application
+
+
+********************************** svuotare riferimento hasMany **********************************************
+
+book.get('sharedWith').then(function(valShar){
+    var temp_valShar = valShar;                           //memorizzo la lista di riferimenti
+    var temporaryList = temp_valShar.filter(function( i ) {      //scorro la lista di riferimenti eliminando quelo da togliere
+        return i !== companyToShare.get('id');
+        valShar.push();                                     //svuoto la vecchia lista di riferimenti un elemento alla volta
+    });
+
+    valShar.pushObjects(temporaryList);                //riassegno la nuova lista al riferimento hasMany
+});
+
+*************************************************** SORT PROPERTY ***************************************************
+
+    sortedNotificationsItems: function(){
+        return this.get('notifications').sortBy('date').reverse();  // reverse() per ordinare in ordine DECRESCENTE
+    }.property('notifications.@each.date'),
+
+*************************************************** SELECT 2 ***************************************************
+    CONTROLLER:
+    company_to_link: null
+
+    ROUTE:
+     beforeModel: function(){
+        var _this = this, app_controller = _this.controllerFor('application');
+
+        app_controller.set('records_company', this.store.findAll('company'));
+    },
+
+    TEMPLATE:
+
+     {{select-2
+        content=app_controller.records_company        //fonte dei dati
+        value=controller.company_to_link              //dove vengono salvati i dati selezionati
+        optionValuePath="text"                        //se hai bisogno del singolo valore text e non di tutto il record
+        optionLabelPath="text"                        //valore mostrato a layout nella lista
+        optionDescriptionPath="id"                    //secondo valore mostrato a layout nella lsita
+        multiple=true                                 //se true multi-selettore
+        placeholder="Choose a company to connect"
+        typeaheadNoMatchesText="No company found for '%@'"
+        typeaheadErrorText="Loading failed: %@"
+        enabled=true                                  //attiva o disattiva input field
+        allowClear=false                             // per avere il pulsante per cancellare il record selezionato
+    }}
+
+*************************************************** OBSERVES, PROPERTIES ***************************************
+
+observes: funzione che contiene il comportamento che reagisce al cambiamento di un altra property
+
+computed properties: per creare nuove property che sintetizzano quelle esistenti
