@@ -258,6 +258,24 @@ export default Ember.Route.extend({
             controller.record_to_delete.save().then(function(){
                 controller.main_record.reload();
             });
+        },
+
+        /*  FILES TAB
+         * ******************
+        faccio il reload del record a cui sono stati aggiunti i files
+
+         @action update_files
+         @for Booking - Files Tab
+         @param {Number} - unique key
+         @param {String}
+         @param {String}
+         */
+        update_files: function(mod, val, $btn){
+            this.store.find( mod, val ).then(function( record ){
+                record.reload().then(function(){
+                    $btn.button('reset');
+                });
+            });
         }
     }
 });

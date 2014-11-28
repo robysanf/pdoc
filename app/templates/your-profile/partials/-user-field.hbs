@@ -160,7 +160,7 @@
 
         {{#if controller.sub_record.isDriver}}
             <div class="form-group">
-                <label for="languages" class="col-lg-3 control-label">{{app_controller.translation.languages}}</label>
+                <label class="col-lg-3 control-label">{{app_controller.translation.languages}}</label>
                 <div class="col-lg-9">
                     {{#if controller.isView}}
                         {{#if controller.sub_record.languages}}
@@ -171,8 +171,8 @@
                             <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                         {{/if}}
                     {{else}}
-                        {{auto-suggest source=app_controller.autocomplete_languages destination=controller.sub_record.languages searchPath="type" usecase="customMode" minChars=0}}
-                        {{!{{auto-suggest destination=controller.sub_record.languages usecase="customModeWithoutSource"}}
+                        {{!{{auto-suggest source=app_controller.autocomplete_languages destination=controller.sub_record.languages searchPath="type" usecase="customMode" minChars=0}}
+                        {{auto-suggest destination=controller.sub_record.languages usecase="customModeWithoutSource"}}
                     {{/if}}
                 </div>
             </div>
