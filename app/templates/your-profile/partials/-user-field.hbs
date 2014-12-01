@@ -1,20 +1,15 @@
 <form class="form-horizontal">
     <fieldset>
-        <legend>
-            {{#if controller.isView}}
-                <a {{action 'change_state' 'your-profile/main' false}} style="cursor: pointer"> <span class="glyphicon glyphicon-pencil btn-font-color"></span></a>
-            {{else}}
-                <a {{action 'set_record' 'user_vehicle' 'your-profile/main' false}} style="cursor: pointer"><span class="glyphicon glyphicon-ok btn-font-color"></span></a>
-            {{/if}}
-            &nbsp;
-            {{app_controller.translation.details}}
-
-            <!-------------------- button return-to-list ---------------------->
-            <!--<span {{!{{action 'transition_to' 'your-profile/partials/-tab-user-driver-list' null 'isView' true 'transition_to_list' true}} style="cursor: pointer" class="pull-right">-->
-                <!--<strong style="color: #4582ec;">List</strong>-->
-                <!--<span class="glyphicon glyphicon-chevron-right btn-font-color"></span>-->
-            <!--</span>-->
-        </legend>
+        <div class="form-group">
+            <div class="col-lg-1">
+                {{#if controller.isView}}
+                    <button class="btn btn-primary btn-50" {{action 'change_state' 'your-profile/main' false}}><span class="glyphicon glyphicon-pencil"></span></button>
+                {{else}}
+                    <button class="btn btn-primary btn-50" {{action 'set_record' 'user_vehicle' 'your-profile/main' false}}><span class="glyphicon glyphicon-ok"></span></button>
+                {{/if}}
+            </div>
+            <div class="col-lg-11"><legend>{{app_controller.translation.details}}</legend> </div>
+        </div>
         <div class="form-group">
             <label for="name" class="col-lg-3 control-label">{{app_controller.translation.firstName}}</label>
             <div class="col-lg-9">
@@ -27,7 +22,6 @@
                 {{else}}
                     {{input value = controller.sub_record.firstName type = "text" class = "form-control" disabled= controller.isView}}
                 {{/if}}
-
             </div>
         </div>
         <div class="form-group">

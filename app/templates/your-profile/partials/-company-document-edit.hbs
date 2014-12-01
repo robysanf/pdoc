@@ -1,19 +1,27 @@
 <form class="form-horizontal" style="margin-top: 25px">
     <fieldset>
-        <legend>
+    <div class="form-group">
+        <div class="col-lg-1">
             {{#if isView_docDetails}}
-                <a {{action 'set_variable' 'isView_docDetails' false}} style="cursor: pointer"><span class="glyphicon glyphicon-pencil btn-font-color"></span></a>
-                &nbsp;
+                <button class="btn btn-primary btn-50" {{action 'set_variable' 'isView_docDetails' false}}><span class="glyphicon glyphicon-pencil"></span></button>
             {{else}}
-                <a {{action 'set_record' 'document' 'isView_docList' true this}} style="cursor: pointer"><span class="glyphicon glyphicon-ok btn-font-color"></span></a>
-                &nbsp;
+                <button class="btn btn-primary btn-50" {{action 'set_record' 'document' 'isView_docList' true this}}><span class="glyphicon glyphicon-ok"></span></button>
             {{/if}}
-            {{app_controller.translation.documents}}
-            <span {{action 'transition_to' 'your-profile/partials/-company-document-edit' null 'isView_docList' true 'isView_docDetails' false}} style="cursor: pointer" class="pull-right">
-                <strong style="color: #4582ec;">List</strong>
-                <span class="glyphicon glyphicon-chevron-right btn-font-color"></span>
-            </span>
-        </legend>
+        </div>
+        <div class="col-lg-9"><legend>{{app_controller.translation.documents}}</legend></div>
+        <div class="col-lg-2">
+            <button class="btn btn-default btn-group-justified" {{action 'transition_to' 'your-profile/partials/-company-document-edit' null 'isView_docList' true 'isView_docDetails' false}}>
+                <strong>{{app_controller.translation.return}}</strong>
+            </button>
+        </div>
+
+        <!--<div class="col-lg-1">-->
+             <!--<span {{!{{action 'transition_to' 'your-profile/partials/-company-document-edit' null 'isView_docList' true 'isView_docDetails' false}} style="cursor: pointer" class="pull-right">-->
+                <!--<strong style="color: #4582ec;">List</strong>-->
+                <!--<span class="glyphicon glyphicon-chevron-right btn-font-color"></span>-->
+            <!--</span>-->
+        <!--</div>-->
+    </div>
 
         <div class="form-group">
             <label class="col-lg-3 control-label">{{app_controller.translation.name}}</label>

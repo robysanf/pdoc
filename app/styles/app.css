@@ -56,6 +56,9 @@
 /*********************************/
 /*BUTTON STYLE*/
 /***/
+.btn-50 {
+    width: 50px !important;
+}
 .btn-90 {
     width: 90px !important;
 }

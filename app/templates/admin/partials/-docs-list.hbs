@@ -1,19 +1,30 @@
+<!------------------------ TAB HEADER ( admin/tabs/-tab-docs-list.hbs )--------------------------->
+<!------------------------ TAB BODY --------------------------->
+
+<!------------------------ PRIMA RIGA --------------------------->
 <tr>
-    <td rowspan="4"><span class="label label-primary" style="display: block; text-align: left; width: 300px; white-space: normal;">
+    <td rowspan="5"><span class="label label-primary" style="display: block; text-align: left; width: 300px; white-space: normal;">
+        <!------------------------ document name --------------------------->
         <h5>
             <div class="row">
-                <div class="col-lg-4">
-                    <span class="glyphicon glyphicon-download" style="cursor: pointer"></span>  &nbsp
-                    <span class="glyphicon glyphicon-trash" {{action 'open_modal' 'admin/modals/delete-record' docTemp this}}  style="cursor: pointer"></span>
-                </div>
-                <div class="col-lg-8">
-                    {{docTemp.name}}
-                </div>
+                {{#if mode_view}}
+                    <div class="col-lg-2">
+                        <span class="glyphicon glyphicon-trash" {{action 'open_modal' 'admin/modals/delete-record' docTemp this}}  style="cursor: pointer"></span>
+                    </div>
+                    <div class="col-lg-10">
+                        {{docTemp.name}}
+                    </div>
+                {{else}}
+                    <div class="col-lg-12">
+                        {{input type="text" class="form-control" value=docTemp.name}}
+                    </div>
+                {{/if}}
             </div>
         </h5>
         </span>
     </td>
     <td>
+        <!------------------------ goodsConfiscation --------------------------->
         {{#if mode_view}}
             {{#if new_record.goodsConfiscation}}
                 <span class="glyphicon glyphicon glyphicon-check"></span>
@@ -33,6 +44,7 @@
         {{/if}}
     </td>
     <td>
+        <!------------------------ vehicleConfiscation --------------------------->
         {{#if mode_view}}
             {{#if new_record.vehicleConfiscation}}
                 <span class="glyphicon glyphicon glyphicon-check"></span>
@@ -52,12 +64,15 @@
         {{/if}}
     </td>
 
+    <!------------------------ VALE DUE RIGHE --------------------------->
     <td rowspan="2">
+        <!------------------------ rate - limit --------------------------->
         <div class="form-group">
             <label class="control-label">{{app_controller.translation.rate}}</label>
             {{input type="number" class="form-control" value=docTemp.rateValue disabled = mode_view}}
         </div>
     </td>
+    <!------------------------ VALE DUE RIGHE --------------------------->
     <td rowspan="2">
         <div class="form-group">
             <label class="control-label">{{app_controller.translation.limit}}</label>
@@ -65,8 +80,10 @@
         </div>
     </td>
 </tr>
+<!------------------------ SECONDA RIGA --------------------------->
 <tr>
     <td>
+        <!------------------------ fiscalResponsibility --------------------------->
         {{#if mode_view}}
             {{#if new_record.fiscalResponsibility}}
                 <span class="glyphicon glyphicon glyphicon-check"></span>
@@ -87,6 +104,7 @@
     </td>
 
     <td>
+        <!------------------------ emas --------------------------->
         {{#if mode_view}}
             {{#if new_record.emas}}
                 <span class="glyphicon glyphicon glyphicon-check"></span>
@@ -106,6 +124,7 @@
         {{/if}}
     </td>
 </tr>
+<!------------------------ TERZA RIGA --------------------------->
 <tr>
     <td>
         <div class="form-group">
@@ -121,6 +140,7 @@
         </div>
     </td>
 </tr>
+<!------------------------ QUARTA RIGA --------------------------->
 <tr>
     <td>
         <div class="form-group">
@@ -136,4 +156,30 @@
         </div>
     </td>
     <td style="padding-top: 32px">{{view Ember.Select content=type_period value=docTemp.graceType placeholder="Choose a period" class='form-control'disabled = mode_view }}</td>
+</tr>
+<!------------------------ QUINTA RIGA --------------------------->
+<tr>
+    <td colspan="4">
+        <div class="form-group">
+            <label class="control-label">
+                {{#unless mode_view}}
+                    <span {{action "open_modal" 'admin/modals/add-file' null docTemp}} style="cursor: pointer;" class="btn-font-color glyphicon glyphicon-plus"></span>
+                {{/unless}}
+
+                {{app_controller.translation.files}}
+            </label>
+            {{#if mode_view}}
+                {{#each file in docTemp.files}}
+                    <br>
+                    <span {{action "download_file" file.id}} style="cursor: pointer;" class="btn-font-color">{{file.name}}</span>
+                {{/each}}
+            {{else}}
+                {{#each file in docTemp.files}}
+                    <br>
+                    <span {{action 'open_modal' 'admin/modals/delete-record' file this}} style="cursor: pointer;" class="glyphicon glyphicon-trash btn-font-color"></span> &nbsp; {{file.name}}
+
+                {{/each}}
+            {{/if}}
+        </div>
+    </td>
 </tr>

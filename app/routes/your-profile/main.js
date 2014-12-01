@@ -5,11 +5,19 @@ export default Ember.Route.extend({
         var _this = this, app_controller = _this.controllerFor('application'), controller = _this.controllerFor('your-profile.main');
 
         //imposto la tab company come default per 'your-profile'
-//        var uno = controller.tabList.company, due = controller.tabList.driver, tre = controller.tabList.truck, quattro = controller.tabList.trailer, cinque = controller.tabList.clerk;
+//        var uno = controller.tabList.company,
+//            due = controller.tabList.driver,
+//            tre = controller.tabList.truck,
+//            quattro = controller.tabList.trailer,
+//            cinque = controller.tabList.clerk;
 //        if( uno !== true &&  due !== true &&  tre !== true &&  quattro !== true &&  cinque !== true ) {
-            controller.set('tabList.company', true);
-            controller.set('isView', true);
-            controller.set('isView_docList', true);
+        controller.set('tabList.company', true);
+        controller.set('tabList.driver', false);
+        controller.set('tabList.truck', false);
+        controller.set('tabList.trailer', false);
+
+        controller.set('isView', true);
+        controller.set('isView_docList', true);
 //        }
 
         app_controller.set('records_companyCertifier', this.store.find('company', { type: "certifier" }));
@@ -116,9 +124,9 @@ export default Ember.Route.extend({
                     companyRecord.get('certifier').then(function( certifier ){
                         _this.controller.sub_record.set( 'certifier', certifier );
 
-                        Ember.RSVP.all([
-                            _this.controller.sub_record.get('certifier'),
-                        ]).then(function() {
+//                        Ember.RSVP.all([
+//                            _this.controller.sub_record.get('certifier'),
+//                        ]).then(function() {
                             _this.controller.sub_record.save().then(function(saved_record){
                                 app_controller.send( 'message_manager', 'Success', 'You have successfully saved the document.' );
                                 _this.controller.set( path, value );
@@ -126,9 +134,9 @@ export default Ember.Route.extend({
 //                            }, function( text ){
 //                                app_controller.send( 'message_manager', 'Failure', text );
                             });
-                        }, function( error ){
-                            app_controller.send( 'message_manager', 'Failure', 'Something went wrong, the record was not saved.' );
-                        });
+//                        }, function( error ){
+//                            app_controller.send( 'message_manager', 'Failure', 'Something went wrong, the record was not saved.' );
+//                        });
                     });
                     break;
                 case 'user_vehicle':

@@ -1,19 +1,37 @@
 <!------------------------------- RECORD FIELD ------------------------------------->
 <form class="form-horizontal">
     <fieldset>
-        <legend>{{app_controller.translation.new}} {{new_record.type}} {{app_controller.translation.document}}</legend>
-        <!------------------------------- type - company/trailer/driver/truck ------------------------------------->
-        <div class="form-group">
-            <label  class="col-lg-2 control-label">{{app_controller.translation.type}}</label>
-            <div class="col-lg-10">
-                {{view Ember.Select
-                content=type_document
-                value=new_record.type
-                placeholder="Choose a document type"
-                class='form-control'
-                }}
-            </div>
+    <div class="form-group">
+        <div class="col-lg-1">
+            <button class="btn btn-primary btn-50" {{action 'set_record' new_record 'view_new_field' false}}><span class="glyphicon glyphicon-ok"></span></button>
         </div>
+        <div class="col-lg-9"><legend>{{app_controller.translation.new}} {{app_controller.translation.document}}</legend></div>
+        <div class="col-lg-2">
+            <button class="btn btn-default btn-group-justified" {{action 'change_mode' 'view_new_field' false}}>
+                <strong>{{app_controller.translation.return}}</strong>
+            </button>
+        </div>
+    </div>
+
+
+        <!------------------------------- type - company/trailer/driver/truck ------------------------------------->
+    <div class="form-group">
+        <label  class="col-lg-2 control-label">{{app_controller.translation.type}}</label>
+        <div class="col-lg-10">
+            {{input value = new_record.type type = "text" class = 'form-control' disabled=true}}
+        </div>
+    </div>
+        <!--<div class="form-group">-->
+            <!--<label  class="col-lg-2 control-label">{{!{{app_controller.translation.type}}</label>-->
+            <!--<div class="col-lg-10">-->
+                <!--{{!{{view Ember.Select-->
+                <!--content=type_document-->
+                <!--value=new_record.type-->
+                <!--placeholder="Choose a document type"-->
+                <!--class='form-control'-->
+                <!--}}-->
+            <!--</div>-->
+        <!--</div>-->
         <!------------------------------- name  ------------------------------------->
         <div class="form-group">
             <label  class="col-lg-2 control-label">{{app_controller.translation.name}}</label>
