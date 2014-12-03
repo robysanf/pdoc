@@ -441,6 +441,6 @@ export default Ember.Route.extend({
             }, function( response ){
                 app_controller.send( 'message_manager', 'Failure', response );
             });
-        },
+        }
     }
 });

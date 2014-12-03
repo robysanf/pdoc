@@ -3,7 +3,7 @@
 /*}*/
 
 .square-icon-lg {
-    background: url(../img/driver200x255.png) 50% 50% no-repeat; /* 50% 50% centers image in div */
+    /*background: 50% 50% no-repeat;  *//*50% 50% centers image in div  */
     width: 185px;
     height: 185px;
     opacity:0.7;
