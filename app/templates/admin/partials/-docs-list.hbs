@@ -3,13 +3,13 @@
 
 <!------------------------ PRIMA RIGA --------------------------->
 <tr>
-    <td rowspan="5"><span class="label label-primary" style="display: block; text-align: left; width: 300px; white-space: normal;">
+    <td rowspan="5">
         <!------------------------ document name --------------------------->
         <h5>
             <div class="row">
                 {{#if mode_view}}
                     <div class="col-lg-2">
-                        <span class="glyphicon glyphicon-trash" {{action 'open_modal' 'admin/modals/delete-record' docTemp this}}  style="cursor: pointer"></span>
+                        <button class="btn btn-primary btn-50" {{action 'open_modal' 'admin/modals/delete-record' docTemp this}}><span class="glyphicon glyphicon-trash"></span></button>
                     </div>
                     <div class="col-lg-10">
                         {{docTemp.name}}
@@ -21,12 +21,11 @@
                 {{/if}}
             </div>
         </h5>
-        </span>
     </td>
     <td>
         <!------------------------ goodsConfiscation --------------------------->
         {{#if mode_view}}
-            {{#if new_record.goodsConfiscation}}
+            {{#if docTemp.goodsConfiscation}}
                 <span class="glyphicon glyphicon glyphicon-check"></span>
             {{else}}
                 <span class="glyphicon glyphicon glyphicon-unchecked"></span>
@@ -34,10 +33,10 @@
             &nbsp
             {{app_controller.translation.goodsConfiscation}}
         {{else}}
-            {{#if new_record.goodsConfiscation}}
-                <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'goodsConfiscation' false}}></span>
+            {{#if docTemp.goodsConfiscation}}
+                <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'goodsConfiscation' false}}></span>
             {{else}}
-                <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'goodsConfiscation' true}}></span>
+                <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'goodsConfiscation' true}}></span>
             {{/if}}
             &nbsp
             {{app_controller.translation.goodsConfiscation}}
@@ -46,7 +45,7 @@
     <td>
         <!------------------------ vehicleConfiscation --------------------------->
         {{#if mode_view}}
-            {{#if new_record.vehicleConfiscation}}
+            {{#if docTemp.vehicleConfiscation}}
                 <span class="glyphicon glyphicon glyphicon-check"></span>
             {{else}}
                 <span class="glyphicon glyphicon glyphicon-unchecked"></span>
@@ -54,10 +53,10 @@
             &nbsp
             {{app_controller.translation.vehicleConfiscation}}
         {{else}}
-            {{#if new_record.vehicleConfiscation}}
-                <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'vehicleConfiscation' false}}></span>
+            {{#if docTemp.vehicleConfiscation}}
+                <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'vehicleConfiscation' false}}></span>
             {{else}}
-                <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'vehicleConfiscation' true}}></span>
+                <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'vehicleConfiscation' true}}></span>
             {{/if}}
             &nbsp
             {{app_controller.translation.vehicleConfiscation}}
@@ -85,7 +84,7 @@
     <td>
         <!------------------------ fiscalResponsibility --------------------------->
         {{#if mode_view}}
-            {{#if new_record.fiscalResponsibility}}
+            {{#if docTemp.fiscalResponsibility}}
                 <span class="glyphicon glyphicon glyphicon-check"></span>
             {{else}}
                 <span class="glyphicon glyphicon glyphicon-unchecked"></span>
@@ -93,10 +92,10 @@
             &nbsp
             {{app_controller.translation.fiscalResponsibility}}
         {{else}}
-            {{#if new_record.fiscalResponsibility}}
-                <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'fiscalResponsibility' false}}></span>
+            {{#if docTemp.fiscalResponsibility}}
+                <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'fiscalResponsibility' false}}></span>
             {{else}}
-                <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'fiscalResponsibility' true}}></span>
+                <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'fiscalResponsibility' true}}></span>
             {{/if}}
             &nbsp
             {{app_controller.translation.fiscalResponsibility}}
@@ -106,7 +105,7 @@
     <td>
         <!------------------------ emas --------------------------->
         {{#if mode_view}}
-            {{#if new_record.emas}}
+            {{#if docTemp.emas}}
                 <span class="glyphicon glyphicon glyphicon-check"></span>
             {{else}}
                 <span class="glyphicon glyphicon glyphicon-unchecked"></span>
@@ -114,10 +113,10 @@
             &nbsp
             {{app_controller.translation.emas}}
         {{else}}
-            {{#if new_record.emas}}
-                <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'emas' false}}></span>
+            {{#if docTemp.emas}}
+                <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'emas' false}}></span>
             {{else}}
-                <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'emas' true}}></span>
+                <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'emas' true}}></span>
             {{/if}}
             &nbsp
             {{app_controller.translation.emas}}
@@ -129,14 +128,14 @@
     <td>
         <div class="form-group">
             <label class="control-label">{{app_controller.translation.validity}}</label>
-            {{input value = new_record.validityNum type = "number" class = 'form-control' disabled = mode_view }}
+            {{input value = docTemp.validityNum type = "number" class = 'form-control' disabled = mode_view }}
         </div>
     </td>
-    <td style="padding-top: 32px">{{view Ember.Select content=type_period value=new_record.validityType placeholder="Choose a period" class='form-control' disabled = mode_view}}</td>
+    <td style="padding-top: 32px">{{view Ember.Select content=type_period value=docTemp.validityType placeholder="Choose a period" class='form-control' disabled = mode_view}}</td>
     <td colspan="2">
         <div class="form-group">
             <label class="control-label">{{app_controller.translation.deadline}}</label>
-            {{input value = new_record.deadline type = "date" class = 'form-control' disabled = mode_view}}
+            {{input value = docTemp.deadline type = "date" class = 'form-control' disabled = mode_view}}
         </div>
     </td>
 </tr>

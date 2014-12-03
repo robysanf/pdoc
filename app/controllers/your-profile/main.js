@@ -39,5 +39,6 @@ export default Ember.ObjectController.extend({
 
     transition_to_list: true,
 
-    sub_record: null
+    sub_record: null,
+    sub_record_document: null
 });

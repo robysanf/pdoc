@@ -3,7 +3,7 @@
         <div class="form-group">
             <div class="col-lg-1">
                 {{#if certifier}}
-                    <button class="btn btn-primary btn-50" {{action 'create_record' this 'isView_docList' false 'isView_docDetails' false}}><span class="glyphicon glyphicon-plus"></span></button>
+                    <button class="btn btn-primary btn-50" {{action 'create_record' this 'isView_docList' false 'isView_docDetails' false 'document'}}><span class="glyphicon glyphicon-plus"></span></button>
                 {{/if}}
             </div>
             <div class="col-lg-11"><legend>{{app_controller.translation.documents}}</legend></div>

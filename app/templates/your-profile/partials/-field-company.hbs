@@ -3,8 +3,12 @@
         <!-------------------- tab company - cambio button tra edit/view ---------------------->
         <div class="form-group">
             <div class="col-lg-1">
+
+                <!-------------------- pencil ---------------------->
                 {{#if controller.isView}}
                     <button class="btn btn-primary btn-50" {{action 'change_state' 'your-profile/main' false}}><span class="glyphicon glyphicon-pencil"></span></button>
+
+                    <!-------------------- ok ---------------------->
                 {{else}}
                     <button class="btn btn-primary btn-50" {{action 'set_record' 'company_details' 'isView' true app_controller.company_record}}><span class="glyphicon glyphicon-ok"></span></button>
                 {{/if}}
@@ -12,6 +16,7 @@
             <div class="col-lg-11"><legend>{{app_controller.translation.details}}</legend></div>
         </div>
 
+        <!-------------------- form company ---------------------->
         <div class="form-group">
             <label for="name" class="col-lg-3 control-label">{{app_controller.translation.name}}</label>
             <div class="col-lg-9">

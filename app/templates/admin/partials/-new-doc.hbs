@@ -196,7 +196,7 @@
             </div>
         </div>
 
-        <!------------------------------- add model ------------------------------------->
+        <!------------------------------- files list ------------------------------------->
         {{#if new_record.files}}
             <div class="form-group">
                 <label class="col-lg-2 control-label">{{app_controller.translation.files}}</label>
@@ -222,7 +222,7 @@
                                                         <td>{{file.name}}</td>
                                                         <td>{{file.type}}</td>
 
-                                                        <td><a {{action 'open_modal' 'your-profile/modals/delete-record' file this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                                        <td><a {{action 'open_modal' 'admin/modals/delete-record' file this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
                                                     </tr>
                                                 {{/each}}
                                                 </tbody>

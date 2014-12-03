@@ -117,13 +117,11 @@ export default Ember.Route.extend({
 
             switch (path){
                 case 'admin/modals/delete-record':
-//                    controller.set('main_record', record);
                     controller.set('record_to_delete', record_to_delete);
 
                     break;
                 case 'admin/modals/add-file':
                     controller.set('main_record', record);
-//                  alert(controller.main_record.get('id'));
 
                     break;
             }

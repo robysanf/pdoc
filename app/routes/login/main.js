@@ -6,7 +6,7 @@ export default Ember.Route.extend({
     },
 
     actions: {
-        change_newLog: function(val) {
+        change_newLog: function( val ) {
             this.get('controller').set('newLog', val);
         },
 

@@ -2,6 +2,8 @@
     FORM company details
 ------>
 
+
+<!--------------------- IMAGE LOGO --------------------->
 <div class="row row-margin-top-bottom">
     <div class="col-lg-1"></div>
     <div class="col-lg-10">
@@ -11,6 +13,8 @@
     </div>
     <div class="col-lg-1"></div>
 </div>
+
+<!--------------------- details - view --------------------->
 {{#if controller.isView}}
     <div class="row row-margin-top-bottom">
         <div class="col-lg-1"></div>
@@ -20,6 +24,8 @@
         <div class="col-lg-1"></div>
     </div>
 {{else}}
+
+    <!--------------------- details - edit --------------------->
     <div class="well well-sm">
         <div class="row row-margin-top-bottom">
             <div class="col-lg-1"></div>
@@ -30,6 +36,8 @@
         </div>
     </div>
 {{/if}}
+
+<!--------------------- document - view --------------------->
 {{#if controller.isView_docList}}
     <div class="row row-margin-top-bottom">
         <div class="col-lg-1"></div>
@@ -39,6 +47,8 @@
         <div class="col-lg-1"></div>
     </div>
 {{else}}
+
+    <!--------------------- document - edit --------------------->
     <div class="well well-sm">
         <div class="row row-margin-top-bottom">
             <div class="col-lg-1"></div>

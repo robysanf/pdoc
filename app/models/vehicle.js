@@ -21,7 +21,8 @@ export default DS.Model.extend({
         async: true }),
     files: DS.hasMany('files', {
         async: true}),
-    //documents: DS.hasMany('document'),
+    documents: DS.hasMany('document', {
+        async: true}),
     //certificationRating: DS.belongsTo('certificationRating'),
 
     /**************************  PROPERTIES  **************************/
