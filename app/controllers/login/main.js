@@ -6,7 +6,12 @@ export default Ember.Controller.extend({
 
     myList: [],
     newLog: 0,
-    companyTypeList: ['client', 'agency', 'shipowner'],
+    companyTypeList: [
+        'carrier',
+        'shipper',
+        'supplier',
+        'certifier'
+    ],
 
     reset: function() {
         this.get('controllers.application').set('is_login', true);
