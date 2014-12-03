@@ -60,6 +60,15 @@ export default Ember.Route.extend({
                     this.controller.set('isView_docList', true);
                     this.controller.set('isView_docDetails', true);
                     break;
+                case 'driver':
+                    this.controller.set('isView_docList', true);
+                    break;
+                case 'truck':
+                    this.controller.set('isView_docList', true);
+                    break;
+                case 'trailer':
+                    this.controller.set('isView_docList', true);
+                    break;
                 default:
                 break;
             }

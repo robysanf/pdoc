@@ -28,7 +28,7 @@ export default Ember.Route.extend({
         },
 
         custom_linkCompanies: function( record, attr, value ){
-            var self = this, controller = self.controllerFor('link.main'), app_controller = self.controllerFor('application'),
+            var _this = this, controller = _this.controllerFor('link.main'), app_controller = _this.controllerFor('application'),
                 data = this.getProperties();
 
             data.company = record.get('id');
@@ -37,7 +37,7 @@ export default Ember.Route.extend({
                 $.post('api/custom/linkCompanies?token=' + app_controller.token, data).then(function(response){
                     if (response.success) {
                         controller.set('company_to_link', null);
-                        self.change_mode(attr, value );
+                        controller.set( attr, value );
                         record.reload();
                         //NOT SAVED
                         new PNotify({

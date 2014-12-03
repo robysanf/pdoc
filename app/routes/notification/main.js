@@ -69,6 +69,31 @@ export default Ember.Route.extend({
 
         show_hide_notifications: function( attr1, value1 ) {
             this.send('change_state', attr1, value1);
+        },
+
+        /************************************
+         *
+         * */
+        custom_acceptedLink: function( record, recordFrom, recordTo, actionToken ){
+            var _this = this, app_controller = _this.controllerFor('application'),
+                data = this.getProperties();
+
+            data.actionFn = 'linkCompanies';
+
+            $.post('api/action?actionToken=' + actionToken, data).then(function(response){
+                if (response.success) {
+                    record.set('actionToken', '');
+                    record.set('highlighted', false).save();
+                    recordFrom.reload();
+                    recordTo.reload();
+
+                    //SUCCESS
+                    app_controller.send( 'message_manager', 'Success', 'You have successfully sent the document.' );
+                }
+            }, function( response ){
+                //NOT SAVED
+                app_controller.send( 'message_manager', 'Failure', response );
+            });
         }
     }
 });

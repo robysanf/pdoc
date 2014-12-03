@@ -7,12 +7,13 @@ export default DS.Model.extend({
     deadline: DS.attr('custom-time'),
     gracePeriod: DS.attr('custom-time'),
 
-    detail: DS.attr('string'),
     fromCompanyDetails: DS.attr('string'),
     fromUserDetails: DS.attr('string'),
     status: DS.attr('string'), //view/hide
     type: DS.attr('string'), //deadline/rating/link/certification
     name: DS.attr('string'),
+    description: DS.attr('string'),
+    actionToken: DS.attr('string'),
 
     valueNum: DS.attr('number'),
 
