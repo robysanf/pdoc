@@ -50,6 +50,16 @@ export default Ember.Route.extend({
             });
         },
 
+        set_record_multiple: function( record, attr1, val1, attr2, val2 ){
+            if ( val2 === 'today' ){
+                var today = new Date();
+                val2 = moment(today).format();
+            }
+            record.set( attr1, val1 );
+            record.set( attr2, val2 );
+            record.save();
+        },
+
         set_record: function( record, attr, value ){
             var _this = this;
 
@@ -101,16 +111,6 @@ export default Ember.Route.extend({
                 app_controller.send('message_manager', 'Failure', 'A problem eas occurred.');
             });
         },
-
-//        delete_record: function( record ){
-//            var _this = this, app_controller = _this.controllerFor('application');
-//            record.deleteRecord();
-//            record.save().then(function(){
-//                app_controller.send('message_manager', 'Success', 'The document was successfully removed.');
-//            }, function(){
-//                app_controller.send('message_manager', 'Failure', 'A problem eas occurred.');
-//            });
-//        },
 
         open_modal: function( path, record_to_delete, record) {
             var _this = this, app_controller = _this.controllerFor('application'), controller = _this.controllerFor('admin/main');

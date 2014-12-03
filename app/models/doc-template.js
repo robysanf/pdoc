@@ -9,7 +9,7 @@ export default DS.Model.extend({
 
     isLimited: attr('boolean'),    // se il certificato è scaduto il suo punteggio può arrivare ad un massimo prestabilito
 
-    deadline: attr('custom-time'),         //scadenza
+    deadline: attr('custom-date'),         //scadenza
 
     validityNum: attr('number'),     //durata validità della certificazione
     alertNum: attr('number'),       //quanto tempo prima della scadenza deve essere mostrato l'avviso di scadenza
@@ -31,7 +31,7 @@ export default DS.Model.extend({
      * PROPERTIES
      */
     isDeadline: function(){
-        return ( this.get('deadline') !== null && this.get('deadline') !== '' && this.get('validityNum') !== undefined );
+        return ( this.get('deadline') !== null && this.get('deadline') !== '' && this.get('deadline') !== undefined );
     }.property('deadline'),
     isValidity: function(){
         return ( this.get('validityNum') !== null && this.get('validityNum') !== '' && this.get('validityNum') !== undefined );

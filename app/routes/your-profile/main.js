@@ -417,6 +417,30 @@ export default Ember.Route.extend({
             }, function( response ){
                 app_controller.send( 'message_manager', 'Failure', response );
             });
-        }
+        },
+
+        /*********************************** FUNZIONI CUSTOM ***********************************/
+
+        /**
+         invio richiesta per cambio certificatore
+
+         @action custom_notifyDocument
+         @for your-profile/partials/-field-company.hbs
+         @param {company_id} id della company certificatrice
+         */
+        custom_setCertifier: function( company_id ){
+            var self = this, app_controller = self.controllerFor('application'),
+                data = this.getProperties();
+
+            data.company = company_id;
+
+            $.post('api/custom/setCertifier?token=' + app_controller.token, data).then(function(response){
+                if (response.success) {
+                    app_controller.send( 'message_manager', 'Success', 'You have successfully sent the request.' );
+                }
+            }, function( response ){
+                app_controller.send( 'message_manager', 'Failure', response );
+            });
+        },
     }
 });

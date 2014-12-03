@@ -34,9 +34,9 @@
             {{app_controller.translation.goodsConfiscation}}
         {{else}}
             {{#if docTemp.goodsConfiscation}}
-                <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'goodsConfiscation' false}}></span>
+                <span class="glyphicon glyphicon glyphicon-check btn-font-color" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'goodsConfiscation' false}}></span>
             {{else}}
-                <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'goodsConfiscation' true}}></span>
+                <span class="glyphicon glyphicon glyphicon-unchecked btn-font-color" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'goodsConfiscation' true}}></span>
             {{/if}}
             &nbsp
             {{app_controller.translation.goodsConfiscation}}
@@ -54,9 +54,9 @@
             {{app_controller.translation.vehicleConfiscation}}
         {{else}}
             {{#if docTemp.vehicleConfiscation}}
-                <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'vehicleConfiscation' false}}></span>
+                <span class="glyphicon glyphicon glyphicon-check btn-font-color" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'vehicleConfiscation' false}}></span>
             {{else}}
-                <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'vehicleConfiscation' true}}></span>
+                <span class="glyphicon glyphicon glyphicon-unchecked btn-font-color" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'vehicleConfiscation' true}}></span>
             {{/if}}
             &nbsp
             {{app_controller.translation.vehicleConfiscation}}
@@ -93,9 +93,9 @@
             {{app_controller.translation.fiscalResponsibility}}
         {{else}}
             {{#if docTemp.fiscalResponsibility}}
-                <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'fiscalResponsibility' false}}></span>
+                <span class="glyphicon glyphicon glyphicon-check btn-font-color" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'fiscalResponsibility' false}}></span>
             {{else}}
-                <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'fiscalResponsibility' true}}></span>
+                <span class="glyphicon glyphicon glyphicon-unchecked btn-font-color" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'fiscalResponsibility' true}}></span>
             {{/if}}
             &nbsp
             {{app_controller.translation.fiscalResponsibility}}
@@ -114,9 +114,9 @@
             {{app_controller.translation.emas}}
         {{else}}
             {{#if docTemp.emas}}
-                <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'emas' false}}></span>
+                <span class="glyphicon glyphicon glyphicon-check btn-font-color" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'emas' false}}></span>
             {{else}}
-                <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'emas' true}}></span>
+                <span class="glyphicon glyphicon glyphicon-unchecked btn-font-color" style="cursor: pointer; margin-top: 5px" {{action 'set_record' docTemp 'emas' true}}></span>
             {{/if}}
             &nbsp
             {{app_controller.translation.emas}}
@@ -127,15 +127,50 @@
 <tr>
     <td>
         <div class="form-group">
-            <label class="control-label">{{app_controller.translation.validity}}</label>
-            {{input value = docTemp.validityNum type = "number" class = 'form-control' disabled = mode_view }}
+            {{#if docTemp.isValidity}}
+                <label class="control-label">
+                    {{app_controller.translation.validity}}  <span class="glyphicon glyphicon glyphicon-ok"></span>
+                </label>
+            {{else}}
+                <label class="control-label">
+                    {{app_controller.translation.validity}}
+                </label>
+            {{/if}}
+            {{#if mode_view}}
+                {{input value = docTemp.validityNum type = "number" class = 'form-control' disabled = true}}
+            {{else}}
+                {{input value = docTemp.validityNum type = "number" class = 'form-control' disabled = docTemp.isDeadline}}
+            {{/if}}
+
         </div>
     </td>
-    <td style="padding-top: 32px">{{view Ember.Select content=type_period value=docTemp.validityType placeholder="Choose a period" class='form-control' disabled = mode_view}}</td>
+    <td style="padding-top: 32px">
+        {{#if mode_view}}
+            {{view "select" content=type_period value=docTemp.validityType placeholder="Choose a period" class='form-control' disabled = true}}
+        {{else}}
+            {{view "select" content=type_period value=docTemp.validityType placeholder="Choose a period" class='form-control' disabled = docTemp.isDeadline}}
+        {{/if}}
+
+    </td>
     <td colspan="2">
         <div class="form-group">
-            <label class="control-label">{{app_controller.translation.deadline}}</label>
-            {{input value = docTemp.deadline type = "date" class = 'form-control' disabled = mode_view}}
+            {{#if docTemp.deadline}}
+                <label class="control-label">
+                    {{app_controller.translation.deadline}}  <span class="glyphicon glyphicon glyphicon-ok"></span>
+                </label>
+            {{else}}
+                <label class="control-label">
+                    {{app_controller.translation.deadline}}
+                </label>
+            {{/if}}
+
+            {{#if mode_view}}
+                {{input value = docTemp.deadline type = "date" class = 'form-control' format="YYYY-MM-DD" disabled = true}}
+            {{else}}
+                {{input value = docTemp.deadline type = "date" class = 'form-control' format="YYYY-MM-DD" disabled = docTemp.isValidity}}
+            {{/if}}
+            {{!{{date-picker date=docTemp.deadline valueFormat='YYYY-MM-DD' class="form-control" disabled= controller.isValidity}}
+
         </div>
     </td>
 </tr>
@@ -147,14 +182,14 @@
             {{input type="number" class="form-control" value=docTemp.alertNum disabled = mode_view}}
         </div>
     </td>
-    <td style="padding-top: 32px">{{view Ember.Select content=type_period value=docTemp.alertType placeholder="Choose a period" class='form-control' disabled = mode_view }}</td>
+    <td style="padding-top: 32px">{{view "select" content=type_period value=docTemp.alertType placeholder="Choose a period" class='form-control' disabled = mode_view }}</td>
     <td>
         <div class="form-group">
             <label class="control-label">{{app_controller.translation.grace}}</label>
             {{input type="number" class="form-control" value=docTemp.graceNum disabled = mode_view}}
         </div>
     </td>
-    <td style="padding-top: 32px">{{view Ember.Select content=type_period value=docTemp.graceType placeholder="Choose a period" class='form-control'disabled = mode_view }}</td>
+    <td style="padding-top: 32px">{{view "select" content=type_period value=docTemp.graceType placeholder="Choose a period" class='form-control'disabled = mode_view }}</td>
 </tr>
 <!------------------------ QUINTA RIGA --------------------------->
 <tr>
