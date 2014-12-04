@@ -78,7 +78,7 @@ export default Ember.Controller.extend({
         Ember.Object.create({id: 16, type: "KB"})
     ]),
 
-
+    paymentPlans: Ember.A(),
     /*****************************
      * INFINITE SCROLL
      */
@@ -124,7 +124,7 @@ export default Ember.Controller.extend({
         trailer: 'Rimorchio', trailers: 'Rimorchi', clerks: 'Impiegati', changePassword: 'Cambia password', driversList: "Lista autisti", driverDetails: "Anagrafica autista", trucksList: 'Lista camions',
         list: "Lista", vehicleDetails: "Dettagli veicolo", clerksList: 'Lista impiegati', clerk: 'Impiegato', trailersList: 'Lista rimorchi', details:'Dettagli', username: 'Username',
         birthDate: 'Data di nascita', title: 'Titolo', text: 'Testo', loadImage: 'Carica immagine', attached: 'Allega', documents: 'Documenti', validityDate: 'Inizio validità', deadLine: 'Scadenza',
-        returnToList: 'Torna alla lista', files: 'Files', filesToDownload: 'Files da scaricare', accept:'Accetta', sendRequest:'Invia richiesta', search: 'Cerca'
+        returnToList: 'Torna alla lista', files: 'Files', filesToDownload: 'Files da scaricare', accept:'Accetta', sendRequest:'Invia richiesta', search: 'Cerca', expiration: 'Scadenza'
     },
     lan_en: {
         publicToYourContactsNetwork: 'Public to your contacts network', companyDetails: 'Company Details', invoiceNumber: 'Invoice number', rate: 'Rate', limit: 'Limit', goodsConfiscation: 'Goods Confisc.', vehicleConfiscation: 'Vehicle Confisc.',
@@ -143,7 +143,7 @@ export default Ember.Controller.extend({
         changePassword: 'Change password', driversList: "Drivers list", driverDetails: "Driver details", trucksList: 'Trucks list', list: "List", vehicleDetails: 'Vehicle details', clerksList: 'Clerks list',
         clerk: 'Clerk', trailersList: 'Trailers list', details:'Details', username: 'Username', birthDate: 'Birth date', title: 'Title', text: 'Testo', loadImage: 'Load image', attached: 'Attached',
         documents: 'Documents', validityDate: 'Validity date', deadLine: 'DeadLine', template: 'Template', returnToList: 'Return to list', files: 'Files', accept:'Accept',
-        filesToDownload: 'Files to download', sendRequest:'Send request', searchCompanies: 'Search companies', search: 'Search'
+        filesToDownload: 'Files to download', sendRequest:'Send request', searchCompanies: 'Search companies', search: 'Search', expiration: 'Expiration'
     },
 
     actions:{

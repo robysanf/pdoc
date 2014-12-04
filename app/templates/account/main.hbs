@@ -12,20 +12,20 @@
                     <div class="panel-title1" style="text-align: center">{{app_controller.translation.account}}</div>
                 </div>
                 <!-------------------- cambio button tra new/save ---------------------->
-                <div class="col-lg-2">
-                    {{#if controller.tabList.paymentDetails}}
-                        {{#if mode_view}}
-                            <button type="button" class="btn btn-default pull-right btn-90" {{action 'change_mode' 'mode_view' false}}>
-                                <span class="glyphicon glyphicon-pencil btn-font-color"></span>
-                            </button>
-                        {{else}}
-                            <button type="button" class="btn btn-default pull-right btn-90" {{action 'change_mode' 'mode_view' true}}>
-                                <span class="glyphicon glyphicon-ok btn-font-color"></span>
-                            </button>
-                        {{/if}}
+                <!--<div class="col-lg-2">-->
+                    <!--{{!{{#if controller.tabList.paymentDetails}}-->
+                        <!--{{!{{#if mode_view}}-->
+                            <!--<button type="button" class="btn btn-default pull-right btn-90" {{!{{action 'change_mode' 'mode_view' false}}>-->
+                                <!--<span class="glyphicon glyphicon-pencil btn-font-color"></span>-->
+                            <!--</button>-->
+                        <!--{{!{{else}}-->
+                            <!--<button type="button" class="btn btn-default pull-right btn-90" {{!{{action 'change_mode' 'mode_view' true}}>-->
+                                <!--<span class="glyphicon glyphicon-ok btn-font-color"></span>-->
+                            <!--</button>-->
+                        <!--{{!{{/if}}-->
 
-                    {{/if}}
-                </div>
+                    <!--{{!{{/if}}-->
+                <!--</div>-->
             </div>
         </div>
         <!-------------------- BODY ---------------------->

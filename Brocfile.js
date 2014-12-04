@@ -21,6 +21,11 @@ var extraAssets = pickFiles('vendor/bootstrap/dist/fonts',{
     destDir: '/fonts'
 });
 
+
+// IMPORT STRIPE
+app.import('vendor/stripe/stripe-2.min.js');
+app.import('vendor/stripe/stripe_key.js');
+
 // IMPORT P-NOTIFY
 app.import('vendor/pnotify/pnotify.custom.css');
 app.import('vendor/pnotify/pnotify.custom.js');

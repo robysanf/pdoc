@@ -1,46 +1,87 @@
-<form class="form-horizontal">
-    <fieldset>
-        <div class="form-group">
-            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.name}}</label>
-            <div class="col-lg-9">
+<div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+        <form class="form-horizontal">
+            <fieldset>
+                <!-------------------- BUTTON ---------------------->
+                <div class="form-group">
+                    <div class="col-lg-1">
+                        <!-------------------- pencil ---------------------->
+                        {{#if controller.mode_view}}
+                            <button class="btn btn-primary btn-50" {{action 'change_mode' 'mode_view' false}}><span class="glyphicon glyphicon-pencil"></span></button>
+
+                            <!-------------------- ok ---------------------->
+                        {{else}}
+                            <button class="btn btn-primary btn-50" {{action 'send_toStripe' 'mode_view' true}}><span class="glyphicon glyphicon-ok"></span></button>
+                        {{/if}}
+                    </div>
+                    <div class="col-lg-11"><legend style="margin-top: 35px"></legend></div>
+                </div>
+
+                <!-------------------- FIELDS ---------------------->
                 {{#if controller.mode_view}}
-                    {{#if name}}
-                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{name}}</p>
-                    {{else}}
-                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
-                    {{/if}}
-                {{else}}
-                    {{input value = name type = "string" class = 'form-control'}}
+                    <div class="form-group">
+                        <label for="name" class="col-lg-3 control-label">{{app_controller.translation.name}}</label>
+                        <div class="col-lg-9">
+                            {{#if name}}
+                                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{name}}</p>
+                            {{else}}
+                                <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                            {{/if}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-lg-3 control-label">{{app_controller.translation.credits}}</label>
+                        <div class="col-lg-9">
+                            {{#if credits}}
+                                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{credits}}</p>
+                            {{else}}
+                                <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                            {{/if}}
+                        </div>
+                    </div>
                 {{/if}}
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.credits}}</label>
-            <div class="col-lg-9">
-                {{#if controller.mode_view}}
-                    {{#if credits}}
-                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{credits}}</p>
-                    {{else}}
-                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
-                    {{/if}}
-                {{else}}
-                    {{input value = credits type = "string" class = 'form-control'}}
-                {{/if}}
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.cardNumber}}</label>
-            <div class="col-lg-9">
-                {{#if controller.mode_view}}
-                    {{#if cardNumber}}
-                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{hideCardNumber}}</p>
-                    {{else}}
-                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
-                    {{/if}}
-                {{else}}
-                    {{input value = hideCardNumber type = "string" class = 'form-control'}}
-                {{/if}}
-            </div>
-        </div>
-    </fieldset>
-</form>
+                <div class="form-group">
+                    <label for="name" class="col-lg-3 control-label">{{app_controller.translation.cardNumber}}</label>
+                    <div class="col-lg-9">
+                        {{#if controller.mode_view}}
+                            {{#if cardNumber}}
+                                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{hideCardNumber}}</p>
+                            {{else}}
+                                <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                            {{/if}}
+                        {{else}}
+                            <div class="input-group">
+                                {{input type='string' maxlength=4 value= controller.cardNumber1 class='form-control'}}
+                                <span class="input-group-addon">-</span>
+                                {{input type='string' maxlength=4 value= controller.cardNumber2 class='form-control'}}
+                                <span class="input-group-addon">-</span>
+                                {{input type='string' maxlength=4 value= controller.cardNumber3 class='form-control'}}
+                                <span class="input-group-addon">-</span>
+                                {{input type='string' maxlength=4 value= controller.cardNumber4 class='form-control'}}
+                            </div>
+                        {{/if}}
+                    </div>
+                </div>
+                {{#unless controller.mode_view}}
+                    <div class="form-group">
+                        <label for="name" class="col-lg-3 control-label">CVC</label>
+                        <div class="col-lg-3">
+                            {{input type='string' maxlength=4 value= controller.cvc class='form-control' placeholder='CVC'}}
+                        </div>
+                        <label for="name" class="col-lg-3 control-label">{{app_controller.translation.expiration}}</label>
+                        <div class="col-lg-3">
+                            <div class="input-group">
+                                {{input type='string' maxlength=2 value= controller.mm class='form-control' placeholder='MM'}}
+                                <span class="input-group-addon">/</span>
+                                {{input type='string' maxlength=4 value= controller.yyyy class='form-control' placeholder='YYYY'}}
+                            </div>
+                        </div>
+                    </div>
+                {{/unless}}
+
+            </fieldset>
+        </form>
+    </div>
+    <div class="col-lg-1"></div>
+</div>
