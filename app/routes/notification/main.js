@@ -82,9 +82,9 @@ export default Ember.Route.extend({
 
             $.post('api/action?actionToken=' + actionToken, data).then(function(response){
                 if (response.success) {
-                    record.set('actionToken', '');
+                    record.set('actionToken', null);
                     record.set('highlighted', false).save();
-                    recordFrom.reload();
+
                     recordTo.reload();
 
                     //SUCCESS
@@ -94,6 +94,24 @@ export default Ember.Route.extend({
                 //NOT SAVED
                 app_controller.send( 'message_manager', 'Failure', response );
             });
+        },
+
+        /**
+         l'utente può scaricare un file
+
+         @action download_file
+         @for Booking Item List
+         @param {record}
+         */
+        download_file: function( fileId ) {
+            var self = this, app_controller = self.controllerFor('application'),
+                path = 'api/files/' + fileId + '?token=' + app_controller.token + '&download=true';
+
+            $.fileDownload(path)
+                // .done(function () { alert('File download a success!'); })
+                .fail(function ( text ) {
+                    app_controller.send( 'message_manager', 'Failure', text );
+                });
         }
     }
 });

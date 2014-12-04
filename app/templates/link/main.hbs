@@ -73,7 +73,7 @@
                                 <td {{action 'transition_to' 'your-profile/main' link}} style="cursor: pointer">{{link.type}}</td>
                                 <td {{action 'transition_to' 'your-profile/main' link}} style="cursor: pointer">{{link.country}}</td>
 
-                                <td><a {{action 'open_modal' 'your-profile/modals/delete-record' link this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                <td><a {{action 'custom_unbindLinkedCompanies' link.id this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
                             </tr>
                         {{/each}}
                         </tbody>

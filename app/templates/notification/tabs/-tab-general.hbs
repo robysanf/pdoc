@@ -45,7 +45,11 @@
 
                             {{#if this.isCertifier}}
                                 <td>{{notification.fromUserDetails}}</td>
-                                <td><span class="glyphicon glyphicon-download"></span></td>
+                                <td>
+                                    {{#each file in notification.files}}
+                                    <a href="#" {{action 'download_file' file.id}} >{{file.name}}</a>
+                                    {{/each}}
+                                </td>
                                 <td><span class="glyphicon glyphicon-ok"></span></td>
                             {{else}}
                                 <td>{{notification.valueNum}}</td>

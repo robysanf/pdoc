@@ -15,6 +15,8 @@ Router.map(function() {
 
     this.route('admin/main', {path: 'admin/:company_id'});
     this.route('account/main', {path: 'account/:company_id'});
+
+    this.route('search-company/main', {path: 'searchCompanies'});
 });
 
 export default Router;

@@ -27,6 +27,32 @@ export default Ember.Route.extend({
             controller.set( attr, value );
         },
 
+        custom_unbindLinkedCompanies: function( record_id, company ){
+            var _this = this, controller = _this.controllerFor('link.main'), app_controller = _this.controllerFor('application'),
+                data = this.getProperties();
+
+            data.company = record_id;
+            $.post('api/custom/unbindLinkedCompanies?token=' + app_controller.token, data).then(function(response){
+                if (response.success) {
+                    company.reload();
+                    //NOT SAVED
+                    new PNotify({
+                        title: 'Success',
+                        text: 'The linked companies was successfully deleted.',
+                        type: 'success',
+                        delay: 2000
+                    });
+                }
+            }, function(){
+                //NOT SAVED
+                new PNotify({
+                    title: 'Not saved',
+                    text: 'A problem has occurred.',
+                    type: 'error',
+                    delay: 2000
+                });
+            });
+        },
         custom_linkCompanies: function( record, attr, value ){
             var _this = this, controller = _this.controllerFor('link.main'), app_controller = _this.controllerFor('application'),
                 data = this.getProperties();

@@ -25,9 +25,13 @@ export default DS.Model.extend({
         async: true}),
     files: DS.hasMany('files', {
         async: true}),
+
     /***************************************************
      *  PROPERTIES
      */
+    is_actionToken: function(){
+       return this.get('actionToken') !== null;
+    }.property('actionToken'),
     showDate: function(){
       return moment(this.get('date')).format("YYYY-MM-DD");
     }.property('date'),
@@ -38,8 +42,11 @@ export default DS.Model.extend({
         return moment(this.get('gracePeriod')).format("YYYY-MM-DD");
     }.property('gracePeriod'),
 
+    status_hide: function(){
+        return ( this.get('status') === 'hide' );
+    }.property('status'),
     viewNotification: function() {
-        return ( this.get('status') === 'view' );
+        return ( this.get('status') === 'show' );
     }.property('status'),
     isRating: function() {
         return ( this.get('type') === 'rating' );
