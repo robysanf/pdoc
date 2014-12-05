@@ -4,6 +4,11 @@ export default DS.Model.extend({
     visualizationCredit:DS.attr('number'),
     certificationCredit:DS.attr('number'),
     cardNumber:DS.attr('number'),
+    serviceScore:DS.attr('number'),
+    certificationScore:DS.attr('number'),
+    driverScore:DS.attr('number'),
+    truckScore:DS.attr('number'),
+    trailerScore:DS.attr('number'),
 
     canRemove: DS.attr('string'),
     canEdit: DS.attr('string'),
@@ -55,8 +60,8 @@ export default DS.Model.extend({
         async: true}),
     posts: DS.hasMany('post', {
         async: true}),
-    //serviceRatings: DS.hasMany('serviceRating'),
-    //certificationRatings: DS.hasMany('certificationRating')
+    ratings: DS.hasMany('rating', {
+    async: true}),
     //parentCompany: DS.belongsTo('company'),
     //childCompanies: DS.hasMany('company'),
     documents: DS.hasMany('document', {

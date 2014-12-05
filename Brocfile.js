@@ -10,7 +10,9 @@ var app = new EmberApp();
 // IMPORT BOOTSTRAP
 app.import('vendor/bootstrap/dist/css/bootstrap.min.css');
 app.import('vendor/bootstrap/dist/css/select2-bootstrap.css');
+app.import('vendor/jasny-bootstrap/dist/css/jasny-bootstrap.min.css');    //per load image
 app.import('vendor/bootstrap/dist/js/bootstrap.min.js');
+app.import('vendor/jasny-bootstrap/dist/js/jasny-bootstrap.min.js');     //per load image
 
 // IMPORT GLYPHICONS
 var mergeTrees = require('broccoli-merge-trees');
@@ -20,7 +22,6 @@ var extraAssets = pickFiles('vendor/bootstrap/dist/fonts',{
     files: ['**/*'],
     destDir: '/fonts'
 });
-
 
 // IMPORT STRIPE
 app.import('vendor/stripe/stripe-2.min.js');

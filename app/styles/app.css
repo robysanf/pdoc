@@ -2,10 +2,12 @@
 /*margin: 20px;*/
 /*}*/
 
+
 .square-icon-lg {
+    overflow:hidden;
     /*background: 50% 50% no-repeat;  *//*50% 50% centers image in div  */
-    width: 185px;
-    height: 185px;
+    width: 200px;
+    height: 200px;
     opacity:0.7;
 }
 .square-lg {

@@ -40,7 +40,8 @@ export default Ember.Controller.extend({
     //selectedDepotChanged: function() { localStorage.selectedDepot = this.selectedDepot; }.observes('selectedDepot'),
     //isAdminChanged: function() { localStorage.isAdmin = this.isAdmin; }.observes('isAdmin'),
 
-
+    formData: new FormData(),
+    formData_size: null,
     /**********************
      auto-suggest
      */

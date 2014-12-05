@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-    birthDate:  DS.attr('custom-time'),
+    birthDate: DS.attr('custom-time'),
 
     username:DS.attr('string'),
     firstName: DS.attr('string'),

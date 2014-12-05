@@ -6,6 +6,7 @@ export default Ember.ObjectController.extend({
 
     isView: true,
 
+    isView_logo: true,
     isView_docList: true,
     isView_docDetails: true,
 
@@ -18,6 +19,7 @@ export default Ember.ObjectController.extend({
         "supplier",
         "certifier"
     ],
+    image_url: null,
 
     documentTypes: [
         "invoice",

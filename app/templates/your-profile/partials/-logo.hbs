@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+        <div class="form-group">
+            <div class="col-lg-1">
+                <!-------------------- pencil ---------------------->
+                {{#if controller.isView_logo}}
+                    <button class="btn btn-primary btn-50" {{action 'set_variable' 'isView_logo' false}}><span class="glyphicon glyphicon-pencil"></span></button>
+
+                    <!-------------------- ok ---------------------->
+                {{else}}
+                    <button class="btn btn-primary btn-50" {{action 'save_logo' this.id 'isView_logo' true}}><span class="glyphicon glyphicon-ok"></span></button>
+                {{/if}}
+            </div>
+            <div class="col-lg-11" style="margin-top: 35px"><legend></legend></div>
+        </div>
+    </div>
+    <div class="col-lg-1"></div>
+</div>
+
+<div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-6">
+        {{#if controller.isView_logo}}
+            <div class="fileinput fileinput-new" data-provides="fileinput">
+                <div class="fileinput-new thumbnail" style="width: 250px; height: 250px;">
+                    <img data-src="">
+                </div>
+            </div>
+        {{else}}
+            {{#view 'upload-image'}}
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail" style="width: 250px; height: 250px;">
+                        <img data-src="">
+                        <span class="glyphicon glyphicon-picture" style="font-size: 200px;"></span>
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 250px; max-height: 250px;"></div>
+                    <div>
+                    <span class="btn btn-default btn-file">
+                        <span class="fileinput-new">Select image</span>
+                        <span class="fileinput-exists">Change</span>
+                        <input type="file" name="...">
+                    </span>
+                        <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                    </div>
+                </div>
+            {{/view}}
+        {{/if}}
+    </div>
+    <div class="col-lg-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h3>Service rating {{!{{#link-to 'service-rating-list'}}<span class="label label-default pull-right">14</span>{{!{{/link-to}}</h3></div>
+            <div class="panel-body">
+                {{speed-meter speed=10 target='speed1' rateSize=75  custom_height=150}}
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-1"></div>
+</div>
+
+

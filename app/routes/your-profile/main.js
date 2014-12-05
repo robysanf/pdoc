@@ -161,7 +161,44 @@ export default Ember.Route.extend({
                     break;
             }
         },
-        
+
+        save_logo: function( record, attr, value ){
+            var _this = this, app_controller = _this.controllerFor('application');
+
+            if(app_controller.formData_size !== null){
+
+                if(app_controller.formData.size > '10000000') {     //verifico che il file sia meno grande di 10 Mega-Byte
+                    new PNotify({title: 'Warning',text: 'The file must be smaller than 10 MB.',type: 'info',delay: 4000});
+                    _this.controller.set( attr, value );
+                } else {
+                    var self = this, $btn = $(this);
+                    $btn.button('loading');
+
+                    $.ajax({
+                        url: 'api/files?token='+ app_controller.token +'&entity='+record+'&type=logo',
+                        type: "POST",
+                        data: app_controller.formData,
+                        processData: false,
+                        contentType: false
+                    }).then(function(){
+                        $btn.button('reset');
+                        app_controller.formData = new FormData();
+                        app_controller.formData_size = null;
+                        _this.controller.set( attr, value );
+
+                    }, function(){
+                        $btn.button('reset');
+                        new PNotify({title: 'Error',text: 'A problem was occurred.',type: 'error',delay: 4000});
+                    });
+
+                }
+            } else {
+                _this.controller.set( attr, value );
+            }
+
+        },
+
+
         set_variable: function( attr, value ){
             this.controller.set( attr, value );
         },
