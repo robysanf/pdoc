@@ -1,69 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3144824c-2229-4ff6-bfb3-be8828b06bd9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/.bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/Gruntfile.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/test-infra/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/scss/_alerts-fixed.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/scss/_button-labels.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/scss/_fileinput.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/scss/_grid-container-smooth.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/scss/_nav-tab-alignment.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/scss/_navmenu.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/scss/_offcanvas.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/scss/_rowlink.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/scss/_variables.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/less/alerts-fixed.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/grunt/bs-lessdoc-parser.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/grunt/bs-raw-files-generator.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/less/button-labels.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/js/fileinput.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/less/fileinput.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/less/grid-container-smooth.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/js/inputmask.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/dist/css/jasny-bootstrap.css.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/dist/css/jasny-bootstrap.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/dist/js/jasny-bootstrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/less/jasny-bootstrap.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/less/build/jasny-bootstrap.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/dist/css/jasny-bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/dist/js/jasny-bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/scss/jasny-bootstrap.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/less/build/mixins.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/less/nav-tab-alignment.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/less/navmenu.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/test-infra/npm-shrinkwrap.canonical.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/js/offcanvas.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/less/offcanvas.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/test-infra/requirements.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/js/rowlink.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/less/rowlink.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/test-infra/s3_cache.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/test-infra/sauce_browsers.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/grunt/shrinkwrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/js/transition.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/test-infra/uncached-npm-install.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/less/variables.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/jasny-bootstrap/less/build/variables.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-company.hbs" afterPath="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-company.hbs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-user-clerk-list.hbs" afterPath="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-user-clerk-list.hbs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-user-driver-list.hbs" afterPath="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-user-driver-list.hbs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-vehicle-trailer-list.hbs" afterPath="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-vehicle-trailer-list.hbs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-vehicle-truck-list.hbs" afterPath="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-vehicle-truck-list.hbs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Brocfile.js" afterPath="$PROJECT_DIR$/Brocfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/styles/app.css" afterPath="$PROJECT_DIR$/app/styles/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application.js" afterPath="$PROJECT_DIR$/app/controllers/application.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/company.js" afterPath="$PROJECT_DIR$/app/models/company.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/your-profile/main.js" afterPath="$PROJECT_DIR$/app/controllers/your-profile/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes/your-profile/main.js" afterPath="$PROJECT_DIR$/app/routes/your-profile/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.js" afterPath="$PROJECT_DIR$/app/models/user.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="3144824c-2229-4ff6-bfb3-be8828b06bd9" name="Default" comment="" />
     <ignored path="p-doc.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -339,7 +277,7 @@
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../doc_demo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../seaoracle" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -608,16 +546,16 @@
       <workItem from="1417422795326" duration="22886000" />
       <workItem from="1417621951284" duration="5386000" />
       <workItem from="1417681137995" duration="1031000" />
-      <workItem from="1417767535217" duration="20459000" />
+      <workItem from="1417767535217" duration="21662000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="300909000" />
+    <option name="totallyTimeSpent" value="302112000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="1" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
