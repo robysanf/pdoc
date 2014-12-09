@@ -52,8 +52,24 @@ export default Ember.Route.extend({
             }
 
             if(controller.search_services != "" && controller.search_services != null ){
+                  var services_string;
+                controller.search_services.filter(function( value, index ){
+                    if( index === 0 && controller.search_services.get('length') !== 1){          //è il primo valore e ce ne sono altri nella lista
+                        services_string = '"'+value+'",';
+                    } else if ( index+1 === controller.search_services.get('length') && controller.search_services.get('length') !== 1){     //è l'ultimo valore della lista e ce ne erano altri prima
+                        services_string = services_string +'"'+value+'"';
+                        queryExpression = queryExpression+'&services={"or":['+services_string+']}';
+                    }else if ( controller.search_services.get('length') === 1 ){                       // cè solo un valore nella lista
+                        services_string = '"'+value+'"';
+                        queryExpression = queryExpression+'&services={"or":['+services_string+']}';
+                    } else{                                                      //valori intermedi nella lista
+                        services_string = services_string +'"'+value+'",';
+                    }
+                });
+
 //                searchPath = "country"; queryExpression[searchPath] = controller.search_country;
-                queryExpression = queryExpression+'&services:{"or":'+controller.search_services+'}}';
+// queryExpression = queryExpression+'&booking={"booking/state":{"or":["edit","lock","request","pending"]}}';
+
             }
 
             this.store.findQuery('company', queryExpression).then(function(queryExpressResults){

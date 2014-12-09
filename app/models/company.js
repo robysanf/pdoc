@@ -73,6 +73,8 @@ export default DS.Model.extend({
         async: true}),
     grants: DS.hasMany('grant',{
        async:true }),
+    configurations: DS.hasMany('configuration',{
+        async: true}),
 //    authorizedCompanies: DS.hasMany('company',{
 //        async: true}),
     /****************************************************

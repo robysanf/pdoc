@@ -128,3 +128,24 @@
         {{/if}}
     </div>
 </div>
+
+{{#if controller.tabList.general}}
+    <form class="form-horizontal">
+        <fieldset>
+            <div class="form-group">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10"><legend>{{app_controller.translation.weight}}</legend> </div>
+                <div class="col-lg-1"></div>
+            </div>
+            {{#each weight in configurations}}
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">{{weight.name}}</label>
+                    <div class="col-lg-6">
+                        {{input value =  weight.valueNum type = "password" class = 'form-control' disabled= controller.isView}}
+                    </div>
+                </div>
+            {{/each}}
+
+        </fieldset>
+    </form>
+{{/if}}

@@ -340,7 +340,7 @@ export default Ember.Component.extend({
                     this.sendAction('moveSelection', 'down');
                     break;
                 case this.ENTER:
-                    controller.sendAction('selectActive');
+                    this.sendAction('selectActive');
                     break;
                 case this.ESCAPE:
                     this.sendAction('hideResults');
