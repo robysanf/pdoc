@@ -21,6 +21,10 @@ export default DS.Model.extend({
         async: true}),
     documents: DS.hasMany('document', {
         async: true}),
+    ratings: DS.hasMany('rating', {
+        async: true}),
+    grants: DS.hasMany('grant',{
+        async:true }),
     /*************************************************
      * PROPERTIES
      */

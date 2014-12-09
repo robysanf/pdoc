@@ -1,18 +1,18 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
+    date: DS.attr('custom-time'),
+    validityDate: DS.attr('custom-time'),
+    deadline: DS.attr('custom-time'),
+    grace: DS.attr('custom-time'),
+    alert: DS.attr('custom-time'),
+
     entity: DS.attr('string'),
     name: DS.attr('string'),
     entityType: DS.attr('string'),   //user/company/vehicle
     note: DS.attr('string'),
     type: DS.attr('string'),      //invoice/document/other
     status: DS.attr('string'),       //active/inactive
-
-    date: DS.attr('custom-time'),
-    validityDate: DS.attr('custom-time'),
-    deadline: DS.attr('custom-time'),
-    grace: DS.attr('custom-time'),
-    alert: DS.attr('custom-time'),
 
     company: DS.belongsTo('company', {
         async: true,

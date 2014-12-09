@@ -1,14 +1,15 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-    visualizationCredit:DS.attr('number'),
-    certificationCredit:DS.attr('number'),
     cardNumber:DS.attr('number'),
-    serviceScore:DS.attr('number'),
+    certificationCredit:DS.attr('number'),
     certificationScore:DS.attr('number'),
+    credit:DS.attr('number'),
     driverScore:DS.attr('number'),
     truckScore:DS.attr('number'),
     trailerScore:DS.attr('number'),
+    serviceScore:DS.attr('number'),
+    visualizationCredit:DS.attr('number'),
 
     canRemove: DS.attr('string'),
     canEdit: DS.attr('string'),
@@ -61,7 +62,8 @@ export default DS.Model.extend({
     posts: DS.hasMany('post', {
         async: true}),
     ratings: DS.hasMany('rating', {
-    async: true}),
+    async: true,
+    inverse: 'company'}),
     //parentCompany: DS.belongsTo('company'),
     //childCompanies: DS.hasMany('company'),
     documents: DS.hasMany('document', {

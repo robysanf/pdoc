@@ -62,13 +62,18 @@
                                 </div>
                                 <label for="name" class="col-lg-2 control-label">{{app_controller.translation.services}}</label>
                                 <div class="col-lg-4">
-                                    {{!{{auto-suggest
-                                    source=app_controller.auto_suggest_Services
-                                    destination= controller.search_services
-                                    searchPath="value"
-                                    usecase="customMode"
-                                    minChars=0
+                                    {{select-2
+                                    content=app_controller.auto_suggest_Services
+                                    value=controller.search_services
+                                    optionValuePath="value"
+                                    optionLabelPath="value"
+                                    multiple=true
+                                    placeholder="Choose services"
+                                    enabled=true
+                                    allowClear=true
                                     }}
+
+                                    <!--optionDescriptionPath="iso2"-->
                                 </div>
                             </div>
 

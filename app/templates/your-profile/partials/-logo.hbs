@@ -20,7 +20,7 @@
 
 <div class="row">
     <div class="col-lg-1"></div>
-    <div class="col-lg-6">
+    <div class="col-lg-4">
         {{#if controller.isView_logo}}
             <div class="fileinput fileinput-new" data-provides="fileinput">
                 <div class="fileinput-new thumbnail" style="width: 250px; height: 250px;">
@@ -47,11 +47,41 @@
             {{/view}}
         {{/if}}
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-3">
+        {{#if controller.tabList.company}}
+        {{!{{#if serviceScore}}
         <div class="panel panel-primary">
-            <div class="panel-heading"><h3>Service rating {{!{{#link-to 'service-rating-list'}}<span class="label label-default pull-right">14</span>{{!{{/link-to}}</h3></div>
+            <div class="panel-heading"><h3>Service rating {{!{{#link-to 'service-rating-list'}}{{!{{/link-to}}</h3></div>
             <div class="panel-body">
-                {{speed-meter speed=10 target='speed1' rateSize=75  custom_height=150}}
+                <div class="row">
+                    <a {{action 'open_modal' 'your-profile/modals/show-rating' null this 'service'}} style="cursor: pointer"><span class="label label-primary pull-right" style="margin-right: 8px">Show 14 ratings</span>  </a>
+                </div>
+                <div class="row">
+                    {{speed-meter speed=10 target='speed1' rateSize=55  custom_height=130}}
+                </div>
+
+            </div>
+        </div>
+            {{!        {{else}}
+            <!--<a href="#" class="btn btn-primary pull-right btn-160" data-dismiss="fileinput">Show service rating</a>-->
+        {{!     {{/if}}
+        {{/if}}
+
+    </div>
+
+
+    <div class="col-lg-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h3>Certific. rating {{!{{#link-to 'service-rating-list'}}{{!{{/link-to}}</h3></div>
+            <div class="panel-body">
+                <div class="row">
+                    <a {{action 'open_modal' 'your-profile/modals/show-rating' null this 'certification'}} style="cursor: pointer"><span class="label label-primary pull-right" style="margin-right: 8px">Show 14 ratings</span></a>
+                </div>
+                <div class="row">
+                    {{speed-meter speed=43 target='speed2' rateSize=55  custom_height=130}}
+                </div>
+
+
             </div>
         </div>
     </div>

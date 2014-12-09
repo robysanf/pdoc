@@ -2,7 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
     beforeModel: function() {
-        var _this = this, app_controller = _this.controllerFor('application'), controller = _this.controllerFor('your-profile.main');
+        var _this = this, app_controller = _this.controllerFor('application'), controller = _this.controllerFor('your-profile.main'),
+            data = this.getProperties();
 
         //imposto la tab company come default per 'your-profile'
 //        var uno = controller.tabList.company,
@@ -22,14 +23,27 @@ export default Ember.Route.extend({
 
         app_controller.set('records_companyCertifier', this.store.find('company', { type: "certifier" }));
 
-//        //, {name: 'service'}
-//        this.store.find("tag").then(function(val){ app_controller.set("auto_suggest_Services", val); });
-//
-//        //, {name: 'segment'}
-//        this.store.find("tag").then(function(val){ app_controller.set("auto_suggest_Segments", val); });
-//
-//        //, {name: 'area'}
-//        this.store.find("tag").then(function(val){ app_controller.set("auto_suggest_Areas", val); });
+        data.model = 'company';
+        data.field = 'service';
+        $.post('api/custom/tag?token=' + app_controller.token, data).then(function(response){
+            app_controller.set('auto_suggest_Services', response.tags);
+        }, function( response ){
+            app_controller.send( 'message_manager', 'Failure', response );
+        });
+
+        data.field = 'segment';
+        $.post('api/custom/tag?token=' + app_controller.token, data).then(function(response){
+            app_controller.set('auto_suggest_Segments', response.tags);
+        }, function( response ){
+            app_controller.send( 'message_manager', 'Failure', response );
+        });
+
+        data.field = 'area';
+        $.post('api/custom/tag?token=' + app_controller.token, data).then(function(response){
+            app_controller.set('auto_suggest_Areas', response.tags);
+        }, function( response ){
+            app_controller.send( 'message_manager', 'Failure', response );
+        });
     },
 
     model: function( company ) {

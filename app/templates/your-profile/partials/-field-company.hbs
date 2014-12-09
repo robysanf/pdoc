@@ -75,6 +75,135 @@
                 {{/unless}}
             </div>
         </div>
+
+        <div class="form-group">
+            <label for="transportListCode" class="col-lg-3 control-label">{{app_controller.translation.street}}</label>
+            <div class="col-lg-9">
+                {{#if controller.isView}}
+                    {{#if street}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{street}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value =  street type = "text" class = "form-control" disabled= controller.isView}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="transportListCode" class="col-lg-3 control-label">{{app_controller.translation.city}}</label>
+            <div class="col-lg-9">
+                {{#if controller.isView}}
+                    {{#if city}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{city}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value =  city type = "text" class = "form-control" disabled= controller.isView}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="transportListCode" class="col-lg-3 control-label">{{app_controller.translation.province}}</label>
+            <div class="col-lg-9">
+                {{#if controller.isView}}
+                    {{#if province}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{province}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value =  province type = "text" class = "form-control" disabled= controller.isView}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="transportListCode" class="col-lg-3 control-label">{{app_controller.translation.zipCode}}</label>
+            <div class="col-lg-9">
+                {{#if controller.isView}}
+                    {{#if zipCode}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{zipCode}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value =  zipCode type = "text" class = "form-control" disabled= controller.isView}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="transportListCode" class="col-lg-3 control-label">{{app_controller.translation.district}}</label>
+            <div class="col-lg-9">
+                {{#if controller.isView}}
+                    {{#if district}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{district}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value =  district type = "text" class = "form-control" disabled= controller.isView}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="transportListCode" class="col-lg-3 control-label">{{app_controller.translation.country}}</label>
+            <div class="col-lg-9">
+                {{#if controller.isView}}
+                    {{#if country}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{country}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value =  country type = "text" class = "form-control" disabled= controller.isView}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="transportListCode" class="col-lg-3 control-label">{{app_controller.translation.vatNumber}}</label>
+            <div class="col-lg-9">
+                {{#if controller.isView}}
+                    {{#if vat}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{vat}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value =  vat type = "text" class = "form-control" disabled= controller.isView}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="transportListCode" class="col-lg-3 control-label">{{app_controller.translation.phone}}</label>
+            <div class="col-lg-9">
+                {{#if controller.isView}}
+                    {{#if phone}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{phone}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value =  phone type = "text" class = "form-control" disabled= controller.isView}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="transportListCode" class="col-lg-3 control-label">{{app_controller.translation.fax}}</label>
+            <div class="col-lg-9">
+                {{#if controller.isView}}
+                    {{#if fax}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{fax}}</p>
+                    {{else}}
+                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                    {{/if}}
+                {{else}}
+                    {{input value =  fax type = "text" class = "form-control" disabled= controller.isView}}
+                {{/if}}
+            </div>
+        </div>
+
+
         <div class="form-group">
             <label for="transportListCode" class="col-lg-3 control-label">{{app_controller.translation.transportListCode}}</label>
             <div class="col-lg-9">

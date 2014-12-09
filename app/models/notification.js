@@ -7,13 +7,16 @@ export default DS.Model.extend({
     deadline: DS.attr('custom-time'),
     gracePeriod: DS.attr('custom-time'),
 
+    actionToken: DS.attr('string'),
+    detail: DS.attr('string'),
+    description: DS.attr('string'),
+    entity: DS.attr('string'),
+    entityType: DS.attr('string'),
     fromCompanyDetails: DS.attr('string'),
     fromUserDetails: DS.attr('string'),
+    name: DS.attr('string'),
     status: DS.attr('string'), //view/hide
     type: DS.attr('string'), //deadline/rating/link/certification
-    name: DS.attr('string'),
-    description: DS.attr('string'),
-    actionToken: DS.attr('string'),
 
     valueNum: DS.attr('number'),
 
@@ -23,6 +26,14 @@ export default DS.Model.extend({
         async: true }),
     company: DS.belongsTo('company', {
         async: true}),
+    docTemplate: DS.belongsTo('docTemplate', {
+        async: true}),
+    referringNotification: DS.belongsTo('notification', {
+        async: true,
+        inverse: 'childNotification'}),
+    childNotification: DS.belongsTo('notification', {
+        async: true,
+        inverse: 'referringNotification'}),
     files: DS.hasMany('files', {
         async: true}),
 

@@ -7,14 +7,13 @@ export default Ember.Route.extend({
 
         app_controller.set('records_company', this.store.find('company'));
 
-//        data.model = 'company';
-//        data.field = 'service';
-//        $.post('api/custom/tag?token=' + app_controller.token, data).then(function(response){
-//                app_controller.set('auto_suggest_Services', response);
-//
-//        }, function( response ){
-//            app_controller.send( 'message_manager', 'Failure', response );
-//        });
+        data.model = 'company';
+        data.field = 'service';
+        $.post('api/custom/tag?token=' + app_controller.token, data).then(function(response){
+                app_controller.set('auto_suggest_Services', response.tags);
+        }, function( response ){
+            app_controller.send( 'message_manager', 'Failure', response );
+        });
 
         controller.set('is_loading', false);
         controller.set('before_search', true);
@@ -23,9 +22,7 @@ export default Ember.Route.extend({
     actions: {
         search_records: function() {
             var self = this,app_controller =self.controllerFor('application'), controller = self.controllerFor('search-company.main'),
-                queryExpression = {}, searchPath = "sortBy";
-
-            queryExpression[searchPath] = 'code';
+                queryExpression = 'sortBy="code"';
             controller.set('is_loading', true);
             controller.set("shipmentList", null);
 
@@ -40,15 +37,23 @@ export default Ember.Route.extend({
 
             //recupero l'id del booking scelto
             if(controller.name != "" && controller.name != null ){
-                searchPath = "id"; queryExpression[searchPath] = controller.name;
+//                searchPath = "id"; queryExpression[searchPath] = controller.name;
+                queryExpression = queryExpression+'&id="'+controller.name+'"';
             }
             //recupero l'id del booking scelto
             if(controller.search_type != "" && controller.search_type != null ){
-                searchPath = "type"; queryExpression[searchPath] = controller.search_type;
+//                searchPath = "type"; queryExpression[searchPath] = controller.search_type;
+                queryExpression = queryExpression+'&type="'+controller.search_type+'"';
             }
             //recupero l'id del booking scelto
             if(controller.search_country != "" && controller.search_country != null ){
-                searchPath = "country"; queryExpression[searchPath] = controller.search_country;
+//                searchPath = "country"; queryExpression[searchPath] = controller.search_country;
+                queryExpression = queryExpression+'&country="'+controller.search_country+'"';
+            }
+
+            if(controller.search_services != "" && controller.search_services != null ){
+//                searchPath = "country"; queryExpression[searchPath] = controller.search_country;
+                queryExpression = queryExpression+'&services:{"or":'+controller.search_services+'}}';
             }
 
             this.store.findQuery('company', queryExpression).then(function(queryExpressResults){
