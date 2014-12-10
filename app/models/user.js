@@ -4,6 +4,7 @@ export default DS.Model.extend({
     birthDate: DS.attr('custom-time'),
 
     username:DS.attr('string'),
+    password:DS.attr('string'),
     firstName: DS.attr('string'),
     lastName: DS.attr('string'),
     phone: DS.attr('string'),
@@ -13,7 +14,7 @@ export default DS.Model.extend({
     curriculum: DS.attr('string'),
 
     patents: DS.attr('raw'),
-    emails: DS.attr('raw'),
+    email: DS.attr('string'),
     languages: DS.attr('raw'),
 
     company: DS.belongsTo('company'),

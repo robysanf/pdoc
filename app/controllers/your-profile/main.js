@@ -3,6 +3,17 @@ import Ember from 'ember';
 export default Ember.ObjectController.extend({
     needs: ['application'],
     app_controller: Ember.computed.alias('controllers.application'),
+    app_user_id: Ember.computed.alias('controllers.application.user_record'),
+    app_company_type: Ember.computed.alias('controllers.application.company_type'),
+
+
+    is_admin: function(){
+       return this.get('app_user_id').get('profile') === 'admin';
+    }.property('app_user_id'),
+    check_changePassword: function(){
+        return ( String(this.sub_record.get('id')) === String(this.get('app_user_id')) || this.get('is_admin') );
+    }.property('sub_record', 'app_user_id', 'is_admin'),
+
 
     isView: true,
 

@@ -75,7 +75,7 @@ export default Ember.Controller.extend({
                                 if( val.get('grants').get('length') === index + 1 ){
                                     //diverso perchè si tratta di un array; per metterlo su localstorage devo renderlo una stringa.
                                     //quando invece lo voglio buttare dentro application lo devo ritrasformare in array
-                                    localStorage["user_record"] = JSON.stringify(queryExpression);
+                                    localStorage["user_grants"] = JSON.stringify(queryExpression);
                                     self.get('controllers.application').set('user_record', queryExpression);
 
                                     localStorage["grantsValue"] = JSON.stringify(response.grants);

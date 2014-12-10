@@ -35,9 +35,12 @@
                 {{/if}}
             </li>
             </ul>
-            <ul class="nav navbar-nav">
-                <li>{{#link-to 'admin/main' company_id}} {{controller.translation.admin}} {{/link-to}}</li>
-            </ul>
+            {{#if is_certifier}}
+                <ul class="nav navbar-nav">
+                    <li>{{#link-to 'admin/main' company_id}} {{controller.translation.admin}} {{/link-to}}</li>
+                </ul>
+            {{/if}}
+
             <ul class="nav navbar-nav">
                 <li>{{#link-to 'account/main' company_id}} {{controller.translation.account}} {{/link-to}}</li>
             </ul>

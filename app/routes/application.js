@@ -12,6 +12,14 @@ export default Ember.Route.extend({
             app_controller.send('logout');
         }
 
+        if( app_controller.user_id ) {
+            this.store.find('user', app_controller.user_id).then(function( val ){
+                app_controller.set('user_record', val);
+            });
+        } else {
+            app_controller.send('logout');
+        }
+
         /** se non è presente in memoria il token l'utente viene ri-direzionato alla pagina di login **/
         if ( !app_controller.token ){
             this.redirectToLogin();

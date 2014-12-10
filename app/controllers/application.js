@@ -13,7 +13,7 @@ export default Ember.Controller.extend({
     /*****************************
      * LOCAL STORAGE
      */
-    user_record: JSON.parse(localStorage["user_record"] ? localStorage["user_record"] : "[\" \"]"),
+    user_grants: JSON.parse(localStorage["user_grants"] ? localStorage["user_grants"] : "[\" \"]"),
 
     company_id: localStorage['company_id'],
     token: localStorage['token'],
@@ -42,6 +42,10 @@ export default Ember.Controller.extend({
 
     formData: new FormData(),
     formData_size: null,
+
+    is_certifier: function(){
+        return ( this.get('company_type') === 'certifier' );
+    }.property('company_type'),
     /**********************
      auto-suggest
      */
@@ -126,7 +130,7 @@ export default Ember.Controller.extend({
         list: "Lista", vehicleDetails: "Dettagli veicolo", clerksList: 'Lista impiegati', clerk: 'Impiegato', trailersList: 'Lista rimorchi', details:'Dettagli', username: 'Username',
         birthDate: 'Data di nascita', title: 'Titolo', text: 'Testo', loadImage: 'Carica immagine', attached: 'Allega', documents: 'Documenti', validityDate: 'Inizio validità', deadLine: 'Scadenza',
         returnToList: 'Torna alla lista', files: 'Files', filesToDownload: 'Files da scaricare', accept:'Accetta', sendRequest:'Invia richiesta', search: 'Cerca', expiration: 'Scadenza', street: 'Via', district:'Regione',
-        city: 'Città', province: 'Provincia', zipCode: 'CAP', vatNumber: 'Codice fiscale', fax: 'Fax', totalWeight: 'Peso compessivo'
+        city: 'Città', province: 'Provincia', zipCode: 'CAP', vatNumber: 'Codice fiscale', fax: 'Fax', totalWeight: 'Peso compessivo', email: 'Email'
     },
     lan_en: {
         publicToYourContactsNetwork: 'Public to your contacts network', companyDetails: 'Company Details', invoiceNumber: 'Invoice number', rate: 'Rate', limit: 'Limit', goodsConfiscation: 'Goods Confisc.', vehicleConfiscation: 'Vehicle Confisc.',
@@ -146,7 +150,7 @@ export default Ember.Controller.extend({
         clerk: 'Clerk', trailersList: 'Trailers list', details:'Details', username: 'Username', birthDate: 'Birth date', title: 'Title', text: 'Testo', loadImage: 'Load image', attached: 'Attached',
         documents: 'Documents', validityDate: 'Validity date', deadLine: 'DeadLine', template: 'Template', returnToList: 'Return to list', files: 'Files', accept:'Accept',
         filesToDownload: 'Files to download', sendRequest:'Send request', searchCompanies: 'Search companies', search: 'Search', expiration: 'Expiration', street: 'Street', district: 'District',  city: 'City',
-        province: 'Province', zipCode: 'Zip code', vatNumber: 'Vat number', fax: 'Fax', totalWeight: 'Total weight'
+        province: 'Province', zipCode: 'Zip code', vatNumber: 'Vat number', fax: 'Fax', totalWeight: 'Total weight', email: 'Email'
     },
 
     actions:{

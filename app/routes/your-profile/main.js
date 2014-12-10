@@ -279,14 +279,15 @@ export default Ember.Route.extend({
                     });
                 } else {
                     new_record = this.store.createRecord('user', {
-                        type: 'powerUser',
+                        type: 'user',
                         company: record_company,
                         profile: 'driver'
                     });
+
                     _this.controller.set( 'isView', false );
                     _this.controller.set( 'sub_record', new_record );
-                }
 
+                }
             } else if ( _this.controller.tabList.clerk ) {
                 new_record = this.store.createRecord('user', {
                     type: 'powerUser',
