@@ -13,7 +13,7 @@ export default DS.Model.extend({
 
     canRemove: DS.attr('string'),
     canEdit: DS.attr('string'),
-
+    publishableKey: DS.attr('string'),
     name: DS.attr('string'),
     vat: DS.attr('string'),                  //partita iva
     transportListCode: DS.attr('string'),    //codice albo
@@ -80,6 +80,15 @@ export default DS.Model.extend({
     /****************************************************
      *      PROPERTIES
      */
+    totalWeight: function() {
+        var totWeight = 0, weights = this.get('configurations');
+
+        weights.forEach( function(val) {
+            totWeight += Number(val.get('valueNum'));
+        });
+
+        return totWeight;
+    }.property('configurations.@each.valueNum'),
     hideCardNumber: function() {
         return '**************' + this.get('cardNumber');
     }.property('cardNumber'),

@@ -5,7 +5,9 @@ export default Ember.ObjectController.extend({
     app_controller: Ember.computed.alias('controllers.application'),
 
     view_new_field: false,
+    view_totWeight: true,
     mode_view: true,
+
     new_record: null,
     record_to_delete: null,
     main_record: null,

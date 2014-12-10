@@ -145,12 +145,12 @@
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{input value = controller.sub_record.password type = "password" class = 'form-control' disabled= controller.isView}}
+                    {{input value = controller.sub_record.password type = "password" class = 'form-control' disabled= true}}
                 {{/if}}
             </div>
             {{#unless controller.isView}}
                 <div class="col-lg-3">
-                    <button type="button" class="btn btn-primary btn-group-justified" {{bind-attr disabled = controller.isView}}>{{app_controller.translation.changePassword}}</button>
+                    <button type="button" class="btn btn-primary btn-group-justified" {{action 'open_modal' 'your-profile/modals/change-password' controller.sub_record}} {{bind-attr disabled = controller.isView}}>{{app_controller.translation.changePassword}}</button>
                 </div>
             {{/unless}}
         </div>

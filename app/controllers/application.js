@@ -117,7 +117,7 @@ export default Ember.Controller.extend({
         more: 'Dettagli', deadline: 'Scadenza', value: 'Valore', certificate: 'Certifica', download: 'Scarica', hide: 'Nascondi', note: 'Note', highlight: 'In evidenza',
         showHideNotifications: 'Mostra le notifiche nascoste...', linkRequests: 'Richieste di connessione', notifications: 'Notifiche', save: 'Salva', type: 'Tipo',
         edit: 'Modifica', country: 'Paese', logo: 'Logo', links: 'Links', new: 'Nuovo', return: 'Indietro', chassisNumber: 'Targa', registrationYear: 'Anno di immatricolazione',
-        configuration: 'Configurazione', category: 'Categoria', tare: 'Tara', weight: 'Peso complessivo', linksRequest: 'Richieste di collegamento', generals: 'Generali',
+        configuration: 'Configurazione', category: 'Categoria', tare: 'Tara', weight: 'peso', linksRequest: 'Richieste di collegamento', generals: 'Generali',
         model: 'Modello', brand: 'Marca', view: 'Visualizza', goTo: 'Vai', delete: 'Cancella', lastName: 'Cognome', firstName: 'Nome', curriculum: 'Curriculum', searchCompanies: 'Ricerca',
         languages: 'Lingue', skype: 'Contatto Skype', phone: 'Telefono', patents: 'Patenti', language: 'Lingua', english: 'Inglese', italian: 'Italiano', yourProfile: 'Il tuo profilo', name: "Nome",
         profile: "Profilo", company: 'Società', transportListCode: "Num. iscrizione all'albo", chamberOfCommerce: "Camera di commercio", emails: "E-mail", password: "Password",
@@ -126,7 +126,7 @@ export default Ember.Controller.extend({
         list: "Lista", vehicleDetails: "Dettagli veicolo", clerksList: 'Lista impiegati', clerk: 'Impiegato', trailersList: 'Lista rimorchi', details:'Dettagli', username: 'Username',
         birthDate: 'Data di nascita', title: 'Titolo', text: 'Testo', loadImage: 'Carica immagine', attached: 'Allega', documents: 'Documenti', validityDate: 'Inizio validità', deadLine: 'Scadenza',
         returnToList: 'Torna alla lista', files: 'Files', filesToDownload: 'Files da scaricare', accept:'Accetta', sendRequest:'Invia richiesta', search: 'Cerca', expiration: 'Scadenza', street: 'Via', district:'Regione',
-        city: 'Città', province: 'Provincia', zipCode: 'CAP', vatNumber: 'Codice fiscale', fax: 'Fax'
+        city: 'Città', province: 'Provincia', zipCode: 'CAP', vatNumber: 'Codice fiscale', fax: 'Fax', totalWeight: 'Peso compessivo'
     },
     lan_en: {
         publicToYourContactsNetwork: 'Public to your contacts network', companyDetails: 'Company Details', invoiceNumber: 'Invoice number', rate: 'Rate', limit: 'Limit', goodsConfiscation: 'Goods Confisc.', vehicleConfiscation: 'Vehicle Confisc.',
@@ -138,7 +138,7 @@ export default Ember.Controller.extend({
         value: 'Value', certificate: 'Certificate', download: 'Download', hide: 'Hide', note: 'Note', highlight: 'Highlight', showHideNotifications: 'Show hidden notifications...',
         linkRequests: 'Link requests', notifications: 'Notifications', save: 'Save', type: 'Type', edit: 'Edit', country: 'Country', logo: 'Logo', links: 'Links', new: 'New',
         return: 'Return', chassisNumber: 'Chassis number', registrationYear: 'Registration year', configuration: 'Configuration', category: 'Category', tare: 'Tare', certifier: 'Certifier',
-        weight: 'Weight', model: 'Model', brand: 'Brand', view: 'View',goTo: 'Go to', delete: 'Delete', lastName: 'Last Name', firstName: 'First Name', curriculum: 'Curriculum',
+        weight: 'weight', model: 'Model', brand: 'Brand', view: 'View',goTo: 'Go to', delete: 'Delete', lastName: 'Last Name', firstName: 'First Name', curriculum: 'Curriculum',
         languages: 'Languages', skype: 'Skype', phone: 'Phone', patents: 'Patents', language: 'Language', english: 'English', italian: 'Italian', yourProfile: 'Your Profile', name: "Name",
         profile: "Profile", company: 'Company', transportListCode: "Transport List Code", chamberOfCommerce: "Chamber Of Commerce", emails: "E-mail", password: "Password", description: "Description",
         services: "Services", segments: "Segments", areas: "Areas", driver: 'Driver', drivers: 'Drivers', truck: 'Truck', trucks: 'Trucks', trailer: 'Trailer', trailers: 'Trailers', clerks: 'Clerks',
@@ -146,7 +146,7 @@ export default Ember.Controller.extend({
         clerk: 'Clerk', trailersList: 'Trailers list', details:'Details', username: 'Username', birthDate: 'Birth date', title: 'Title', text: 'Testo', loadImage: 'Load image', attached: 'Attached',
         documents: 'Documents', validityDate: 'Validity date', deadLine: 'DeadLine', template: 'Template', returnToList: 'Return to list', files: 'Files', accept:'Accept',
         filesToDownload: 'Files to download', sendRequest:'Send request', searchCompanies: 'Search companies', search: 'Search', expiration: 'Expiration', street: 'Street', district: 'District',  city: 'City',
-        province: 'Province', zipCode: 'Zip code', vatNumber: 'Vat number', fax: 'Fax'
+        province: 'Province', zipCode: 'Zip code', vatNumber: 'Vat number', fax: 'Fax', totalWeight: 'Total weight'
     },
 
     actions:{

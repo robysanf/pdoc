@@ -10,6 +10,8 @@ export default Ember.ObjectController.extend({
     isView_docList: true,
     isView_docDetails: true,
 
+    rating_type: null,
+
     main_record: null,
     record_to_delete: null,
     record_certifier: null,

@@ -50,7 +50,7 @@ export default Ember.Controller.extend({
                     self.get('controllers.application').set('company_type', response.company_type);
                     self.get('controllers.application').set('user_id', response.user_id);
                     //self.get('controllers.application').set('username', data.username);
-                    self.get('controllers.application').set('is_admin', response.isAdmin);
+//                    self.get('controllers.application').set('is_admin', response.isAdmin);
 
                     self.store.find('company', response.company_id ).then(function( val ){
                         self.get('controllers.application').set('company_record', val);
@@ -58,35 +58,35 @@ export default Ember.Controller.extend({
                         self.get('controllers.application').company_record.reload();
                     });
 
-//                    self.store.find('user', response.user_id).then(function(val){
-//                        var json, queryExpression = {}, name = '';
 
-//                        val.get('grants').then(function(grants){
-//                            grants.forEach(function(grant, index){
-//                                name = grant.get('value');
-//
-//                                queryExpression[name] = grant.get('access');
-//                                queryExpression[name + '_new'] = (grant.get('accessNew') !== 'None');
-//                                queryExpression[name + '_view'] = (grant.get('accessView') !== 'None');
-//                                queryExpression[name + '_edit'] = (grant.get('accessEdit') !== 'None');
-//                                queryExpression[name + '_remove'] = (grant.get('accessRemove') !== 'None');
-//
-//                                if( val.get('grants').get('length') === index + 1 ){
-//                                    //diverso perchè si tratta di un array; per metterlo su localstorage devo renderlo una stringa.
-//                                    //quando invece lo voglio buttare dentro application lo devo ritrasformare in array
-//                                    localStorage["user_record"] = JSON.stringify(queryExpression);
-//                                    self.get('controllers.application').set('user_record', queryExpression);
-//
-////                                    localStorage["grantsValue"] = JSON.stringify(response.grants);
-////                                    self.get('controllers.application').set('grants_value', response.grants);
+                    self.store.find('user', response.user_id).then(function(val){
+                        var json, queryExpression = {}, name = '';
 
-                    self.transitionToRoute('dashboard/main');
-                    self.get('controllers.application').set('is_login', false);
-//                                }
-//                            });
-//                        });
-//                    });
-//
+                        val.get('grants').then(function(grants){
+                            grants.forEach(function(grant, index){
+                                name = grant.get('value');
+
+                                queryExpression[name] = grant.get('access');
+                                queryExpression[name + '_new'] = (grant.get('accessNew') !== 'None');
+                                queryExpression[name + '_view'] = (grant.get('accessView') !== 'None');
+                                queryExpression[name + '_edit'] = (grant.get('accessEdit') !== 'None');
+                                queryExpression[name + '_remove'] = (grant.get('accessRemove') !== 'None');
+
+                                if( val.get('grants').get('length') === index + 1 ){
+                                    //diverso perchè si tratta di un array; per metterlo su localstorage devo renderlo una stringa.
+                                    //quando invece lo voglio buttare dentro application lo devo ritrasformare in array
+                                    localStorage["user_record"] = JSON.stringify(queryExpression);
+                                    self.get('controllers.application').set('user_record', queryExpression);
+
+                                    localStorage["grantsValue"] = JSON.stringify(response.grants);
+                                    self.get('controllers.application').set('grantsValue', response.grants);
+
+                                    self.transitionToRoute('dashboard/main');
+                                    self.get('controllers.application').set('is_login', false);
+                                }
+                            });
+                        });
+                    });
                 }
             }, function(){
                 new PNotify({

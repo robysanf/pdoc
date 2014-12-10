@@ -1,4 +1,18 @@
 <div class="row">
+    <div class="col-lg-7"></div>
+    <div class="col-lg-4">
+        {{#unless publishableKey}}
+            <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>Connect with stripe!</strong>
+                <a href="#" {{action "stripe_connect_to" app_controller.company_id}} style="color: #ffffff;">Click here to connect.</a>
+                <!--<a href='https://connect.stripe.com/oauth/authorize?response_type=code&client_id={{!{{unbound app_controller.company_id}}' class="alert-link">Click here to connect.</a>-->
+            </div>
+        {{/unless}}
+    </div>
+    <div class="col-lg-1"></div>
+</div>
+<div class="row">
     <div class="col-lg-1"></div>
     <div class="col-lg-10">
         <form class="form-horizontal">
@@ -79,7 +93,6 @@
                         </div>
                     </div>
                 {{/unless}}
-
             </fieldset>
         </form>
     </div>

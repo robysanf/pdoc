@@ -130,22 +130,35 @@
 </div>
 
 {{#if controller.tabList.general}}
-    <form class="form-horizontal">
-        <fieldset>
-            <div class="form-group">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-10"><legend>{{app_controller.translation.weight}}</legend> </div>
-                <div class="col-lg-1"></div>
-            </div>
-            {{#each weight in configurations}}
-                <div class="form-group">
-                    <label class="col-lg-3 control-label">{{weight.name}}</label>
-                    <div class="col-lg-6">
-                        {{input value =  weight.valueNum type = "password" class = 'form-control' disabled= controller.isView}}
-                    </div>
-                </div>
-            {{/each}}
 
-        </fieldset>
-    </form>
+    <div class="panel panel-default" style="margin-top: 20px">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-1">
+                    <!-------------------- pencil ---------------------->
+                    {{#if controller.view_totWeight}}
+                        <button class="btn btn-primary btn-50" {{action 'change_mode' 'view_totWeight' false}}><span class="glyphicon glyphicon-pencil"></span></button>
+
+                        <!-------------------- ok ---------------------->
+                    {{else}}
+                        <button class="btn btn-primary btn-50" {{action 'set_record' configurations 'view_totWeight' true totalWeight}}><span class="glyphicon glyphicon-ok"></span></button>
+                    {{/if}}
+                </div>
+                <div class="col-lg-11"><legend>{{app_controller.translation.totalWeight}} {{totalWeight}} %</legend></div>
+            </div>
+            <div class="row">
+                {{#each weight in configurations}}
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label class="control-label" for="focusedInput">{{weight.name}} &nbsp; {{app_controller.translation.weight}}</label>
+                            <div class="input-group">
+                                {{input value =  weight.valueNum type = "number" class = 'form-control' disabled= controller.view_totWeight}}
+                                <span class="input-group-addon">%</span>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
 {{/if}}

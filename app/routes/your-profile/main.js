@@ -383,7 +383,7 @@ export default Ember.Route.extend({
          * @param record_to_delete
          * @param record
          */
-        open_modal: function( path, record_to_delete, record) {
+        open_modal: function( path, record_to_delete, record, type) {
             var _this = this, app_controller = _this.controllerFor('application'), controller = _this.controllerFor('your-profile/main');
 
             switch (path){
@@ -492,6 +492,26 @@ export default Ember.Route.extend({
             }, function( response ){
                 app_controller.send( 'message_manager', 'Failure', response );
             });
+        },
+
+        custom_showRating: function( record_id, type ){
+            var _this = this, data = _this.getProperties(), app_controller = _this.controllerFor('application');
+
+            data.company = record_id;
+            switch ( type ){
+                case 'service':
+                    $.post('api/custom/companyServiceScore?token=' + app_controller.token, data).then(function(response){
+                    }, function( response ){
+                        new PNotify({ title: 'Warning', text: response, type: 'error', delay: 2000 });
+                    });
+                    break;
+                case 'certification':
+                    $.post('api/custom/companyCertificationScore?token=' + app_controller.token, data).then(function(response){
+                    }, function(response){
+                        new PNotify({ title: 'Warning', text: response, type: 'error', delay: 2000 });
+                    });
+                    break;
+            }
         }
     }
 });

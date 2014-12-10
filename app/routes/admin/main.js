@@ -60,10 +60,24 @@ export default Ember.Route.extend({
             record.save();
         },
 
-        set_record: function( record, attr, value ){
-            var _this = this;
+        set_record: function( record, attr, value, check ){
+            var _this = this, app_controller = _this.controllerFor('application');
 
             switch (attr){
+                case 'view_totWeight':
+                    if( check > 100 ){
+                        app_controller.send('message_manager', 'Failure', "Attention: Total weight is bigger than 100.");
+                    } else {
+                        record.forEach( function(sub_record, index){
+                            sub_record.save().then(function(){
+                                if( record.get('length') === index+1 ){
+                                    _this.send('change_mode', attr, value );
+                                }
+                            });
+                        });
+                    }
+
+                    break;
                 case 'view_new_field':
                     record.save().then(function(){
                         _this.send('change_mode', attr, value );
