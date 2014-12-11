@@ -1,6 +1,8 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
+    canEdit: DS.attr('boolean'),
+    canRemove: DS.attr('boolean'),
     isLimited: DS.attr('boolean'),
 
     limit: DS.attr('number'),
@@ -21,5 +23,15 @@ export default DS.Model.extend({
         inverse: 'ratings'
     }),
     docTemplate: DS.belongsTo('doc-template'),
-    document: DS.belongsTo('document')
+    document: DS.belongsTo('document'),
+
+    /**************************************
+     * PROPERTIES
+     * */
+    isTypeService: function(){
+       return (this.get('type') === 'service');
+    }.property('type'),
+    isTypeCertification: function(){
+        return (this.get('type') === 'certification');
+    }.property('type')
 });

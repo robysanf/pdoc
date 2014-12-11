@@ -38,7 +38,7 @@ export default Ember.Route.extend({
             //recupero l'id del booking scelto
             if(controller.name != "" && controller.name != null ){
 //                searchPath = "id"; queryExpression[searchPath] = controller.name;
-                queryExpression = queryExpression+'&id="'+controller.name+'"';
+                queryExpression = queryExpression+'&id='+controller.name;
             }
             //recupero l'id del booking scelto
             if(controller.search_type != "" && controller.search_type != null ){
@@ -117,10 +117,9 @@ export default Ember.Route.extend({
             var _this = this, app_controller = _this.controllerFor('application');
             switch ( path ) {
                 case 'your-profile/main':
+
+
                     _this.transitionTo( path, record );
-//                    this.controller.set( 'sub_record', record );
-//                    this.controller.set( 'transition_to_list', false );
-//                    this.send('set_variable', var1, value1);
                     break;
             }
         }

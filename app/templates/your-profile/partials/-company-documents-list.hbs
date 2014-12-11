@@ -2,7 +2,7 @@
     <fieldset>
         <div class="form-group">
             <div class="col-lg-1">
-                {{#if certifier}}
+                {{#if can_create_doc}}
                     <button class="btn btn-primary btn-50" {{action 'create_record' this 'isView_docList' false 'isView_docDetails' false}}><span class="glyphicon glyphicon-plus"></span></button>
                 {{/if}}
             </div>
@@ -36,7 +36,11 @@
                                     {{/each}}
                                 </td>
                                 <td><a {{action 'custom_notifyDocument' document.id}} style="cursor: pointer"><span class="glyphicon glyphicon-send"></span></a></td>
-                                <td><a {{action 'open_modal' 'your-profile/modals/delete-record' document this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                {{#if document.canRemove}}
+                                    <td><a {{action 'open_modal' 'your-profile/modals/delete-record' document this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                {{else}}
+                                    <td></td>
+                                {{/if}}
                             </tr>
                         {{/if}}
                     {{/each}}

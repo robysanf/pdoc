@@ -1,6 +1,9 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
+    canEdit: DS.attr('boolean'),
+    canRemove: DS.attr('boolean'),
+
     cardNumber:DS.attr('number'),
     certificationCredit:DS.attr('number'),
     certificationScore:DS.attr('number'),
@@ -11,8 +14,6 @@ export default DS.Model.extend({
     serviceScore:DS.attr('number'),
     visualizationCredit:DS.attr('number'),
 
-    canRemove: DS.attr('string'),
-    canEdit: DS.attr('string'),
     publishableKey: DS.attr('string'),
     name: DS.attr('string'),
     vat: DS.attr('string'),                  //partita iva

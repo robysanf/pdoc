@@ -9,7 +9,10 @@
                     <div class="form-group">
                         <div class="col-lg-1">
                             <!-------------------- altre tab - cambio button tra edit/view/add ---------------------->
-                            <button class="btn btn-primary btn-50" {{action 'create_record' this 'your-profile/main' false}}><span class="glyphicon glyphicon-plus"></span></button>
+                            {{#if can_edit_company}}
+                                <button class="btn btn-primary btn-50" {{action 'create_record' this 'your-profile/main' false}}><span class="glyphicon glyphicon-plus"></span></button>
+                            {{/if}}
+
                         </div>
                         <div class="col-lg-11"><legend>{{app_controller.translation.details}}</legend> </div>
                     </div>
@@ -32,7 +35,12 @@
                                             <td {{action 'transition_to' 'your-profile/partials/-user-field' user 'isView' true}} style="cursor: pointer">{{user.firstName}}</td>
                                             <td {{action 'transition_to' 'your-profile/partials/-user-field' user 'isView' true}} style="cursor: pointer">{{user.lastName}}</td>
 
-                                            <td><a {{action 'open_modal' 'your-profile/modals/delete-record' user this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                            {{#if user.canRemove}}
+                                                <td><a {{action 'open_modal' 'your-profile/modals/delete-record' user this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                            {{else}}
+                                                <td></td>
+                                            {{/if}}
+
                                         </tr>
                                     {{/if}}
                                 {{/each}}

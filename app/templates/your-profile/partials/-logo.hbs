@@ -1,3 +1,5 @@
+
+{{#if can_edit_company}}   <!-- può modificare solo il proprietario della company o i clerks-->
 <div class="row">
     <div class="col-lg-1"></div>
     <div class="col-lg-10">
@@ -17,6 +19,7 @@
     </div>
     <div class="col-lg-1"></div>
 </div>
+{{/if}}
 
 <div class="row">
     <div class="col-lg-1"></div>
@@ -48,44 +51,50 @@
         {{/if}}
     </div>
     <div class="col-lg-3">
-        {{#if controller.tabList.company}}
-            {{#if serviceScore}}
+        {{#if is_admin_or_clerk}}
+            {{#if controller.tabList.company}}
+                {{#if serviceScore}}
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><h3>Service rating</h3></div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <a {{action 'open_modal' 'your-profile/modals/show-rating' null this 'service'}} style="cursor: pointer"><span class="label label-primary pull-right" style="margin-right: 8px">Show 14 ratings</span>  </a>
+                            </div>
+                            <div class="row">
+                                {{speed-meter speed=10 target='speed1' rateSize=55  custom_height=130}}
+                            </div>
+
+                        </div>
+                    </div>
+                {{else}}
+                    {{#view 'tooltip'}}
+                        <button type="button" class="btn btn-primary btn-group-justified" data-toggle="tooltip" data-placement="left" {{action 'custom_showRating' this.id 'service'}} title="You will be charged 1 credit to see the rating for 15 days.">Show service rating</button>
+                    {{/view}}
+                {{/if}}
+            {{/if}}
+        {{/if}}
+
+    </div>
+    <div class="col-lg-3">
+        {{#if is_admin_or_clerk}}
+            {{#if certificationScore}}
                 <div class="panel panel-primary">
-                    <div class="panel-heading"><h3>Service rating</h3></div>
+                    <div class="panel-heading"><h3>Certific. rating</h3></div>
                     <div class="panel-body">
                         <div class="row">
-                            <a {{action 'open_modal' 'your-profile/modals/show-rating' null this 'service'}} style="cursor: pointer"><span class="label label-primary pull-right" style="margin-right: 8px">Show 14 ratings</span>  </a>
+                            <a {{action 'open_modal' 'your-profile/modals/show-certification-rating' null this 'certification'}} style="cursor: pointer"><span class="label label-primary pull-right" style="margin-right: 8px">Show 14 ratings</span></a>
                         </div>
                         <div class="row">
-                            {{speed-meter speed=10 target='speed1' rateSize=55  custom_height=130}}
+                            {{speed-meter speed=43 target='speed2' rateSize=55  custom_height=130}}
                         </div>
-
                     </div>
                 </div>
             {{else}}
                 {{#view 'tooltip'}}
-                    <button type="button" class="btn btn-primary btn-group-justified" data-toggle="tooltip" data-placement="left" {{action 'custom_showRating' this.id 'service'}} title="You will be charged 1 credit to see the rating for 15 days.">Show service rating</button>
+                    <button type="button" class="btn btn-primary btn-group-justified" data-toggle="tooltip" data-placement="right" title="You will be charged 1 credit to see the rating for 15 days." {{action 'custom_showRating' this.id 'certification'}}>Show certification rating</button>
                 {{/view}}
             {{/if}}
-        {{/if}}
-    </div>
-    <div class="col-lg-3">
-        {{#if certificationScore}}
-            <div class="panel panel-primary">
-                <div class="panel-heading"><h3>Certific. rating</h3></div>
-                <div class="panel-body">
-                    <div class="row">
-                        <a {{action 'open_modal' 'your-profile/modals/show-rating' null this 'certification'}} style="cursor: pointer"><span class="label label-primary pull-right" style="margin-right: 8px">Show 14 ratings</span></a>
-                    </div>
-                    <div class="row">
-                        {{speed-meter speed=43 target='speed2' rateSize=55  custom_height=130}}
-                    </div>
-                </div>
-            </div>
-        {{else}}
-            {{#view 'tooltip'}}
-                <button type="button" class="btn btn-primary btn-group-justified" data-toggle="tooltip" data-placement="right" title="You will be charged 1 credit to see the rating for 15 days." {{action 'custom_showRating' this.id 'certification'}}>Show certification rating</button>
-            {{/view}}
+
         {{/if}}
 
     </div>

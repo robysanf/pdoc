@@ -2,6 +2,8 @@ import DS from 'ember-data';
 var attr = DS.attr;
 
 export default DS.Model.extend({
+    canEdit: DS.attr('boolean'),
+    canRemove: DS.attr('boolean'),
     goodsConfiscation: attr('boolean'),    //confisca
     vehicleConfiscation: attr('boolean'),    //sequestro
     fiscalResponsibility: attr('boolean'),   //responsabilità economica

@@ -1,20 +1,22 @@
 <div class="form-horizontal">
 <fieldset>
 <!-------------------- tab company - cambio button tra edit/view ---------------------->
-<div class="form-group">
-    <div class="col-lg-1">
+{{#if can_edit_company}}   <!-- può modificare solo il proprietario della company o i clerks-->
+    <div class="form-group">
+        <div class="col-lg-1">
+            <!-------------------- pencil ---------------------->
+            {{#if controller.isView}}
+                <button class="btn btn-primary btn-50" {{action 'change_state' 'your-profile/main' false}}><span class="glyphicon glyphicon-pencil"></span></button>
 
-        <!-------------------- pencil ---------------------->
-        {{#if controller.isView}}
-            <button class="btn btn-primary btn-50" {{action 'change_state' 'your-profile/main' false}}><span class="glyphicon glyphicon-pencil"></span></button>
-
-            <!-------------------- ok ---------------------->
-        {{else}}
-            <button class="btn btn-primary btn-50" {{action 'set_record' 'company_details' 'isView' true app_controller.company_record}}><span class="glyphicon glyphicon-ok"></span></button>
-        {{/if}}
+                <!-------------------- ok ---------------------->
+            {{else}}
+                <button class="btn btn-primary btn-50" {{action 'set_record' 'company_details' 'isView' true app_controller.company_record}}><span class="glyphicon glyphicon-ok"></span></button>
+            {{/if}}
+        </div>
+        <div class="col-lg-11"><legend>{{app_controller.translation.details}}</legend></div>
     </div>
-    <div class="col-lg-11"><legend>{{app_controller.translation.details}}</legend></div>
-</div>
+{{/if}}
+
 
 <!-------------------- form company ---------------------->
 <div class="form-group">

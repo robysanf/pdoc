@@ -47,7 +47,39 @@ export default Ember.Route.extend({
     },
 
     model: function( company ) {
-        return this.store.find('company', company.company_id);
+        var _this = this, app_controller = _this.controllerFor('application');
+        app_controller.set('temp_company_id', company.company_id);
+
+        return _this.store.find('company', company.company_id);
+
+
+    },
+
+    afterModel: function(){
+        var _this = this, app_controller = _this.controllerFor('application'),
+            isLinked = false;
+        /******************************************************************************
+        * CONTROLLO PER LA CREAZIONE DI DOCUMENTI SU COMPANY
+        *
+        * solo utente di tipo clerk/admin associato ad una company linked o proprietaria
+        * */
+        if( String( app_controller.company_id ) === String( app_controller.temp_company_id ) ){         // se l'utente è associato alla company
+            app_controller.set('isLinked', true);
+        } else {
+            _this.store.find( 'company', app_controller.company_id ).then(function( companyRecord ){
+                companyRecord.get('links').then(function( linkedCompanies ){
+                    linkedCompanies.filter(function( company_record, index ){
+                        if( String(company_record.get('id')) === String(app_controller.temp_company_id) ){      //se la company è di tipo linked
+                            isLinked = true;
+                        }
+
+                        if( index+1 === linkedCompanies.get('length')){
+                            app_controller.set('isLinked', isLinked);
+                        }
+                    });
+                });
+            });
+        }
     },
 
     actions: {
@@ -115,7 +147,7 @@ export default Ember.Route.extend({
                    this.send('set_variable', var1, value1);
                    break;
                case 'your-profile/partials/-company-document-edit':
-                   this.controller.set( 'sub_record', record );
+                   this.controller.set( 'sub_record_document', record );
 
                    app_controller.company_record.get('certifier').then(function( record ){
                        app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id') }));
@@ -224,6 +256,7 @@ export default Ember.Route.extend({
                 var today = new Date();
 
                 new_record = this.store.createRecord('document', {
+                    canEdit: true,
                     entity: record_company.get('id'),
                     entityType: 'company',
                     date: moment(today).format(),

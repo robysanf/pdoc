@@ -9,7 +9,7 @@
                     <div class="form-group">
                         <div class="col-lg-1">
                             <!-------------------- altre tab - cambio button tra edit/view/add ---------------------->
-                            {{#if is_admin}}
+                            {{#if can_edit_company}}
                                 <button class="btn btn-primary btn-50" {{action 'create_record' this 'your-profile/main' false}}><span class="glyphicon glyphicon-plus"></span></button>
                             {{/if}}
                         </div>
@@ -37,8 +37,12 @@
                                             <td {{action 'transition_to' 'your-profile/partials/-vehicle-field' vehicle 'isView' true}} style="cursor: pointer">{{vehicle.brand}}</td>
                                             <td {{action 'transition_to' 'your-profile/partials/-vehicle-field' vehicle 'isView' true}} style="cursor: pointer">{{vehicle.model}}</td>
                                             <td {{action 'transition_to' 'your-profile/partials/-vehicle-field' vehicle 'isView' true}} style="cursor: pointer">{{vehicle.category}}</td>
+                                            {{#if vehicle.canRemove}}
+                                                <td><a {{action 'open_modal' 'your-profile/modals/delete-record' vehicle this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                            {{else}}
+                                                <td></td>
+                                            {{/if}}
 
-                                            <td><a {{action 'open_modal' 'your-profile/modals/delete-record' vehicle this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
                                         </tr>
                                     {{/if}}
                                 {{/each}}

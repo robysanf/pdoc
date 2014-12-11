@@ -1,6 +1,9 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
+    canEdit: DS.attr('boolean'),
+    canRemove: DS.attr('boolean'),
+
     date: DS.attr('custom-time'),
     validityDate: DS.attr('custom-time'),
     deadline: DS.attr('custom-time'),

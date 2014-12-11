@@ -10,35 +10,27 @@ export default Ember.Controller.extend({
     ],
 
     company_record: null,
+    user_record: null,
+
+    temp_company_id: null,
     /*****************************
      * LOCAL STORAGE
      */
     user_grants: JSON.parse(localStorage["user_grants"] ? localStorage["user_grants"] : "[\" \"]"),
 
-    company_id: localStorage['company_id'],
     token: localStorage['token'],
+    company_id: localStorage['company_id'],
     company_type: localStorage['company_type'],
     user_id: localStorage['user_id'],
-    //username: localStorage['username'],  //univoco per un utente
-    //userProfile: localStorage['userProfile'],
-    //companyProfile: localStorage['companyProfile'],
-    //selectedDepot: localStorage['selectedDepot'],
-    //isAdmin: localStorage['isAdmin'],
+    user_type: localStorage['user_type'],
+    is_admin: localStorage['is_admin'],
 
+    tokenChanged: function() {localStorage.token = this.token;this.app_init.set('token', this.token);}.observes('token'),
     company_idChanged: function() { localStorage.company_id = this.company_id; }.observes('company_id'),
-    tokenChanged: function() {
-        localStorage.token = this.token;
-        this.app_init.set('token', this.token);
-    }.observes('token'),
-
     company_typeChanged: function() { localStorage.company_type = this.company_type; }.observes('company_type'),
     user_idChanged: function() { localStorage.user_id = this.user_id; }.observes('user_id'),
-    //usernameChanged: function() { localStorage.username = this.username; }.observes('username'),
-    //userProfileChanged: function() { localStorage.userProfile = this.userProfile; }.observes('userProfile'),
-    //companyProfileChanged: function() { localStorage.companyProfile = this.companyProfile; }.observes('companyProfile'),
-
-    //selectedDepotChanged: function() { localStorage.selectedDepot = this.selectedDepot; }.observes('selectedDepot'),
-    //isAdminChanged: function() { localStorage.isAdmin = this.isAdmin; }.observes('isAdmin'),
+    user_typeChanged: function() { localStorage.user_type = this.user_type; }.observes('user_type'),
+    isAdminChanged: function() { localStorage.is_admin = this.is_admin; }.observes('is_admin'),
 
     formData: new FormData(),
     formData_size: null,
@@ -46,6 +38,7 @@ export default Ember.Controller.extend({
     is_certifier: function(){
         return ( this.get('company_type') === 'certifier' );
     }.property('company_type'),
+    isLinked: false,
     /**********************
      auto-suggest
      */
@@ -117,7 +110,7 @@ export default Ember.Controller.extend({
         byNow: 'Acquista ora!', amount: 'Totale', cardNumber: 'Numero di carta', account: 'Cliente', general: 'Generale', postToYourLinks: 'Pubblica alla tua rete di contatti', submit: 'Pubblica',
         news: 'Nuove', hideNotifications: 'Notifiche nascoste', emas: 'Emas', admin: 'Admin', extra: 'Extra', certifier: 'Certificatore', send: 'Certifica', template: 'Template',
         paymentDetails: 'dettagli pagamento', credits: 'Crediti', orderHistory: 'Storico cliente', buyCredits: 'Acquisto crediti', newDocument: 'documento', hideLinkRequests: 'Richieste di connessione nascoste',
-        showHideLinkRequests: 'Mostra le richieste di connessione nascoste...', resume: 'Rigenera', date: 'Data', close: 'Chiudi', gracePeriod: 'Periodo di grazia',
+        showHideLinkRequests: 'Mostra le richieste di connessione nascoste...', resume: 'Rigenera', date: 'Data', Close: 'Chiudi', gracePeriod: 'Periodo di grazia',
         more: 'Dettagli', deadline: 'Scadenza', value: 'Valore', certificate: 'Certifica', download: 'Scarica', hide: 'Nascondi', note: 'Note', highlight: 'In evidenza',
         showHideNotifications: 'Mostra le notifiche nascoste...', linkRequests: 'Richieste di connessione', notifications: 'Notifiche', save: 'Salva', type: 'Tipo',
         edit: 'Modifica', country: 'Paese', logo: 'Logo', links: 'Links', new: 'Nuovo', return: 'Indietro', chassisNumber: 'Targa', registrationYear: 'Anno di immatricolazione',
@@ -130,7 +123,8 @@ export default Ember.Controller.extend({
         list: "Lista", vehicleDetails: "Dettagli veicolo", clerksList: 'Lista impiegati', clerk: 'Impiegato', trailersList: 'Lista rimorchi', details:'Dettagli', username: 'Username',
         birthDate: 'Data di nascita', title: 'Titolo', text: 'Testo', loadImage: 'Carica immagine', attached: 'Allega', documents: 'Documenti', validityDate: 'Inizio validità', deadLine: 'Scadenza',
         returnToList: 'Torna alla lista', files: 'Files', filesToDownload: 'Files da scaricare', accept:'Accetta', sendRequest:'Invia richiesta', search: 'Cerca', expiration: 'Scadenza', street: 'Via', district:'Regione',
-        city: 'Città', province: 'Provincia', zipCode: 'CAP', vatNumber: 'Codice fiscale', fax: 'Fax', totalWeight: 'Peso compessivo', email: 'Email'
+        city: 'Città', province: 'Provincia', zipCode: 'CAP', vatNumber: 'Codice fiscale', fax: 'Fax', totalWeight: 'Peso compessivo', email: 'Email', Ratings: 'Punteggio', from: 'Da', ChangePassword: 'Cambio password', CurrentPassword:'Password attuale',
+        NewPassword:'Nuova password', ConfirmNewPassword:'Conferma password', AreYouSureYouWantToDeleteThisRecord: 'Sei sicuro di voler cancellare questo record', AddFiles:'Add files'
     },
     lan_en: {
         publicToYourContactsNetwork: 'Public to your contacts network', companyDetails: 'Company Details', invoiceNumber: 'Invoice number', rate: 'Rate', limit: 'Limit', goodsConfiscation: 'Goods Confisc.', vehicleConfiscation: 'Vehicle Confisc.',
@@ -138,7 +132,7 @@ export default Ember.Controller.extend({
         smart: 'Smart', for: 'For', euro: 'Euro', buyNow: 'Buy now!', amount: 'Amount', cardNumber: 'Card number', account: 'Account', general: 'General', postToYourLinks: 'Post to your links',
         submit: 'Submit', news: 'News', hideNotifications: 'Hide notifications', linksRequest: 'Links request', generals: 'Generals', admin: 'Admin', extra: 'Extra', send: 'Send',
         paymentDetails: 'Payment details', credits: 'Credits', orderHistory: 'Order history', buyCredits: 'Buy credits', document: 'document', hideLinkRequests: 'Hide link requests',
-        showHideLinkRequests: 'Show hidden link requests...', resume: 'Resume', date: 'Date', close: 'Close', gracePeriod: 'Grace period', more: 'More', deadline: 'Deadline',
+        showHideLinkRequests: 'Show hidden link requests...', resume: 'Resume', date: 'Date', Close: 'Close', gracePeriod: 'Grace period', more: 'More', deadline: 'Deadline',
         value: 'Value', certificate: 'Certificate', download: 'Download', hide: 'Hide', note: 'Note', highlight: 'Highlight', showHideNotifications: 'Show hidden notifications...',
         linkRequests: 'Link requests', notifications: 'Notifications', save: 'Save', type: 'Type', edit: 'Edit', country: 'Country', logo: 'Logo', links: 'Links', new: 'New',
         return: 'Return', chassisNumber: 'Chassis number', registrationYear: 'Registration year', configuration: 'Configuration', category: 'Category', tare: 'Tare', certifier: 'Certifier',
@@ -150,7 +144,8 @@ export default Ember.Controller.extend({
         clerk: 'Clerk', trailersList: 'Trailers list', details:'Details', username: 'Username', birthDate: 'Birth date', title: 'Title', text: 'Testo', loadImage: 'Load image', attached: 'Attached',
         documents: 'Documents', validityDate: 'Validity date', deadLine: 'DeadLine', template: 'Template', returnToList: 'Return to list', files: 'Files', accept:'Accept',
         filesToDownload: 'Files to download', sendRequest:'Send request', searchCompanies: 'Search companies', search: 'Search', expiration: 'Expiration', street: 'Street', district: 'District',  city: 'City',
-        province: 'Province', zipCode: 'Zip code', vatNumber: 'Vat number', fax: 'Fax', totalWeight: 'Total weight', email: 'Email'
+        province: 'Province', zipCode: 'Zip code', vatNumber: 'Vat number', fax: 'Fax', totalWeight: 'Total weight', email: 'Email', Ratings: 'Ratings', from: 'From', ChangePassword: 'Change password',
+        CurrentPassword:'Current password', NewPassword:'New password', ConfirmNewPassword:'Confirm new password', AreYouSureYouWantToDeleteThisRecord: 'Are you sure you want to delete this record', AddFiles:'aggiungi files'
     },
 
     actions:{

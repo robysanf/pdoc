@@ -16,9 +16,12 @@
                 <li {{bind-attr class="tabList.general:active"}}>
                     <a href="#"{{action 'setTabs' "general"}}><h5>{{app_controller.translation.generals}}</h5></a>
                 </li>
-                <li {{bind-attr class="tabList.linksRequest:active"}}>
-                    <a href="#"{{action 'setTabs' "linksRequest"}}><h5>{{app_controller.translation.linksRequest}}</h5></a>
-                </li>
+                {{#if app_controller.is_admin}}
+                    <li {{bind-attr class="tabList.linksRequest:active"}}>
+                        <a href="#"{{action 'setTabs' "linksRequest"}}><h5>{{app_controller.translation.linksRequest}}</h5></a>
+                    </li>
+                {{/if}}
+
             </ul>
             <!-------------------- TAB BODY ---------------------->
             <div class="tab-content">

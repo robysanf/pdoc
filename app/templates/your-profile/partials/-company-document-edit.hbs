@@ -2,10 +2,12 @@
     <fieldset>
     <div class="form-group">
         <div class="col-lg-1">
-            {{#if isView_docDetails}}
-                <button class="btn btn-primary btn-50" {{action 'set_variable' 'isView_docDetails' false}}><span class="glyphicon glyphicon-pencil"></span></button>
-            {{else}}
-                <button class="btn btn-primary btn-50" {{action 'set_record' 'document' 'isView_docList' true this}}><span class="glyphicon glyphicon-ok"></span></button>
+            {{#if sub_record_document.canEdit}}
+                {{#if isView_docDetails}}
+                    <button class="btn btn-primary btn-50" {{action 'set_variable' 'isView_docDetails' false}}><span class="glyphicon glyphicon-pencil"></span></button>
+                {{else}}
+                    <button class="btn btn-primary btn-50" {{action 'set_record' 'document' 'isView_docList' true this}}><span class="glyphicon glyphicon-ok"></span></button>
+                {{/if}}
             {{/if}}
         </div>
         <div class="col-lg-9"><legend>{{app_controller.translation.documents}}</legend></div>
@@ -47,7 +49,12 @@
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{view Ember.Select content = documentTypes value = sub_record_document.type class = "form-control"}}
+                    {{#unless is_supplier}}
+                        {{view Ember.Select content = documentTypes value = sub_record_document.type class = "form-control"}}
+                    {{else}}
+                        {{view Ember.Select content = documentTypes_supplier value = sub_record_document.type class = "form-control"}}
+                    {{/unless}}
+
                 {{/if}}
             </div>
         </div>

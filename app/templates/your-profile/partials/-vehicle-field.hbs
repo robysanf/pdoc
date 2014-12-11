@@ -1,5 +1,6 @@
 <form class="form-horizontal">
     <fieldset>
+    {{#if controller.sub_record.canEdit}}   <!-- può modificare solo il proprietario della company o i clerks-->
         <div class="form-group">
             <div class="col-lg-1">
                 {{#if controller.isView}}
@@ -10,7 +11,7 @@
             </div>
             <div class="col-lg-11"><legend>{{app_controller.translation.details}}</legend> </div>
         </div>
-
+    {{/if}}
 
         <!--<legend>-->
             <!--&lt;!&ndash;------------------ button return-to-list --------------------&ndash;&gt;-->

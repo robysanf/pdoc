@@ -16,7 +16,7 @@
                 </thead>
                 <tbody>
                 {{#each rate in ratings}}
-                    {{#if rate.isTypeService}}
+                    {{#if rate.isTypeCertification}}
                         <tr>
                             <td {{action 'transition_to' 'your-profile/partials/-user-field' user 'isView' true}} style="cursor: pointer">{{rate.fromCompanyDetail}}</td>
                             <td {{action 'transition_to' 'your-profile/partials/-user-field' user 'isView' true}} style="cursor: pointer">{{rate.value}}</td>
