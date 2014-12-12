@@ -8,11 +8,13 @@ export default Ember.Controller.extend({
         'private',
         'public'
     ],
-
+    /*****************************
+     * GENERALS
+     */
     company_record: null,
     user_record: null,
-
     temp_company_id: null,
+
     /*****************************
      * LOCAL STORAGE
      */
@@ -46,6 +48,7 @@ export default Ember.Controller.extend({
     auto_suggest_Segments: Ember.A(),
     auto_suggest_Areas: Ember.A(),
     auto_suggest_Configurations: Ember.A(),
+
     /*****************************
      * AUTOCOMPLETE
      */
@@ -53,6 +56,7 @@ export default Ember.Controller.extend({
     records_company: Ember.A(),
     records_docTemplate: Ember.A(),
     records_companyCertifier: Ember.A(),
+    records_notifications: Ember.A(),
 
     autocompleteUser: [],
     autocompleteCompany: [],
@@ -77,6 +81,7 @@ export default Ember.Controller.extend({
     ]),
 
     paymentPlans: Ember.A(),
+
     /*****************************
      * INFINITE SCROLL
      */

@@ -629,6 +629,9 @@ section.hero-medium {
     /*background-image: url("http://colourlovers.com.s3.amazonaws.com/images/patterns/4548/4548852.png?1415286273");*/
 }
 
+.pattern-white {
+    background-image: url('../img/pattern_white.png');
+}
 /*section.large {*/
 /*background-color: rgba(249,236,206); border: 0px;*/
 /*}*/

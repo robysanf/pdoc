@@ -273,9 +273,12 @@ export default Ember.Route.extend({
                         new_record.get('certifier'),
                     ]).then(function() {
 
-                        new_record.get('certifier').then(function( record ) {
-                            app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id'), type: 'company' }));
+                        new_record.save().then(function( savedRecord ){
+                            savedRecord.get('certifier').then(function( record ) {
+                                app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id'), type: 'company' }));
+                            });
                         });
+
                     }.bind(this));
 
                     _this.controller.set( attr1, val1 );

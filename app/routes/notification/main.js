@@ -8,6 +8,12 @@ export default Ember.Route.extend({
         if (controller.tabList.general !== true && controller.tabList.linksRequest !== true) {
             controller.set('tabList.general', true);
         }
+
+        var today = Date();
+        var queryExpression = 'company='+app_controller.company_id;
+       queryExpression = queryExpression+'&date={“gt”:"'+moment(today).format('YYYY-MM-DD HH:mm:ss:SSS Z')+'"}';
+        app_controller.set('records_notifications', this.store.findQuery('notification', queryExpression));
+
     },
 
     model: function( company ) {

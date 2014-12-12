@@ -66,7 +66,7 @@
                                 {{#if this.isCertifier}}
                                     <td>{{notification.fromUserDetails}}</td>
                                     <td><span class="glyphicon glyphicon-download"></span></td>
-                                    <td><span class="glyphicon glyphicon-ok"></span></td>
+                                    <td><a href="#" {{action 'open_modal' 'notification/modals/certificate' notification this}}><span class="glyphicon glyphicon-pencil"></span></a></td>
                                 {{else}}
                                     <td>{{notification.valueNum}}</td>
                                     <td>{{notification.deadline}}</td>

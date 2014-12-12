@@ -27,7 +27,12 @@
         {{#if controller.isView_logo}}
             <div class="fileinput fileinput-new" data-provides="fileinput">
                 <div class="fileinput-new thumbnail" style="width: 250px; height: 250px;">
-                    <img data-src="">
+                    {{#each file in files}}
+                        {{#if file.isLogo}}
+                            <img data-src="api/files/'{{file.id}}'?token={{unbound app_controller.token}}/stream=true">
+                        {{/if}}
+                    {{/each}}
+
                 </div>
             </div>
         {{else}}

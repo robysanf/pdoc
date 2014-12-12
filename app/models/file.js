@@ -13,8 +13,15 @@ export default DS.Model.extend({
     type: DS.attr('string'),
 
     company: DS.belongsTo('company',{
-        inverse: 'files'})
+        inverse: 'files'}),
 //    authorizedCompanies: DS.hasMany('company',{
 //        async: true})
 //    visibility: DS.attr('string') //public, private, root
+
+    /*********************************************
+     *
+     */
+    isLogo: function(){
+       return this.get('type') === 'LOGO'
+    }.property('type')
 });
