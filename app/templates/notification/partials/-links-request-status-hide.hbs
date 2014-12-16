@@ -14,7 +14,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {{#each notification in notifications}}
+                {{#each notification in app_controller.records_notifications}}
                     {{#if notification.isLink}}
                         {{#unless notification.viewNotification}}
                             {{#if notification.isDeadline}}

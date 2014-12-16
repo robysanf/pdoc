@@ -38,6 +38,7 @@ export default Ember.View.extend({
             this.send( 'close', outlet, parentView);
         },
 
+        //creazione di un nuovo payment plan da parte di un certificatore
         new_plan: function( type, planName, planDescription, planAmount, planCurrency, planCredit, outlet, parentView ){
             var _this = this;
 
@@ -55,6 +56,8 @@ export default Ember.View.extend({
             });
         },
 
+        //azione custom per le azioni di certificazione da parte del certificatore e per i rating da parte delle company
+        // che si sono fatte vicevolmente delle prestazioni
         custom_rateDocument: function( type, rating, isLimited, description, actionToken, outlet, parentView ){
             var view = this, data = this.getProperties();
             data.rating = rating;
@@ -65,7 +68,10 @@ export default Ember.View.extend({
                 data.actionFn = 'certificationRateDocument';
                 $.post('api/action?actionToken=' + actionToken, data).then(function(response){
                     if (response.success) {
-                        new PNotify({ title: 'Well done', text: 'You successfully send the rate.', type: 'success', delay: 2000 });
+                        this.controller.selectedRecord.set('actionToken', null);
+                        this.controller.selectedRecord.save().then(function(){
+                            new PNotify({ title: 'Well done', text: 'You successfully send the rate.', type: 'success', delay: 2000 });
+                        });
                     }
                 }, function( error ){
                     new PNotify({ title: 'Warning', text: error, type: 'error', delay: 2000 });
@@ -74,7 +80,10 @@ export default Ember.View.extend({
                 data.actionFn = 'serviceRateDocument';
                 $.post('api/action?actionToken=' + actionToken, data).then(function(response){
                     if (response.success) {
-                        new PNotify({ title: 'Well done', text: 'You successfully send the rate.', type: 'success', delay: 2000 });
+                        this.controller.selectedRecord.set('actionToken', null);
+                        this.controller.selectedRecord.save().then(function(){
+                            new PNotify({ title: 'Well done', text: 'You successfully send the rate.', type: 'success', delay: 2000 });
+                        });
                     }
                 }, function( error ){
                     new PNotify({ title: 'Warning', text: error, type: 'error', delay: 2000 });
