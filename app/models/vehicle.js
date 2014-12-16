@@ -4,7 +4,7 @@ export default DS.Model.extend({
     canEdit: DS.attr('boolean'),
     canRemove: DS.attr('boolean'),
 
-    registrationYear: DS.attr('custom-time'),
+    registrationYear: DS.attr('custom-date'),
 
     weight: DS.attr('number'),  //peso complessivo
     tare: DS.attr('number'),

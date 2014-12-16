@@ -23,7 +23,7 @@
             </tr>
             </thead>
             <tbody>
-            {{#each notification in notifications}}
+            {{#each notification in controller.records_notifications}}
                 {{#unless notification.isLink}}
                     {{#if notification.viewNotification}}
                         <tr {{bind-attr class = "notification.highlighted:warning"}}>
@@ -50,7 +50,7 @@
                                     <a href="#" {{action 'download_file' file.id}} >{{file.name}}</a>
                                     {{/each}}
                                 </td>
-                                <td><span class="glyphicon glyphicon-ok"></span></td>
+                                <td><a href="#" {{action 'open_modal' 'notification/modals/certificate' notification}}><span class="glyphicon glyphicon-pencil"></span></a></td>
                             {{else}}
                                 <td>{{notification.valueNum}}</td>
                                 <td>{{notification.showDeadline}}</td>

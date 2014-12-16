@@ -22,6 +22,11 @@ export default DS.Model.extend({
      *
      */
     isLogo: function(){
-       return this.get('type') === 'LOGO'
+       return this.get('type') === 'LOGO';
     }.property('type')
+//    isLogo: function(){
+//        //var logo = this.get('name') ;
+//        return  true ;  //logo === 'fox-shipper.png';
+//    }.property('name')
+
 });

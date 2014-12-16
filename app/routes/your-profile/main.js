@@ -217,25 +217,39 @@ export default Ember.Route.extend({
                     new PNotify({title: 'Warning',text: 'The file must be smaller than 10 MB.',type: 'info',delay: 4000});
                     _this.controller.set( attr, value );
                 } else {
-                    var self = this, $btn = $(this);
+                    var $btn = $(this);
                     $btn.button('loading');
 
-                    $.ajax({
-                        url: 'api/files?token='+ app_controller.token +'&entity='+record+'&type=logo',
-                        type: "POST",
-                        data: app_controller.formData,
-                        processData: false,
-                        contentType: false
-                    }).then(function(){
-                        $btn.button('reset');
-                        app_controller.formData = new FormData();
-                        app_controller.formData_size = null;
-                        _this.controller.set( attr, value );
+                    record.get('files').then(function( allFiles ){
+                        var files_length = allFiles.get('length');
+                        allFiles.forEach(function( file, index ){
+                           if( file.get('type') === 'LOGO' ){
+                               file.deleteRecord();
+                               file.save();
+                           }
+                            if(files_length === index + 1 ){
+                                $.ajax({
+                                    url: 'api/files?token='+ app_controller.token +'&entity='+record.get('id')+'&type=logo',
+                                    type: "POST",
+                                    data: app_controller.formData,
+                                    processData: false,
+                                    contentType: false
+                                }).then(function(){
+                                    $btn.button('reset');
+                                    app_controller.formData = new FormData();
+                                    app_controller.formData_size = null;
+                                    record.reload();
+                                    _this.controller.set( attr, value );
 
-                    }, function(){
-                        $btn.button('reset');
-                        new PNotify({title: 'Error',text: 'A problem was occurred.',type: 'error',delay: 4000});
+                                }, function(){
+                                    $btn.button('reset');
+                                    new PNotify({title: 'Error',text: 'A problem was occurred.',type: 'error',delay: 4000});
+                                });
+
+                            }
+                        });
                     });
+
 
                 }
             } else {
@@ -259,7 +273,7 @@ export default Ember.Route.extend({
                     canEdit: true,
                     entity: record_company.get('id'),
                     entityType: 'company',
-                    date: moment(today).format(),
+                    date: moment(today).format('YYYY-MM-DD HH:mm:ss'),
                     type: 'document',
                     status: 'active'
                 });
@@ -459,6 +473,7 @@ export default Ember.Route.extend({
          */
         update_files: function(mod, val, $btn){
             this.store.find( mod, val ).then(function( record ){
+                record.save();
                 record.reload().then(function(){
                     $btn.button('reset');
                 });

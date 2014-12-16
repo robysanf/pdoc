@@ -15,8 +15,8 @@ export default DS.Model.extend({
     type: DS.attr('string'),   //certification/service
     status: DS.attr('string'),
 
-    date: DS.attr('custom-time'),
-    deadline: DS.attr('custom-time'),
+    date: DS.attr('custom-date'),
+    deadline: DS.attr('custom-date'),
 
     fromCompany: DS.belongsTo('company'),
     company: DS.belongsTo('company', {

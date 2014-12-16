@@ -16,11 +16,14 @@ export default Ember.ObjectController.extend({
     }.property('app_user_type'),
 
     is_admin_or_clerk: function(){       // l'utente è di tipo admin o clerk
-        return ( this.get('app_user_type') === 'admin' || this.get('app_user_type') === 'clerk' );
+        var type =  this.get('app_user_type');
+        return ( type === 'admin' || type === 'clerk' );
     }.property('app_user_type'),
 
     can_edit_company: function(){         //è admin di questa company se la sua company è uguale alla company loggata
-        return this.get('is_admin_or_clerk') && this.get('id') === this.get('app_company_id');
+        var user_type = this.get('is_admin_or_clerk');
+        var my_company = String(this.get('id')) === String(this.get('app_company_id'));
+        return user_type && my_company;
     }.property('app_user_type', 'app_company_id'),
 
     check_changePassword: function(){

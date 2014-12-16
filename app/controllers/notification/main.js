@@ -13,5 +13,10 @@ export default Ember.ObjectController.extend({
     tabList: Ember.A(
         {'general': false},
         {'linksRequest': false}
-    )
+    ),
+
+    bool: [
+        true,
+        false
+    ]
 });

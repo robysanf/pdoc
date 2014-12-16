@@ -5,9 +5,9 @@ export default DS.Model.extend({
     canRemove: DS.attr('boolean'),
     highlighted: DS.attr('boolean'),
 
-    date: DS.attr('custom-time'),
-    deadline: DS.attr('custom-time'),
-    gracePeriod: DS.attr('custom-time'),
+    date: DS.attr('custom-date'),
+    deadline: DS.attr('custom-date'),
+    gracePeriod: DS.attr('custom-date'),
 
     actionToken: DS.attr('string'),
     detail: DS.attr('string'),

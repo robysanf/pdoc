@@ -4,11 +4,11 @@ export default DS.Model.extend({
     canEdit: DS.attr('boolean'),
     canRemove: DS.attr('boolean'),
 
-    date: DS.attr('custom-time'),
-    validityDate: DS.attr('custom-time'),
-    deadline: DS.attr('custom-time'),
-    grace: DS.attr('custom-time'),
-    alert: DS.attr('custom-time'),
+    date: DS.attr('custom-date'),
+    validityDate: DS.attr('custom-date'),
+    deadline: DS.attr('custom-date'),
+    grace: DS.attr('custom-date'),
+    alert: DS.attr('custom-date'),
 
     entity: DS.attr('string'),
     name: DS.attr('string'),

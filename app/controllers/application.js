@@ -32,7 +32,7 @@ export default Ember.Controller.extend({
     company_typeChanged: function() { localStorage.company_type = this.company_type; }.observes('company_type'),
     user_idChanged: function() { localStorage.user_id = this.user_id; }.observes('user_id'),
     user_typeChanged: function() { localStorage.user_type = this.user_type; }.observes('user_type'),
-    isAdminChanged: function() { localStorage.is_admin = this.is_admin; }.observes('is_admin'),
+    is_adminChanged: function() { localStorage.is_admin = this.is_admin; }.observes('is_admin'),
 
     formData: new FormData(),
     formData_size: null,
@@ -40,6 +40,9 @@ export default Ember.Controller.extend({
     is_certifier: function(){
         return ( this.get('company_type') === 'certifier' );
     }.property('company_type'),
+    isnot_admin: function(){
+      return String(this.get('is_admin')) === 'false';
+    }.property('is_admin'),
     isLinked: false,
     /**********************
      auto-suggest

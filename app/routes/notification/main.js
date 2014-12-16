@@ -11,7 +11,8 @@ export default Ember.Route.extend({
 
         var today = Date();
         var queryExpression = 'company='+app_controller.company_id;
-       queryExpression = queryExpression+'&date={“gt”:"'+moment(today).format('YYYY-MM-DD HH:mm:ss:SSS Z')+'"}';
+       queryExpression = queryExpression+'&date={"lt":"'+moment(today).format('YYYY-MM-DD HH:mm:ss')+'"}';
+
         app_controller.set('records_notifications', this.store.findQuery('notification', queryExpression));
 
     },
@@ -48,15 +49,15 @@ export default Ember.Route.extend({
             record.set(attr, value).save();
         },
 
-        open_modal: function( record, path, into, outlet, view ) {
+        open_modal: function( path, record ) {
             var controller = this.controllerFor('notification.main');
 
             controller.set('selectedRecord', record);
 
             this.render(path, {
-                into: into,
-                outlet: outlet,
-                view: view
+                into: 'application',
+                outlet: 'overview',
+                view: 'modal-manager'
             });
         },
 

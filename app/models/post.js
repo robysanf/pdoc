@@ -9,7 +9,7 @@ export default DS.Model.extend({
     title: DS.attr('string'),
     description: DS.attr('string'),
 
-    date: DS.attr('custom-time'),
+    date: DS.attr('custom-date'),
 
     user: DS.belongsTo('user', {
         async: true }),

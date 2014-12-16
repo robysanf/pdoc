@@ -4,7 +4,7 @@ export default DS.Model.extend({
     canEdit: DS.attr('boolean'),
     canRemove: DS.attr('boolean'),
 
-    birthDate: DS.attr('custom-time'),
+    birthDate: DS.attr('custom-date'),
 
     username:DS.attr('string'),
     password:DS.attr('string'),
@@ -34,10 +34,10 @@ export default DS.Model.extend({
      */
     isClerk: function(){
         return this.get('type') === 'clerk';
-    }.property('profile'),
+    }.property('type'),
     isDriver: function(){
         return this.get('type') === 'driver';
-    }.property('profile'),
+    }.property('type'),
 
     birthDate_toString: function(){
         return moment(this.get('birthDate')).format('YYYY-MM-DD');

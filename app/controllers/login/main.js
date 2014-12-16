@@ -50,7 +50,7 @@ export default Ember.Controller.extend({
                     self.get('controllers.application').set('company_type', response.company_type);
                     self.get('controllers.application').set('user_id', response.user_id);
                     self.get('controllers.application').set('user_type', response.userType);
-                    self.get('controllers.application').set('is_admin', response.isAdmin);
+                    self.get('controllers.application').set('is_admin', String(response.isAdmin));
 
                     self.store.find('company', response.company_id ).then(function( val ){
                         self.get('controllers.application').set('company_record', val);

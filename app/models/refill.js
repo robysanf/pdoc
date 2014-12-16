@@ -7,7 +7,7 @@ export default DS.Model.extend({
     amount: DS.attr('number'),
     credit: DS.attr('number'),
 
-    date: DS.attr('custom-time'),
+    date: DS.attr('custom-date'),
 
     key: DS.attr('string'),
     currency: DS.attr('string'),

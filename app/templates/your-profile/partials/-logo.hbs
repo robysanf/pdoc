@@ -2,7 +2,6 @@
 {{#if can_edit_company}}   <!-- può modificare solo il proprietario della company o i clerks-->
 <div class="row">
     <div class="col-lg-1"></div>
-    <div class="col-lg-10">
         <div class="form-group">
             <div class="col-lg-1">
                 <!-------------------- pencil ---------------------->
@@ -11,12 +10,11 @@
 
                     <!-------------------- ok ---------------------->
                 {{else}}
-                    <button class="btn btn-primary btn-50" {{action 'save_logo' this.id 'isView_logo' true}}><span class="glyphicon glyphicon-ok"></span></button>
+                    <button class="btn btn-primary btn-50" {{action 'save_logo' this 'isView_logo' true}}><span class="glyphicon glyphicon-ok"></span></button>
                 {{/if}}
             </div>
-            <div class="col-lg-11" style="margin-top: 35px"><legend></legend></div>
+            <div class="col-lg-9" style="margin-top: 35px"><legend></legend></div>
         </div>
-    </div>
     <div class="col-lg-1"></div>
 </div>
 {{/if}}
@@ -29,7 +27,7 @@
                 <div class="fileinput-new thumbnail" style="width: 250px; height: 250px;">
                     {{#each file in files}}
                         {{#if file.isLogo}}
-                            <img data-src="api/files/'{{file.id}}'?token={{unbound app_controller.token}}/stream=true">
+                            <img src="api/files/{{unbound file.id}}?token={{unbound app_controller.token}}&stream=true">
                         {{/if}}
                     {{/each}}
 
@@ -39,8 +37,11 @@
             {{#view 'upload-image'}}
                 <div class="fileinput fileinput-new" data-provides="fileinput">
                     <div class="fileinput-new thumbnail" style="width: 250px; height: 250px;">
-                        <img data-src="">
-                        <span class="glyphicon glyphicon-picture" style="font-size: 200px;"></span>
+                        {{#each file in files}}
+                            {{#if file.isLogo}}
+                                <img src="api/files/{{unbound file.id}}?token={{unbound app_controller.token}}&stream=true" style="opacity: 0.4;">
+                            {{/if}}
+                        {{/each}}
                     </div>
                     <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 250px; max-height: 250px;"></div>
                     <div>
@@ -78,7 +79,6 @@
                 {{/if}}
             {{/if}}
         {{/if}}
-
     </div>
     <div class="col-lg-3">
         {{#if is_admin_or_clerk}}
@@ -99,9 +99,7 @@
                     <button type="button" class="btn btn-primary btn-group-justified" data-toggle="tooltip" data-placement="right" title="You will be charged 1 credit to see the rating for 15 days." {{action 'custom_showRating' this.id 'certification'}}>Show certification rating</button>
                 {{/view}}
             {{/if}}
-
         {{/if}}
-
     </div>
     <div class="col-lg-1"></div>
 </div>
