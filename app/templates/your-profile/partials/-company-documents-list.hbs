@@ -35,7 +35,12 @@
                                         <span {{action "download_file" file.id}} style="cursor: pointer;" class="btn-font-color">{{file.name}}</span>
                                     {{/each}}
                                 </td>
-                                <td><a {{action 'custom_notifyDocument' document.id}} style="cursor: pointer"><span class="glyphicon glyphicon-send"></span></a></td>
+                                {{#if document.isDocument}}
+                                    <td><a {{action 'custom_notifyDocument' document.id}} style="cursor: pointer"><span class="glyphicon glyphicon-send"></span></a></td>
+                                {{else}}
+                                    <td></td>
+                                {{/if}}
+
                                 {{#if document.canRemove}}
                                     <td><a {{action 'open_modal' 'your-profile/modals/delete-record' document this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
                                 {{else}}

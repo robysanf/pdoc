@@ -10,7 +10,12 @@
 
                     <!-------------------- ok ---------------------->
                 {{else}}
-                    <button class="btn btn-primary btn-50" {{action 'save_logo' this 'isView_logo' true}}><span class="glyphicon glyphicon-ok"></span></button>
+                    {{#if controller.tabList.company}}
+                        <button class="btn btn-primary btn-50" {{action 'save_logo' this 'isView_logo' true}}><span class="glyphicon glyphicon-ok"></span></button>
+                    {{else}}
+                        <button class="btn btn-primary btn-50" {{action 'save_logo' controller.sub_record 'isView_logo' true}}><span class="glyphicon glyphicon-ok"></span></button>
+                    {{/if}}
+
                 {{/if}}
             </div>
             <div class="col-lg-9" style="margin-top: 35px"><legend></legend></div>
@@ -25,11 +30,19 @@
         {{#if controller.isView_logo}}
             <div class="fileinput fileinput-new" data-provides="fileinput">
                 <div class="fileinput-new thumbnail" style="width: 250px; height: 250px;">
-                    {{#each file in files}}
-                        {{#if file.isLogo}}
-                            <img src="api/files/{{unbound file.id}}?token={{unbound app_controller.token}}&stream=true">
-                        {{/if}}
-                    {{/each}}
+                    {{#if controller.tabList.company}}
+                        {{#each file in files}}
+                            {{#if file.isLogo}}
+                                <img src="api/files/{{unbound file.id}}?token={{unbound app_controller.token}}&stream=true">
+                            {{/if}}
+                        {{/each}}
+                    {{else}}
+                        {{#each file in controller.sub_record.files}}
+                            {{#if file.isLogo}}
+                                <img src="api/files/{{unbound file.id}}?token={{unbound app_controller.token}}&stream=true">
+                            {{/if}}
+                        {{/each}}
+                    {{/if}}
 
                 </div>
             </div>
@@ -37,11 +50,20 @@
             {{#view 'upload-image'}}
                 <div class="fileinput fileinput-new" data-provides="fileinput">
                     <div class="fileinput-new thumbnail" style="width: 250px; height: 250px;">
-                        {{#each file in files}}
-                            {{#if file.isLogo}}
-                                <img src="api/files/{{unbound file.id}}?token={{unbound app_controller.token}}&stream=true" style="opacity: 0.4;">
-                            {{/if}}
-                        {{/each}}
+                        {{#if controller.tabList.company}}
+                            {{#each file in files}}
+                                {{#if file.isLogo}}
+                                    <img src="api/files/{{unbound file.id}}?token={{unbound app_controller.token}}&stream=true" style="opacity: 0.4;">
+                                {{/if}}
+                            {{/each}}
+                        {{else}}
+                            {{#each file in controller.sub_record.files}}
+                                {{#if file.isLogo}}
+                                    <img src="api/files/{{unbound file.id}}?token={{unbound app_controller.token}}&stream=true" style="opacity: 0.4;">
+                                {{/if}}
+                            {{/each}}
+                        {{/if}}
+
                     </div>
                     <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 250px; max-height: 250px;"></div>
                     <div>
@@ -64,10 +86,10 @@
                         <div class="panel-heading"><h3>Service rating</h3></div>
                         <div class="panel-body">
                             <div class="row">
-                                <a {{action 'open_modal' 'your-profile/modals/show-rating' null this 'service'}} style="cursor: pointer"><span class="label label-primary pull-right" style="margin-right: 8px">Show 14 ratings</span>  </a>
+                                <a {{action 'open_modal' 'your-profile/modals/show-rating' null this 'service'}} style="cursor: pointer"><span class="label label-primary pull-right" style="margin-right: 8px">Show  {{totalServiceRating}} ratings</span>  </a>
                             </div>
                             <div class="row">
-                                {{speed-meter speed=10 target='speed1' rateSize=55  custom_height=130}}
+                                {{speed-meter speed=serviceScore target='speed1' rateSize=55  custom_height=130}}
                             </div>
 
                         </div>
@@ -82,22 +104,38 @@
     </div>
     <div class="col-lg-3">
         {{#if is_admin_or_clerk}}
-            {{#if certificationScore}}
-                <div class="panel panel-primary">
-                    <div class="panel-heading"><h3>Certific. rating</h3></div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <a {{action 'open_modal' 'your-profile/modals/show-certification-rating' null this 'certification'}} style="cursor: pointer"><span class="label label-primary pull-right" style="margin-right: 8px">Show 14 ratings</span></a>
-                        </div>
-                        <div class="row">
-                            {{speed-meter speed=43 target='speed2' rateSize=55  custom_height=130}}
+            {{#if controller.tabList.company}}
+                {{#if certificationScore}}
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><h3>Certific. rating</h3></div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <a {{action 'open_modal' 'your-profile/modals/show-certification-rating' null this 'certification'}} style="cursor: pointer"><span class="label label-primary pull-right" style="margin-right: 8px">Show {{totalCertificationRating}} ratings</span></a>
+                            </div>
+                            <div class="row">
+                                {{speed-meter speed=certificationScore target='speed2' rateSize=55  custom_height=130}}
+                            </div>
                         </div>
                     </div>
-                </div>
+                {{else}}
+                    {{#view 'tooltip'}}
+                        <button type="button" class="btn btn-primary btn-group-justified" data-toggle="tooltip" data-placement="right" title="You will be charged 1 credit to see the rating for 15 days." {{action 'custom_showRating' this.id 'certification'}}>Show certification rating</button>
+                    {{/view}}
+                {{/if}}
             {{else}}
-                {{#view 'tooltip'}}
-                    <button type="button" class="btn btn-primary btn-group-justified" data-toggle="tooltip" data-placement="right" title="You will be charged 1 credit to see the rating for 15 days." {{action 'custom_showRating' this.id 'certification'}}>Show certification rating</button>
-                {{/view}}
+                {{#if certificationScore}}
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><h3>Certific. rating</h3></div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <a {{action 'open_modal' 'your-profile/modals/show-certification-rating' null this 'certification'}} style="cursor: pointer"><span class="label label-primary pull-right" style="margin-right: 8px">Show {{controller.sub_record.totalCertificationRating}} ratings</span></a>
+                            </div>
+                            <div class="row">
+                                {{speed-meter speed=controller.sub_record.certificationScore target='speed2' rateSize=55  custom_height=130}}
+                            </div>
+                        </div>
+                    </div>
+                {{/if}}
             {{/if}}
         {{/if}}
     </div>

@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <button type="button" class="close" {{action close 'overview' 'application' target="view"}}>&times;</button>
+    <button type="button" class="close" {{action 'close' 'overview' 'application' target="view"}}>&times;</button>
     <h3>{{controller.selectedRecord.name}}</h3>
 </div>
 <div class="modal-body">
@@ -38,6 +38,6 @@
     </div>
 </div>
 <div class="modal-footer">
-    <a href="#" class="btn" {{action custom_rateDocument controller.selectedRecord.type rating isLimited controller.description controller.selectedRecord.actionToken 'overview' 'application' target="view"}}>{{app_controller.translation.send}}</a>
-    <a href="#" class="btn" {{action close 'overview' 'application' target="view"}}>{{app_controller.translation.close}}</a>
+    <a href="#" class="btn" {{action 'custom_rateDocument' controller.selectedRecord.type rating isLimited controller.description controller.selectedRecord.actionToken 'overview' 'application' target="view"}}>{{app_controller.translation.send}}</a>
+    <a href="#" class="btn" {{action 'close' 'overview' 'application' target="view"}}>{{app_controller.translation.close}}</a>
 </div>

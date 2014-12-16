@@ -83,6 +83,29 @@ export default DS.Model.extend({
     /****************************************************
      *      PROPERTIES
      */
+    totalCertificationRating: function(){
+        var totRatings = 0, ratings = this.get('ratings');
+
+        ratings.forEach( function(val) {
+            if(val.get('type') === 'certification'){
+                totRatings += 1;
+            }
+        });
+
+        return totRatings;
+    }.property('ratings.@each.type'),
+    totalServiceRating: function(){
+        var totRatings = 0, ratings = this.get('ratings');
+
+        ratings.forEach( function(val) {
+            if(val.get('type') === 'service'){
+                totRatings += 1;
+            }
+        });
+
+        return totRatings;
+    }.property('ratings.@each.type'),
+
     totalWeight: function() {
         var totWeight = 0, weights = this.get('configurations');
 

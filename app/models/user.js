@@ -4,6 +4,8 @@ export default DS.Model.extend({
     canEdit: DS.attr('boolean'),
     canRemove: DS.attr('boolean'),
 
+    certificationScore:DS.attr('number'),
+
     birthDate: DS.attr('custom-date'),
 
     username:DS.attr('string'),
@@ -15,9 +17,9 @@ export default DS.Model.extend({
     profile: DS.attr('string'), //powerUser/user/admin
     type: DS.attr('string'),   //clerk/driver
     curriculum: DS.attr('string'),
+    email: DS.attr('string'),
 
     patents: DS.attr('raw'),
-    email: DS.attr('string'),
     languages: DS.attr('raw'),
 
     company: DS.belongsTo('company'),
@@ -32,6 +34,17 @@ export default DS.Model.extend({
     /*************************************************
      * PROPERTIES
      */
+    totalCertificationRating: function(){
+        var totRatings = 0, ratings = this.get('ratings');
+
+        ratings.forEach( function(val) {
+            if(val.get('type') === 'certification'){
+                totRatings += 1;
+            }
+        });
+
+        return totRatings;
+    }.property('ratings.@each.type'),
     isClerk: function(){
         return this.get('type') === 'clerk';
     }.property('type'),

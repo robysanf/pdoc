@@ -8,6 +8,7 @@ export default DS.Model.extend({
 
     weight: DS.attr('number'),  //peso complessivo
     tare: DS.attr('number'),
+    certificationScore:DS.attr('number'),
 
     brand: DS.attr('string'),        //marca: iveco
     category: DS.attr('string'),   //euro1, euro2, ... euro6
@@ -17,6 +18,7 @@ export default DS.Model.extend({
     name: DS.attr('string'),
     type: DS.attr('string'),    // truck/trailer
     vehicleModel:  DS.attr('string'),       //modello: Stralis
+
 
     configurations: DS.attr('raw'),
 
@@ -29,6 +31,17 @@ export default DS.Model.extend({
     ratings: DS.hasMany('rating', {
         async: true}),
     /**************************  PROPERTIES  **************************/
+    totalCertificationRating: function(){
+        var totRatings = 0, ratings = this.get('ratings');
+
+        ratings.forEach( function(val) {
+            if(val.get('type') === 'certification'){
+                totRatings += 1;
+            }
+        });
+
+        return totRatings;
+    }.property('ratings.@each.type'),
     isTruck: function(){
         return this.get('type') === 'truck';
     }.property('type'),
