@@ -9,13 +9,13 @@ export default Ember.Route.extend({
             controller.set('tabList.paymentDetails', true);
         }
 
-        if( !app_controller.paymentPlans.get('length') ) {
-            this.store.findQuery("payment-plan").then(function(val){
-                app_controller.set("paymentPlans", val);
-            }, function( reason ){
-                app_controller.send( 'message_manager', 'Failure', reason );
-            });
-        }
+//        if( !app_controller.paymentPlans.get('length') ) {
+//            this.store.findQuery("payment-plan").then(function(val){
+//                app_controller.set("paymentPlans", val);
+//            }, function( reason ){
+//                app_controller.send( 'message_manager', 'Failure', reason );
+//            });
+//        }
 
     },
     model: function( company ) {
@@ -37,6 +37,16 @@ export default Ember.Route.extend({
 
             this.controller.set('tabList.' + tabToActive, true);
 //            this.controller.set('view_new_field', false);
+        },
+
+        open_modal: function( path, record ) {
+            this.controller.set('main_record', record);
+
+            this.render(path, {
+                into: 'application',
+                outlet: 'overview',
+                view: 'modal-manager'
+            });
         },
 
         change_mode: function( attr, value ){

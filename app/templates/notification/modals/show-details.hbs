@@ -3,8 +3,87 @@
     <h3>{{controller.selectedRecord.name}}</h3>
 </div>
 <div class="modal-body">
-
-    {{#if controller.selectedRecord.isRating}}
+    {{#if controller.selectedRecord.isNewRating}}
+        <div class="row">
+            <div class="col-lg-6">
+                <label>{{app_controller.translation.date}}</label>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        {{controller.selectedRecord.date}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label>{{app_controller.translation.value}}</label>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        {{controller.selectedRecord.valueNum}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <label>{{app_controller.translation.company}}</label>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        {{controller.selectedRecord.fromCompanyDetails}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                {{#if controller.selectedRecord.fromUserDetails}}
+                    <label>{{app_controller.translation.user}}</label>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {{controller.selectedRecord.fromUserDetails}}
+                        </div>
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+    {{/if}}
+    {{#if controller.selectedRecord.isServiceRating}}
+        <div class="row">
+            <div class="col-lg-6">
+                <label>{{app_controller.translation.date}}</label>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        {{controller.selectedRecord.date}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label>{{app_controller.translation.value}}</label>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        {{controller.selectedRecord.valueNum}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <label>{{app_controller.translation.company}}</label>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        {{controller.selectedRecord.fromCompanyDetails}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                {{#if controller.selectedRecord.fromUserDetails}}
+                    <label>{{app_controller.translation.user}}</label>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {{controller.selectedRecord.fromUserDetails}}
+                        </div>
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+    {{/if}}
+    {{#if controller.selectedRecord.isCertificationRating}}
         <div class="row">
             <div class="col-lg-6">
                 <label>{{app_controller.translation.date}}</label>

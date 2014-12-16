@@ -9,7 +9,6 @@ export default Ember.View.extend({
     company: [],
     user: [],
 
-
     click: function () {
         var controller = this.get('controller'), $btn = $(this)[0];
         $btn.set('disabled', true);

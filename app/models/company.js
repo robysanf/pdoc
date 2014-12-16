@@ -76,6 +76,8 @@ export default DS.Model.extend({
        async:true }),
     configurations: DS.hasMany('configuration',{
         async: true}),
+    paymentPlans: DS.hasMany('paymentPlan',{
+        async: true}),
 //    authorizedCompanies: DS.hasMany('company',{
 //        async: true}),
     /****************************************************

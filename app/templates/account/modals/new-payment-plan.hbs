@@ -1,0 +1,70 @@
+<div class="modal-header">
+    <button type="button" class="close" {{action close 'overview' 'application' target="view"}}>&times;</button>
+    <h3>{{app_controller.translation.newPaymentPlan}}</h3>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <label>{{app_controller.translation.type}}</label>
+            <div class="form-group">
+                {{view Ember.Select content=controller.listType value=type prompt=app_controller.translation.selectTheType class='form-control'}}
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <label>{{app_controller.translation.name}}</label>
+            <div class="form-group">
+                {{input type='string' value= planName class='form-control'}}
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <label>{{app_controller.translation.description}}</label>
+            <div class="form-group">
+                {{input type='string' value= planDescription class='form-control'}}
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <label>{{app_controller.translation.amount}}</label>
+            <div class="form-group">
+                {{input type='number' value= planAmount class='form-control'}}
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <label>{{app_controller.translation.currency}}</label>
+            <div class="form-group">
+                {{view Ember.Select content=controller.listCurrency value=planCurrency prompt=app_controller.translation.selectTheCurrency class='form-control'}}
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <label>{{app_controller.translation.credits}}</label>
+            <div class="form-group">
+                {{input type='number' maxlength=4 value= planCredit class='form-control'}}
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</div>
+<div class="modal-footer">
+    <a href="#" class="btn" {{action new_plan type planName planDescription planAmount planCurrency planCredit 'overview' 'application' target="view"}}>{{app_controller.translation.save}}</a>
+    <a href="#" class="btn" {{action close 'overview' 'application' target="view"}}>{{app_controller.translation.Close}}</a>
+</div>

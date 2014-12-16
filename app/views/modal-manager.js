@@ -38,6 +38,53 @@ export default Ember.View.extend({
             this.send( 'close', outlet, parentView);
         },
 
+        new_plan: function( type, planName, planDescription, planAmount, planCurrency, planCredit, outlet, parentView ){
+            var _this = this;
+
+            this.controller.get('store').createRecord('paymentPlan', {
+                name: planName,
+                type: type,
+                description: planDescription,
+                amount: planAmount,
+                currency: planCurrency,
+                credit: planCredit,
+                company: this.controller.get('main_record')
+            }).save().then(function( val ){
+                _this.controller.get('main_record').reload();
+                _this.send( 'close', outlet, parentView);
+            });
+        },
+
+        custom_rateDocument: function( type, rating, isLimited, description, actionToken, outlet, parentView ){
+            var view = this, data = this.getProperties();
+            data.rating = rating;
+            data.isLimited = isLimited;
+            data.description = description;
+
+            if( type === 'certificationRating' ){
+                data.actionFn = 'certificationRateDocument';
+                $.post('api/action?actionToken=' + actionToken, data).then(function(response){
+                    if (response.success) {
+                        new PNotify({ title: 'Well done', text: 'You successfully send the rate.', type: 'success', delay: 2000 });
+                    }
+                }, function( error ){
+                    new PNotify({ title: 'Warning', text: error, type: 'error', delay: 2000 });
+                });
+            } else if ( type === 'serviceRating' ){
+                data.actionFn = 'serviceRateDocument';
+                $.post('api/action?actionToken=' + actionToken, data).then(function(response){
+                    if (response.success) {
+                        new PNotify({ title: 'Well done', text: 'You successfully send the rate.', type: 'success', delay: 2000 });
+                    }
+                }, function( error ){
+                    new PNotify({ title: 'Warning', text: error, type: 'error', delay: 2000 });
+                });
+            }
+
+            view.controller.set('description', null);
+            view.send( 'close', outlet, parentView);
+        },
+
         close: function(outlet, parentView) {
             var view = this;
 

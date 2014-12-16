@@ -7,7 +7,7 @@
                 <th style="width:5%"></th>
                 <th style="width:10%">{{app_controller.translation.news}}</th>
                 <th style="width:10%">{{app_controller.translation.date}}</th>
-                <th style="width:20%">{{app_controller.translation.notification}}</th>
+                <th style="width:20%">{{app_controller.translation.details}}</th>
                 <th style="width:20%">{{app_controller.translation.company}}</th>
 
                 {{#if this.isCertifier}}
@@ -17,13 +17,14 @@
                 {{else}}
                     <th style="width:15%">{{app_controller.translation.value}}</th>
                     <th style="width:10%">{{app_controller.translation.deadline}}</th>
+                    <th style="width:10%">{{app_controller.translation.certificate}}</th>
                 {{/if}}
 
                 <th style="width:10%">{{app_controller.translation.hide}}</th>
             </tr>
             </thead>
             <tbody>
-            {{#each notification in controller.records_notifications}}
+            {{#each notification in app_controller.records_notifications}}
                 {{#unless notification.isLink}}
                     {{#if notification.viewNotification}}
                         <tr {{bind-attr class = "notification.highlighted:warning"}}>
@@ -39,27 +40,54 @@
                                     <a href="#"><span class="glyphicon glyphicon-unchecked" style="text-align: center" {{action "set_record" notification 'highlighted' true}}></span></a>
                                 {{/if}}
                             </td>
-                            <td>{{notification.showDate}}</td>
-                            <td>{{notification.name}}</td>
-                            <td>{{notification.fromCompanyDetails}}</td>
+                            <td {{action 'open_modal' 'notification/modals/show-details' notification}} style="cursor: pointer">{{notification.showDate}} </td>
+                            <td {{action 'open_modal' 'notification/modals/show-details' notification}} style="cursor: pointer">{{notification.name}} </td>
+                            <td {{action 'open_modal' 'notification/modals/show-details' notification}} style="cursor: pointer">{{notification.fromCompanyDetails}} </td>
 
-                            {{#if this.isCertifier}}
+                            <!-- TIPO DEADLINE-->
+                            {{#if notification.isDeadline}}
+                                <td {{action 'open_modal' 'notification/modals/show-details' notification}} style="cursor: pointer">{{notification.valueNum}} </td>
+                                <td {{action 'open_modal' 'notification/modals/show-details' notification}} style="cursor: pointer">{{notification.showDeadline}} </td>
+                                <td></td>
+                            {{/if}}
+
+                            <!-- TIPO NEW RATING-->
+                            {{#if notification.isNewRating}}
+                                <td {{action 'open_modal' 'notification/modals/show-details' notification}} style="cursor: pointer">{{notification.valueNum}} </td>
+                                <td></td>
+                                <td></td>
+                            {{/if}}
+
+                            <!-- TIPO CREDIT-->
+                            {{#if notification.isCredit}}
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            {{/if}}
+
+                            <!-- TIPO SERVICE RATING-->
+                            {{#if notification.isServiceRating}}
+                                <td {{action 'open_modal' 'notification/modals/show-details' notification}} style="cursor: pointer">{{notification.valueNum}} </td>
+                                <td {{action 'open_modal' 'notification/modals/show-details' notification}} style="cursor: pointer">{{notification.showDeadline}} </td>
+                                <td><a href="#" {{action 'open_modal' 'notification/modals/certificate' notification}}><span class="glyphicon glyphicon-pencil"></span></a></td>
+                            {{/if}}
+
+                            <!-- TIPO CERTIFICATION RATING - SOLO PER IL CERTIFICATORE-->
+                            {{#if notification.isCertificationRating}}
                                 <td>{{notification.fromUserDetails}}</td>
                                 <td>
                                     {{#each file in notification.files}}
-                                    <a href="#" {{action 'download_file' file.id}} >{{file.name}}</a>
+                                        <a href="#" {{action 'download_file' file.id}} >{{file.name}}</a>
                                     {{/each}}
                                 </td>
                                 <td><a href="#" {{action 'open_modal' 'notification/modals/certificate' notification}}><span class="glyphicon glyphicon-pencil"></span></a></td>
-                            {{else}}
-                                <td>{{notification.valueNum}}</td>
-                                <td>{{notification.showDeadline}}</td>
                             {{/if}}
 
                             <td>
                                 <a href="#"><span class="glyphicon glyphicon-eye-close" style="text-align: center" {{action "set_record" notification 'status' 'hide'}}></span></a>
                             </td>
                         </tr>
+
                     {{/if}}
                 {{/unless}}
             {{/each}}

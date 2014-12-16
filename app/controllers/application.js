@@ -115,7 +115,7 @@ export default Ember.Controller.extend({
     lan_it: {
         publicToYourContactsNetwork: 'Pubblica alla tua rete di contatti', companyDetails: "Anagrafica", invoiceNumber: 'Numero fattura', rate: 'Punteggio', limit: 'Limite', goodsConfiscation: 'Confisca', vehicleConfiscation: 'Sequestro', fiscalResponsibility: 'Resp.Fiscale',
         validity: 'Validità', alert: 'Avviso', grace: 'Grazia', loadModel: 'Carica modello', attach: 'Allega', premium: 'Avanzato', medium: 'Intermedio', smart: 'Base', for: 'Per', euro: 'Euro',
-        byNow: 'Acquista ora!', amount: 'Totale', cardNumber: 'Numero di carta', account: 'Cliente', general: 'Generale', postToYourLinks: 'Pubblica alla tua rete di contatti', submit: 'Pubblica',
+        byNow: 'Acquista ora!', amount: 'Importo', cardNumber: 'Numero di carta', account: 'Cliente', general: 'Generale', postToYourLinks: 'Pubblica alla tua rete di contatti', submit: 'Pubblica',
         news: 'Nuove', hideNotifications: 'Notifiche nascoste', emas: 'Emas', admin: 'Admin', extra: 'Extra', certifier: 'Certificatore', send: 'Certifica', template: 'Template',
         paymentDetails: 'dettagli pagamento', credits: 'Crediti', orderHistory: 'Storico cliente', buyCredits: 'Acquisto crediti', newDocument: 'documento', hideLinkRequests: 'Richieste di connessione nascoste',
         showHideLinkRequests: 'Mostra le richieste di connessione nascoste...', resume: 'Rigenera', date: 'Data', Close: 'Chiudi', gracePeriod: 'Periodo di grazia',
@@ -132,7 +132,8 @@ export default Ember.Controller.extend({
         birthDate: 'Data di nascita', title: 'Titolo', text: 'Testo', loadImage: 'Carica immagine', attached: 'Allega', documents: 'Documenti', validityDate: 'Inizio validità', deadLine: 'Scadenza',
         returnToList: 'Torna alla lista', files: 'Files', filesToDownload: 'Files da scaricare', accept:'Accetta', sendRequest:'Invia richiesta', search: 'Cerca', expiration: 'Scadenza', street: 'Via', district:'Regione',
         city: 'Città', province: 'Provincia', zipCode: 'CAP', vatNumber: 'Codice fiscale', fax: 'Fax', totalWeight: 'Peso compessivo', email: 'Email', Ratings: 'Punteggio', from: 'Da', ChangePassword: 'Cambio password', CurrentPassword:'Password attuale',
-        NewPassword:'Nuova password', ConfirmNewPassword:'Conferma password', AreYouSureYouWantToDeleteThisRecord: 'Sei sicuro di voler cancellare questo record', AddFiles:'Add files'
+        NewPassword:'Nuova password', ConfirmNewPassword:'Conferma password', AreYouSureYouWantToDeleteThisRecord: 'Sei sicuro di voler cancellare questo record', AddFiles:'Add files',
+        newPaymentPlan: 'Nuovo piano di pagamento', selectTheCurrency: 'seleziona la valuta', currency: 'valuta', selectTheType: 'Seleziona il tipo', rating: 'Punteggio', isLimited: 'Punteggio limitato'
     },
     lan_en: {
         publicToYourContactsNetwork: 'Public to your contacts network', companyDetails: 'Company Details', invoiceNumber: 'Invoice number', rate: 'Rate', limit: 'Limit', goodsConfiscation: 'Goods Confisc.', vehicleConfiscation: 'Vehicle Confisc.',
@@ -153,7 +154,8 @@ export default Ember.Controller.extend({
         documents: 'Documents', validityDate: 'Validity date', deadLine: 'DeadLine', template: 'Template', returnToList: 'Return to list', files: 'Files', accept:'Accept',
         filesToDownload: 'Files to download', sendRequest:'Send request', searchCompanies: 'Search companies', search: 'Search', expiration: 'Expiration', street: 'Street', district: 'District',  city: 'City',
         province: 'Province', zipCode: 'Zip code', vatNumber: 'Vat number', fax: 'Fax', totalWeight: 'Total weight', email: 'Email', Ratings: 'Ratings', from: 'From', ChangePassword: 'Change password',
-        CurrentPassword:'Current password', NewPassword:'New password', ConfirmNewPassword:'Confirm new password', AreYouSureYouWantToDeleteThisRecord: 'Are you sure you want to delete this record', AddFiles:'aggiungi files'
+        CurrentPassword:'Current password', NewPassword:'New password', ConfirmNewPassword:'Confirm new password', AreYouSureYouWantToDeleteThisRecord: 'Are you sure you want to delete this record',
+        AddFiles:'aggiungi files', newPaymentPlan: 'New payment plan', selectTheCurrency: 'select the currency', currency: 'Currency', selectTheType: 'Select the type', rating: 'Rating', isLimited: 'Limited rating'
     },
 
     actions:{

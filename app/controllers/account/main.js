@@ -25,5 +25,15 @@ export default Ember.ObjectController.extend({
     mm: null,
     yyyy: null,
 
-    cvc: null
+    cvc: null,
+
+    main_record: null,
+    listCurrency: [
+        'eur',
+        'usd'
+    ],
+    listType: [
+        'certification',
+        'service'
+    ]
 });

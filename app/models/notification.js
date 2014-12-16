@@ -17,8 +17,11 @@ export default DS.Model.extend({
     fromCompanyDetails: DS.attr('string'),
     fromUserDetails: DS.attr('string'),
     name: DS.attr('string'),
-    status: DS.attr('string'), //view/hide
-    type: DS.attr('string'), //deadline/rating/link/certification
+    status: DS.attr('string'), //show/hide
+    type: DS.attr('string'),    // deadline/  (no action)
+                                // link/
+                                // certificationRating/serviceRating/
+                                // newRating (no action)
 
     valueNum: DS.attr('number'),
 
@@ -61,8 +64,9 @@ export default DS.Model.extend({
     viewNotification: function() {
         return ( this.get('status') === 'show' );
     }.property('status'),
-    isRating: function() {
-        return ( this.get('type') === 'rating' );
+
+    isServiceRating: function() {
+        return ( this.get('type') === 'serviceRating' );
     }.property('type'),
     isDeadline: function() {
         return ( this.get('type') === 'deadline' );
@@ -70,8 +74,14 @@ export default DS.Model.extend({
     isLink: function() {
         return ( this.get('type') === 'link' );
     }.property('type'),
-    isCertification: function() {
-        return ( this.get('type') === 'certification' );
+    isCredit: function() {
+        return ( this.get('type') === 'credit' );
+    }.property('type'),
+    isNewRating: function() {
+        return ( this.get('type') === 'newRating' );
+    }.property('type'),
+    isCertificationRating: function() {
+        return ( this.get('type') === 'certificationRating' );
     }.property('type')
 
 });

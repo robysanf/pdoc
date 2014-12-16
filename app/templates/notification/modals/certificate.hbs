@@ -32,11 +32,12 @@
             {{app_controller.translation.description}}
         </div>
         <div class="col-lg-8">
-            {{textarea value =  description class = "form-control" rows = "3"}}
+            {{textarea value =  controller.description class = "form-control" rows = "3"}}
         </div>
         <div class="col-lg-1"></div>
     </div>
 </div>
 <div class="modal-footer">
+    <a href="#" class="btn" {{action custom_rateDocument controller.selectedRecord.type rating isLimited controller.description controller.selectedRecord.actionToken 'overview' 'application' target="view"}}>{{app_controller.translation.send}}</a>
     <a href="#" class="btn" {{action close 'overview' 'application' target="view"}}>{{app_controller.translation.close}}</a>
 </div>
