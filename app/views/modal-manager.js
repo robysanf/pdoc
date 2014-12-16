@@ -94,6 +94,64 @@ export default Ember.View.extend({
             view.send( 'close', outlet, parentView);
         },
 
+        createRecord_user: function( type, newFirstName, newLastName, newUsername, newBirthDate, newPatents, newPhone, newSkype, newEmail, newPassword, newLanguages, newCurriculum, outlet, parentView ){
+            var view = this;
+
+            var new_record = this.controller.get('store').createRecord('user', {
+                type: type,
+                company: this.controller.main_record,
+                firstName: newFirstName,
+                lastName: newLastName,
+                username: newUsername,
+                birthDate: newBirthDate,
+                phone: newPhone,
+                skype: newSkype,
+                email: newEmail,
+                password: newPassword
+            });
+
+            if( type === 'driver' ){
+                new_record.set('profile', 'user').set('patents', newPatents).set('languages', newLanguages).set('curriculum', newCurriculum).save().then(function(){
+                    view.controller.main_record.reload();
+                    view.send( 'close', outlet, parentView);
+                });
+            } else {
+                new_record.save().then(function(){
+                    view.controller.main_record.reload();
+                    view.send( 'close', outlet, parentView);
+                });
+            }
+
+
+        },
+        createRecord_vehicle: function( type, newName, newBrand, newModel, newDescription, newConfigurations, newRegistrationYear, newChassisNumber, newWeight, newTare, newCategory, outlet, parentView ){
+            var view = this;
+
+            var new_record = this.controller.get('store').createRecord('vehicle', {
+                type: type,
+                company: this.controller.main_record,
+                name: newName,
+                brand: newBrand,
+                model: newModel,
+                description: newDescription,
+                configurations: newConfigurations,
+                registrationYear: newRegistrationYear,
+            });
+
+            if( type === 'trailer' ){
+                new_record.set('chassisNumber', 'newChassisNumber').set('weight', newWeight).set('tare', newTare).set('category', newCategory).save().then(function(){
+                    view.controller.set('configurations', null);
+                    view.controller.main_record.reload();
+                    view.send( 'close', outlet, parentView);
+                });
+            } else {
+                new_record.save().then(function(){
+                    view.controller.main_record.reload();
+                    view.send( 'close', outlet, parentView);
+                });
+            }
+
+        },
         close: function(outlet, parentView) {
             var view = this;
 

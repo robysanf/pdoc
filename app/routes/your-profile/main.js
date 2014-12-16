@@ -328,24 +328,24 @@ export default Ember.Route.extend({
                         _this.controller.set( 'sub_record_document', new_record );
                     });
                 } else {
-                    new_record = this.store.createRecord('user', {
-                        type: 'user',
-                        company: record_company,
-                        profile: 'driver'
-                    });
-
-                    _this.controller.set( 'isView', false );
-                    _this.controller.set( 'sub_record', new_record );
+//                    new_record = this.store.createRecord('user', {
+//                        type: 'user',
+//                        company: record_company,
+//                        profile: 'driver'
+//                    });
+//
+//                    _this.controller.set( 'isView', false );
+//                    _this.controller.set( 'sub_record', new_record );
 
                 }
             } else if ( _this.controller.tabList.clerk ) {
-                new_record = this.store.createRecord('user', {
-                    type: 'powerUser',
-                    company: record_company,
-                    profile: 'clerk'
-                });
-                _this.controller.set( 'isView', false );
-                _this.controller.set( 'sub_record', new_record );
+//                new_record = this.store.createRecord('user', {
+//                    type: 'powerUser',
+//                    company: record_company,
+//                    profile: 'clerk'
+//                });
+//                _this.controller.set( 'isView', false );
+//                _this.controller.set( 'sub_record', new_record );
 
             } else if ( _this.controller.tabList.truck ) {
 
@@ -376,12 +376,12 @@ export default Ember.Route.extend({
                         _this.controller.set( 'sub_record_document', new_record );
                     });
                 } else {
-                    new_record = this.store.createRecord('vehicle', {
-                        type: 'truck',
-                        company: record_company
-                    });
-                    _this.controller.set('isView', false);
-                    _this.controller.set( 'sub_record', new_record );
+//                    new_record = this.store.createRecord('vehicle', {
+//                        type: 'truck',
+//                        company: record_company
+//                    });
+//                    _this.controller.set('isView', false);
+//                    _this.controller.set( 'sub_record', new_record );
                 }
 
             } else if ( _this.controller.tabList.trailer ) {
@@ -412,12 +412,12 @@ export default Ember.Route.extend({
                         _this.controller.set( 'sub_record_document', new_record );
                     });
                 } else {
-                    new_record = this.store.createRecord('vehicle', {
-                        type: 'trailer',
-                        company: record_company
-                    });
-                    _this.controller.set( 'isView', false );
-                    _this.controller.set( 'sub_record', new_record );
+//                    new_record = this.store.createRecord('vehicle', {
+//                        type: 'trailer',
+//                        company: record_company
+//                    });
+//                    _this.controller.set( 'isView', false );
+//                    _this.controller.set( 'sub_record', new_record );
                 }
             }
 
@@ -441,8 +441,10 @@ export default Ember.Route.extend({
                 case 'your-profile/modals/delete-record':
                     controller.set('main_record', record);
                     controller.set('record_to_delete', record_to_delete);
-
                     break;
+                case 'your-profile/modals/new-record':
+                    controller.set('main_record', record);
+                    controller.set('record_type', type);
             }
 
             this.render(path, {

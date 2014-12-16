@@ -48,6 +48,28 @@ export default Ember.ObjectController.extend({
     main_record: null,
     record_to_delete: null,
     record_certifier: null,
+    record_type: null,
+
+    newRecordClerk: function(){
+        return this.get('record_type') === 'clerk';
+    }.property('record_type'),
+    newRecordDriver: function(){
+        return this.get('record_type') === 'driver';
+    }.property('record_type'),
+    newRecordTruck: function(){
+        return this.get('record_type') === 'truck';
+    }.property('record_type'),
+    newRecordTrailer: function(){
+        return this.get('record_type') === 'trailer';
+    }.property('record_type'),
+
+    newRecordUser: function(){
+        return this.get('record_type') === 'clerk' || this.get('record_type') === 'driver' ;
+    }.property('record_type'),
+    newRecordVehicle: function(){
+        return this.get('record_type') === 'trailer' || this.get('record_type') === 'truck' ;
+    }.property('record_type'),
+
     types: [
         "shipper",
         "carrier",
@@ -82,5 +104,12 @@ export default Ember.ObjectController.extend({
     transition_to_list: true,
 
     sub_record: null,
-    sub_record_document: null
-});
+    sub_record_document: null,
+
+    /****************************************
+     * NUOVI RECORD
+     * */
+    newConfigurations: [],
+    newLanguages: [],
+    newPatents: []
+ });

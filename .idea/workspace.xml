@@ -2,11 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3144824c-2229-4ff6-bfb3-be8828b06bd9" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/your-profile/modals/new-record.hbs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/account/tabs/-buy-credits.hbs" afterPath="$PROJECT_DIR$/app/templates/account/tabs/-buy-credits.hbs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/notification/partials/-general-status-hide.hbs" afterPath="$PROJECT_DIR$/app/templates/notification/partials/-general-status-hide.hbs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/notification/partials/-links-request-status-hide.hbs" afterPath="$PROJECT_DIR$/app/templates/notification/partials/-links-request-status-hide.hbs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/notification/tabs/-tab-general.hbs" afterPath="$PROJECT_DIR$/app/templates/notification/tabs/-tab-general.hbs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/notification/tabs/-tab-links-request.hbs" afterPath="$PROJECT_DIR$/app/templates/notification/tabs/-tab-links-request.hbs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-user-clerk-list.hbs" afterPath="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-user-clerk-list.hbs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-user-driver-list.hbs" afterPath="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-user-driver-list.hbs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-vehicle-trailer-list.hbs" afterPath="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-vehicle-trailer-list.hbs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-vehicle-truck-list.hbs" afterPath="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-vehicle-truck-list.hbs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/your-profile/partials/-user-field.hbs" afterPath="$PROJECT_DIR$/app/templates/your-profile/partials/-user-field.hbs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/your-profile/partials/-vehicle-field.hbs" afterPath="$PROJECT_DIR$/app/templates/your-profile/partials/-vehicle-field.hbs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application.js" afterPath="$PROJECT_DIR$/app/controllers/application.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appunti" afterPath="$PROJECT_DIR$/appunti" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/button-disabled-on-click.js" afterPath="$PROJECT_DIR$/app/views/button-disabled-on-click.js" />
@@ -14,7 +21,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/company.js" afterPath="$PROJECT_DIR$/app/models/company.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/account/main.js" afterPath="$PROJECT_DIR$/app/controllers/account/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/notification/main.js" afterPath="$PROJECT_DIR$/app/controllers/notification/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/your-profile/main.js" afterPath="$PROJECT_DIR$/app/controllers/your-profile/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes/account/main.js" afterPath="$PROJECT_DIR$/app/routes/account/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes/your-profile/main.js" afterPath="$PROJECT_DIR$/app/routes/your-profile/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/modal-manager.js" afterPath="$PROJECT_DIR$/app/views/modal-manager.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/notification.js" afterPath="$PROJECT_DIR$/app/models/notification.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/payment-plan.js" afterPath="$PROJECT_DIR$/app/models/payment-plan.js" />
@@ -82,34 +91,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="-tab-general.hbs" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/notification/tabs/-tab-general.hbs">
+      <file leaf-file-name="new-record.hbs" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/your-profile/modals/new-record.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.346153" vertical-offset="958" max-vertical-offset="1870">
-              <caret line="89" column="45" selection-start-line="29" selection-start-column="24" selection-end-line="89" selection-end-column="0" />
+            <state vertical-scroll-proportion="-26.73077" vertical-offset="2042" max-vertical-offset="2873">
+              <caret line="161" column="54" selection-start-line="161" selection-start-column="54" selection-end-line="161" selection-end-column="54" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="-general-status-hide.hbs" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/templates/notification/partials/-general-status-hide.hbs">
+      <file leaf-file-name="modal-manager.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/modal-manager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7049763" vertical-offset="748" max-vertical-offset="1836">
-              <caret line="79" column="37" selection-start-line="79" selection-start-column="37" selection-end-line="79" selection-end-column="37" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#a#1;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="notification.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/notification.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1581">
-              <caret line="53" column="16" selection-start-line="53" selection-start-column="4" selection-end-line="53" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.7619603" vertical-offset="1829" max-vertical-offset="2907">
+              <caret line="146" column="14" selection-start-line="146" selection-start-column="14" selection-end-line="146" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -128,14 +124,7 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/templates/account/tabs/-payment-details.hbs" />
         <option value="$PROJECT_DIR$/app/templates/your-profile/partials/-field-company.hbs" />
-        <option value="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-user-clerk-list.hbs" />
-        <option value="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-user-driver-list.hbs" />
-        <option value="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-vehicle-trailer-list.hbs" />
-        <option value="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-vehicle-truck-list.hbs" />
-        <option value="$PROJECT_DIR$/app/templates/your-profile/partials/-user-field.hbs" />
-        <option value="$PROJECT_DIR$/app/templates/your-profile/partials/-vehicle-field.hbs" />
         <option value="$PROJECT_DIR$/app/models/doc-template.js" />
         <option value="$PROJECT_DIR$/app/models/configuration.js" />
         <option value="$PROJECT_DIR$/app/models/tag.js" />
@@ -147,13 +136,11 @@
         <option value="$PROJECT_DIR$/app/routes/login/main.js" />
         <option value="$PROJECT_DIR$/app/controllers/login/main.js" />
         <option value="$PROJECT_DIR$/app/templates/navbar.hbs" />
-        <option value="$PROJECT_DIR$/app/controllers/your-profile/main.js" />
         <option value="$PROJECT_DIR$/app/models/file.js" />
         <option value="$PROJECT_DIR$/app/views/upload-image.js" />
         <option value="$PROJECT_DIR$/app/templates/your-profile/partials/-company-document-edit.hbs" />
         <option value="$PROJECT_DIR$/app/routes/notification/main.js" />
         <option value="$PROJECT_DIR$/app/transforms/custom-date.js" />
-        <option value="$PROJECT_DIR$/app/routes/your-profile/main.js" />
         <option value="$PROJECT_DIR$/app/models/document.js" />
         <option value="$PROJECT_DIR$/app/models/post.js" />
         <option value="$PROJECT_DIR$/app/models/rating.js" />
@@ -173,12 +160,21 @@
         <option value="$PROJECT_DIR$/app/models/notification.js" />
         <option value="$PROJECT_DIR$/app/templates/notification/tabs/-tab-general.hbs" />
         <option value="$PROJECT_DIR$/app/templates/notification/modals/show-details.hbs" />
-        <option value="$PROJECT_DIR$/app/controllers/application.js" />
         <option value="$PROJECT_DIR$/app/templates/notification/modals/certificate.hbs" />
         <option value="$PROJECT_DIR$/app/controllers/notification/main.js" />
-        <option value="$PROJECT_DIR$/app/views/modal-manager.js" />
         <option value="$PROJECT_DIR$/app/templates/notification/partials/-links-request-status-hide.hbs" />
         <option value="$PROJECT_DIR$/app/templates/notification/partials/-general-status-hide.hbs" />
+        <option value="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-user-clerk-list.hbs" />
+        <option value="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-user-driver-list.hbs" />
+        <option value="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-vehicle-trailer-list.hbs" />
+        <option value="$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-vehicle-truck-list.hbs" />
+        <option value="$PROJECT_DIR$/app/controllers/application.js" />
+        <option value="$PROJECT_DIR$/app/routes/your-profile/main.js" />
+        <option value="$PROJECT_DIR$/app/controllers/your-profile/main.js" />
+        <option value="$PROJECT_DIR$/app/templates/your-profile/partials/-user-field.hbs" />
+        <option value="$PROJECT_DIR$/app/templates/your-profile/partials/-vehicle-field.hbs" />
+        <option value="$PROJECT_DIR$/app/templates/your-profile/modals/new-record.hbs" />
+        <option value="$PROJECT_DIR$/app/views/modal-manager.js" />
       </list>
     </option>
   </component>
@@ -271,6 +267,24 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="p-doc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="p-doc" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -293,7 +307,7 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="notification" />
+              <option name="myItemId" value="your-profile" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -315,55 +329,11 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="notification" />
+              <option name="myItemId" value="your-profile" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tabs" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="p-doc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="p-doc" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="notification" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="partials" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="p-doc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="p-doc" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
+              <option name="myItemId" value="modals" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -664,12 +634,12 @@
       <workItem from="1418391906573" duration="5535000" />
       <workItem from="1418635020562" duration="776000" />
       <workItem from="1418642071639" duration="17189000" />
-      <workItem from="1418717947000" duration="16466000" />
+      <workItem from="1418717947000" duration="22152000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="404779000" />
+    <option name="totallyTimeSpent" value="410465000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -750,84 +720,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="870">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/login/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37126437" vertical-offset="561" max-vertical-offset="1802">
-          <caret line="52" column="69" selection-start-line="52" selection-start-column="61" selection-end-line="52" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/bootstrap/grunt/bs-commonjs-generator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44942528" vertical-offset="0" max-vertical-offset="870">
-          <caret line="23" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/upload-image.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23448277" vertical-offset="0" max-vertical-offset="870">
-          <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/your-profile/partials/-user-field.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3325031" vertical-offset="2572" max-vertical-offset="3638">
-          <caret line="167" column="173" selection-start-line="167" selection-start-column="90" selection-end-line="167" selection-end-column="173" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/your-profile/modals/show-certification-rating.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="870">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/your-profile/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334" vertical-offset="803" max-vertical-offset="1564">
-          <caret line="58" column="4" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/your-profile/partials/-company-document-edit.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.8385185" vertical-offset="0" max-vertical-offset="4879">
-          <caret line="73" column="66" selection-start-line="73" selection-start-column="47" selection-end-line="73" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/transforms/custom-time.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26190478" vertical-offset="0" max-vertical-offset="714">
-          <caret line="11" column="79" selection-start-line="11" selection-start-column="70" selection-end-line="11" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/configuration.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/doc-template.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1360">
-          <caret line="13" column="31" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/document.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1819">
@@ -848,6 +740,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.26190478" vertical-offset="0" max-vertical-offset="714">
           <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -870,14 +763,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14285715" vertical-offset="0" max-vertical-offset="867">
-          <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -904,26 +789,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/your-profile/partials/-field-company.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3222749" vertical-offset="493" max-vertical-offset="5491">
-          <caret line="45" column="127" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="113" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/your-profile/partials/-company-documents-list.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.63176894" vertical-offset="138" max-vertical-offset="969">
           <caret line="39" column="117" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/your-profile/main.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7488152" vertical-offset="558" max-vertical-offset="1734">
-          <caret line="70" column="43" selection-start-line="70" selection-start-column="17" selection-end-line="70" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -948,14 +817,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.6191537" vertical-offset="278" max-vertical-offset="1122">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes/your-profile/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8947368" vertical-offset="7072" max-vertical-offset="9775">
-          <caret line="441" column="72" selection-start-line="441" selection-start-column="19" selection-end-line="441" selection-end-column="58" />
           <folding />
         </state>
       </provider>
@@ -1000,14 +861,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/your-profile/partials/-logo.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.461538" vertical-offset="663" max-vertical-offset="1921">
-          <caret line="55" column="37" selection-start-line="55" selection-start-column="21" selection-end-line="55" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/tooltip.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1367816" vertical-offset="0" max-vertical-offset="870">
@@ -1044,14 +897,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="269" max-vertical-offset="1207">
           <caret line="65" column="31" selection-start-line="65" selection-start-column="31" selection-end-line="65" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/application.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7386231" vertical-offset="2036" max-vertical-offset="43503">
-          <caret line="157" column="179" selection-start-line="157" selection-start-column="179" selection-end-line="157" selection-end-column="179" />
           <folding />
         </state>
       </provider>
@@ -1104,14 +949,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/modal-manager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="949" max-vertical-offset="1921">
-          <caret line="83" column="61" selection-start-line="83" selection-start-column="61" selection-end-line="83" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/notification/partials/-links-request-status-hide.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.04028436" vertical-offset="306" max-vertical-offset="1258">
@@ -1122,7 +959,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/notification.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1581">
+        <state vertical-scroll-proportion="0.44942528" vertical-offset="510" max-vertical-offset="1581">
           <caret line="53" column="16" selection-start-line="53" selection-start-column="4" selection-end-line="53" selection-end-column="16" />
           <folding />
         </state>
@@ -1136,14 +973,206 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/gruntfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0942528" vertical-offset="0" max-vertical-offset="1105">
+          <caret line="56" column="40" selection-start-line="56" selection-start-column="4" selection-end-line="56" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/notification/partials/-general-status-hide.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7049763" vertical-offset="748" max-vertical-offset="1836">
+        <state vertical-scroll-proportion="-22.884615" vertical-offset="748" max-vertical-offset="1836">
           <caret line="79" column="37" selection-start-line="79" selection-start-column="37" selection-end-line="79" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/your-profile/partials/-field-company.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="5491">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/your-profile/partials/-logo.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.02045728" vertical-offset="918" max-vertical-offset="1921">
+          <caret line="55" column="37" selection-start-line="55" selection-start-column="21" selection-end-line="55" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/your-profile/modals/delete-record.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="289">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="11" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/.gitkeep">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="870">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-vehicle-trailer-list.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="1955">
+          <caret line="12" column="144" selection-start-line="12" selection-start-column="144" selection-end-line="12" selection-end-column="144" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-vehicle-truck-list.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="1887">
+          <caret line="12" column="142" selection-start-line="12" selection-start-column="142" selection-end-line="12" selection-end-column="142" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/application.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33093524" vertical-offset="2036" max-vertical-offset="43537">
+          <caret line="136" column="143" selection-start-line="136" selection-start-column="143" selection-end-line="136" selection-end-column="143" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/your-profile/main.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7488152" vertical-offset="558" max-vertical-offset="1734">
+          <caret line="70" column="43" selection-start-line="70" selection-start-column="17" selection-end-line="70" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-user-clerk-list.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24548736" vertical-offset="0" max-vertical-offset="1428">
+          <caret line="12" column="145" selection-start-line="12" selection-start-column="71" selection-end-line="12" selection-end-column="145" />
           <folding>
-            <element signature="n#style#0;n#span#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#a#1;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#fieldset#0;n#form#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#fieldset#0;n#form#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#fieldset#0;n#form#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#fieldset#0;n#form#0;n#div#1;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/your-profile/tabs/-tab-user-driver-list.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24548736" vertical-offset="0" max-vertical-offset="1904">
+          <caret line="12" column="143" selection-start-line="12" selection-start-column="143" selection-end-line="12" selection-end-column="143" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
+          <caret line="15" column="8" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/routes/your-profile/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.90229887" vertical-offset="6338" max-vertical-offset="9809">
+          <caret line="419" column="34" selection-start-line="414" selection-start-column="22" selection-end-line="419" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/your-profile/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.96091956" vertical-offset="1085" max-vertical-offset="2057">
+          <caret line="113" column="18" selection-start-line="113" selection-start-column="18" selection-end-line="113" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/your-profile/partials/-vehicle-field.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.792654" vertical-offset="1530" max-vertical-offset="3009">
+          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#1;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#2;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#2;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#3;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#3;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#4;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#4;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#5;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#5;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#6;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#6;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#7;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#7;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#8;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#8;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#9;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#9;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#10;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#10;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/your-profile/partials/-user-field.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28640193" vertical-offset="0" max-vertical-offset="3672">
+          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#1;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#2;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#2;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#3;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#3;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#4;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#4;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#5;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#5;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#6;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#6;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#7;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#7;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#8;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#8;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#9;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#9;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#10;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#10;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#11;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#11;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#12;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#12;n#fieldset#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/your-profile/modals/new-record.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-26.73077" vertical-offset="2042" max-vertical-offset="2873">
+          <caret line="161" column="54" selection-start-line="161" selection-start-column="54" selection-end-line="161" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/modal-manager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7619603" vertical-offset="1829" max-vertical-offset="2907">
+          <caret line="146" column="14" selection-start-line="146" selection-start-column="14" selection-end-line="146" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -1,20 +1,22 @@
-<form class="form-horizontal">
-    <fieldset>
-    {{#if controller.sub_record.canEdit}}   <!-- può modificare solo il proprietario della company o i clerks-->
+<div class="form-horizontal">
+<fieldset>
+
     <div class="form-group">
         <div class="col-lg-1">
-            {{#if controller.isView}}
-                <!-------------------- pencil ---------------------->
-                <button class="btn btn-primary btn-50" {{action 'change_state' 'your-profile/main' false}}><span class="glyphicon glyphicon-pencil"></span></button>
-            {{else}}
+            {{#if controller.sub_record.canEdit}}   <!-- può modificare solo il proprietario della company o i clerks-->
+                {{#if controller.isView}}
+                    <!-------------------- pencil ---------------------->
+                    <button class="btn btn-primary btn-50" {{action 'change_state' 'your-profile/main' false}}><span class="glyphicon glyphicon-pencil"></span></button>
+                {{else}}
 
-                <!-------------------- ok ---------------------->
-                <button class="btn btn-primary btn-50" {{action 'set_record' 'user_vehicle' 'isView' true }}><span class="glyphicon glyphicon-ok"></span></button>
+                    <!-------------------- ok ---------------------->
+                    <button class="btn btn-primary btn-50" {{action 'set_record' 'user_vehicle' 'isView' true }}><span class="glyphicon glyphicon-ok"></span></button>
+                {{/if}}
             {{/if}}
         </div>
         <div class="col-lg-11"><legend>{{app_controller.translation.details}}</legend> </div>
     </div>
-    {{/if}}
+
         <div class="form-group">
             <label for="name" class="col-lg-3 control-label">{{app_controller.translation.firstName}}</label>
             <div class="col-lg-9">
@@ -206,4 +208,4 @@
             </div>
         {{/if}}
     </fieldset>
-</form>
+</div>

@@ -1,18 +1,17 @@
-<form class="form-horizontal">
+<div class="form-horizontal">
     <fieldset>
-    {{#if controller.sub_record.canEdit}}   <!-- può modificare solo il proprietario della company o i clerks-->
         <div class="form-group">
             <div class="col-lg-1">
+            {{#if controller.sub_record.canEdit}}   <!-- può modificare solo il proprietario della company o i clerks-->
                 {{#if controller.isView}}
                     <button class="btn btn-primary btn-50" {{action 'change_state' 'your-profile/main' false}}><span class="glyphicon glyphicon-pencil"></span></button>
                 {{else}}
                     <button class="btn btn-primary btn-50" {{action 'set_record' 'user_vehicle' 'isView' true}}><span class="glyphicon glyphicon-ok"></span></button>
                 {{/if}}
+            {{/if}}
             </div>
             <div class="col-lg-11"><legend>{{app_controller.translation.details}}</legend> </div>
         </div>
-    {{/if}}
-
         <!--<legend>-->
             <!--&lt;!&ndash;------------------ button return-to-list --------------------&ndash;&gt;-->
             <!--<span {{!{{action 'transition_to' 'your-profile/partials/-tab-user-driver-list' null 'isView' true 'transition_to_list' true}} style="cursor: pointer" class="pull-right">-->
@@ -170,4 +169,4 @@
     {{/if}}
 
     </fieldset>
-</form>
+</div>
