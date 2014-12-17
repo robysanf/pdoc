@@ -41,7 +41,9 @@
                                 {{#view tooltip}}
                                     <div class="panel panel-info" data-toggle="tooltip" data-placement="left" title="Service payment plan." >
                                         <div class="panel-heading" style="text-align: center">
-                                            <button type="button" class="close" {{action 'delete_plan' 'paymentPlan' payment}}><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            {{#if payment.canRemove}}
+                                                <button type="button" class="close" {{action 'delete_plan' 'paymentPlan' payment}}><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            {{/if}}
                                             <h4 style="color: #ffffff"> {{payment.name}}</h4>
                                         </div>
                                         <div class="panel-body">
@@ -64,7 +66,10 @@
                                 {{#view tooltip}}
                                     <div class="panel panel-primary" data-toggle="tooltip" data-placement="left" title="Certification payment plan." >
                                         <div class="panel-heading" style="text-align: center">
-                                            <button type="button" class="close" {{action 'delete_plan' 'paymentPlan' payment}}><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            {{#if payment.canRemove}}
+                                                <button type="button" class="close" {{action 'delete_plan' 'paymentPlan' payment}}><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
+                                            {{/if}}
                                             <h4 style="color: #ffffff"> {{payment.name}}</h4>
                                         </div>
                                         <div class="panel-body">

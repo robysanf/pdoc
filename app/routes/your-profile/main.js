@@ -148,10 +148,11 @@ export default Ember.Route.extend({
                    break;
                case 'your-profile/partials/-company-document-edit':
                    this.controller.set( 'sub_record_document', record );
-
                    app_controller.company_record.get('certifier').then(function( record ){
                        app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id') }));
                    });
+
+
 
                    this.send('set_variable', var1, value1);
                    this.send('set_variable', var2, value2);
@@ -179,10 +180,20 @@ export default Ember.Route.extend({
                     companyRecord.get('certifier').then(function( certifier ){
                         _this.controller.sub_record_document.set( 'certifier', certifier );
 
-                        _this.controller.sub_record_document.save().then(function( saved_record ){
-                            app_controller.send( 'message_manager', 'Success', 'You have successfully saved the document.' );
-                            _this.controller.set( path, value );
-                        });
+                        if( _this.controller.sub_record_document.get('type') === 'document' ){
+                            _this.controller.sub_record_document.save().then(function( saved_record ){
+                                app_controller.send( 'message_manager', 'Success', 'You have successfully saved the document.' );
+                                _this.controller.set( path, value );
+                            });
+                        } else {
+                            _this.controller.sub_record_document.set('validityDate', null).set('deadline', null).set('grace', null).set('alert', null);
+
+                            _this.controller.sub_record_document.save().then(function( saved_record ){
+                                app_controller.send( 'message_manager', 'Success', 'You have successfully saved the document.' );
+                                _this.controller.set( path, value );
+                            });
+                        }
+
                     });
                     break;
                 case 'user_vehicle':
@@ -295,8 +306,8 @@ export default Ember.Route.extend({
                     entity: record_company.get('id'),
                     entityType: 'company',
                     date: moment(today).format('YYYY-MM-DD HH:mm:ss'),
-                    type: 'document',
-                    status: 'active'
+                    status: 'active',
+                    isCertified: false
                 });
 
                 app_controller.company_record.get('certifier').then(function( certifier ){
@@ -327,8 +338,8 @@ export default Ember.Route.extend({
                         entity:  _this.controller.sub_record.get('id'),
                         entityType: 'user',
                         date: moment(today).format(),
-                        type: 'document',
-                        status: 'active'
+                        status: 'active',
+                        isCertified: false
                     });
 
                     app_controller.company_record.get('certifier').then(function( certifier ){
@@ -375,8 +386,8 @@ export default Ember.Route.extend({
                         entity:  _this.controller.sub_record.get('id'),
                         entityType: 'user',
                         date: moment(today).format(),
-                        type: 'document',
-                        status: 'active'
+                        status: 'active',
+                        isCertified: false
                     });
 
                     app_controller.company_record.get('certifier').then(function( certifier ){
@@ -411,8 +422,8 @@ export default Ember.Route.extend({
                         entity:  _this.controller.sub_record.get('id'),
                         entityType: 'user',
                         date: moment(today).format(),
-                        type: 'document',
-                        status: 'active'
+                        status: 'active',
+                        isCertified: false
                     });
 
                     app_controller.company_record.get('certifier').then(function( certifier ){
@@ -529,14 +540,16 @@ export default Ember.Route.extend({
          @for your-profile/partials/-company-documents-list.hbs
          @param {document_id} id del documento su cui fare rating
          */
-        custom_notifyDocument: function( document_id ){
+        custom_notifyDocument: function( document_record ){
             var self = this, app_controller = self.controllerFor('application'),
                 data = this.getProperties();
 
-            data.document = document_id;
+
+            data.document = document_record.get('id');
 
             $.post('api/custom/notifyDocument?token=' + app_controller.token, data).then(function(response){
                 if (response.success) {
+                    document_record.set('isCertified', true).save();
                     app_controller.send( 'message_manager', 'Success', 'You have successfully sent the document.' );
                 }
             }, function( response ){
@@ -549,7 +562,7 @@ export default Ember.Route.extend({
         /**
          invio richiesta per cambio certificatore
 
-         @action custom_notifyDocument
+         @action custom_setCertifier
          @for your-profile/partials/-field-company.hbs
          @param {company_id} id della company certificatrice
          */
@@ -570,19 +583,21 @@ export default Ember.Route.extend({
             });
         },
 
-        custom_showRating: function( record_id, type ){
+        custom_showRating: function( record, type ){
             var _this = this, data = _this.getProperties(), app_controller = _this.controllerFor('application');
 
-            data.company = record_id;
+            data.company = record.get('id');
             switch ( type ){
                 case 'service':
                     $.post('api/custom/companyServiceScore?token=' + app_controller.token, data).then(function(response){
+                        record.set('serviceScore', response.score);
                     }, function( response ){
                         new PNotify({ title: 'Warning', text: response, type: 'error', delay: 2000 });
                     });
                     break;
                 case 'certification':
                     $.post('api/custom/companyCertificationScore?token=' + app_controller.token, data).then(function(response){
+                        record.set('certificationScore', response.score);
                     }, function(response){
                         new PNotify({ title: 'Warning', text: response, type: 'error', delay: 2000 });
                     });

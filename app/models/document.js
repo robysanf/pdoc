@@ -3,6 +3,7 @@ import DS from 'ember-data';
 export default DS.Model.extend({
     canEdit: DS.attr('boolean'),
     canRemove: DS.attr('boolean'),
+    isCertified: DS.attr('boolean'),
 
     date: DS.attr('custom-date'),
     validityDate: DS.attr('custom-date'),
@@ -32,41 +33,50 @@ export default DS.Model.extend({
 
     set_alert: function(){
         var new_date;
-        switch (this.get('docTemplate').get('alertType')){
-            case 'days':
-                new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('alertNum'), 'day');
-                this.set('alert', new_date);
-                break;
-            case 'months':
-                new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('alertNum'), 'month');
-                this.set('alert', new_date);
-                break;
-            case 'years':
-                new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('alertNum'), 'year');
-                this.set('alert', new_date);
-                break;
+        if( this.get('type') === 'document'){
+            switch (this.get('docTemplate').get('alertType')){
+                case 'days':
+                    new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('alertNum'), 'day');
+                    this.set('alert', new_date);
+                    break;
+                case 'months':
+                    new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('alertNum'), 'month');
+                    this.set('alert', new_date);
+                    break;
+                case 'years':
+                    new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('alertNum'), 'year');
+                    this.set('alert', new_date);
+                    break;
+            }
         }
-    }.observes('validityDate'),
+
+    }.observes('validityDate', 'type'),
     set_grace: function(){
         var new_date;
-        switch (this.get('docTemplate').get('graceType')){
-            case 'days':
-                new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('graceNum'), 'day');
-                this.set('grace', new_date);
-                break;
-            case 'months':
-                new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('graceNum'), 'month');
-                this.set('grace', new_date);
-                break;
-            case 'years':
-                new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('graceNum'), 'year');
-                this.set('grace', new_date);
-                break;
+        if( this.get('type') === 'document'){
+            switch (this.get('docTemplate').get('graceType')){
+                case 'days':
+                    new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('graceNum'), 'day');
+                    this.set('grace', new_date);
+                    break;
+                case 'months':
+                    new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('graceNum'), 'month');
+                    this.set('grace', new_date);
+                    break;
+                case 'years':
+                    new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('graceNum'), 'year');
+                    this.set('grace', new_date);
+                    break;
+            }
         }
-    }.observes('validityDate'),
+
+    }.observes('validityDate', 'type'),
     set_deadline: function(){
-        this.set('deadline', this.get('docTemplate').get('deadline'));
-    }.observes('docTemplate.deadline'),
+        if( this.get('type') === 'document'){
+            this.set('deadline', this.get('docTemplate').get('deadline'));
+        }
+
+    }.observes('docTemplate.deadline', 'type'),
 
     /*******************************************************
      * PROPERTIES
@@ -80,6 +90,10 @@ export default DS.Model.extend({
     isOther: function(){
         return ( this.get('type') === 'other' );
     }.property('type'),
+
+    isActive: function(){
+        return ( this.get('status') === 'active' );
+    }.property('status'),
 
     date_toString: function() {
         return moment(this.get('date')).format('YYYY-MM-DD');

@@ -14,10 +14,10 @@
                     <tbody>
                     {{#each company in app_controller.searchResults}}
                         <tr>
-                            <td {{action 'transition_to' 'your-profile/main' company.id 'isView' true}} style="cursor: pointer">{{company.name}}</td>
-                            <td {{action 'transition_to' 'your-profile/main' company.id 'isView' true}} style="cursor: pointer">{{company.type}}</td>
-                            <td {{action 'transition_to' 'your-profile/main' company.id 'isView' true}} style="cursor: pointer">{{company.country}}</td>
-                            <td {{action 'transition_to' 'your-profile/main' company.id 'isView' true}} style="cursor: pointer">
+                            <td {{action 'transition_to' 'your-profile/main' company 'isView' true}} style="cursor: pointer">{{company.name}}</td>
+                            <td {{action 'transition_to' 'your-profile/main' company 'isView' true}} style="cursor: pointer">{{company.type}}</td>
+                            <td {{action 'transition_to' 'your-profile/main' company 'isView' true}} style="cursor: pointer">{{company.country}}</td>
+                            <td {{action 'transition_to' 'your-profile/main' company 'isView' true}} style="cursor: pointer">
                                 {{#each service in company.services}}
                                     {{service}}
                                 {{/each}}

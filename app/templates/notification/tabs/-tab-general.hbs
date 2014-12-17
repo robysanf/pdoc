@@ -5,9 +5,10 @@
             <thead>
             <tr>
                 <th style="width:5%"></th>
-                <th style="width:10%">{{app_controller.translation.news}}</th>
+                <th style="width:10%">{{app_controller.translation.new}}</th>
                 <th style="width:10%">{{app_controller.translation.date}}</th>
                 <th style="width:20%">{{app_controller.translation.details}}</th>
+                <th style="width:20%">{{app_controller.translation.description}}</th>
                 <th style="width:20%">{{app_controller.translation.company}}</th>
 
                 {{#if this.isCertifier}}
@@ -42,7 +43,8 @@
                             </td>
                             <td {{action 'open_modal' 'notification/modals/show-details' notification}} style="cursor: pointer">{{notification.showDate}} </td>
                             <td {{action 'open_modal' 'notification/modals/show-details' notification}} style="cursor: pointer">{{notification.name}} </td>
-                            <td {{action 'open_modal' 'notification/modals/show-details' notification}} style="cursor: pointer">{{notification.fromCompanyDetails}} </td>
+                            <td {{action 'open_modal' 'notification/modals/show-details' notification}} style="cursor: pointer">{{notification.description}} </td>
+                            <td {{action 'open_modal' 'notification/modals/show-details' notification}} style="cursor: pointer">{{notification.fromCompanyDetail}} </td>
 
                             <!-- TIPO DEADLINE-->
                             {{#if notification.isDeadline}}
@@ -69,7 +71,12 @@
                             {{#if notification.isServiceRating}}
                                 <td {{action 'open_modal' 'notification/modals/show-details' notification}} style="cursor: pointer">{{notification.valueNum}} </td>
                                 <td {{action 'open_modal' 'notification/modals/show-details' notification}} style="cursor: pointer">{{notification.showDeadline}} </td>
-                                <td><a href="#" {{action 'open_modal' 'notification/modals/certificate' notification}}><span class="glyphicon glyphicon-pencil"></span></a></td>
+                                {{#if notification.actionToken}}
+                                    <td><a href="#" {{action 'open_modal' 'notification/modals/certificate' notification}}><span class="glyphicon glyphicon-pencil"></span></a></td>
+                                {{else}}
+                                    <td></td>
+                                {{/if}}
+
                             {{/if}}
 
                             <!-- TIPO CERTIFICATION RATING - SOLO PER IL CERTIFICATORE-->
@@ -80,7 +87,12 @@
                                         <a href="#" {{action 'download_file' file.id}} >{{file.name}}</a>
                                     {{/each}}
                                 </td>
-                                <td><a href="#" {{action 'open_modal' 'notification/modals/certificate' notification}}><span class="glyphicon glyphicon-pencil"></span></a></td>
+                                {{#if notification.actionToken}}
+                                    <td><a href="#" {{action 'open_modal' 'notification/modals/certificate' notification}}><span class="glyphicon glyphicon-pencil"></span></a></td>
+                                {{else}}
+                                    <td></td>
+                                {{/if}}
+
                             {{/if}}
 
                             <td>

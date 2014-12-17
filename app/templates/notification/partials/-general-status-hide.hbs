@@ -5,9 +5,10 @@
             <thead>
             <tr>
                 <th style="width:5%"></th>
-                <th style="width:10%">{{app_controller.translation.news}}</th>
+                <th style="width:10%">{{app_controller.translation.new}}</th>
                 <th style="width:10%">{{app_controller.translation.date}}</th>
-                <th style="width:20%">{{app_controller.translation.notification}}</th>
+                <th style="width:20%">{{app_controller.translation.details}}</th>
+                <th style="width:20%">{{app_controller.translation.description}}</th>
                 <th style="width:20%">{{app_controller.translation.company}}</th>
 
                 {{#if this.isCertifier}}
@@ -40,7 +41,8 @@
                             </td>
                             <td>{{notification.showDate}} </td>
                             <td>{{notification.name}} </td>
-                            <td>{{notification.fromCompanyDetails}} </td>
+                            <td>{{notification.description}} </td>
+                            <td>{{notification.fromCompanyDetail}} </td>
 
                             <!-- TIPO DEADLINE-->
                             {{#if notification.isDeadline}}

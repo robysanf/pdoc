@@ -71,24 +71,29 @@ export default Ember.View.extend({
                 data.actionFn = 'certificationRateDocument';
                 $.post('api/action?actionToken=' + actionToken, data).then(function(response){
                     if (response.success) {
-                        this.controller.selectedRecord.set('actionToken', null);
-                        this.controller.selectedRecord.save().then(function(){
+                        view.controller.selectedRecord.set('highlighted', false);
+                        view.controller.selectedRecord.set('actionToken', null);
+                        view.controller.selectedRecord.save().then(function(){
                             new PNotify({ title: 'Well done', text: 'You successfully send the rate.', type: 'success', delay: 2000 });
                         });
                     }
                 }, function( error ){
+                    view.controller.selectedRecord.set('actionToken', null);
                     new PNotify({ title: 'Warning', text: error, type: 'error', delay: 2000 });
                 });
             } else if ( type === 'serviceRating' ){
                 data.actionFn = 'serviceRateDocument';
                 $.post('api/action?actionToken=' + actionToken, data).then(function(response){
                     if (response.success) {
-                        this.controller.selectedRecord.set('actionToken', null);
-                        this.controller.selectedRecord.save().then(function(){
+                        view.controller.selectedRecord.set('highlighted', false);
+                        view.controller.selectedRecord.set('actionToken', null);
+                        view.controller.selectedRecord.save().then(function(){
+
                             new PNotify({ title: 'Well done', text: 'You successfully send the rate.', type: 'success', delay: 2000 });
                         });
                     }
                 }, function( error ){
+                    view.controller.selectedRecord.set('actionToken', null);
                     new PNotify({ title: 'Warning', text: error, type: 'error', delay: 2000 });
                 });
             }

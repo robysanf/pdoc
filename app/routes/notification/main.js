@@ -95,7 +95,7 @@ export default Ember.Route.extend({
                     recordTo.reload();
 
                     //SUCCESS
-                    app_controller.send( 'message_manager', 'Success', 'You have successfully sent the document.' );
+                    app_controller.send( 'message_manager', 'Success', 'You have successfully accepted the connection.' );
                 }
             }, function( response ){
                 //NOT SAVED

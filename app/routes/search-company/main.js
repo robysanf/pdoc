@@ -43,7 +43,7 @@ export default Ember.Route.extend({
             //recupero l'id del booking scelto
             if(controller.search_type != "" && controller.search_type != null ){
 //                searchPath = "type"; queryExpression[searchPath] = controller.search_type;
-                queryExpression = queryExpression+'&type="'+controller.search_type+'"';
+                queryExpression = queryExpression+'&type='+controller.search_type+'';
             }
             //recupero l'id del booking scelto
             if(controller.search_country != "" && controller.search_country != null ){
@@ -118,8 +118,8 @@ export default Ember.Route.extend({
             switch ( path ) {
                 case 'your-profile/main':
 
-
-                    _this.transitionTo( path, record );
+                    record.reload();
+                    _this.transitionTo( path, record.get('id') );
                     break;
             }
         }

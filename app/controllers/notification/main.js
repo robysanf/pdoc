@@ -16,8 +16,8 @@ export default Ember.ObjectController.extend({
     ),
 
     bool: [
+        false,
         true,
-        false
     ],
     description: null
 });

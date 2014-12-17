@@ -16,13 +16,6 @@
                 <strong>{{app_controller.translation.return}}</strong>
             </button>
         </div>
-
-        <!--<div class="col-lg-1">-->
-             <!--<span {{!{{action 'transition_to' 'your-profile/partials/-company-document-edit' null 'isView_docList' true 'isView_docDetails' false}} style="cursor: pointer" class="pull-right">-->
-                <!--<strong style="color: #4582ec;">List</strong>-->
-                <!--<span class="glyphicon glyphicon-chevron-right btn-font-color"></span>-->
-            <!--</span>-->
-        <!--</div>-->
     </div>
 
         <div class="form-group">
@@ -69,7 +62,6 @@
                             <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                         {{/if}}
                     {{else}}
-                    {{!{{auto-complete source=app_controller.records_docTemplate destination=sub_record_document.docTemplate searchPath="name" minChars=0}}
                         {{select-2
                         content=app_controller.records_docTemplate
                         value=sub_record_document.docTemplate
@@ -80,11 +72,10 @@
                         enabled=true
                         allowClear=true
                         }}
-                    {{!{{input value = sub_record_document.template.name type = "text" class = "form-control"}}
                     {{/if}}
                 </div>
             </div>
-        {{/if}}
+
 
         <div class="form-group">
             <label class="col-lg-3 control-label">{{app_controller.translation.validityDate}}</label>
@@ -148,6 +139,7 @@
                 {{/if}}
             </div>
         </div>
+        {{/if}}
         <div class="form-group">
             <label class="col-lg-3 control-label">{{app_controller.translation.note}}</label>
             <div class="col-lg-9">

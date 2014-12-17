@@ -4,7 +4,7 @@
         <table class="table table-bordered table-hover">
             <thead>
             <tr>
-                <th style="width:5%">{{app_controller.translation.news}}</th>
+                <th style="width:5%">{{app_controller.translation.new}}</th>
                 <th style="width:20%">{{app_controller.translation.date}}</th>
                 <th style="width:20%">{{app_controller.translation.company}}</th>
                 <th style="width:20%">{{app_controller.translation.user}}</th>
@@ -27,8 +27,8 @@
                                     {{/if}}
                                 </td>
                                 <td>{{notification.showDate}}</td>
-                                <td>{{notification.fromCompanyDetails}}</td>
-                                <td>{{notification.fromUserDetails}}</td>
+                                <td>{{notification.fromCompanyDetail}}</td>
+                                <td>{{notification.fromUserDetail}}</td>
                                 <td>{{notification.description}}</td>
                                 {{#if notification.is_actionToken}}
                                     <td><a href="#" {{action "custom_acceptedLink" notification notification.fromCompany this notification.actionToken}}><span class="glyphicon glyphicon-ok"></span></a></td>
@@ -47,8 +47,8 @@
                                     {{/if}}
                                 </td>
                                 <td>{{notification.showDate}}</td>
-                                <td>{{notification.fromCompanyDetails}}</td>
-                                <td>{{notification.fromUserDetails}}</td>
+                                <td>{{notification.fromCompanyDetail}}</td>
+                                <td>{{notification.fromUserDetail}}</td>
                                 <td>{{notification.description}}</td>
                                 {{#if notification.is_actionToken}}
                                     <td><a href="#" {{action "custom_acceptedLink" notification notification.fromCompany this notification.actionToken}}><span class="glyphicon glyphicon-ok"></span></a></td>

@@ -26,8 +26,8 @@ export default Ember.Route.extend({
 
                     var onSuccess = function() {
                         app_controller.send( 'message_manager', 'Success', 'You have successfully saved the record.' );
-                        _this.controller.postTitle = null;
-                        _this.controller.postDescription = null;
+                        _this.controller.set('postTitle', null);
+                        _this.controller.set('postDescription', null);
                     }.bind(this);
 
                     var onFail = function() {

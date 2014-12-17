@@ -98,7 +98,7 @@
                     </div>
                 {{else}}
                     {{#view 'tooltip'}}
-                        <button type="button" class="btn btn-primary btn-group-justified" data-toggle="tooltip" data-placement="left" {{action 'custom_showRating' this.id 'service'}} title="You will be charged 1 credit to see the rating for 15 days.">Show service rating</button>
+                        <button type="button" class="btn btn-primary btn-group-justified" data-toggle="tooltip" data-placement="left" {{action 'custom_showRating' this 'service'}} title="You will be charged 1 credit to see the rating for 15 days.">Show service rating</button>
                     {{/view}}
                 {{/if}}
             {{/if}}

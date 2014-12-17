@@ -87,8 +87,8 @@ export default Ember.Route.extend({
                 data.exp_month = _this.controller.mm;
                 data.exp_year = _this.controller.yyyy;
 
-                this.store.find('user', app_controller.user_id).then(function(user){
-                    user.set('cardNumber', _this.controller.cardNumber4);
+                this.store.find('company', app_controller.company_id).then(function(company){
+                    company.set('cardNumber', _this.controller.cardNumber4);
 //                    .save().then(function( user_saved ){
 
                     Stripe.card.createToken(data, stripeResponseHandler);
@@ -120,7 +120,7 @@ export default Ember.Route.extend({
                                         delay: 2000
                                     });
 
-                                    user.save().then(function(){
+                                    company.save().then(function(){
                                         _this.controller.set('curr_pwd', null);
                                         _this.controller.set('new_pwd', null);
                                         _this.controller.set('confirm_pwd', null);

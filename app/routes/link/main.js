@@ -16,6 +16,7 @@ export default Ember.Route.extend({
         transition_to: function( path, record ){
             switch ( path ){
                 case 'your-profile/main':
+                    record.reload();
                     this.transitionTo( path, record );
                     break;
             }

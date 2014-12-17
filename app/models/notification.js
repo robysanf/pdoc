@@ -14,8 +14,8 @@ export default DS.Model.extend({
     description: DS.attr('string'),
     entity: DS.attr('string'),
     entityType: DS.attr('string'),
-    fromCompanyDetails: DS.attr('string'),
-    fromUserDetails: DS.attr('string'),
+    fromCompanyDetail: DS.attr('string'),
+    fromUserDetail: DS.attr('string'),
     name: DS.attr('string'),
     status: DS.attr('string'), //show/hide
     type: DS.attr('string'),    // deadline/  (no action)

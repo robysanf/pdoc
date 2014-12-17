@@ -123,16 +123,20 @@ export default DS.Model.extend({
         return totWeight;
     }.property('configurations.@each.valueNum'),
     hideCardNumber: function() {
-        return '**************' + this.get('cardNumber');
+        var card = String(this.get('cardNumber'));
+        return '**************' + card;
     }.property('cardNumber'),
     isCertifier: function() {
         return ( this.get('type') === 'certifier' );
     }.property('type'),
     firedNotifications: function() {
         var notify = this.get("notifications"), fired = null;
+        var today = moment(Date());
 
         notify.forEach(function(val){
-            if( val.get('highlighted') === true ) {
+            var date = moment(val.get('date'));
+            var diff =  today.diff(date);
+            if( val.get('highlighted') === true && diff > 0 ) {
                 fired += 1;
             }
         });
