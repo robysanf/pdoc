@@ -11,6 +11,7 @@
                 <thead>
                 <tr>
                     <th>{{app_controller.translation.from}}</th>
+                    <th>{{app_controller.translation.description}}</th>
                     <th>{{app_controller.translation.rate}}</th>
                 </tr>
                 </thead>
@@ -18,8 +19,9 @@
                 {{#each rate in ratings}}
                     {{#if rate.isTypeCertification}}
                         <tr>
-                            <td {{action 'transition_to' 'your-profile/partials/-user-field' user 'isView' true}} style="cursor: pointer">{{rate.fromCompanyDetail}}</td>
-                            <td {{action 'transition_to' 'your-profile/partials/-user-field' user 'isView' true}} style="cursor: pointer">{{rate.value}}</td>
+                            <td >{{rate.fromCompanyDetail}}</td>
+                            <td >{{rate.description}}</td>
+                            <td >{{rate.value}}</td>
                         </tr>
                     {{/if}}
                 {{/each}}
