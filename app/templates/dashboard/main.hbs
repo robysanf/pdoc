@@ -58,11 +58,18 @@
                 <!--<button type="button" class="close" data-dismiss="alert">×</button>-->
                 <div class="row">
                     <div class="col-lg-1"></div>
-                    <div class="col-lg-1">
-                        <div class= "well well-lg square pull-right">
-                            <div class= "well well square-icon" style="border: 0; margin-bottom: 0"></div>
+                    <div class="col-lg-2">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-new thumbnail" style="width: 95px; height: 95px;">
+                                {{#each file in files}}
+                                    {{#if file.isLogo}}
+                                        <img src="api/files/{{unbound file.id}}?token={{unbound app_controller.token}}&stream=true" style="opacity: 0.4;">
+                                    {{/if}}
+                                {{/each}}
+                            </div>
                         </div>
                     </div>
+
                     <div class="col-lg-3">
                         <div class="panel panel-default">
                             <div class="panel-body">
@@ -71,7 +78,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-5">
                         <div class="panel panel-default" style="min-height: 95px">
                             <div class="panel-body">
                                 <h5>{{title}}</h5>

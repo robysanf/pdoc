@@ -5,14 +5,14 @@ export default DS.Model.extend({
     canRemove: DS.attr('boolean'),
 
     cardNumber:DS.attr('number'),
-    certificationCredit:DS.attr('number'),
-    certificationScore:DS.attr('number'),
-    credit:DS.attr('number'),
-    driverScore:DS.attr('number'),
-    truckScore:DS.attr('number'),
-    trailerScore:DS.attr('number'),
-    serviceScore:DS.attr('number'),
-    visualizationCredit:DS.attr('number'),
+    certificationCredit:DS.attr('number'),     //ammontare del credito per ottenere certificazioni
+    visualizationCredit:DS.attr('number'),     //ammontare del credito per visualizzare
+
+    certificationScore:DS.attr('number'),      //punteggio per certificazione
+    serviceScore:DS.attr('number'),            //punteggio per servizi offerti
+    driverScore:DS.attr('number'),             //punteggio per autisti
+    truckScore:DS.attr('number'),              //punteggio per camion
+    trailerScore:DS.attr('number'),            //punteggio per
 
     publishableKey: DS.attr('string'),
     name: DS.attr('string'),
@@ -83,6 +83,13 @@ export default DS.Model.extend({
     /****************************************************
      *      PROPERTIES
      */
+    show_serviceScore: function(){
+        return this.get('serviceScore') !== undefined;
+    }.property('serviceScore'),
+    show_certificationScore: function(){
+        return this.get('certificationScore') !== undefined;
+    }.property('certificationScore'),
+
     totalCertificationRating: function(){
         var totRatings = 0, ratings = this.get('ratings');
 

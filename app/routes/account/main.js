@@ -2,12 +2,27 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
     beforeModel: function() {
-        var app_controller = this.controllerFor('application'), controller = this.controllerFor('account.main');
+        var _this = this, app_controller = _this.controllerFor('application'), controller = _this.controllerFor('account.main');
 
         //imposto la tab company come default per 'your-profile'
         if( controller.tabList.paymentDetails !== true &&  controller.tabList.buyCredits !== true &&  controller.tabList.orderHistory !== true ) {
-            controller.set('tabList.paymentDetails', true);
+            if (app_controller.company_type === 'certifier'){
+                controller.set('tabList.buyCredits', true);
+            } else{
+                controller.set('tabList.paymentDetails', true);
+            }
+
         }
+
+        if( app_controller.company_type === 'certifier' ){
+            app_controller.set('records_paymentPlans', this.store.find('payment-plan', { company: app_controller.company_id }));
+        } else {
+            _this.store.find('company', app_controller.company_id ).then(function( record ){
+                var certifier = record.get('certifier').get('id');
+                app_controller.set('records_paymentPlans', _this.store.find('payment-plan', { company: certifier }));
+            });
+        }
+
 
 //        if( !app_controller.paymentPlans.get('length') ) {
 //            this.store.findQuery("payment-plan").then(function(val){
@@ -159,7 +174,6 @@ export default Ember.Route.extend({
                 $.post('api/custom/refill?token=' + app_controller.token, data).then(function(response){
 
                     if (response.success) {
-                        //company.reload();
                         $btn.set('disabled', false);
 
                         app_controller.send( 'message_manager', 'Success', 'You successfully save refill' );

@@ -8,6 +8,9 @@ export default Ember.ObjectController.extend({
     is_admin: function(){
         return ( this.get('app_controller_companyType') === 'admin' );
     }.property('app_controller_companyType'),
+    is_certifier: function(){
+        return ( this.get('app_controller_companyType') === 'certifier' );
+    }.property('app_controller_companyType'),
 
     mode_view: true,
     //  *** define tab order
@@ -35,5 +38,14 @@ export default Ember.ObjectController.extend({
     listType: [
         'certification',
         'service'
-    ]
+    ],
+
+    // campi nel model new-payment-plan
+
+    type: null,
+    planName: null,
+    planDescription: null,
+    planAmount: null,
+    planCurrency: null,
+    planCredit: null
 });

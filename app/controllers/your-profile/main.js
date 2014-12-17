@@ -12,7 +12,10 @@ export default Ember.ObjectController.extend({
     app_is_linked: Ember.computed.alias('controllers.application.isLinked'),
 
     is_supplier: function(){
-        return ( this.get('app_user_type') === 'supplier' );
+        return ( this.get('app_company_type') === 'supplier' );
+    }.property('app_user_type'),
+    is_carrier: function(){
+        return ( this.get('app_company_type') === 'carrier' );
     }.property('app_user_type'),
 
     is_admin_or_clerk: function(){       // l'utente è di tipo admin o clerk
@@ -111,5 +114,23 @@ export default Ember.ObjectController.extend({
      * */
     newConfigurations: [],
     newLanguages: [],
-    newPatents: []
+    newPatents: [],
+    newFirstName: null,
+    newLastName: null,
+    newBirthDate: null,
+    newPhone: null,
+    newSkype: null,
+    newEmail: null,
+    newUsername: null,
+    newPassword: null,
+
+    newName: null,
+    newBrand: null,
+    newModel: null,
+    newDescription: null,
+    newRegistrationYear: null,
+    newChassisNumber: null,
+    newWeight: null,
+    newTare: null,
+    newCategory: null
  });

@@ -32,42 +32,47 @@
                         </h5>
                     </a>
                 </li>
-                <!-------------------- label: trucks-list / truck ---------------------->
-                <li {{bind-attr class="controller.tabList.truck:active"}}>
-                    <a href="#" {{action setTabs "truck"}}>
-                        <h5>
-                            {{#if controller.tabList.truck}}
-                                {{#if controller.transition_to_list}} {{app_controller.translation.trucksList}} {{else}} {{app_controller.translation.returnToList}} {{/if}}
-                            {{else}}
-                                {{app_controller.translation.trucksList}}
-                            {{/if}}
-                        </h5>
-                    </a>
-                </li>
-                <!-------------------- label: trailers-list / trailer ---------------------->
-                <li {{bind-attr class="controller.tabList.trailer:active"}}>
-                    <a href="#" {{action setTabs "trailer"}}>
-                        <h5>
-                            {{#if controller.tabList.trailer}}
-                                {{#if controller.transition_to_list}} {{app_controller.translation.trailersList}} {{else}} {{app_controller.translation.returnToList}} {{/if}}
-                            {{else}}
-                                {{app_controller.translation.trailersList}}
-                            {{/if}}
-                        </h5>
-                    </a>
-                </li>
-                <!-------------------- label: clerks-list / clerk ---------------------->
-                <li {{bind-attr class="controller.tabList.clerk:active"}}>
-                    <a href="#" {{action setTabs "clerk"}}>
-                        <h5>
-                            {{#if controller.tabList.clerk}}
-                                {{#if controller.transition_to_list}} {{app_controller.translation.clerksList}} {{else}} {{app_controller.translation.returnToList}} {{/if}}
-                            {{else}}
-                                {{app_controller.translation.clerksList}}
-                            {{/if}}
-                        </h5>
-                    </a>
-                </li>
+                {{#if controller.is_carrier}}
+                    <!-------------------- label: trucks-list / truck ---------------------->
+                    <li {{bind-attr class="controller.tabList.truck:active"}}>
+                        <a href="#" {{action setTabs "truck"}}>
+                            <h5>
+                                {{#if controller.tabList.truck}}
+                                    {{#if controller.transition_to_list}} {{app_controller.translation.trucksList}} {{else}} {{app_controller.translation.returnToList}} {{/if}}
+                                {{else}}
+                                    {{app_controller.translation.trucksList}}
+                                {{/if}}
+                            </h5>
+                        </a>
+                    </li>
+                    <!-------------------- label: trailers-list / trailer ---------------------->
+                    <li {{bind-attr class="controller.tabList.trailer:active"}}>
+                        <a href="#" {{action setTabs "trailer"}}>
+                            <h5>
+                                {{#if controller.tabList.trailer}}
+                                    {{#if controller.transition_to_list}} {{app_controller.translation.trailersList}} {{else}} {{app_controller.translation.returnToList}} {{/if}}
+                                {{else}}
+                                    {{app_controller.translation.trailersList}}
+                                {{/if}}
+                            </h5>
+                        </a>
+                    </li>
+                {{/if}}
+                {{#if controller.can_edit_company}}
+                    <!-------------------- label: clerks-list / clerk ---------------------->
+                    <li {{bind-attr class="controller.tabList.clerk:active"}}>
+                        <a href="#" {{action setTabs "clerk"}}>
+                            <h5>
+                                {{#if controller.tabList.clerk}}
+                                    {{#if controller.transition_to_list}} {{app_controller.translation.clerksList}} {{else}} {{app_controller.translation.returnToList}} {{/if}}
+                                {{else}}
+                                    {{app_controller.translation.clerksList}}
+                                {{/if}}
+                            </h5>
+                        </a>
+                    </li>
+                {{/if}}
+
             </ul>
             <!-------------------- TAB BODY ---------------------->
             <div class="tab-content">
@@ -78,6 +83,7 @@
                     {{#if controller.tabList.driver}}
                         {{partial "your-profile/tabs/-tab-user-driver-list"}}
                     {{/if}}
+
                     {{#if controller.tabList.truck}}
                         {{partial "your-profile/tabs/-tab-vehicle-truck-list"}}
                     {{/if}}
@@ -87,6 +93,7 @@
                     {{#if controller.tabList.clerk}}
                         {{partial "your-profile/tabs/-tab-user-clerk-list"}}
                     {{/if}}
+
                 </div>
             </div>
         </div>

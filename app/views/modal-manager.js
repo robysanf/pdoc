@@ -51,8 +51,11 @@ export default Ember.View.extend({
                 credit: planCredit,
                 company: this.controller.get('main_record')
             }).save().then(function( val ){
+                _this.get('controller.controllers.application').set('records_paymentPlans', _this.controller.get('store').find('payment-plan', { company:  _this.get('controller.controllers.application').company_id }));
                 _this.controller.get('main_record').reload();
                 _this.send( 'close', outlet, parentView);
+
+                _this.controller.set('type', null).set('planName', null).set('planDescription', null).set('planAmount', null).set('planCurrency', null).set('planCredit', null);
             });
         },
 
@@ -121,8 +124,7 @@ export default Ember.View.extend({
                     view.send( 'close', outlet, parentView);
                 });
             }
-
-
+            view.controller.set('newFirstName', null).set('newLastName', null).set('newBirthDate', null).set('newPhone', null).set('newSkype', null).set('newEmail', null).set('newUsername', null).set('newPassword', null);
         },
         createRecord_vehicle: function( type, newName, newBrand, newModel, newDescription, newConfigurations, newRegistrationYear, newChassisNumber, newWeight, newTare, newCategory, outlet, parentView ){
             var view = this;
@@ -135,7 +137,7 @@ export default Ember.View.extend({
                 model: newModel,
                 description: newDescription,
                 configurations: newConfigurations,
-                registrationYear: newRegistrationYear,
+                registrationYear: newRegistrationYear
             });
 
             if( type === 'trailer' ){
@@ -150,6 +152,9 @@ export default Ember.View.extend({
                     view.send( 'close', outlet, parentView);
                 });
             }
+
+            view.controller.set('newConfigurations', []).set('newName', null).set('newBrand', null).set('newModel', null).set('newDescription', null).set('newRegistrationYear', null).set('newChassisNumber', null).set('newWeight', null).set('newTare', null).set('newCategory', null);
+
 
         },
         close: function(outlet, parentView) {

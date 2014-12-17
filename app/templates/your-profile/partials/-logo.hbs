@@ -27,6 +27,7 @@
 <div class="row">
     <div class="col-lg-1"></div>
     <div class="col-lg-4">
+        <!-------------------- IMMAGINE IN MODE VIEW ---------------------->
         {{#if controller.isView_logo}}
             <div class="fileinput fileinput-new" data-provides="fileinput">
                 <div class="fileinput-new thumbnail" style="width: 250px; height: 250px;">
@@ -47,6 +48,7 @@
                 </div>
             </div>
         {{else}}
+            <!-------------------- UPLOAD NUOVA IMMAGINE ---------------------->
             {{#view 'upload-image'}}
                 <div class="fileinput fileinput-new" data-provides="fileinput">
                     <div class="fileinput-new thumbnail" style="width: 250px; height: 250px;">
@@ -81,7 +83,7 @@
     <div class="col-lg-3">
         {{#if is_admin_or_clerk}}
             {{#if controller.tabList.company}}
-                {{#if serviceScore}}
+                {{#if show_serviceScore}}
                     <div class="panel panel-primary">
                         <div class="panel-heading"><h3>Service rating</h3></div>
                         <div class="panel-body">
@@ -105,7 +107,7 @@
     <div class="col-lg-3">
         {{#if is_admin_or_clerk}}
             {{#if controller.tabList.company}}
-                {{#if certificationScore}}
+                {{#if show_certificationScore}}
                     <div class="panel panel-primary">
                         <div class="panel-heading"><h3>Certific. rating</h3></div>
                         <div class="panel-body">
@@ -123,7 +125,7 @@
                     {{/view}}
                 {{/if}}
             {{else}}
-                {{#if certificationScore}}
+                {{#if show_certificationScore}}
                     <div class="panel panel-primary">
                         <div class="panel-heading"><h3>Certific. rating</h3></div>
                         <div class="panel-body">

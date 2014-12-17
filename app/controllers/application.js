@@ -40,9 +40,9 @@ export default Ember.Controller.extend({
     is_certifier: function(){
         return ( this.get('company_type') === 'certifier' );
     }.property('company_type'),
-    isnot_admin: function(){
-      return String(this.get('is_admin')) === 'false';
-    }.property('is_admin'),
+    user_type_admin: function(){
+      return String(this.get('user_type')) === 'admin';
+    }.property('user_type'),
     isLinked: false,
     /**********************
      auto-suggest
@@ -60,6 +60,7 @@ export default Ember.Controller.extend({
     records_docTemplate: Ember.A(),
     records_companyCertifier: Ember.A(),
     records_notifications: Ember.A(),
+    records_paymentPlans: Ember.A(),
 
     autocompleteUser: [],
     autocompleteCompany: [],
@@ -134,7 +135,8 @@ export default Ember.Controller.extend({
         city: 'Città', province: 'Provincia', zipCode: 'CAP', vatNumber: 'Codice fiscale', fax: 'Fax', totalWeight: 'Peso compessivo', email: 'Email', Ratings: 'Punteggio', from: 'Da', ChangePassword: 'Cambio password', CurrentPassword:'Password attuale',
         NewPassword:'Nuova password', ConfirmNewPassword:'Conferma password', AreYouSureYouWantToDeleteThisRecord: 'Sei sicuro di voler cancellare questo record', AddFiles:'Add files',
         newPaymentPlan: 'Nuovo piano di pagamento', selectTheCurrency: 'seleziona la valuta', currency: 'valuta', selectTheType: 'Seleziona il tipo', rating: 'Punteggio',
-        isLimited: 'Punteggio limitato', newClerk: 'Nuovo impiegato', newDriver: 'New autista', newTruck: 'New camion', newTrailer: 'New traino'
+        isLimited: 'Punteggio limitato', newClerk: 'Nuovo impiegato', newDriver: 'New autista', newTruck: 'New camion', newTrailer: 'New traino', pricePlan: 'Tariffario', visualizationCredit: 'credito per la visualizzazione',
+        certificationCredit: 'credito per la certificazione'
     },
     lan_en: {
         publicToYourContactsNetwork: 'Public to your contacts network', companyDetails: 'Company Details', invoiceNumber: 'Invoice number', rate: 'Rate', limit: 'Limit', goodsConfiscation: 'Goods Confisc.', vehicleConfiscation: 'Vehicle Confisc.',
@@ -157,7 +159,8 @@ export default Ember.Controller.extend({
         province: 'Province', zipCode: 'Zip code', vatNumber: 'Vat number', fax: 'Fax', totalWeight: 'Total weight', email: 'Email', Ratings: 'Ratings', from: 'From', ChangePassword: 'Change password',
         CurrentPassword:'Current password', NewPassword:'New password', ConfirmNewPassword:'Confirm new password', AreYouSureYouWantToDeleteThisRecord: 'Are you sure you want to delete this record',
         AddFiles:'aggiungi files', newPaymentPlan: 'New payment plan', selectTheCurrency: 'select the currency', currency: 'Currency', selectTheType: 'Select the type', rating: 'Rating',
-        isLimited: 'Limited rating', newClerk: 'New clerk', newDriver: 'New driver', newTruck: 'New truck', newTrailer: 'New trailer'
+        isLimited: 'Limited rating', newClerk: 'New clerk', newDriver: 'New driver', newTruck: 'New truck', newTrailer: 'New trailer', pricePlan: 'Price plan', visualizationCredit: 'Visualization credit',
+        certificationCredit: 'Certification credit'
     },
 
     actions:{
@@ -201,8 +204,8 @@ export default Ember.Controller.extend({
             localStorage.removeItem('isAdmin');
 
             localStorage.clear();
-
             this.transitionToRoute('login/main');
+            location.reload();
         }
     },
 

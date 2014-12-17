@@ -32,15 +32,17 @@
         <div class="panel-body">
             <!-------------------- tabs head - general/company/driver/truck/trailer ---------------------->
             <ul class="nav nav-pills nav-justified" style="margin-bottom: 15px;">
-                <li {{bind-attr class="tabList.paymentDetails:active"}}>
-                    <a href="#" {{action setTabs "paymentDetails"}}><h5>{{app_controller.translation.paymentDetails}}</h5></a>
-                </li>
-                <li {{bind-attr class="tabList.buyCredits:active"}}>
-                    <a href="#" {{action setTabs "buyCredits"}}><h5>{{app_controller.translation.buyCredits}}</h5></a>
-                </li>
-                <li {{bind-attr class="tabList.orderHistory:active"}}>
-                    <a href="#" {{action setTabs "orderHistory"}}><h5>{{app_controller.translation.orderHistory}}</h5></a>
-                </li>
+                {{#unless is_certifier}}
+                    <li {{bind-attr class="tabList.paymentDetails:active"}}>
+                        <a href="#" {{action setTabs "paymentDetails"}}><h5>{{app_controller.translation.paymentDetails}}</h5></a>
+                    </li>
+                    <li {{bind-attr class="tabList.buyCredits:active"}}>
+                        <a href="#" {{action setTabs "buyCredits"}}><h5>{{app_controller.translation.pricePlan}}</h5></a>
+                    </li>
+                    <li {{bind-attr class="tabList.orderHistory:active"}}>
+                        <a href="#" {{action setTabs "orderHistory"}}><h5>{{app_controller.translation.orderHistory}}</h5></a>
+                    </li>
+                {{/unless}}
             </ul>
             <div class="tab-content">
                 <div class="tab-pane fade active in">
@@ -53,6 +55,7 @@
                     {{#if controller.tabList.orderHistory}}
                         {{partial "account/tabs/-order-history"}}
                     {{/if}}
+
                 </div>
             </div>
         </div>

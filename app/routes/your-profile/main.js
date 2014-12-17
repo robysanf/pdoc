@@ -564,7 +564,9 @@ export default Ember.Route.extend({
                     app_controller.send( 'message_manager', 'Success', 'You have successfully sent the request.' );
                 }
             }, function( response ){
-                app_controller.send( 'message_manager', 'Failure', response );
+                var json = response.responseText, result = JSON.parse(json);
+                var error = result.error;
+                app_controller.send( 'message_manager', 'Failure', error );
             });
         },
 
