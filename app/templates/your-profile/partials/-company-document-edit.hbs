@@ -2,13 +2,13 @@
     <fieldset>
     <div class="form-group">
         <div class="col-lg-1">
-            {{#if sub_record_document.canEdit}}
+            {{!{{#if sub_record_document.canEdit}}
                 {{#if isView_docDetails}}
                     <button class="btn btn-primary btn-50" {{action 'set_variable' 'isView_docDetails' false}}><span class="glyphicon glyphicon-pencil"></span></button>
                 {{else}}
                     <button class="btn btn-primary btn-50" {{action 'set_record' 'document' 'isView_docList' true this}}><span class="glyphicon glyphicon-ok"></span></button>
                 {{/if}}
-            {{/if}}
+            {{!{{/if}}
         </div>
         <div class="col-lg-9"><legend>{{app_controller.translation.documents}}</legend></div>
         <div class="col-lg-2">

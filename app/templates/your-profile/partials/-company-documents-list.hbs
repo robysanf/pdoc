@@ -42,7 +42,7 @@
                                         <td><a {{action 'custom_notifyDocument' document}} style="cursor: pointer"><span class="glyphicon glyphicon-send"></span></a></td>
                                     {{/unless}}
                                 {{else}}
-                                    <td></td>
+                                    <td><a {{action 'custom_notifyDocument' document}} style="cursor: pointer"><span class="glyphicon glyphicon-send"></span></a></td>
                                 {{/if}}
 
                                 {{#if document.canRemove}}

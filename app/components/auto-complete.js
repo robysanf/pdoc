@@ -310,7 +310,7 @@ export default Ember.Component.extend({
         //console.log('mouseLeave');
         var _this = this;
         $( "div.ember-view" ).click(function() {        //clickando fuori dal contesto si chiude il menù a tendina
-            _this.send('hideResults', _this)
+            _this.send('hideResults', _this);
         });
     },
 
