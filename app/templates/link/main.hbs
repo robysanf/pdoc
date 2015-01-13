@@ -68,12 +68,18 @@
                         <tbody>
                         {{#each link in links}}
                             <tr>
-                                <td {{action 'transition_to' 'your-profile/main' link}} style="cursor: pointer"> </td>
+                                <td {{action 'transition_to' 'your-profile/main' link}} style="cursor: pointer">
+                                    {{#each file in link.files}}
+                                        {{#if file.isLogo}}
+                                            <img width="30px" src="api/files/{{unbound file.id}}?token={{unbound app_controller.token}}&stream=true">
+                                        {{/if}}
+                                    {{/each}}
+                                </td>
                                 <td {{action 'transition_to' 'your-profile/main' link}} style="cursor: pointer">{{link.name}}</td>
                                 <td {{action 'transition_to' 'your-profile/main' link}} style="cursor: pointer">{{link.type}}</td>
                                 <td {{action 'transition_to' 'your-profile/main' link}} style="cursor: pointer">{{link.country}}</td>
 
-                                <td><a {{action 'open_modal' 'your-profile/modals/delete-record' link this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                <td><a {{action 'custom_unbindLinkedCompanies' link.id this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
                             </tr>
                         {{/each}}
                         </tbody>

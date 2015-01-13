@@ -2,11 +2,14 @@ import DS from 'ember-data';
 
 
 export default DS.Model.extend({
+    canEdit: DS.attr('boolean'),
+    canRemove: DS.attr('boolean'),
+
     name: DS.attr('string'),
     title: DS.attr('string'),
     description: DS.attr('string'),
 
-    date: DS.attr('custom-time'),
+    date: DS.attr('custom-date'),
 
     user: DS.belongsTo('user', {
         async: true }),

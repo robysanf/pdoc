@@ -297,7 +297,9 @@ export default Ember.Component.extend({
             el = this.$(),
             position = el.position();
 
+
         results.removeClass('hdn');
+        //this.$('ul.suggestions li:first-child').addClass('hover');
 
         suggestions.css('position', 'absolute');
         suggestions.css('left', position.left);
@@ -340,7 +342,7 @@ export default Ember.Component.extend({
                     this.sendAction('moveSelection', 'down');
                     break;
                 case this.ENTER:
-                    controller.sendAction('selectActive');
+                    this.sendAction('selectActive');
                     break;
                 case this.ESCAPE:
                     this.sendAction('hideResults');

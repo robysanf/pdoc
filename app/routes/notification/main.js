@@ -8,6 +8,13 @@ export default Ember.Route.extend({
         if (controller.tabList.general !== true && controller.tabList.linksRequest !== true) {
             controller.set('tabList.general', true);
         }
+
+        var today = Date();
+        var queryExpression = 'company='+app_controller.company_id;
+       queryExpression = queryExpression+'&date={"lt":"'+moment(today).format('YYYY-MM-DD HH:mm:ss')+'"}';
+
+        app_controller.set('records_notifications', this.store.findQuery('notification', queryExpression));
+
     },
 
     model: function( company ) {
@@ -42,15 +49,15 @@ export default Ember.Route.extend({
             record.set(attr, value).save();
         },
 
-        open_modal: function( record, path, into, outlet, view ) {
+        open_modal: function( path, record ) {
             var controller = this.controllerFor('notification.main');
 
             controller.set('selectedRecord', record);
 
             this.render(path, {
-                into: into,
-                outlet: outlet,
-                view: view
+                into: 'application',
+                outlet: 'overview',
+                view: 'modal-manager'
             });
         },
 
@@ -63,12 +70,55 @@ export default Ember.Route.extend({
          @param {object} nuovo valore dell'attributo
          */
         change_state: function( attr, value ) {
-
             this.controller.set(attr, value);
         },
 
-        show_hide_notifications: function( attr1, value1 ) {
-            this.send('change_state', attr1, value1);
+        show_hide_notifications: function( attr, value ) {
+            this.controller.set(attr, value);
+        },
+
+        /************************************
+         *
+         * */
+        custom_acceptedLink: function( record, recordFrom, recordTo, actionToken ){
+            var _this = this, app_controller = _this.controllerFor('application'),
+                data = this.getProperties();
+
+            data.actionFn = 'linkCompanies';
+
+            $.post('api/action?actionToken=' + actionToken, data).then(function(response){
+                if (response.success) {
+                    record.set('actionToken', null);
+                    record.set('highlighted', false);
+                    record.save();
+
+                    recordTo.reload();
+
+                    //SUCCESS
+                    app_controller.send( 'message_manager', 'Success', 'You have successfully accepted the connection.' );
+                }
+            }, function( response ){
+                //NOT SAVED
+                app_controller.send( 'message_manager', 'Failure', response );
+            });
+        },
+
+        /**
+         l'utente può scaricare un file
+
+         @action download_file
+         @for Booking Item List
+         @param {record}
+         */
+        download_file: function( fileId ) {
+            var self = this, app_controller = self.controllerFor('application'),
+                path = 'api/files/' + fileId + '?token=' + app_controller.token + '&download=true';
+
+            $.fileDownload(path)
+                // .done(function () { alert('File download a success!'); })
+                .fail(function ( text ) {
+                    app_controller.send( 'message_manager', 'Failure', text );
+                });
         }
     }
 });

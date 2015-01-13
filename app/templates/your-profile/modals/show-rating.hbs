@@ -1,0 +1,37 @@
+<div class="modal-header">
+    <button type="button" class="close" {{action close 'overview' 'application' target="view"}}>&times;</button>
+    <h3>{{app_controller.translation.Ratings}}</h3>
+</div>
+<div class="modal-body">
+
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>{{app_controller.translation.from}}</th>
+                    <th>{{app_controller.translation.description}}</th>
+                    <th>{{app_controller.translation.rate}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each rate in ratings}}
+                    {{#if rate.isTypeService}}
+                        <tr>
+                            <td >{{rate.fromCompanyDetail}}</td>
+                            <td >{{rate.description}}</td>
+                            <td >{{rate.value}}</td>
+                        </tr>
+                    {{/if}}
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <a href="#" class="btn" {{action 'close' 'overview' 'application' target="view"}}>{{app_controller.translation.Close}}</a>
+</div>

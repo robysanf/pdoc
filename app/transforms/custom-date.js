@@ -9,7 +9,7 @@ export default DS.Transform.extend({
 
     serialize: function(deserialized) {
         var isNull =  (deserialized === null || deserialized === undefined || deserialized === '');
-        return isNull ? null : moment(deserialized).format("YYYY-MM-DD");
+        return isNull ? null : encodeURIComponent(moment(deserialized).utc().format("YYYY-MM-DD"));// HH:mm:ss Z     ATTENZIONE!! CAMBIARE FORMAT ANCHE IN MODEL:COMPANY ALLA PROPERTY: firedNotifications
         //return Ember.isNone(deserialized) ? null : moment(deserialized).format("YYYY-MM-DD");
     }
 });

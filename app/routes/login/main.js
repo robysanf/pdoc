@@ -6,7 +6,7 @@ export default Ember.Route.extend({
     },
 
     actions: {
-        change_newLog: function(val) {
+        change_newLog: function( val ) {
             this.get('controller').set('newLog', val);
         },
 
@@ -42,7 +42,8 @@ export default Ember.Route.extend({
                 (data.companyEmail !== '' && data.companyEmail !== null) &&
                 (data.companyType !== '' && data.companyType !== null) ){
 
-                data.userType = 'powerUser';
+                data.userProfile = 'powerUser';
+                data.userType = 'admin';
                 // Clear out any error messages.
                 this.set('errorMessage', null);
                 $.post('api/signUp', data).then(function(response){

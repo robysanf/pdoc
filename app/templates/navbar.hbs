@@ -12,11 +12,18 @@
         </div>
         <div class="navbar-collapse navbar-responsive-collapse collapse in" aria-expanded="true">
             <ul class="nav navbar-nav">
-                <li>{{#link-to 'your-profile/main' company_id}} {{controller.translation.yourProfile}} {{/link-to}}</li>
+                <li>{{#link-to 'your-profile/main' company_id}} {{controller.translation.yourCompany}} {{/link-to}}</li>
             </ul>
             <ul class="nav navbar-nav">
-                <li>{{#link-to 'link/main' company_id}} {{controller.translation.links}} {{/link-to}}</li>
+                <li>{{#link-to 'search-company/main'}} {{controller.translation.searchCompanies}} {{/link-to}}</li>
             </ul>
+
+            {{#if controller.user_type_admin}}
+                <ul class="nav navbar-nav">
+                    <li>{{#link-to 'link/main' company_id}} {{controller.translation.links}} {{/link-to}}</li>
+                </ul>
+            {{/if}}
+
             <ul class="nav navbar-nav">
             <li>
                 {{#if controller.company_record.firedNotifications}}
@@ -31,6 +38,7 @@
                 {{/if}}
             </li>
             </ul>
+<<<<<<< HEAD
             <ul class="nav navbar-nav">
                 <li>{{#link-to 'admin/main' company_id}} {{controller.translation.admin}} {{/link-to}}</li>
             </ul>
@@ -40,6 +48,19 @@
             <ul class="nav navbar-nav">
                 <li>{{#link-to 'account/main' company_id}} {{controller.translation.account}} {{/link-to}}</li>
             </ul>
+=======
+            {{#if is_certifier}}
+                <ul class="nav navbar-nav">
+                    <li>{{#link-to 'admin/main' company_id}} {{controller.translation.admin}} {{/link-to}}</li>
+                </ul>
+            {{/if}}
+            {{#if controller.user_type_admin}}
+                <ul class="nav navbar-nav">
+                    <li>{{#link-to 'account/main' company_id}} {{controller.translation.account}} {{/link-to}}</li>
+                </ul>
+            {{/if}}
+
+>>>>>>> develop
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">

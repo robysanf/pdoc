@@ -1,14 +1,14 @@
 <div class="row">
     <div class="col-lg-2"></div>
     <div class="col-lg-8">
-        <div class= "well well-lg" style="background-color: rgba(245, 245, 245, 0.4); border: 0px">
+        <div class= "well well-lg" style="background-color: rgba(38,85,63, 0.7); border: 0px">
             {{#if appController.authToken}}
             {{else}}
                 {{#if loggedIn}}
                     <p>You are already logged in!</p>
                 {{else}}
                     <div class="row" style="text-align: center">
-                        <h2 style="color: white"><strong>Name application</strong></h2>
+                        <h2 style="color: white"><strong>Padroncino Doc</strong></h2>
                     </div>
                     <div class="row" style="margin-top: 30px; margin-bottom: 30px">
                         <div class="col-lg-3"></div>
@@ -33,7 +33,7 @@
                             <button type="button" class="btn btn-default btn-160 pull-left" {{action 'change_newLog' 1}}>
                                 Sign up
                             </button>
-                            <button type="button" class="btn btn-primary btn-160 pull-right" {{action 'login'}}>Login</button>
+                            <button type="button" class="btn btn-default btn-160 pull-right" {{action 'login'}}>Login</button>
                         </div>
                         <div class="col-lg-3"></div>
                     </div>

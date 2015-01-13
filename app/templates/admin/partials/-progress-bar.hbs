@@ -3,7 +3,13 @@
         {{#if controller.tabList.general}}
             <div class="row">
                 <div class="col-lg-5">
-                    <h5>{{app_controller.translation.company}}</h5>
+                    <h5>
+                        <a {{action 'create_record' this 'view_new_field' true 'company'}}>
+                            <span class="glyphicon glyphicon-plus btn-font-color" style="cursor: pointer"></span>
+                        </a>
+                        &nbsp;
+                        {{app_controller.translation.company}}
+                    </h5>
                     <div class="progress">
                         <div {{bind-attr class= isCompanyRatingOut}} {{bind-attr style = progressCompanyRating}}></div>
                     </div>
@@ -12,7 +18,20 @@
                     <h5 style="margin-top: 45px">{{companyRating}} %</h5>
                 </div>
                 <div class="col-lg-5">
-                    <h5>{{app_controller.translation.driver}}</h5>
+                    <h5>
+                        {{#unless view_new_field}}
+                            <a {{action 'create_record' this 'view_new_field' true 'driver'}}>
+                                <span class="glyphicon glyphicon-plus btn-font-color" style="cursor: pointer"></span>
+                            </a>
+                            &nbsp;
+                            {{app_controller.translation.driver}}
+                        {{else}}
+                            <a {{action 'set_record' new_record 'view_new_field' false}}>
+                                <span class="glyphicon glyphicon-ok btn-font-color" style="cursor: pointer"></span>
+                            </a>
+                            {{app_controller.translation.driver}}
+                        {{/unless}}
+                    </h5>
                     <div class="progress">
                         <div {{bind-attr class= isDriverRatingOut}} {{bind-attr style = progressDriverRating}}></div>
                     </div>
@@ -23,7 +42,20 @@
             </div>
             <div class="row">
                 <div class="col-lg-5">
-                    <h5>{{app_controller.translation.truck}}</h5>
+                    <h5>
+                        {{#unless view_new_field}}
+                            <a {{action 'create_record' this 'view_new_field' true 'truck'}}>
+                                <span class="glyphicon glyphicon-plus btn-font-color" style="cursor: pointer"></span>
+                            </a>
+                            &nbsp;
+                            {{app_controller.translation.truck}}
+                        {{else}}
+                            <a {{action 'set_record' new_record 'view_new_field' false}}>
+                                <span class="glyphicon glyphicon-ok btn-font-color" style="cursor: pointer"></span>
+                            </a>
+                            {{app_controller.translation.truck}}
+                        {{/unless}}
+                    </h5>
                     <div class="progress">
                         <div {{bind-attr class= isTruckRatingOut}} {{bind-attr style = progressTruckRating}}></div>
                     </div>
@@ -32,7 +64,20 @@
                     <h5 style="margin-top: 45px">{{truckRating}} %</h5>
                 </div>
                 <div class="col-lg-5">
-                    <h5>{{app_controller.translation.trailer}}</h5>
+                    <h5>
+                        {{#unless view_new_field}}
+                            <a {{action 'create_record' this 'view_new_field' true 'trailer'}}>
+                                <span class="glyphicon glyphicon-plus btn-font-color" style="cursor: pointer"></span>
+                            </a>
+                            &nbsp;
+                            {{app_controller.translation.trailer}}
+                        {{else}}
+                            <a {{action 'set_record' new_record 'view_new_field' false}}>
+                                <span class="glyphicon glyphicon-ok btn-font-color" style="cursor: pointer"></span>
+                            </a>
+                            {{app_controller.translation.trailer}}
+                        {{/unless}}
+                    </h5>
                     <div class="progress">
                         <div {{bind-attr class= isTrailerRatingOut}} {{bind-attr style = progressTrailerRating}}></div>      <!-- progress-bar-danger  -->
                     </div>
@@ -83,3 +128,37 @@
         {{/if}}
     </div>
 </div>
+
+{{#if controller.tabList.general}}
+
+    <div class="panel panel-default" style="margin-top: 20px">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-1">
+                    <!-------------------- pencil ---------------------->
+                    {{#if controller.view_totWeight}}
+                        <button class="btn btn-primary btn-50" {{action 'change_mode' 'view_totWeight' false}}><span class="glyphicon glyphicon-pencil"></span></button>
+
+                        <!-------------------- ok ---------------------->
+                    {{else}}
+                        <button class="btn btn-primary btn-50" {{action 'set_record' configurations 'view_totWeight' true totalWeight}}><span class="glyphicon glyphicon-ok"></span></button>
+                    {{/if}}
+                </div>
+                <div class="col-lg-11"><legend>{{app_controller.translation.totalWeight}} {{totalWeight}} %</legend></div>
+            </div>
+            <div class="row">
+                {{#each weight in configurations}}
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label class="control-label" for="focusedInput">{{weight.name}} &nbsp; {{app_controller.translation.weight}}</label>
+                            <div class="input-group">
+                                {{input value =  weight.valueNum type = "number" class = 'form-control' disabled= controller.view_totWeight}}
+                                <span class="input-group-addon">%</span>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+{{/if}}

@@ -16,6 +16,7 @@ export default Ember.Route.extend({
         transition_to: function( path, record ){
             switch ( path ){
                 case 'your-profile/main':
+                    record.reload();
                     this.transitionTo( path, record );
                     break;
             }
@@ -27,8 +28,34 @@ export default Ember.Route.extend({
             controller.set( attr, value );
         },
 
+        custom_unbindLinkedCompanies: function( record_id, company ){
+            var _this = this, controller = _this.controllerFor('link.main'), app_controller = _this.controllerFor('application'),
+                data = this.getProperties();
+
+            data.company = record_id;
+            $.post('api/custom/unbindLinkedCompanies?token=' + app_controller.token, data).then(function(response){
+                if (response.success) {
+                    company.reload();
+                    //NOT SAVED
+                    new PNotify({
+                        title: 'Success',
+                        text: 'The linked companies was successfully deleted.',
+                        type: 'success',
+                        delay: 2000
+                    });
+                }
+            }, function(){
+                //NOT SAVED
+                new PNotify({
+                    title: 'Not saved',
+                    text: 'A problem has occurred.',
+                    type: 'error',
+                    delay: 2000
+                });
+            });
+        },
         custom_linkCompanies: function( record, attr, value ){
-            var self = this, controller = self.controllerFor('link.main'), app_controller = self.controllerFor('application'),
+            var _this = this, controller = _this.controllerFor('link.main'), app_controller = _this.controllerFor('application'),
                 data = this.getProperties();
 
             data.company = record.get('id');
@@ -37,7 +64,7 @@ export default Ember.Route.extend({
                 $.post('api/custom/linkCompanies?token=' + app_controller.token, data).then(function(response){
                     if (response.success) {
                         controller.set('company_to_link', null);
-                        self.change_mode(attr, value );
+                        controller.set( attr, value );
                         record.reload();
                         //NOT SAVED
                         new PNotify({

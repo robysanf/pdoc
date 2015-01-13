@@ -1,18 +1,19 @@
 <div class="row" style="margin-top: 45px">
     <div class="col-lg-1"></div>
     <div class="col-lg-10">
-        <table class="table table-striped">
+        <table class="table table-bordered table-hover">
             <thead>
             <tr>
-                <th style="width:10%">{{app_controller.translation.news}}</th>
+                <th style="width:5%"></th>
+                <th style="width:10%">{{app_controller.translation.new}}</th>
                 <th style="width:10%">{{app_controller.translation.date}}</th>
-                <th style="width:20%">{{app_controller.translation.notification}}</th>
+                <th style="width:20%">{{app_controller.translation.details}}</th>
+                <th style="width:20%">{{app_controller.translation.description}}</th>
                 <th style="width:20%">{{app_controller.translation.company}}</th>
 
                 {{#if this.isCertifier}}
                     <th style="width:10%">{{app_controller.translation.user}}</th>
                     <th style="width:10%">{{app_controller.translation.download}}</th>
-                    <th style="width:5%">{{app_controller.translation.certificate}}</th>
                 {{else}}
                     <th style="width:15%">{{app_controller.translation.value}}</th>
                     <th style="width:10%">{{app_controller.translation.deadline}}</th>
@@ -22,60 +23,70 @@
             </tr>
             </thead>
             <tbody>
-            {{#each notification in notifications}}
+            {{#each notification in app_controller.records_notifications}}
                 {{#unless notification.isLink}}
                     {{#unless notification.viewNotification}}
-                        {{#if notification.isDeadline}}
-                            <tr {{bind-attr class = "notification.highlighted:error"}}>
-                                <td align="center">
-                                    {{#if notification.highlighted}}
-                                        <a href="#"><span class="glyphicon glyphicon-check" style="text-align: center" {{action "set_record" notification 'highlighted' false}}></span></a>
-                                    {{else}}
-                                        <a href="#"><span class="glyphicon glyphicon-unchecked" style="text-align: center" {{action "set_record" notification 'highlighted' true}}></span></a>
-                                    {{/if}}
-                                </td>
-                                <td>{{notification.date}}</td>
-                                <td>{{notification.name}}</td>
-                                <td>{{notification.fromCompanyDetails}}</td>
-
-                                {{#if this.isCertifier}}
-                                    <td>{{notification.fromUserDetails}}</td>
-                                    <td><span class="glyphicon glyphicon-download"></span></td>
-                                    <td><span class="glyphicon glyphicon-ok"></span></td>
-                                {{else}}
-                                    <td>{{notification.valueNum}}</td>
-                                    <td>{{notification.deadline}}</td>
+                        <tr {{bind-attr class = "notification.highlighted:warning"}}>
+                            <td align="center">
+                                {{#if notification.isDeadline}}
+                                    <span class="glyphicon glyphicon-exclamation-sign"></span>
                                 {{/if}}
-                                <td>
-                                    <a href="#"><span class="glyphicon glyphicon-share" style="text-align: center" {{action "set_record" notification 'status' 'view'}}></span></a>
-                                </td>
-                            </tr>
-                        {{else}}
-                            <tr {{bind-attr class = "notification.highlighted:warning"}}>
-                                <td align="center">
-                                    {{#if notification.highlighted}}
-                                        <a href="#"><span class="glyphicon glyphicon-check" style="text-align: center" {{action "set_record" notification 'highlighted' false}}></span></a>
-                                    {{else}}
-                                        <a href="#"><span class="glyphicon glyphicon-unchecked" style="text-align: center" {{action "set_record" notification 'highlighted' true}}></span></a>
-                                    {{/if}}
-                                </td>
-                                <td>{{notification.date}}</td>
-                                <td>{{notification.name}}</td>
-                                <td>{{notification.fromCompanyDetails}}</td>
-
-                                {{#if this.isCertifier}}
-                                    <td>{{notification.fromUserDetails}}</td>
-                                    <td><span class="glyphicon glyphicon-download"></span></td>
-                                    <td><span class="glyphicon glyphicon-ok"></span></td>
+                            </td>
+                            <td align="center">
+                                {{#if notification.highlighted}}
+                                    <a href="#"><span class="glyphicon glyphicon-check" style="text-align: center" {{action "set_record" notification 'highlighted' false}}></span></a>
                                 {{else}}
-                                    <td>{{notification.valueNum}}</td>
-                                    <td>{{notification.deadline}}</td>
+                                    <a href="#"><span class="glyphicon glyphicon-unchecked" style="text-align: center" {{action "set_record" notification 'highlighted' true}}></span></a>
                                 {{/if}}
+                            </td>
+                            <td>{{notification.showDate}} </td>
+                            <td>{{notification.name}} </td>
+                            <td>{{notification.description}} </td>
+                            <td>{{notification.fromCompanyDetail}} </td>
+
+                            <!-- TIPO DEADLINE-->
+                            {{#if notification.isDeadline}}
+                                <td>{{notification.valueNum}} </td>
+                                <td>{{notification.showDeadline}} </td>
+
+                            {{/if}}
+
+                            <!-- TIPO NEW RATING-->
+                            {{#if notification.isNewRating}}
+                                <td>{{notification.valueNum}} </td>
+                                <td></td>
+
+                            {{/if}}
+
+                            <!-- TIPO CREDIT-->
+                            {{#if notification.isCredit}}
+                                <td></td>
+                                <td></td>
+
+                            {{/if}}
+
+                            <!-- TIPO SERVICE RATING-->
+                            {{#if notification.isServiceRating}}
+                                <td>{{notification.valueNum}} </td>
+                                <td>{{notification.showDeadline}} </td>
+
+                            {{/if}}
+
+                            <!-- TIPO CERTIFICATION RATING - SOLO PER IL CERTIFICATORE-->
+                            {{#if notification.isCertificationRating}}
+                                <td>{{notification.fromUserDetails}}</td>
                                 <td>
-                                    <a href="#"><span class="glyphicon glyphicon-share" style="text-align: center" {{action "set_record" notification 'status' 'view'}}></span></a>
+                                    {{#each file in notification.files}}
+                                        <a href="#" {{action 'download_file' file.id}} >{{file.name}}</a>
+                                    {{/each}}
                                 </td>
-                            </tr>
-                        {{/if}}
+                            {{/if}}
+
+                            <td>
+                                <a href="#"><span class="glyphicon glyphicon-eye-close" style="text-align: center" {{action "set_record" notification 'status' 'show'}}></span></a>
+                            </td>
+                        </tr>
+
 
                     {{/unless}}
                 {{/unless}}

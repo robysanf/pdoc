@@ -6,12 +6,16 @@
         <div class="col-lg-10">
             <form class="form-horizontal">
                 <fieldset>
-                    <legend>
-                        <!-------------------- altre tab - cambio button tra edit/view/add ---------------------->
-                        <a {{action 'create_record' this 'your-profile/main' false}} style="cursor: pointer"><span class="glyphicon glyphicon-plus btn-font-color"></span></a>
-                        &nbsp;
-                        {{app_controller.translation.details}}
-                    </legend>
+                    <div class="form-group">
+                        <div class="col-lg-1">
+                            <!-------------------- altre tab - cambio button tra edit/view/add ---------------------->
+                            {{#if can_edit_company}}
+                                <button class="btn btn-primary btn-50" {{action 'open_modal' 'your-profile/modals/new-record' null this 'truck'}}{{!{{action 'create_record' this 'your-profile/main' false}}><span class="glyphicon glyphicon-plus"></span></button>
+                            {{/if}}
+                        </div>
+                        <div class="col-lg-11"><legend>{{app_controller.translation.details}}</legend> </div>
+                    </div>
+
                     <div class="row" style="margin-top: 15px">
                         <div class="col-lg-12">
                             <table class="table table-bordered table-hover">
@@ -33,8 +37,12 @@
                                             <td {{action 'transition_to' 'your-profile/partials/-vehicle-field' vehicle 'isView' true}} style="cursor: pointer">{{vehicle.brand}}</td>
                                             <td {{action 'transition_to' 'your-profile/partials/-vehicle-field' vehicle 'isView' true}} style="cursor: pointer">{{vehicle.model}}</td>
                                             <td {{action 'transition_to' 'your-profile/partials/-vehicle-field' vehicle 'isView' true}} style="cursor: pointer">{{vehicle.category}}</td>
+                                            {{#if vehicle.canRemove}}
+                                                <td><a {{action 'open_modal' 'your-profile/modals/delete-record' vehicle this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                            {{else}}
+                                                <td></td>
+                                            {{/if}}
 
-                                            <td><a {{action 'open_modal' 'your-profile/modals/delete-record' vehicle this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
                                         </tr>
                                     {{/if}}
                                 {{/each}}
@@ -48,6 +56,10 @@
         <div class="col-lg-1"></div>
     </div>
 {{else}}
+
+
+    <!--------------------- image logo --------------------->
+    {{partial 'your-profile/partials/-logo'}}
 
     <!-------------------- SHOW DRIVER RECORD ---------------------->
     {{#if controller.isView}}
@@ -64,6 +76,27 @@
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
                     {{partial 'your-profile/partials/-vehicle-field'}}
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+        </div>
+    {{/if}}
+    <!--------------------- document - view --------------------->
+    {{#if controller.isView_docList}}
+        <div class="row row-margin-top-bottom">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                {{partial 'your-profile/partials/-sub-record-document-list'}}
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
+    {{else}}
+        <!--------------------- document - edit --------------------->
+        <div class="well well-sm">
+            <div class="row row-margin-top-bottom">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    {{partial 'your-profile/partials/-company-document-edit'}}
                 </div>
                 <div class="col-lg-1"></div>
             </div>

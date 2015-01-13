@@ -1,13 +1,20 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-    visualizationCredit:DS.attr('number'),
-    certificationCredit:DS.attr('number'),
+    canEdit: DS.attr('boolean'),
+    canRemove: DS.attr('boolean'),
+
     cardNumber:DS.attr('number'),
+    certificationCredit:DS.attr('number'),     //ammontare del credito per ottenere certificazioni
+    visualizationCredit:DS.attr('number'),     //ammontare del credito per visualizzare
 
-    canRemove: DS.attr('string'),
-    canEdit: DS.attr('string'),
+    certificationScore:DS.attr('number'),      //punteggio per certificazione
+    serviceScore:DS.attr('number'),            //punteggio per servizi offerti
+    driverScore:DS.attr('number'),             //punteggio per autisti
+    truckScore:DS.attr('number'),              //punteggio per camion
+    trailerScore:DS.attr('number'),            //punteggio per
 
+    publishableKey: DS.attr('string'),
     name: DS.attr('string'),
     vat: DS.attr('string'),                  //partita iva
     transportListCode: DS.attr('string'),    //codice albo
@@ -55,8 +62,9 @@ export default DS.Model.extend({
         async: true}),
     posts: DS.hasMany('post', {
         async: true}),
-    //serviceRatings: DS.hasMany('serviceRating'),
-    //certificationRatings: DS.hasMany('certificationRating')
+    ratings: DS.hasMany('rating', {
+    async: true,
+    inverse: 'company'}),
     //parentCompany: DS.belongsTo('company'),
     //childCompanies: DS.hasMany('company'),
     documents: DS.hasMany('document', {
@@ -66,22 +74,69 @@ export default DS.Model.extend({
         async: true}),
     grants: DS.hasMany('grant',{
        async:true }),
+    configurations: DS.hasMany('configuration',{
+        async: true}),
+    paymentPlans: DS.hasMany('paymentPlan',{
+        async: true}),
 //    authorizedCompanies: DS.hasMany('company',{
 //        async: true}),
     /****************************************************
      *      PROPERTIES
      */
+    show_serviceScore: function(){
+        return this.get('serviceScore') !== undefined && this.get('serviceScore') !== null;
+    }.property('serviceScore'),
+    show_certificationScore: function(){
+        return this.get('certificationScore') !== undefined && this.get('certificationScore') !== null;
+    }.property('certificationScore'),
+
+    totalCertificationRating: function(){
+        var totRatings = 0, ratings = this.get('ratings');
+
+        ratings.forEach( function(val) {
+            if(val.get('type') === 'certification'){
+                totRatings += 1;
+            }
+        });
+
+        return totRatings;
+    }.property('ratings.@each.type'),
+    totalServiceRating: function(){
+        var totRatings = 0, ratings = this.get('ratings');
+
+        ratings.forEach( function(val) {
+            if(val.get('type') === 'service'){
+                totRatings += 1;
+            }
+        });
+
+        return totRatings;
+    }.property('ratings.@each.type'),
+
+    totalWeight: function() {
+        var totWeight = 0, weights = this.get('configurations');
+
+        weights.forEach( function(val) {
+            totWeight += Number(val.get('valueNum'));
+        });
+
+        return totWeight;
+    }.property('configurations.@each.valueNum'),
     hideCardNumber: function() {
-        return '**************' + this.get('cardNumber');
+        var card = String(this.get('cardNumber'));
+        return '**************' + card;
     }.property('cardNumber'),
     isCertifier: function() {
         return ( this.get('type') === 'certifier' );
     }.property('type'),
     firedNotifications: function() {
         var notify = this.get("notifications"), fired = null;
+        var today = moment(Date());
 
         notify.forEach(function(val){
-            if( val.get('highlighted') === true ) {
+            var date = moment(val.get('date'));
+            var diff =  today.diff(date);
+            if( val.get('highlighted') === true && diff > 0 ) {
                 fired += 1;
             }
         });

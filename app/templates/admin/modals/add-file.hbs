@@ -1,0 +1,53 @@
+<div class="modal-header">
+    <button type="button" class="close" {{action 'close' 'overview' 'application' target="view"}}>&times;</button>
+    <h3>{{app_controller.translation.AddFiles}}</h3>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            {{#if main_record.files}}
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>{{app_controller.translation.name}}</th>
+                        <th>{{app_controller.translation.type}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each file in main_record.files}}
+                        <tr>
+                            <td>{{file.name}}</td>
+                            <td>{{file.type}}</td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            {{/if}}
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            {{#view 'upload-file' record_model='doc-template'}}
+                <div class="input-group">
+                            <span class="input-group-btn">
+                                <span class="btn btn-primary btn-file">
+                                    Browse file&hellip; <input type="file" multiple>
+                                </span>
+                            </span>
+                    {{input id="selected_file" type="text" placeholder="max. 10 MB" class='form-control'}}
+                    <span class="input-group-btn">
+                        <button id='button_upload' {{bind-attr value=controller.main_record.id}} type="button" data-loading-text="Loading..." class="btn btn-primary btn-130 pull-right"><span class="glyphicon glyphicon-floppy-disk"></span> Upload</button>
+                    </span>
+                </div>
+            {{/view}}
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</div>
+<div class="modal-footer">
+    <a href="#" class="btn" {{action 'close' 'overview' 'application' target="view"}}>{{app_controller.translation.Close}}</a>
+</div>

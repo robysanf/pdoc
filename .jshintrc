@@ -4,8 +4,9 @@
     "window",
     "-Promise",
     "PNotify",
-     "moment",
-    "$"
+    "moment",
+    "$",
+    "Stripe"
   ],
   "browser" : true,
   "boss" : true,

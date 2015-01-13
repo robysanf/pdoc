@@ -1,61 +1,114 @@
 
-<!-------------------- SHOW DRIVERS LIST ---------------------->
-{{#if controller.transition_to_list}}
-    <div class="row row-margin-top-bottom" >
-        <div class="col-lg-1"></div>
-        <div class="col-lg-10">
-            <form class="form-horizontal">
-                <fieldset>
-                    <legend>
-                        <!-------------------- altre tab - cambio button tra edit/view/add ---------------------->
-                        <a {{action 'create_record' this 'your-profile/main' false}} style="cursor: pointer"><span class="glyphicon glyphicon-plus btn-font-color"></span></a>
-                        &nbsp;
-                        {{app_controller.translation.details}}
-                    </legend>
-                    <div class="row" style="margin-top: 15px">
-                        <div class="col-lg-12">
-                            <table class="table table-bordered table-hover">
-                                <thead>
-                                <tr>
-                                    <th>{{app_controller.translation.firstName}}</th>
-                                    <th>{{app_controller.translation.lastName}}</th>
-                                    <th>{{app_controller.translation.patents}}</th>
-                                    <th>{{app_controller.translation.delete}}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {{#each user in users}}
-                                    {{#if user.isDriver}}
-                                        <tr>
-                                            <td {{action 'transition_to' 'your-profile/partials/-user-field' user 'isView' true}} style="cursor: pointer">{{user.firstName}}</td>
-                                            <td {{action 'transition_to' 'your-profile/partials/-user-field' user 'isView' true}} style="cursor: pointer">{{user.lastName}}</td>
-                                            <td {{action 'transition_to' 'your-profile/partials/-user-field' user 'isView' true}} style="cursor: pointer">{{#each patent in user.patents}}{{patent}}{{/each}}</td>
+<!-- se ad essere loggato è un driver gli si fà vedere solo la sua pagina altrimenti si mostra all'utelte la lista di drivers per la sua comany-->
+{{#unless controller.is_driver}}
 
-                                            <td><a {{action 'open_modal' 'your-profile/modals/delete-record' user this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
-                                        </tr>
-                                    {{/if}}
-                                {{/each}}
-                                </tbody>
-                            </table>
+    <!-------------------- SHOW DRIVERS LIST ---------------------->
+    {{#if controller.transition_to_list}}
+        <div class="row row-margin-top-bottom" >
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                <form class="form-horizontal">
+                    <fieldset>
+                        <div class="form-group">
+                            <div class="col-lg-1">
+                                <!-------------------- altre tab - cambio button tra edit/view/add ---------------------->
+                                {{#if can_edit_company}}
+                                    <button class="btn btn-primary btn-50" {{action 'open_modal' 'your-profile/modals/new-record' null this 'driver'}}{{!{{action 'create_record' this 'your-profile/main' false}}><span class="glyphicon glyphicon-plus"></span></button>
+                                {{/if}}
+
+                            </div>
+                            <div class="col-lg-11"><legend>{{app_controller.translation.details}}</legend> </div>
                         </div>
-                    </div>
-                </fieldset>
-            </form>
+                        <div class="row" style="margin-top: 15px">
+                            <div class="col-lg-12">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>{{app_controller.translation.firstName}}</th>
+                                        <th>{{app_controller.translation.lastName}}</th>
+                                        <th>{{app_controller.translation.patents}}</th>
+                                        <th>{{app_controller.translation.delete}}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{#each user in users}}
+                                        {{#if user.isDriver}}
+                                            <tr>
+                                                <td {{action 'transition_to' 'your-profile/partials/-user-field' user 'isView' true}} style="cursor: pointer">{{user.firstName}}</td>
+                                                <td {{action 'transition_to' 'your-profile/partials/-user-field' user 'isView' true}} style="cursor: pointer">{{user.lastName}}</td>
+                                                <td {{action 'transition_to' 'your-profile/partials/-user-field' user 'isView' true}} style="cursor: pointer">{{#each patent in user.patents}}{{patent}}{{/each}}</td>
+
+                                                {{#if user.canRemove}}
+                                                    <td><a {{action 'open_modal' 'your-profile/modals/delete-record' user this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                                {{else}}
+                                                    <td></td>
+                                                {{/if}}
+
+                                            </tr>
+                                        {{/if}}
+                                    {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="col-lg-1"></div>
         </div>
-        <div class="col-lg-1"></div>
-    </div>
+    {{else}}
+
+        <!--------------------- image logo --------------------->
+        {{partial 'your-profile/partials/-logo'}}
+
+        <!-------------------- SHOW DRIVER RECORD ---------------------->
+        {{#if controller.isView}}
+            <div class="row row-margin-top-bottom">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    {{partial 'your-profile/partials/-user-field'}}
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+        {{else}}
+            <div class="well well-sm">
+                <div class="row row-margin-top-bottom">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-10">
+                        {{partial 'your-profile/partials/-user-field'}}
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+            </div>
+        {{/if}}
+        <!--------------------- document - view --------------------->
+        {{#if controller.isView_docList}}
+            <div class="row row-margin-top-bottom">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    {{partial 'your-profile/partials/-sub-record-document-list'}}
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+        {{else}}
+            <!--------------------- document - edit --------------------->
+            <div class="well well-sm">
+                <div class="row row-margin-top-bottom">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-10">
+                        {{partial 'your-profile/partials/-company-document-edit'}}
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+            </div>
+        {{/if}}
+    {{/if}}
+
 {{else}}
 
-    <!-------------------- SHOW DRIVER IMAGE ---------------------->
-    <div class="row row-margin-top-bottom">
-        <div class="col-lg-1"></div>
-        <div class="col-lg-10">
-            <div class= "well well-lg square-lg">
-                <div class= "well well square-icon-lg" style="border: 0; margin-bottom: 0"></div>
-            </div>
-        </div>
-        <div class="col-lg-1"></div>
-    </div>
+    <!--------------------- image logo --------------------->
+    {{partial 'your-profile/partials/-logo'}}
+
     <!-------------------- SHOW DRIVER RECORD ---------------------->
     {{#if controller.isView}}
         <div class="row row-margin-top-bottom">
@@ -76,6 +129,27 @@
             </div>
         </div>
     {{/if}}
-{{/if}}
+    <!--------------------- document - view --------------------->
+    {{#if controller.isView_docList}}
+        <div class="row row-margin-top-bottom">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                {{partial 'your-profile/partials/-sub-record-document-list'}}
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
+    {{else}}
+        <!--------------------- document - edit --------------------->
+        <div class="well well-sm">
+            <div class="row row-margin-top-bottom">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    {{partial 'your-profile/partials/-company-document-edit'}}
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+        </div>
+    {{/if}}
 
+{{/unless}}
 

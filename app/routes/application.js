@@ -9,7 +9,15 @@ export default Ember.Route.extend({
                 app_controller.set('company_record', val);
             });
         } else {
-            app_controller.send('logout');
+            this.transitionTo('login/main');
+        }
+
+        if( app_controller.user_id ) {
+            this.store.find('user', app_controller.user_id).then(function( val ){
+                app_controller.set('user_record', val);
+            });
+        } else {
+            this.transitionTo('login/main');
         }
 
         /** se non è presente in memoria il token l'utente viene ri-direzionato alla pagina di login **/

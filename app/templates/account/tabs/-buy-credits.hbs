@@ -1,0 +1,100 @@
+<div class="row">
+    <div class="col-lg-7"></div>
+    <div class="col-lg-4">
+        {{#unless publishableKey}}
+            {{#if app_controller.is_certifier}}
+                <div class="alert alert-dismissable alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>Connect with stripe!</strong>
+                    <a href="#" {{action "stripe_connect_to" app_controller.company_id}} style="color: #ffffff;">Click here to connect.</a>
+                </div>
+            {{/if}}
+        {{/unless}}
+    </div>
+    <div class="col-lg-1"></div>
+</div>
+<div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+        <!-------------------- BUTTON ---------------------->
+        <div class="form-group">
+            {{#if is_certifier}}
+                <div class="col-lg-1">
+                    <!-------------------- pencil ---------------------->
+                    {{#if controller.mode_view}}
+                        <button class="btn btn-primary btn-50" {{action 'open_modal' 'account/modals/new-payment-plan' this}}><span class="glyphicon glyphicon-plus"></span></button>
+                    {{/if}}
+                </div>
+                <div class="col-lg-11"><legend style="margin-top: 35px"></legend></div>
+            {{else}}
+                <div class="col-lg-12"><legend style="margin-top: 35px"></legend></div>
+            {{/if}}
+
+        </div>
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                <div class="row">
+                    {{#each payment in app_controller.records_paymentPlans}}
+                        <div class="col-lg-4">
+                            {{#if payment.isService}}
+                                {{#view tooltip}}
+                                    <div class="panel panel-info" data-toggle="tooltip" data-placement="left" title="Service payment plan." >
+                                        <div class="panel-heading" style="text-align: center">
+                                            {{#if payment.canRemove}}
+                                                <button type="button" class="close" {{action 'delete_plan' 'paymentPlan' payment}}><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            {{/if}}
+                                            <h4 style="color: #ffffff"> {{payment.name}}</h4>
+                                        </div>
+                                        <div class="panel-body">
+                                            <h2 style="color: #808080; text-align: center">{{payment.credit}} Credits</h2>
+                                            <h4 style="color: #808080; text-align: center">Per {{payment.amount}} {{payment.currency}}</h4>
+                                            <h6 style="color: darkgray; text-align: center">( vat 22% excluded )</h6>
+                                            <br>
+                                            <br>
+                                            {{#unless is_certifier}}
+                                                <div class="row">
+                                                    <div class="col-lg-12" style="text-align: center">
+                                                        {{#view 'button-disabled-on-click' class="btn btn-lg btn-default btn-130" disabled = false plan = payment.id company = this.id user = app_controller.user_id}}Buy now!{{/view}}
+                                                    </div>
+                                                </div>
+                                            {{/unless}}
+                                        </div>
+                                    </div>
+                                {{/view}}
+                            {{else}}
+                                {{#view tooltip}}
+                                    <div class="panel panel-primary" data-toggle="tooltip" data-placement="left" title="Certification payment plan." >
+                                        <div class="panel-heading" style="text-align: center">
+                                            {{#if payment.canRemove}}
+                                                <button type="button" class="close" {{action 'delete_plan' 'paymentPlan' payment}}><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            {{/if}}
+                                            <h4 style="color: #ffffff"> {{payment.name}}</h4>
+                                        </div>
+                                        <div class="panel-body">
+                                            <h2 style="color: #808080; text-align: center">{{payment.credit}} Credits</h2>
+                                            <h4 style="color: #808080; text-align: center">Per {{payment.amount}} {{payment.currency}}</h4>
+                                            <h6 style="color: darkgray; text-align: center">( vat 22% excluded )</h6>
+                                            <br>
+                                            <br>
+                                            {{#unless is_certifier}}
+                                                <div class="row">
+                                                    <div class="col-lg-12" style="text-align: center">
+                                                        {{#view 'button-disabled-on-click' class="btn btn-lg btn-default btn-130" disabled = false plan = payment.id company = this.id user = app_controller.user_id}}Buy now!{{/view}}
+                                                    </div>
+                                                </div>
+                                            {{/unless}}
+                                        </div>
+                                    </div>
+                                {{/view}}
+                            {{/if}}
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
+
+    </div>
+    <div class="col-lg-1"></div>
+</div>

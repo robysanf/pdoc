@@ -1,195 +1,318 @@
-<form class="form-horizontal">
-    <fieldset>
-        <legend>
-            <!-------------------- tab company - cambio button tra edit/view ---------------------->
+<div class="form-horizontal">
+<fieldset>
+<!-------------------- tab company - cambio button tra edit/view ---------------------->
+{{#if can_edit_company}}   <!-- può modificare solo il proprietario della company o i clerks-->
+    <div class="form-group">
+        <div class="col-lg-1">
+            <!-------------------- pencil ---------------------->
             {{#if controller.isView}}
-                <a {{action 'change_state' 'your-profile/main' false}} style="cursor: pointer"><span class="glyphicon glyphicon-pencil btn-font-color"></span></a>
+                <button class="btn btn-primary btn-50" {{action 'change_state' 'your-profile/main' false}}><span class="glyphicon glyphicon-pencil"></span></button>
+
+                <!-------------------- ok ---------------------->
             {{else}}
-                <a {{action 'set_record' 'company_details' 'isView' true app_controller.company_record}} style="cursor: pointer"><span class="glyphicon glyphicon-ok btn-font-color"></span></a>
+                <button class="btn btn-primary btn-50" {{action 'set_record' 'company_details' 'isView' true app_controller.company_record}}><span class="glyphicon glyphicon-ok"></span></button>
             {{/if}}
-            &nbsp;
-            {{app_controller.translation.details}}
-        </legend>
+        </div>
+        <div class="col-lg-11"><legend>{{app_controller.translation.details}}</legend></div>
+    </div>
+{{/if}}
 
-        <div class="form-group">
-            <label for="name" class="col-lg-3 control-label">{{app_controller.translation.name}}</label>
-            <div class="col-lg-9">
-                {{#if controller.isView}}
-                    {{#if name}}
-                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{name}}</p>
-                    {{else}}
-                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
-                    {{/if}}
-                {{else}}
-                    {{input value = name type = "text" class = "form-control"}}
-                {{/if}}
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="profile" class="col-lg-3 control-label">{{app_controller.translation.profile}}</label>
-            <div class="col-lg-9">
-                {{#if controller.isView}}
-                    {{#if type}}
-                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{type}}</p>
-                    {{else}}
-                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
-                    {{/if}}
-                {{else}}
-                    {{view Ember.Select content = types value = type class = "form-control" disabled= controller.isView}}
-                {{/if}}
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="profile" class="col-lg-3 control-label">{{app_controller.translation.certifier}}</label>
-            <div class="col-lg-9">
-                {{#if controller.isView}}
-                    {{#if certifier}}
-                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{certifier.name}}</p>
-                    {{else}}
-                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
-                    {{/if}}
-                {{else}}
-                    {{!{{auto-complete source=app_controller.records_companyCertifier destination=certifier searchPath="name" minChars=0}}
-                    {{select-2
-                    content=app_controller.records_companyCertifier
-                    value= certifier
-                    optionLabelPath="name"
-                    placeholder="Choose a document type"
-                    typeaheadNoMatchesText="No document type found for '%@'"
-                    typeaheadErrorText="Loading failed: %@"
-                    enabled=true
-                    allowClear=true
-                    disabled= controller.isView
-                    }}
-                {{/if}}
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="transportListCode" class="col-lg-3 control-label">{{app_controller.translation.transportListCode}}</label>
-            <div class="col-lg-9">
-                {{#if controller.isView}}
-                    {{#if transportListCode}}
-                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{transportListCode}}</p>
-                    {{else}}
-                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
-                    {{/if}}
-                {{else}}
-                    {{input value =  transportListCode type = "number" class = "form-control" disabled= controller.isView}}
-                {{/if}}
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="chamberOfCommerce" class="col-lg-3 control-label">{{app_controller.translation.chamberOfCommerce}}</label>
-            <div class="col-lg-9">
-                {{#if controller.isView}}
-                    {{#if chamberOfCommerce}}
-                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{chamberOfCommerce}}</p>
-                    {{else}}
-                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
-                    {{/if}}
-                {{else}}
-                    {{input value =  chamberOfCommerce type = "text" class="form-control" disabled= controller.isView}}
-                {{/if}}
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="emails" class="col-lg-3 control-label">{{app_controller.translation.emails}}</label>
-            <div class="col-lg-9">
-                {{#if controller.isView}}
-                    {{#if emails}}
-                        {{#each emails}}
-                            <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{this}}</p>
-                        {{/each}}
-                    {{else}}
-                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
-                    {{/if}}
-                {{else}}
-                    {{auto-suggest destination= emails usecase="customModeWithoutSource"}}
-                {{/if}}
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="password" class="col-lg-3 control-label">{{app_controller.translation.password}}</label>
-            <div class="col-lg-6">
-                {{#if controller.isView}}
-                    {{#if password}}
-                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{password}}</p>
-                    {{else}}
-                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
-                    {{/if}}
-                {{else}}
-                    {{input value =  password type = "password" class = 'form-control' disabled= controller.isView}}
-                {{/if}}
-            </div>
-            <div class="col-lg-3">
-                {{#unless controller.isView}}
-                    <button type="button" class="btn btn-primary btn-group-justified" {{!{{bind-attr disabled = controller.isView}}>{{app_controller.translation.changePassword}}</button>
-                {{/unless}}
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="description" class="col-lg-3 control-label">{{app_controller.translation.description}}</label>
-            <div class="col-lg-9">
-                {{#if controller.isView}}
-                    {{#if description}}
-                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{description}}</p>
-                    {{else}}
-                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
-                    {{/if}}
-                {{else}}
-                    {{textarea value =  description class = "form-control" rows = "3" disabled= controller.isView}}
-                {{/if}}
 
-            </div>
-        </div>
-        <div class="page-header"></div>
-        <div class="form-group">
-            <label for="services" class="col-lg-3 control-label">{{app_controller.translation.services}}</label>
-            <div class="col-lg-9">
-                {{#unless controller.isView}}
-                    {{auto-suggest source=app_controller.auto_suggest_Services destination= services usecase="customMode" minChars=0}}
-                {{else}}
-                    {{#if services}}
-                        {{#each services}}
-                            <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{this}}</p>
-                        {{/each}}
-                    {{else}}
-                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
-                    {{/if}}
-                {{/unless}}
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="segments" class="col-lg-3 control-label">{{app_controller.translation.segments}}</label>
-            <div class="col-lg-9">
-                {{#unless controller.isView}}
-                    {{auto-suggest source=app_controller.auto_suggest_Segments destination= segments searchPath="value" usecase="customMode" minChars=0}}
-                {{else}}
-                    {{#if segments}}
-                        {{#each segments}}
-                            <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{this}}</p>
-                        {{/each}}
-                    {{else}}
-                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
-                    {{/if}}
-                {{/unless}}
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="areas" class="col-lg-3 control-label">{{app_controller.translation.areas}}</label>
-            <div class="col-lg-9">
-                {{#unless controller.isView}}
-                    {{auto-suggest source=app_controller.auto_suggest_Areas destination= areas searchPath="value" usecase="customMode" minChars=0}}
-                {{else}}
-                    {{#if areas}}
-                        {{#each areas}}
-                            <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{this}}</p>
-                        {{/each}}
-                    {{else}}
-                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
-                    {{/if}}
-                {{/unless}}
-            </div>
-        </div>
-    </fieldset>
-</form>
+<!-------------------- form company ---------------------->
+<div class="form-group">
+    <label for="name" class="col-lg-3 control-label">{{app_controller.translation.name}}</label>
+    <div class="col-lg-9">
+        {{#if controller.isView}}
+            {{#if name}}
+                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{name}}</p>
+            {{else}}
+                <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+            {{/if}}
+        {{else}}
+            {{input value = name type = "text" class = "form-control"}}
+        {{/if}}
+    </div>
+</div>
+<div class="form-group">
+    <label for="profile" class="col-lg-3 control-label">{{app_controller.translation.profile}}</label>
+    <div class="col-lg-9">
+        {{#if controller.isView}}
+            {{#if type}}
+                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{type}}</p>
+            {{else}}
+                <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+            {{/if}}
+        {{else}}
+            {{view Ember.Select content = types value = type class = "form-control" disabled= true}}
+        {{/if}}
+    </div>
+</div>
+<div class="form-group">
+    <label for="profile" class="col-lg-3 control-label">{{app_controller.translation.certifier}}</label>
+    <div class="col-lg-6">
+        {{#if controller.isView}}
+            {{#if certifier}}
+                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{certifier.name}}</p>
+            {{else}}
+                <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+            {{/if}}
+        {{else}}
+        {{!{{auto-complete source=app_controller.records_companyCertifier destination=certifier searchPath="name" minChars=0}}
+            {{select-2
+            content=app_controller.records_companyCertifier
+            value= certifier
+            optionLabelPath="name"
+            placeholder="Choose a document type"
+            typeaheadNoMatchesText="No document type found for '%@'"
+            typeaheadErrorText="Loading failed: %@"
+            enabled=true
+            allowClear=true
+            disabled= controller.isView
+            }}
+        {{/if}}
+    </div>
+    <div class="col-lg-3">
+        {{#unless controller.isView}}
+            <button type="button" class="btn btn-primary btn-group-justified" {{action 'custom_setCertifier' certifier.id}}>{{app_controller.translation.setCertifier}}</button>
+        {{/unless}}
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="transportListCode" class="col-lg-3 control-label">{{app_controller.translation.street}}</label>
+    <div class="col-lg-9">
+        {{#if controller.isView}}
+            {{#if street}}
+                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{street}}</p>
+            {{else}}
+                <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+            {{/if}}
+        {{else}}
+            {{input value =  street type = "text" class = "form-control" disabled= controller.isView}}
+        {{/if}}
+    </div>
+</div>
+<div class="form-group">
+    <label for="transportListCode" class="col-lg-3 control-label">{{app_controller.translation.city}}</label>
+    <div class="col-lg-9">
+        {{#if controller.isView}}
+            {{#if city}}
+                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{city}}</p>
+            {{else}}
+                <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+            {{/if}}
+        {{else}}
+            {{input value =  city type = "text" class = "form-control" disabled= controller.isView}}
+        {{/if}}
+    </div>
+</div>
+<div class="form-group">
+    <label for="transportListCode" class="col-lg-3 control-label">{{app_controller.translation.province}}</label>
+    <div class="col-lg-9">
+        {{#if controller.isView}}
+            {{#if province}}
+                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{province}}</p>
+            {{else}}
+                <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+            {{/if}}
+        {{else}}
+            {{input value =  province type = "text" class = "form-control" disabled= controller.isView}}
+        {{/if}}
+    </div>
+</div>
+<div class="form-group">
+    <label for="transportListCode" class="col-lg-3 control-label">{{app_controller.translation.zipCode}}</label>
+    <div class="col-lg-9">
+        {{#if controller.isView}}
+            {{#if zipCode}}
+                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{zipCode}}</p>
+            {{else}}
+                <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+            {{/if}}
+        {{else}}
+            {{input value =  zipCode type = "text" class = "form-control" disabled= controller.isView}}
+        {{/if}}
+    </div>
+</div>
+<div class="form-group">
+    <label for="transportListCode" class="col-lg-3 control-label">{{app_controller.translation.district}}</label>
+    <div class="col-lg-9">
+        {{#if controller.isView}}
+            {{#if district}}
+                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{district}}</p>
+            {{else}}
+                <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+            {{/if}}
+        {{else}}
+            {{input value =  district type = "text" class = "form-control" disabled= controller.isView}}
+        {{/if}}
+    </div>
+</div>
+<div class="form-group">
+    <label for="transportListCode" class="col-lg-3 control-label">{{app_controller.translation.country}}</label>
+    <div class="col-lg-9">
+        {{#if controller.isView}}
+            {{#if country}}
+                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{country}}</p>
+            {{else}}
+                <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+            {{/if}}
+        {{else}}
+            {{input value =  country type = "text" class = "form-control" disabled= controller.isView}}
+        {{/if}}
+    </div>
+</div>
+<div class="form-group">
+    <label for="transportListCode" class="col-lg-3 control-label">{{app_controller.translation.vatNumber}}</label>
+    <div class="col-lg-9">
+        {{#if controller.isView}}
+            {{#if vat}}
+                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{vat}}</p>
+            {{else}}
+                <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+            {{/if}}
+        {{else}}
+            {{input value =  vat type = "text" class = "form-control" disabled= controller.isView}}
+        {{/if}}
+    </div>
+</div>
+<div class="form-group">
+    <label for="transportListCode" class="col-lg-3 control-label">{{app_controller.translation.phone}}</label>
+    <div class="col-lg-9">
+        {{#if controller.isView}}
+            {{#if phone}}
+                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{phone}}</p>
+            {{else}}
+                <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+            {{/if}}
+        {{else}}
+            {{input value =  phone type = "text" class = "form-control" disabled= controller.isView}}
+        {{/if}}
+    </div>
+</div>
+<div class="form-group">
+    <label for="transportListCode" class="col-lg-3 control-label">{{app_controller.translation.fax}}</label>
+    <div class="col-lg-9">
+        {{#if controller.isView}}
+            {{#if fax}}
+                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{fax}}</p>
+            {{else}}
+                <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+            {{/if}}
+        {{else}}
+            {{input value =  fax type = "text" class = "form-control" disabled= controller.isView}}
+        {{/if}}
+    </div>
+</div>
+
+
+<div class="form-group">
+    <label for="transportListCode" class="col-lg-3 control-label">{{app_controller.translation.transportListCode}}</label>
+    <div class="col-lg-9">
+        {{#if controller.isView}}
+            {{#if transportListCode}}
+                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{transportListCode}}</p>
+            {{else}}
+                <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+            {{/if}}
+        {{else}}
+            {{input value =  transportListCode type = "number" class = "form-control" disabled= controller.isView}}
+        {{/if}}
+    </div>
+</div>
+<div class="form-group">
+    <label for="chamberOfCommerce" class="col-lg-3 control-label">{{app_controller.translation.chamberOfCommerce}}</label>
+    <div class="col-lg-9">
+        {{#if controller.isView}}
+            {{#if chamberOfCommerce}}
+                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{chamberOfCommerce}}</p>
+            {{else}}
+                <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+            {{/if}}
+        {{else}}
+            {{input value =  chamberOfCommerce type = "text" class="form-control" disabled= controller.isView}}
+        {{/if}}
+    </div>
+</div>
+<div class="form-group">
+    <label for="emails" class="col-lg-3 control-label">{{app_controller.translation.emails}}</label>
+    <div class="col-lg-9">
+        {{#if controller.isView}}
+            {{#if emails}}
+                {{#each emails}}
+                    <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{this}}</p>
+                {{/each}}
+            {{else}}
+                <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+            {{/if}}
+        {{else}}
+            {{auto-suggest destination= emails usecase="customModeWithoutSource"}}
+        {{/if}}
+    </div>
+</div>
+<div class="form-group">
+    <label for="description" class="col-lg-3 control-label">{{app_controller.translation.description}}</label>
+    <div class="col-lg-9">
+        {{#if controller.isView}}
+            {{#if description}}
+                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{description}}</p>
+            {{else}}
+                <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+            {{/if}}
+        {{else}}
+            {{textarea value =  description class = "form-control" rows = "3" disabled= controller.isView}}
+        {{/if}}
+
+    </div>
+</div>
+<div class="page-header"></div>
+<div class="form-group">
+    <label for="services" class="col-lg-3 control-label">{{app_controller.translation.services}}</label>
+    <div class="col-lg-9">
+        {{#unless controller.isView}}
+            {{auto-suggest source=app_controller.auto_suggest_Services destination= services usecase="customMode" minChars=0}}
+        {{else}}
+            {{#if services}}
+                {{#each services}}
+                    <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{this}}</p>
+                {{/each}}
+            {{else}}
+                <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+            {{/if}}
+        {{/unless}}
+    </div>
+</div>
+<div class="form-group">
+    <label for="segments" class="col-lg-3 control-label">{{app_controller.translation.segments}}</label>
+    <div class="col-lg-9">
+        {{#unless controller.isView}}
+            {{auto-suggest source=app_controller.auto_suggest_Segments destination= segments searchPath="value" usecase="customMode" minChars=0}}
+        {{else}}
+            {{#if segments}}
+                {{#each segments}}
+                    <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{this}}</p>
+                {{/each}}
+            {{else}}
+                <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+            {{/if}}
+        {{/unless}}
+    </div>
+</div>
+<div class="form-group">
+    <label for="areas" class="col-lg-3 control-label">{{app_controller.translation.areas}}</label>
+    <div class="col-lg-9">
+        {{#unless controller.isView}}
+            {{auto-suggest source=app_controller.auto_suggest_Areas destination= areas searchPath="value" usecase="customMode" minChars=0}}
+        {{else}}
+            {{#if areas}}
+                {{#each areas}}
+                    <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{this}}</p>
+                {{/each}}
+            {{else}}
+                <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+            {{/if}}
+        {{/unless}}
+    </div>
+</div>
+</fieldset>
+</div>

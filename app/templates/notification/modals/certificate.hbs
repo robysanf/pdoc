@@ -1,0 +1,82 @@
+<div class="modal-header">
+    <button type="button" class="close" {{action 'close' 'overview' 'application' target="view"}}>&times;</button>
+    <h3>{{controller.selectedRecord.name}}</h3>
+</div>
+<div class="modal-body">
+    <div class="row" style="margin-bottom: 15px">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-2">
+            {{app_controller.translation.company}}
+        </div>
+        <div class="col-lg-8">
+            <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.fromCompanyDetail}}</p>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+    <div class="row" style="margin-bottom: 15px">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-2">
+            {{app_controller.translation.template}}
+        </div>
+        <div class="col-lg-8">
+            <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.docTemplate.name}}</p>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+    <div class="row" style="margin-bottom: 15px">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-2">
+            {{app_controller.translation.rating}}
+        </div>
+        <div class="col-lg-8">
+            <div class="input-group">
+                {{input value = rating type = "number" class = "form-control"}}
+                <span class="input-group-addon">%</span>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+    {{#unless controller.selectedRecord.isServiceRating}}
+        <div class="row" style="margin-bottom: 15px">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-2">
+                {{app_controller.translation.isLimited}}
+            </div>
+            <div class="col-lg-8">
+                {{view Ember.Select content = controller.bool value = isLimited class = "form-control"}}
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
+    {{/unless}}
+
+    <div class="row" style="margin-bottom: 15px">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-2">
+            {{app_controller.translation.description}}
+        </div>
+        <div class="col-lg-8">
+            {{textarea value =  controller.description class = "form-control" rows = "3"}}
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+    <div class="row" style="margin-top: 15px">
+        <div class="col-lg-12">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-2">
+                {{app_controller.translation.files}}
+            </div>
+            <div class="col-lg-8">
+                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">
+                    {{#each file in controller.selectedRecord.document.files}}
+                        <a href="#" {{action 'download_file' file.id}} >{{file.name}}</a>
+                    {{/each}}
+                </p>
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <a href="#" class="btn" {{action 'custom_rateDocument' controller.selectedRecord.type rating isLimited controller.description controller.selectedRecord.actionToken 'overview' 'application' target="view"}}>{{app_controller.translation.send}}</a>
+    <a href="#" class="btn" {{action 'close' 'overview' 'application' target="view"}}>{{app_controller.translation.close}}</a>
+</div>

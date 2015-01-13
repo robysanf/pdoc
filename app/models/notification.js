@@ -1,32 +1,55 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
+    canEdit: DS.attr('boolean'),
+    canRemove: DS.attr('boolean'),
     highlighted: DS.attr('boolean'),
 
-    date: DS.attr('custom-time'),
-    deadline: DS.attr('custom-time'),
-    gracePeriod: DS.attr('custom-time'),
+    date: DS.attr('custom-date'),
+    deadline: DS.attr('custom-date'),
+    gracePeriod: DS.attr('custom-date'),
 
+    actionToken: DS.attr('string'),
     detail: DS.attr('string'),
-    fromCompanyDetails: DS.attr('string'),
-    fromUserDetails: DS.attr('string'),
-    status: DS.attr('string'), //view/hide
-    type: DS.attr('string'), //deadline/rating/link/certification
+    description: DS.attr('string'),
+    entity: DS.attr('string'),
+    entityType: DS.attr('string'),
+    fromCompanyDetail: DS.attr('string'),
+    fromUserDetail: DS.attr('string'),
     name: DS.attr('string'),
+    status: DS.attr('string'), //show/hide
+    type: DS.attr('string'),    // deadline/  (no action)
+                                // link/
+                                // certificationRating/serviceRating/
+                                // newRating (no action)
 
     valueNum: DS.attr('number'),
 
+    document: DS.belongsTo('document', {
+        async: true}),
     fromCompany: DS.belongsTo('company', {
         async: true}),
     fromUser: DS.belongsTo('user', {
         async: true }),
     company: DS.belongsTo('company', {
         async: true}),
+    docTemplate: DS.belongsTo('docTemplate', {
+        async: true}),
+    referringNotification: DS.belongsTo('notification', {
+        async: true,
+        inverse: 'childNotification'}),
+    childNotification: DS.belongsTo('notification', {
+        async: true,
+        inverse: 'referringNotification'}),
     files: DS.hasMany('files', {
         async: true}),
+
     /***************************************************
      *  PROPERTIES
      */
+    is_actionToken: function(){
+       return this.get('actionToken') !== null;
+    }.property('actionToken'),
     showDate: function(){
       return moment(this.get('date')).format("YYYY-MM-DD");
     }.property('date'),
@@ -37,11 +60,15 @@ export default DS.Model.extend({
         return moment(this.get('gracePeriod')).format("YYYY-MM-DD");
     }.property('gracePeriod'),
 
-    viewNotification: function() {
-        return ( this.get('status') === 'view' );
+    status_hide: function(){
+        return ( this.get('status') === 'hide' );
     }.property('status'),
-    isRating: function() {
-        return ( this.get('type') === 'rating' );
+    viewNotification: function() {
+        return ( this.get('status') === 'show' );
+    }.property('status'),
+
+    isServiceRating: function() {
+        return ( this.get('type') === 'serviceRating' );
     }.property('type'),
     isDeadline: function() {
         return ( this.get('type') === 'deadline' );
@@ -49,8 +76,14 @@ export default DS.Model.extend({
     isLink: function() {
         return ( this.get('type') === 'link' );
     }.property('type'),
-    isCertification: function() {
-        return ( this.get('type') === 'certification' );
+    isCredit: function() {
+        return ( this.get('type') === 'credit' );
+    }.property('type'),
+    isNewRating: function() {
+        return ( this.get('type') === 'newRating' );
+    }.property('type'),
+    isCertificationRating: function() {
+        return ( this.get('type') === 'certificationRating' );
     }.property('type')
 
 });

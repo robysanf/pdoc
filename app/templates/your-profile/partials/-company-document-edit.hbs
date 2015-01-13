@@ -1,31 +1,34 @@
 <form class="form-horizontal" style="margin-top: 25px">
     <fieldset>
-        <legend>
-            {{#if isView_docDetails}}
-                <a {{action 'set_variable' 'isView_docDetails' false}} style="cursor: pointer"><span class="glyphicon glyphicon-pencil btn-font-color"></span></a>
-                &nbsp;
-            {{else}}
-                <a {{action 'set_record' 'document' 'isView_docList' true this}} style="cursor: pointer"><span class="glyphicon glyphicon-ok btn-font-color"></span></a>
-                &nbsp;
+    <div class="form-group">
+        <div class="col-lg-1">
+            {{#if sub_record_document.canEdit}}
+                {{#if isView_docDetails}}
+                    <button class="btn btn-primary btn-50" {{action 'set_variable' 'isView_docDetails' false}}><span class="glyphicon glyphicon-pencil"></span></button>
+                {{else}}
+                    <button class="btn btn-primary btn-50" {{action 'set_record' 'document' 'isView_docList' true this}}><span class="glyphicon glyphicon-ok"></span></button>
+                {{/if}}
             {{/if}}
-            {{app_controller.translation.documents}}
-            <span {{action 'transition_to' 'your-profile/partials/-company-document-edit' null 'isView_docList' true 'isView_docDetails' false}} style="cursor: pointer" class="pull-right">
-                <strong style="color: #4582ec;">List</strong>
-                <span class="glyphicon glyphicon-chevron-right btn-font-color"></span>
-            </span>
-        </legend>
+        </div>
+        <div class="col-lg-9"><legend>{{app_controller.translation.documents}}</legend></div>
+        <div class="col-lg-2">
+            <button class="btn btn-default btn-group-justified" {{action 'transition_to' 'your-profile/partials/-company-document-list' sub_record_document 'isView_docList' true 'isView_docDetails' false}}>
+                <strong>{{app_controller.translation.return}}</strong>
+            </button>
+        </div>
+    </div>
 
         <div class="form-group">
             <label class="col-lg-3 control-label">{{app_controller.translation.name}}</label>
             <div class="col-lg-9">
                 {{#if isView_docDetails}}
-                    {{#if sub_record.name}}
-                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.name}}</p>
+                    {{#if sub_record_document.name}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record_document.name}}</p>
                     {{else}}
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{input value = sub_record.name type = "text" class = "form-control"}}
+                    {{input value = sub_record_document.name type = "text" class = "form-control"}}
                 {{/if}}
             </div>
         </div>
@@ -33,31 +36,35 @@
             <label class="col-lg-3 control-label">{{app_controller.translation.type}}</label>
             <div class="col-lg-9">
                 {{#if isView_docDetails}}
-                    {{#if sub_record.type}}
-                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.type}}</p>
+                    {{#if sub_record_document.type}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record_document.type}}</p>
                     {{else}}
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{view Ember.Select content = documentTypes value = sub_record.type class = "form-control"}}
+                    {{#unless is_supplier}}
+                        {{view Ember.Select content = documentTypes value = sub_record_document.type class = "form-control"}}
+                    {{else}}
+                        {{view Ember.Select content = documentTypes_supplier value = sub_record_document.type class = "form-control"}}
+                    {{/unless}}
+
                 {{/if}}
             </div>
         </div>
-        {{#if sub_record.isDocument}}
+        {{#if sub_record_document.isDocument}}
             <div class="form-group">
-                <label class="col-lg-3 control-label">{{app_controller.translation.template}}</label>
+                <label class="col-lg-3 control-label">{{app_controller.translation.template}} {{!{{sub_record_document.docTemplate.name}}</label>
                 <div class="col-lg-9">
                     {{#if isView_docDetails}}
-                        {{#if sub_record.docTemplate}}
-                            <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.docTemplate.name}}</p>
+                        {{#if sub_record_document.docTemplate}}
+                            <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record_document.docTemplate.name}}</p>
                         {{else}}
                             <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                         {{/if}}
                     {{else}}
-                    {{!{{auto-complete source=app_controller.records_docTemplate destination=sub_record.docTemplate searchPath="name" minChars=0}}
                         {{select-2
                         content=app_controller.records_docTemplate
-                        value=sub_record.docTemplate
+                        value=sub_record_document.docTemplate
                         optionLabelPath="name"
                         placeholder="Choose a document type"
                         typeaheadNoMatchesText="No document type found for '%@'"
@@ -65,24 +72,23 @@
                         enabled=true
                         allowClear=true
                         }}
-                    {{!{{input value = sub_record.template.name type = "text" class = "form-control"}}
                     {{/if}}
                 </div>
             </div>
-        {{/if}}
+
 
         <div class="form-group">
             <label class="col-lg-3 control-label">{{app_controller.translation.validityDate}}</label>
             <div class="col-lg-3">
                 {{#if isView_docDetails}}
-                    {{#if sub_record.validityDate}}
-                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.validityDate_toString}}</p>
+                    {{#if sub_record_document.validityDate}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record_document.validityDate_toString}}</p>
                     {{else}}
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{date-picker date=sub_record.validityDate valueFormat='YYYY-MM-DD' class="form-control"}}
-                {{!{{input value = sub_record.validityDate type = "date" class = "form-control"}}
+                    {{date-picker date=sub_record_document.validityDate valueFormat='YYYY-MM-DD' class="form-control"}}
+                {{!{{input value = sub_record_document.validityDate type = "date" class = "form-control"}}
                 {{/if}}
             </div>
             <div class="col-lg-1"></div>
@@ -91,14 +97,14 @@
             </div>
             <div class="col-lg-3">
                 {{#if isView_docDetails}}
-                    {{#if sub_record.deadLine}}
-                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.deadLine_toString}}</p>
+                    {{#if sub_record_document.deadLine}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record_document.deadLine_toString}}</p>
                     {{else}}
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{date-picker date=sub_record.deadline valueFormat='YYYY-MM-DD' class="form-control" disabled= true}}
-                {{!{{input value = sub_record.grace type = "date" class = "form-control"}}
+                    {{date-picker date=sub_record_document.deadline valueFormat='YYYY-MM-DD' class="form-control" disabled= true}}
+                {{!{{input value = sub_record_document.grace type = "date" class = "form-control"}}
                 {{/if}}
             </div>
         </div>
@@ -106,14 +112,14 @@
             <label class="col-lg-3 control-label">{{app_controller.translation.alert}}</label>
             <div class="col-lg-3">
                 {{#if isView_docDetails}}
-                    {{#if sub_record.alert}}
-                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.alert_toString}}</p>
+                    {{#if sub_record_document.alert}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record_document.alert_toString}}</p>
                     {{else}}
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{date-picker date=sub_record.alert valueFormat='YYYY-MM-DD' class="form-control" disabled= true}}
-                {{!{{input value = sub_record.deadLine type = "date" class = "form-control"}}
+                    {{date-picker date=sub_record_document.alert valueFormat='YYYY-MM-DD' class="form-control" disabled= true}}
+                {{!{{input value = sub_record_document.deadLine type = "date" class = "form-control"}}
                 {{/if}}
             </div>
             <div class="col-lg-1"></div>
@@ -122,41 +128,42 @@
             </div>
             <div class="col-lg-3">
                 {{#if isView_docDetails}}
-                    {{#if sub_record.grace}}
-                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.grace_toString}}</p>
+                    {{#if sub_record_document.grace}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record_document.grace_toString}}</p>
                     {{else}}
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{date-picker date=sub_record.grace valueFormat='YYYY-MM-DD' class="form-control" disabled= true}}
-                {{!{{input value = sub_record.grace type = "date" class = "form-control"}}
+                    {{date-picker date=sub_record_document.grace valueFormat='YYYY-MM-DD' class="form-control" disabled= true}}
+                {{!{{input value = sub_record_document.grace type = "date" class = "form-control"}}
                 {{/if}}
             </div>
         </div>
+        {{/if}}
         <div class="form-group">
             <label class="col-lg-3 control-label">{{app_controller.translation.note}}</label>
             <div class="col-lg-9">
                 {{#if isView_docDetails}}
-                    {{#if sub_record.note}}
-                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record.note}}</p>
+                    {{#if sub_record_document.note}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record_document.note}}</p>
                     {{else}}
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{textarea value=sub_record.note class = "form-control" rows= 4}}
+                    {{textarea value=sub_record_document.note class = "form-control" rows= 4}}
                 {{/if}}
             </div>
         </div>
-        {{#if controller.sub_record.docTemplate.files}}
+        {{#if controller.sub_record_document.docTemplate.files}}
             <div class="form-group">
                 <label class="col-lg-3 control-label">{{app_controller.translation.filesToDownload}}</label>
                 <div class="col-lg-9">
                     {{#if isView_docDetails}}
-                        {{#each controller.sub_record.docTemplate.files}}
+                        {{#each controller.sub_record_document.docTemplate.files}}
                             <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{name}}</p>
                         {{/each}}
                     {{else}}
-                        {{#if controller.sub_record.docTemplate}}
+                        {{#if controller.sub_record_document.docTemplate}}
                             <div class="row">
                                 <div class="col-lg-12">
                                     <form class="form-horizontal">
@@ -173,7 +180,7 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        {{#each file in controller.sub_record.docTemplate.files}}
+                                                        {{#each file in controller.sub_record_document.docTemplate.files}}
                                                             <tr>
                                                                 <td>{{file.name}}</td>
                                                                 <td>{{file.type}}</td>
@@ -197,12 +204,12 @@
             </div>
         {{/if}}
 
-        {{#if controller.sub_record.files}}
+        {{#if controller.sub_record_document.files}}
             <div class="form-group">
                 <label class="col-lg-3 control-label">{{app_controller.translation.files}}</label>
                 <div class="col-lg-9">
                     {{#if isView_docDetails}}
-                        {{#each controller.sub_record.files}}
+                        {{#each controller.sub_record_document.files}}
                             <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{name}}</p>
                         {{/each}}
                     {{else}}
@@ -222,7 +229,7 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    {{#each file in controller.sub_record.files}}
+                                                    {{#each file in controller.sub_record_document.files}}
                                                         <tr>
                                                             <td>{{file.name}}</td>
                                                             <td>{{file.type}}</td>
@@ -256,7 +263,7 @@
                             </span>
                             {{input id="selected_file" type="text" placeholder="max. 10 MB" class='form-control'}}
                             <span class="input-group-btn">
-                                <button id='button_upload' {{bind-attr value=sub_record.id}} type="button" data-loading-text="Loading..." class="btn btn-primary btn-130 pull-right"><span class="glyphicon glyphicon-floppy-disk"></span> Upload</button>
+                                <button id='button_upload' {{bind-attr value=sub_record_document.id}} type="button" data-loading-text="Loading..." class="btn btn-primary btn-130 pull-right"><span class="glyphicon glyphicon-floppy-disk"></span> Upload</button>
                             </span>
                         </div>
                     {{/view}}

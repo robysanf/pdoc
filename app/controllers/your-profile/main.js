@@ -4,24 +4,102 @@ export default Ember.ObjectController.extend({
     needs: ['application'],
     app_controller: Ember.computed.alias('controllers.application'),
 
+    app_user_id: Ember.computed.alias('controllers.application.user_id'),
+    app_user_type: Ember.computed.alias('controllers.application.user_type'),
+
+    app_company_id: Ember.computed.alias('controllers.application.company_id'),
+    app_company_type: Ember.computed.alias('controllers.application.company_type'),
+    app_is_linked: Ember.computed.alias('controllers.application.isLinked'),
+
+    is_supplier: function(){
+        return ( this.get('app_company_type') === 'supplier' );
+    }.property('app_company_type'),
+    is_carrier: function(){
+        return ( this.get('app_company_type') === 'carrier' );
+    }.property('app_company_type'),
+    is_certifier: function(){
+        return ( this.get('app_company_type') === 'certifier' );
+    }.property('app_company_type'),
+    is_driver: function(){
+        return ( this.get('app_user_type') === 'driver' );
+    }.property('app_user_type'),
+
+    is_admin_or_clerk: function(){       // l'utente è di tipo admin o clerk
+        var type =  this.get('app_user_type');
+        return ( type === 'admin' || type === 'clerk' );
+    }.property('app_user_type'),
+
+    show_document: function(){
+
+    }.property('entity'),
+
+    can_edit_company: function(){         //è admin di questa company se la sua company è uguale alla company loggata
+        var user_type = this.get('is_admin_or_clerk');
+        var my_company = String(this.get('id')) === String(this.get('app_company_id'));
+        return user_type && my_company ;
+    }.property('app_user_type', 'app_company_id'),
+
+    check_changePassword: function(){
+        return (
+            String(this.sub_record.get('id')) === String(this.get('app_user_id')) ||
+                this.get('is_this_admin')
+            );
+    }.property('sub_record', 'app_user_id', 'can_edit_company'),
+
+    can_create_doc: function(){
+       return ( this.get('app_is_linked') && this.get('is_admin_or_clerk') || this.get('is_driver'));        //solo un utente di tipo admin/clerk può creare un document e solo della company proprietaria o di una connessa
+    }.property('app_is_linked', 'is_admin_or_clerk', 'is_driver'),
+
     isView: true,
 
+    isView_logo: true,
     isView_docList: true,
     isView_docDetails: true,
+
+    rating_type: null,
 
     main_record: null,
     record_to_delete: null,
     record_certifier: null,
+    record_type: null,
+    record_isNew: false,
+
+    newRecordClerk: function(){
+        return this.get('record_type') === 'clerk';
+    }.property('record_type'),
+    newRecordDriver: function(){
+        return this.get('record_type') === 'driver';
+    }.property('record_type'),
+    newRecordTruck: function(){
+        return this.get('record_type') === 'truck';
+    }.property('record_type'),
+    newRecordTrailer: function(){
+        return this.get('record_type') === 'trailer';
+    }.property('record_type'),
+
+    newRecordUser: function(){
+        return this.get('record_type') === 'clerk' || this.get('record_type') === 'driver' ;
+    }.property('record_type'),
+    newRecordVehicle: function(){
+        return this.get('record_type') === 'trailer' || this.get('record_type') === 'truck' ;
+    }.property('record_type'),
+
     types: [
         "shipper",
         "carrier",
         "supplier",
         "certifier"
     ],
+    image_url: null,
 
     documentTypes: [
         "invoice",
         "document",
+        "other"
+    ],
+
+    documentTypes_supplier: [
+        "invoice",
         "other"
     ],
     //  *** define tab order
@@ -39,5 +117,31 @@ export default Ember.ObjectController.extend({
 
     transition_to_list: true,
 
-    sub_record: null
-});
+    sub_record: null,
+    sub_record_document: null,
+
+    /****************************************
+     * NUOVI RECORD
+     * */
+    newConfigurations: [],
+    newLanguages: [],
+    newPatents: [],
+    newFirstName: null,
+    newLastName: null,
+    newBirthDate: null,
+    newPhone: null,
+    newSkype: null,
+    newEmail: null,
+    newUsername: null,
+    newPassword: null,
+
+    newName: null,
+    newBrand: null,
+    newModel: null,
+    newDescription: null,
+    newRegistrationYear: null,
+    newChassisNumber: null,
+    newWeight: null,
+    newTare: null,
+    newCategory: null
+ });

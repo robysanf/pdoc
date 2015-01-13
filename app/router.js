@@ -15,7 +15,12 @@ Router.map(function() {
 
     this.route('admin/main', {path: 'admin/:company_id'});
     this.route('account/main', {path: 'account/:company_id'});
+<<<<<<< HEAD
     this.route('cal');
+=======
+
+    this.route('search-company/main', {path: 'searchCompanies'});
+>>>>>>> develop
 });
 
 export default Router;

@@ -5,6 +5,9 @@
 /tmp
 /.idea
 
+aws-keys-test.json
+aws-keys-production.json
+
 # dependencies
 /node_modules
 /bower_components

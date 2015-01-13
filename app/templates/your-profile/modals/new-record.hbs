@@ -1,0 +1,189 @@
+<div class="modal-header">
+    <button type="button" class="close" {{action close 'overview' 'application' target="view"}}>&times;</button>
+    {{#if controller.newRecordClerk}}
+        <h3>{{app_controller.translation.newClerk}}</h3>
+    {{/if}}
+    {{#if controller.newRecordDriver}}
+        <h3>{{app_controller.translation.newDriver}}</h3>
+    {{/if}}
+    {{#if controller.newRecordTruck}}
+        <h3>{{app_controller.translation.newTruck}}</h3>
+    {{/if}}
+    {{#if controller.newRecordTrailer}}
+        <h3>{{app_controller.translation.newTrailer}}</h3>
+    {{/if}}
+
+</div>
+<div class="modal-body">
+    {{#if controller.newRecordUser}}
+        <div class="row" style="margin-bottom: 15px">
+        {{#view 'required-field' value=newFirstName toChange='changeState_firstName'}}
+            <div class="form-group" id="changeState_firstName">
+                <label class="col-lg-3 control-label">{{app_controller.translation.firstName}}</label>
+                <div class="col-lg-9">
+                    {{input value = newFirstName type = "text" class = "form-control"}}
+                </div>
+            </div>
+        {{/view}}
+        </div>
+        <div class="row" style="margin-bottom: 15px">
+        {{#view 'required-field' value=newLastName toChange='changeState_lastName'}}
+            <div class="form-group" id="changeState_lastName">
+                <label class="col-lg-3 control-label">{{app_controller.translation.lastName}}</label>
+                <div class="col-lg-9">
+                    {{input value = newLastName type = "text" class = "form-control"}}
+                </div>
+            </div>
+        {{/view}}
+
+        </div>
+        <div class="row" style="margin-bottom: 15px">
+            <label class="col-lg-3 control-label">{{app_controller.translation.birthDate}}</label>
+            <div class="col-lg-9">
+                {{date-picker date= newBirthDate valueFormat='YYYY-MM-DD' class="form-control" }}
+            </div>
+        </div>
+        {{#if controller.newRecordDriver}}
+            <div class="row" style="margin-bottom: 15px">
+                <label class="col-lg-3 control-label">{{app_controller.translation.patents}}</label>
+                <div class="col-lg-9">
+                    {{auto-suggest source=app_controller.autocomplete_patents destination= controller.newPatents searchPath="type" usecase="customMode" minChars=0}}
+                </div>
+            </div>
+        {{/if}}
+        <div class="row" style="margin-bottom: 15px">
+            <label class="col-lg-3 control-label">{{app_controller.translation.phone}}</label>
+            <div class="col-lg-9">
+                {{input value = newPhone type = "text" class="form-control"}}
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 15px">
+            <label class="col-lg-3 control-label">{{app_controller.translation.skype}}</label>
+            <div class="col-lg-9">
+                {{input value = newSkype type = "text" class="form-control"}}
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 15px">
+            {{#view 'required-field' value=newEmail toChange='changeState_email'}}
+                <div class="form-group" id="changeState_email">
+                    <label class="col-lg-3 control-label">{{app_controller.translation.email}}</label>
+                    <div class="col-lg-9">
+                        {{input value = newEmail type = "text" class="form-control"}}
+                    </div>
+                </div>
+            {{/view}}
+        </div>
+        <div class="row" style="margin-bottom: 15px">
+            {{#view 'required-field' value=newUsername toChange='changeState_username'}}
+                <div class="form-group" id="changeState_username">
+                    <label class="col-lg-3 control-label">{{app_controller.translation.username}}</label>
+                    <div class="col-lg-9">
+                        {{input value = newUsername type = "text" class="form-control" }}
+                    </div>
+                </div>
+            {{/view}}
+        </div>
+        <div class="row" style="margin-bottom: 15px">
+            {{#view 'required-field' value=newPassword toChange='changeState_password'}}
+                <div class="form-group" id="changeState_password">
+                    <label class="col-lg-3 control-label">{{app_controller.translation.password}}</label>
+                    <div class="col-lg-6">
+                        {{input value = newPassword type = "password" class = 'form-control'}}
+                    </div>
+                </div>
+            {{/view}}
+        </div>
+        {{#if controller.newRecordDriver}}
+            <div class="row" style="margin-bottom: 15px">
+                <label class="col-lg-3 control-label">{{app_controller.translation.languages}}</label>
+                <div class="col-lg-9">
+                    {{auto-suggest destination=controller.newLanguages usecase="customModeWithoutSource"}}
+                </div>
+            </div>
+            <!--<div class="row" style="margin-bottom: 15px">-->
+                <!--<label class="col-lg-3 control-label">{{!{{app_controller.translation.curriculum}}</label>-->
+                <!--<div class="col-lg-9">-->
+                    <!--{{!{{textarea cols="80" rows="4" value=newCurriculum class='form-control' }}-->
+                <!--</div>-->
+            <!--</div>-->
+        {{/if}}
+    {{/if}}
+    {{#if controller.newRecordVehicle}}
+        <div class="row" style="margin-bottom: 15px">
+            {{#view 'required-field' value=newName toChange='changeState_name'}}
+                <div class="form-group" id="changeState_name">
+                    <label class="col-lg-3 control-label">{{app_controller.translation.name}}</label>
+                    <div class="col-lg-9">
+                        {{input value = newName type = "text" class = "form-control" }}
+                    </div>
+                </div>
+            {{/view}}
+        </div>
+        <div class="row" style="margin-bottom: 15px">
+            <label class="col-lg-3 control-label">{{app_controller.translation.brand}}</label>
+            <div class="col-lg-9">
+                {{input value = newBrand type = "text" class = "form-control" }}
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 15px">
+            <label class="col-lg-3 control-label">{{app_controller.translation.model}}</label>
+            <div class="col-lg-9">
+                {{input value = newModel type = "text" class = "form-control" }}
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 15px">
+            <label class="col-lg-3 control-label">{{app_controller.translation.description}}</label>
+            <div class="col-lg-9">
+                {{input value = newDescription type = "text" class = "form-control" }}
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 15px">
+            <label class="col-lg-3 control-label">{{app_controller.translation.configuration}}</label>
+            <div class="col-lg-9">
+                {{auto-suggest source=app_controller.auto_suggest_Configurations destination=controller.newConfigurations searchPath="value" usecase="customMode" minChars=0}}
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 15px">
+            <label class="col-lg-3 control-label">{{app_controller.translation.registrationYear}}</label>
+            <div class="col-lg-9">
+                {{date-picker date=newRegistrationYear valueFormat='YYYY-MM-DD' class="form-control"}}
+            </div>
+        </div>
+        {{#if newRecordTrailer}}
+            <div class="row" style="margin-bottom: 15px">
+                <label class="col-lg-3 control-label">{{app_controller.translation.chassisNumber}}</label>
+                <div class="col-lg-9">
+                    {{input value = newChassisNumber type = "text" class="form-control"}}
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 15px">
+                <label class="col-lg-3 control-label">{{app_controller.translation.weight}}</label>
+                <div class="col-lg-9">
+                    {{input value = newWeight type = "number" class="form-control"}}
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 15px">
+                <label class="col-lg-3 control-label">{{app_controller.translation.tare}}</label>
+                <div class="col-lg-9">
+                    {{input value = newTare type = "number" class="form-control"}}
+                </div>
+            </div>
+        {{else}}
+            <div class="row" style="margin-bottom: 15px">
+                <label class="col-lg-3 control-label">{{app_controller.translation.category}}</label>
+                <div class="col-lg-9">
+                    {{input value = newCategory type = "number" class="form-control"}}
+                </div>
+            </div>
+        {{/if}}
+    {{/if}}
+</div>
+<div class="modal-footer">
+    <a href="#" class="btn" {{action close 'overview' 'application' target="view"}}>{{app_controller.translation.Close}}</a>
+    {{#if controller.newRecordUser}}
+        <a href="#" class="btn btn-primary" {{action 'createRecord_user' controller.record_type newFirstName newLastName newUsername newBirthDate controller.newPatents newPhone newSkype newEmail newPassword controller.newLanguages newCurriculum 'overview' 'application' target="view"}}>{{app_controller.translation.save}}</a>
+    {{/if}}
+    {{#if controller.newRecordVehicle}}
+        <a href="#" class="btn btn-primary" {{action 'createRecord_vehicle' controller.record_type newName newBrand newModel newDescription controller.newConfigurations newRegistrationYear newChassisNumber newWeight newTare newCategory 'overview' 'application' target="view"}}>{{app_controller.translation.save}}</a>
+    {{/if}}
+</div>

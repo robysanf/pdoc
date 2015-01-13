@@ -5,7 +5,7 @@
                 <thead>
                 <tr>
                     <!--<th style="width:5%"> </th>-->
-                    <th style="width:5%">{{app_controller.translation.news}}</th>
+                    <th style="width:5%">{{app_controller.translation.new}}</th>
                     <th style="width:20%">{{app_controller.translation.date}}</th>
                     <th style="width:20%">{{app_controller.translation.company}}</th>
                     <th style="width:20%">{{app_controller.translation.user}}</th>
@@ -14,7 +14,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {{#each notification in notifications}}
+                {{#each notification in app_controller.records_notifications}}
                     {{#if notification.isLink}}
                         {{#unless notification.viewNotification}}
                             {{#if notification.isDeadline}}
@@ -27,9 +27,9 @@
                                         {{/if}}
                                     </td>
                                     <td>{{notification.date}}</td>
-                                    <td>{{notification.fromCompanyDetails}}</td>
-                                    <td>{{notification.fromUserDetails}}</td>
-                                    <td>{{notification.detail}}</td>
+                                    <td>{{notification.fromCompanyDetail}}</td>
+                                    <td>{{notification.fromUserDetail}}</td>
+                                    <td>{{notification.description}}</td>
                                     <td>
                                         <a href="#"><span class="glyphicon glyphicon-share" style="text-align: center" {{action "set_record" notification 'status' 'view'}}></span></a>
                                     </td>
@@ -44,11 +44,11 @@
                                         {{/if}}
                                     </td>
                                     <td>{{notification.date}}</td>
-                                    <td>{{notification.fromCompanyDetails}}</td>
-                                    <td>{{notification.fromUserDetails}}</td>
-                                    <td>{{notification.detail}}</td>
+                                    <td>{{notification.fromCompanyDetail}}</td>
+                                    <td>{{notification.fromUserDetail}}</td>
+                                    <td>{{notification.description}}</td>
                                     <td>
-                                        <a href="#"><span class="glyphicon glyphicon-share" style="text-align: center" {{action "set_record" notification 'status' 'view'}}></span></a>
+                                        <a href="#"><span class="glyphicon glyphicon-share" style="text-align: center" {{action "set_record" notification 'status' 'show'}}></span></a>
                                     </td>
                                 </tr>
                             {{/if}}
