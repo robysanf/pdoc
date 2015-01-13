@@ -123,7 +123,7 @@ export default Ember.Controller.extend({
         more: 'Dettagli', deadline: 'Scadenza', value: 'Valore', certificate: 'Certifica', download: 'Scarica', hide: 'Nascondi', note: 'Note', highlight: 'In evidenza',
         showHideNotifications: 'Mostra le notifiche nascoste...', linkRequests: 'Richieste di connessione', notifications: 'Notifiche', save: 'Salva', type: 'Tipo',
         edit: 'Modifica', country: 'Paese', logo: 'Logo', links: 'Links', new: 'Nuovo', return: 'Indietro', chassisNumber: 'Targa', registrationYear: 'Anno di immatricolazione',
-        configuration: 'Configurazione', category: 'Categoria', tare: 'Tara', weight: 'peso', linksRequest: 'Richieste di collegamento', generals: 'Generali',
+        configuration: 'Configurazione', category: 'Categoria', tare: 'Tara', weight: 'Peso', linksRequest: 'Richieste di collegamento', generals: 'Generali',
         model: 'Modello', brand: 'Marca', view: 'Visualizza', goTo: 'Vai', delete: 'Cancella', lastName: 'Cognome', firstName: 'Nome', curriculum: 'Curriculum', searchCompanies: 'Ricerca',
         languages: 'Lingue', skype: 'Contatto Skype', phone: 'Telefono', patents: 'Patenti', language: 'Lingua', english: 'Inglese', italian: 'Italiano', yourProfile: 'Il tuo profilo', name: "Nome",
         profile: "Profilo", company: 'Società', transportListCode: "Num. iscrizione all'albo", chamberOfCommerce: "Camera di commercio", emails: "E-mail", password: "Password",
@@ -136,7 +136,7 @@ export default Ember.Controller.extend({
         NewPassword:'Nuova password', ConfirmNewPassword:'Conferma password', AreYouSureYouWantToDeleteThisRecord: 'Sei sicuro di voler cancellare questo record', AddFiles:'Add files',
         newPaymentPlan: 'Nuovo piano di pagamento', selectTheCurrency: 'seleziona la valuta', currency: 'valuta', selectTheType: 'Seleziona il tipo', rating: 'Punteggio',
         isLimited: 'Punteggio limitato', newClerk: 'Nuovo impiegato', newDriver: 'New autista', newTruck: 'New camion', newTrailer: 'New traino', pricePlan: 'Tariffario', visualizationCredit: 'credito per la visualizzazione',
-        certificationCredit: 'credito per la certificazione'
+        certificationCredit: 'credito per la certificazione', yourCompany: 'La tua società', setCertifier: 'Assegna certificatore'
     },
     lan_en: {
         publicToYourContactsNetwork: 'Public to your contacts network', companyDetails: 'Company Details', invoiceNumber: 'Invoice number', rate: 'Rate', limit: 'Limit', goodsConfiscation: 'Goods Confisc.', vehicleConfiscation: 'Vehicle Confisc.',
@@ -148,7 +148,7 @@ export default Ember.Controller.extend({
         value: 'Value', certificate: 'Certificate', download: 'Download', hide: 'Hide', note: 'Note', highlight: 'Highlight', showHideNotifications: 'Show hidden notifications...',
         linkRequests: 'Link requests', notifications: 'Notifications', save: 'Save', type: 'Type', edit: 'Edit', country: 'Country', logo: 'Logo', links: 'Links', new: 'New',
         return: 'Return', chassisNumber: 'Chassis number', registrationYear: 'Registration year', configuration: 'Configuration', category: 'Category', tare: 'Tare', certifier: 'Certifier',
-        weight: 'weight', model: 'Model', brand: 'Brand', view: 'View',goTo: 'Go to', delete: 'Delete', lastName: 'Last Name', firstName: 'First Name', curriculum: 'Curriculum',
+        weight: 'Weight', model: 'Model', brand: 'Brand', view: 'View',goTo: 'Go to', delete: 'Delete', lastName: 'Last Name', firstName: 'First Name', curriculum: 'Curriculum',
         languages: 'Languages', skype: 'Skype', phone: 'Phone', patents: 'Patents', language: 'Language', english: 'English', italian: 'Italian', yourProfile: 'Your Profile', name: "Name",
         profile: "Profile", company: 'Company', transportListCode: "Transport List Code", chamberOfCommerce: "Chamber Of Commerce", emails: "E-mail", password: "Password", description: "Description",
         services: "Services", segments: "Segments", areas: "Areas", driver: 'Driver', drivers: 'Drivers', truck: 'Truck', trucks: 'Trucks', trailer: 'Trailer', trailers: 'Trailers', clerks: 'Clerks',
@@ -160,7 +160,7 @@ export default Ember.Controller.extend({
         CurrentPassword:'Current password', NewPassword:'New password', ConfirmNewPassword:'Confirm new password', AreYouSureYouWantToDeleteThisRecord: 'Are you sure you want to delete this record',
         AddFiles:'aggiungi files', newPaymentPlan: 'New payment plan', selectTheCurrency: 'select the currency', currency: 'Currency', selectTheType: 'Select the type', rating: 'Rating',
         isLimited: 'Limited rating', newClerk: 'New clerk', newDriver: 'New driver', newTruck: 'New truck', newTrailer: 'New trailer', pricePlan: 'Price plan', visualizationCredit: 'Visualization credit',
-        certificationCredit: 'Certification credit'
+        certificationCredit: 'Certification credit', yourCompany: 'Your company', setCertifier: 'Set certifier'
     },
 
     actions:{

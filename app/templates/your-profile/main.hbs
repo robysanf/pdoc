@@ -20,43 +20,53 @@
                     <a href="#"{{action setTabs "company"}}><h5>{{app_controller.translation.company}}</h5></a>
                 </li>
                 <!-------------------- label: drivers-list / driver ---------------------->
-                <li {{bind-attr class="controller.tabList.driver:active"}}>
-                    <a href="#" {{action setTabs "driver"}}>
-                        <h5>
-                            {{#if controller.tabList.driver}}
-                                {{#if controller.transition_to_list}}
-                                    {{app_controller.translation.driversList}} {{else}} {{app_controller.translation.returnToList}} {{/if}}
-                            {{else}}
-                                {{app_controller.translation.driversList}}
-                            {{/if}}
-                        </h5>
-                    </a>
-                </li>
+                {{#unless controller.is_certifier}}
+                    <li {{bind-attr class="controller.tabList.driver:active"}}>
+                        <a href="#" {{action setTabs "driver"}}>
+                            <h5>
+                                {{#unless controller.is_driver}}
+                                    {{#if controller.tabList.driver}}
+                                        {{#if controller.transition_to_list}}
+                                            {{app_controller.translation.driversList}} {{else}} {{app_controller.translation.returnToList}} {{/if}}
+                                    {{else}}
+                                        {{app_controller.translation.driversList}}
+                                    {{/if}}
+                                {{else}}
+                                    {{app_controller.translation.yourProfile}}
+                                {{/unless}}
+
+                            </h5>
+                        </a>
+                    </li>
+                {{/unless}}
+
                 {{#if controller.is_carrier}}
-                    <!-------------------- label: trucks-list / truck ---------------------->
-                    <li {{bind-attr class="controller.tabList.truck:active"}}>
-                        <a href="#" {{action setTabs "truck"}}>
-                            <h5>
-                                {{#if controller.tabList.truck}}
-                                    {{#if controller.transition_to_list}} {{app_controller.translation.trucksList}} {{else}} {{app_controller.translation.returnToList}} {{/if}}
-                                {{else}}
-                                    {{app_controller.translation.trucksList}}
-                                {{/if}}
-                            </h5>
-                        </a>
-                    </li>
-                    <!-------------------- label: trailers-list / trailer ---------------------->
-                    <li {{bind-attr class="controller.tabList.trailer:active"}}>
-                        <a href="#" {{action setTabs "trailer"}}>
-                            <h5>
-                                {{#if controller.tabList.trailer}}
-                                    {{#if controller.transition_to_list}} {{app_controller.translation.trailersList}} {{else}} {{app_controller.translation.returnToList}} {{/if}}
-                                {{else}}
-                                    {{app_controller.translation.trailersList}}
-                                {{/if}}
-                            </h5>
-                        </a>
-                    </li>
+                    {{#unless controller.is_driver}}
+                        <!-------------------- label: trucks-list / truck ---------------------->
+                        <li {{bind-attr class="controller.tabList.truck:active"}}>
+                            <a href="#" {{action setTabs "truck"}}>
+                                <h5>
+                                    {{#if controller.tabList.truck}}
+                                        {{#if controller.transition_to_list}} {{app_controller.translation.trucksList}} {{else}} {{app_controller.translation.returnToList}} {{/if}}
+                                    {{else}}
+                                        {{app_controller.translation.trucksList}}
+                                    {{/if}}
+                                </h5>
+                            </a>
+                        </li>
+                        <!-------------------- label: trailers-list / trailer ---------------------->
+                        <li {{bind-attr class="controller.tabList.trailer:active"}}>
+                            <a href="#" {{action setTabs "trailer"}}>
+                                <h5>
+                                    {{#if controller.tabList.trailer}}
+                                        {{#if controller.transition_to_list}} {{app_controller.translation.trailersList}} {{else}} {{app_controller.translation.returnToList}} {{/if}}
+                                    {{else}}
+                                        {{app_controller.translation.trailersList}}
+                                    {{/if}}
+                                </h5>
+                            </a>
+                        </li>
+                    {{/unless}}
                 {{/if}}
                 {{#if controller.can_edit_company}}
                     <!-------------------- label: clerks-list / clerk ---------------------->
@@ -83,7 +93,6 @@
                     {{#if controller.tabList.driver}}
                         {{partial "your-profile/tabs/-tab-user-driver-list"}}
                     {{/if}}
-
                     {{#if controller.tabList.truck}}
                         {{partial "your-profile/tabs/-tab-vehicle-truck-list"}}
                     {{/if}}
@@ -93,7 +102,6 @@
                     {{#if controller.tabList.clerk}}
                         {{partial "your-profile/tabs/-tab-user-clerk-list"}}
                     {{/if}}
-
                 </div>
             </div>
         </div>

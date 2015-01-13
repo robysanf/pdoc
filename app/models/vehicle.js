@@ -20,7 +20,7 @@ export default DS.Model.extend({
     vehicleModel:  DS.attr('string'),       //modello: Stralis
 
 
-    configurations: DS.attr('raw'),
+    vehicleConfigurations: DS.attr('raw'),
 
     company: DS.belongsTo('company', {
         async: true }),

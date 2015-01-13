@@ -297,7 +297,9 @@ export default Ember.Component.extend({
             el = this.$(),
             position = el.position();
 
+
         results.removeClass('hdn');
+        //this.$('ul.suggestions li:first-child').addClass('hover');
 
         suggestions.css('position', 'absolute');
         suggestions.css('left', position.left);

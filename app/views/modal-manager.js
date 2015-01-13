@@ -105,61 +105,88 @@ export default Ember.View.extend({
         createRecord_user: function( type, newFirstName, newLastName, newUsername, newBirthDate, newPatents, newPhone, newSkype, newEmail, newPassword, newLanguages, newCurriculum, outlet, parentView ){
             var view = this;
 
-            var new_record = this.controller.get('store').createRecord('user', {
-                type: type,
-                company: this.controller.main_record,
-                firstName: newFirstName,
-                lastName: newLastName,
-                username: newUsername,
-                birthDate: newBirthDate,
-                phone: newPhone,
-                skype: newSkype,
-                email: newEmail,
-                password: newPassword
-            });
+            if( newFirstName && newLastName && newEmail && newUsername && newPassword ){
+                var new_record = this.controller.get('store').createRecord('user', {
+                    type: type,
+                    company: this.controller.main_record,
+                    firstName: newFirstName,
+                    lastName: newLastName,
+                    username: newUsername,
+                    birthDate: newBirthDate,
+                    phone: newPhone,
+                    skype: newSkype,
+                    email: newEmail,
+                    password: newPassword
+                });
 
-            if( type === 'driver' ){
-                new_record.set('profile', 'user').set('patents', newPatents).set('languages', newLanguages).set('curriculum', newCurriculum).save().then(function(){
-                    view.controller.main_record.reload();
-                    view.send( 'close', outlet, parentView);
-                });
+                if( type === 'driver' ){
+                    new_record.set('profile', 'user').set('patents', newPatents).set('languages', newLanguages).set('curriculum', newCurriculum).save().then(function( ){
+
+                            view.controller.set('newFirstName', null).set('newLastName', null).set('newBirthDate', null).set('newPhone', null).set('newSkype', null).set('newEmail', null).set('newUsername', null).set('newPassword', null);
+
+                            view.controller.main_record.reload();
+                            view.send( 'close', outlet, parentView);
+
+
+                    }, function( response ){
+                        var json = response.responseText, obj = JSON.parse(json);
+                        new PNotify({ title: 'Warning', text: obj.error, type: 'warning', delay: 2000 });
+                    });
+                } else {
+                    new_record.save().then(function( response ){
+
+                            view.controller.set('newFirstName', null).set('newLastName', null).set('newBirthDate', null).set('newPhone', null).set('newSkype', null).set('newEmail', null).set('newUsername', null).set('newPassword', null);
+
+                            view.controller.main_record.reload();
+                            view.send( 'close', outlet, parentView);
+
+                        }, function( response ){
+                        var json = response.responseText, obj = JSON.parse(json);
+                        new PNotify({ title: 'Warning', text: obj.error, type: 'warning', delay: 2000 });
+                        });
+                }
             } else {
-                new_record.save().then(function(){
-                    view.controller.main_record.reload();
-                    view.send( 'close', outlet, parentView);
-                });
+                $('[id^="changeState_"]').addClass("has-error");
+                new PNotify({ title: 'Warning', text: 'Controllare di aver compilato tutti i campi obbligatori.', type: 'warning', delay: 2000 });
             }
-            view.controller.set('newFirstName', null).set('newLastName', null).set('newBirthDate', null).set('newPhone', null).set('newSkype', null).set('newEmail', null).set('newUsername', null).set('newPassword', null);
+
         },
+
         createRecord_vehicle: function( type, newName, newBrand, newModel, newDescription, newConfigurations, newRegistrationYear, newChassisNumber, newWeight, newTare, newCategory, outlet, parentView ){
             var view = this;
 
-            var new_record = this.controller.get('store').createRecord('vehicle', {
-                type: type,
-                company: this.controller.main_record,
-                name: newName,
-                brand: newBrand,
-                model: newModel,
-                description: newDescription,
-                configurations: newConfigurations,
-                registrationYear: newRegistrationYear
-            });
-
-            if( type === 'trailer' ){
-                new_record.set('chassisNumber', 'newChassisNumber').set('weight', newWeight).set('tare', newTare).set('category', newCategory).save().then(function(){
-                    view.controller.set('configurations', null);
-                    view.controller.main_record.reload();
-                    view.send( 'close', outlet, parentView);
+            if( newName ){
+                var new_record = this.controller.get('store').createRecord('vehicle', {
+                    type: type,
+                    company: this.controller.main_record,
+                    name: newName,
+                    brand: newBrand,
+                    model: newModel,
+                    description: newDescription,
+                    vehicleConfiguration: newConfigurations,
+                    registrationYear: newRegistrationYear
                 });
+
+                if( type === 'trailer' ){
+                    new_record.set('chassisNumber', 'newChassisNumber').set('weight', newWeight).set('tare', newTare).set('category', newCategory).save().then(function(){
+                        view.controller.set('newConfigurations', []).set('newName', null).set('newBrand', null).set('newModel', null).set('newDescription', null).set('newRegistrationYear', null).set('newChassisNumber', null).set('newWeight', null).set('newTare', null).set('newCategory', null);
+
+                        view.controller.main_record.reload();
+                        view.send( 'close', outlet, parentView);
+                    });
+                } else {
+                    new_record.save().then(function(){
+                        view.controller.set('newConfigurations', []).set('newName', null).set('newBrand', null).set('newModel', null).set('newDescription', null).set('newRegistrationYear', null).set('newChassisNumber', null).set('newWeight', null).set('newTare', null).set('newCategory', null);
+
+                        view.controller.main_record.reload();
+                        view.send( 'close', outlet, parentView);
+                    });
+                }
+
             } else {
-                new_record.save().then(function(){
-                    view.controller.main_record.reload();
-                    view.send( 'close', outlet, parentView);
-                });
+                $('[id^="changeState_"]').addClass("has-error");
+                new PNotify({ title: 'Warning', text: 'Controllare di aver compilato tutti i campi obbligatori.', type: 'warning', delay: 2000 });
             }
-
-            view.controller.set('newConfigurations', []).set('newName', null).set('newBrand', null).set('newModel', null).set('newDescription', null).set('newRegistrationYear', null).set('newChassisNumber', null).set('newWeight', null).set('newTare', null).set('newCategory', null);
-
 
         },
         close: function(outlet, parentView) {

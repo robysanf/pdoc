@@ -7,7 +7,7 @@
         </div>
         <div class="col-lg-9"><legend>{{app_controller.translation.new}} {{app_controller.translation.document}}</legend></div>
         <div class="col-lg-2">
-            <button class="btn btn-default btn-group-justified" {{action 'change_mode' 'view_new_field' false}}>
+            <button class="btn btn-default btn-group-justified" {{action 'change_mode' 'view_new_field' false 'return' new_record}}>
                 <strong>{{app_controller.translation.return}}</strong>
             </button>
         </div>
@@ -33,14 +33,19 @@
             <!--</div>-->
         <!--</div>-->
         <!------------------------------- name  ------------------------------------->
-        <div class="form-group">
-            <label  class="col-lg-2 control-label">{{app_controller.translation.name}}</label>
-            <div class="col-lg-10">
-                {{input value = new_record.name type = "text" class = 'form-control'}}
+
+        {{#view 'required-field' value=new_record.name toChange='changeState_name'}}
+            <div class="form-group" id="changeState_name">
+                <label  class="col-lg-2 control-label">{{app_controller.translation.name}}</label>
+                <div class="col-lg-10">
+                    {{input value = new_record.name type = "text" class = 'form-control'}}
+                </div>
             </div>
-        </div>
+        {{/view}}
+
         <!------------------------------- rate value ------------------------------------->
-        <div class="form-group">
+    {{#view 'required-field' value=new_record.rateValue toChange='changeState_rateValue'}}
+        <div class="form-group" id="changeState_rateValue">
             <label  class="col-lg-2 control-label">{{app_controller.translation.rate}}</label>
             <div class=col-lg-4>
                 {{input value = new_record.rateValue type = "number" class = 'form-control'}}
@@ -83,6 +88,7 @@
                 {{/if}}
             </div>
         </div>
+    {{/view}}
         <!------------------------------- limit ------------------------------------->
         <div class="form-group">
             <label class="col-lg-2 control-label">{{app_controller.translation.limit}}</label>
@@ -148,7 +154,8 @@
             <label class="col-lg-9">{{app_controller.translation.emas}}</label>
         </div>
         <!------------------------------- validity ------------------------------------->
-        <div class="form-group" style="margin-top: 20px">
+    {{#view 'required-field' value=new_record.validityNum toChange='changeState_validity' valueToMatch=new_record.deadline }}
+        <div class="form-group" style="margin-top: 20px" id="changeState_validity">
             <label  class="col-lg-2 control-label">{{app_controller.translation.validity}}</label>
             <div class="col-lg-2">
                 {{input value = new_record.validityNum type = "number" class = 'form-control' disabled=new_record.isDeadline }}
@@ -162,41 +169,54 @@
                 }}
             </div>
             <!------------------------------- deadline ------------------------------------->
-            <label  class="col-lg-2 control-label">{{app_controller.translation.deadline}}</label>
+            <label class="col-lg-2 control-label">{{app_controller.translation.deadline}}</label>
             <div class="col-lg-4">
                 {{input value = new_record.deadline type = "date" class = 'form-control' disabled=new_record.isValidity}}
             </div>
         </div>
+    {{/view}}
+
         <!------------------------------- alert ------------------------------------->
-        <div class="form-group" style="margin-top: 20px">
-            <label  class="col-lg-2 control-label">{{app_controller.translation.alert}}</label>
-            <div class="col-lg-2">
-                {{input value = new_record.alertNum type = "number" class = 'form-control'}}
+
+    <div class="form-group" style="margin-top: 20px" >
+    {{#view 'required-field' value=new_record.alertNum toChange='changeState_alertNum'}}
+            <div id="changeState_alertNum">
+                <label  class="col-lg-2 control-label">{{app_controller.translation.alert}}</label>
+                <div class="col-lg-2">
+                    {{input value = new_record.alertNum type = "number" class = 'form-control'}}
+                </div>
+                <div class="col-lg-2">
+                    {{view Ember.Select
+                    content=type_period
+                    value=new_record.alertType
+                    placeholder="Choose a period"
+                    class='form-control'
+                    }}
+                </div>
             </div>
-            <div class="col-lg-2">
-                {{view Ember.Select
-                content=type_period
-                value=new_record.alertType
-                placeholder="Choose a period"
-                class='form-control'
-                }}
-            </div>
+    {{/view}}
+
+
             <!------------------------------- grace ------------------------------------->
-            <label class="col-lg-2 control-label">{{app_controller.translation.grace}}</label>
-            <div class="col-lg-2">
-                {{input value = new_record.graceNum type = "number" class = 'form-control'}}
-            </div>
-            <div class="col-lg-2">
-                {{view Ember.Select
-                content=type_period
-                value=new_record.graceType
-                placeholder="Choose a period"
-                class='form-control'
-                }}
+    {{#view 'required-field' value=new_record.graceNum toChange='changeState_graceNum'}}
+            <div id="changeState_graceNum">
+                <label class="col-lg-2 control-label">{{app_controller.translation.grace}}</label>
+                <div class="col-lg-2">
+                    {{input value = new_record.graceNum type = "number" class = 'form-control'}}
+                </div>
+                <div class="col-lg-2">
+                    {{view Ember.Select
+                    content=type_period
+                    value=new_record.graceType
+                    placeholder="Choose a period"
+                    class='form-control'
+                    }}
+                </div>
             </div>
         </div>
+    {{/view}}
 
-        <!------------------------------- files list ------------------------------------->
+    <!------------------------------- files list ------------------------------------->
         {{#if new_record.files}}
             <div class="form-group">
                 <label class="col-lg-2 control-label">{{app_controller.translation.files}}</label>

@@ -41,6 +41,7 @@ app.import('vendor/moment/moment.js');
 // IMPORT FILE-DOWNLOAD.JS
 app.import('vendor/jquery-ui/jquery.fileDownload.js');
 
+app.import('vendor/validator/validator.js');
 //// IMPORT EMBER-SPIN-BOX
 //app.import('vendor/ember-spin-box/dist/ember-spin-box.min.css');
 //app.import('vendor/ember-spin-box/dist/ember-spin-box.min.js');

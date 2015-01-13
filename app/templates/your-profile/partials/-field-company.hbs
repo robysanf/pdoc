@@ -43,7 +43,7 @@
                 <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
             {{/if}}
         {{else}}
-            {{view Ember.Select content = types value = type class = "form-control" disabled= controller.isView}}
+            {{view Ember.Select content = types value = type class = "form-control" disabled= true}}
         {{/if}}
     </div>
 </div>
@@ -73,7 +73,7 @@
     </div>
     <div class="col-lg-3">
         {{#unless controller.isView}}
-            <button type="button" class="btn btn-primary btn-group-justified" {{action 'custom_setCertifier' certifier.id}}>{{app_controller.translation.sendRequest}}</button>
+            <button type="button" class="btn btn-primary btn-group-justified" {{action 'custom_setCertifier' certifier.id}}>{{app_controller.translation.setCertifier}}</button>
         {{/unless}}
     </div>
 </div>

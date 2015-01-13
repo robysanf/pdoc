@@ -32,7 +32,12 @@ export default Ember.Route.extend({
             this.controller.set('view_new_field', false);
         },
 
-        change_mode: function( attr, value ){
+        change_mode: function( attr, value, type, record ){
+            if( type === 'return' ){
+                record.deleteRecord();
+                record.save();
+            }
+
             this.controller.set( attr, value );
         },
 
@@ -43,9 +48,9 @@ export default Ember.Route.extend({
                 type: type
             });
 
-            new_record.save().then(function( recrod ){
-                app_controller.send('message_manager', 'Success', 'The document was successfully created.');
-                _this.controller.set( 'new_record', recrod);
+            new_record.save().then(function( record ){
+            //    app_controller.send('message_manager', 'Success', 'The document was successfully created.');
+                _this.controller.set( 'new_record', new_record);
                 _this.send('change_mode', attr, value );
             });
         },
@@ -79,9 +84,15 @@ export default Ember.Route.extend({
 
                     break;
                 case 'view_new_field':
-                    record.save().then(function(){
-                        _this.send('change_mode', attr, value );
-                    });
+                    if( record.get('name') && record.get('rateValue') && record.get('alertNum') && record.get('graceNum') && ( record.get('validityNum') || record.get('deadline') ) ) {
+                        record.save().then(function(){
+                            _this.send('change_mode', attr, value );
+                        });
+                    } else {
+                        $('[id^="changeState_"]').addClass("has-error");
+                        new PNotify({ title: 'Warning', text: 'Controllare di aver compilato tutti i campi obbligatori.', type: 'warning', delay: 2000 });
+                    }
+
                     break;
                 case 'mode_view':
                     record.save().then(function(){

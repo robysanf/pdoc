@@ -24,19 +24,36 @@
                     </thead>
                     <tbody>
                     {{#each document in controller.sub_record.documents}}
-                        {{#if document.isDocument}}
+                        {{#if document.isActive}}
                             <tr>
                                 <td {{action 'transition_to' 'your-profile/partials/-company-document-edit' document 'isView_docList' false 'isView_docDetails' true}} style="cursor: pointer">{{document.name}}</td>
                                 <td {{action 'transition_to' 'your-profile/partials/-company-document-edit' document 'isView_docList' false 'isView_docDetails' true}} style="cursor: pointer">{{document.docTemplate.name}}</td>
                                 <td {{action 'transition_to' 'your-profile/partials/-company-document-edit' document 'isView_docList' false 'isView_docDetails' true}} style="cursor: pointer">{{document.deadline_toString}}</td>
 
                                 <td>
-                                    {{#each file in document.docTemplate.files}}
+                                    {{#each file in document.files}}
                                         <span {{action "download_file" file.id}} style="cursor: pointer;" class="btn-font-color">{{file.name}}</span>
                                     {{/each}}
                                 </td>
-                                <td><a {{!{{action 'open_modal' 'your-profile/modals/delete-record' document this}} style="cursor: pointer"><span class="glyphicon glyphicon-send"></span></a></td>
-                                <td><a {{action 'open_modal' 'your-profile/modals/delete-record' document this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                {{#if document.isDocument}}
+                                    {{#unless document.isCertified}}
+                                        <td><a {{action 'custom_notifyDocument' document}} style="cursor: pointer"><span class="glyphicon glyphicon-send"></span></a></td>
+                                    {{else}}
+                                        <td></td>
+                                    {{/unless}}
+                                {{else}}
+                                    {{#if document.isInvoice}}
+                                        <td><a {{action 'custom_notifyDocument' document}} style="cursor: pointer"><span class="glyphicon glyphicon-send"></span></a></td>
+                                    {{else}}
+                                        <td></td>
+                                    {{/if}}
+                                {{/if}}
+
+                                {{#if document.canRemove}}
+                                    <td><a {{action 'open_modal' 'your-profile/modals/delete-record' document this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                {{else}}
+                                    <td></td>
+                                {{/if}}
                             </tr>
                         {{/if}}
                     {{/each}}

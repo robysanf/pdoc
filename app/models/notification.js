@@ -25,6 +25,8 @@ export default DS.Model.extend({
 
     valueNum: DS.attr('number'),
 
+    document: DS.belongsTo('document', {
+        async: true}),
     fromCompany: DS.belongsTo('company', {
         async: true}),
     fromUser: DS.belongsTo('user', {

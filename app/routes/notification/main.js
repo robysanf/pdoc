@@ -70,12 +70,11 @@ export default Ember.Route.extend({
          @param {object} nuovo valore dell'attributo
          */
         change_state: function( attr, value ) {
-
             this.controller.set(attr, value);
         },
 
-        show_hide_notifications: function( attr1, value1 ) {
-            this.send('change_state', attr1, value1);
+        show_hide_notifications: function( attr, value ) {
+            this.controller.set(attr, value);
         },
 
         /************************************
@@ -90,7 +89,8 @@ export default Ember.Route.extend({
             $.post('api/action?actionToken=' + actionToken, data).then(function(response){
                 if (response.success) {
                     record.set('actionToken', null);
-                    record.set('highlighted', false).save();
+                    record.set('highlighted', false);
+                    record.save();
 
                     recordTo.reload();
 

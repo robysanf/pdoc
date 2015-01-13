@@ -17,16 +17,25 @@
 <div class="modal-body">
     {{#if controller.newRecordUser}}
         <div class="row" style="margin-bottom: 15px">
-            <label class="col-lg-3 control-label">{{app_controller.translation.firstName}}</label>
-            <div class="col-lg-9">
-                {{input value = newFirstName type = "text" class = "form-control" }}
+        {{#view 'required-field' value=newFirstName toChange='changeState_firstName'}}
+            <div class="form-group" id="changeState_firstName">
+                <label class="col-lg-3 control-label">{{app_controller.translation.firstName}}</label>
+                <div class="col-lg-9">
+                    {{input value = newFirstName type = "text" class = "form-control"}}
+                </div>
             </div>
+        {{/view}}
         </div>
         <div class="row" style="margin-bottom: 15px">
-            <label class="col-lg-3 control-label">{{app_controller.translation.lastName}}</label>
-            <div class="col-lg-9">
-                {{input value = newLastName type = "text" class = "form-control" }}
+        {{#view 'required-field' value=newLastName toChange='changeState_lastName'}}
+            <div class="form-group" id="changeState_lastName">
+                <label class="col-lg-3 control-label">{{app_controller.translation.lastName}}</label>
+                <div class="col-lg-9">
+                    {{input value = newLastName type = "text" class = "form-control"}}
+                </div>
             </div>
+        {{/view}}
+
         </div>
         <div class="row" style="margin-bottom: 15px">
             <label class="col-lg-3 control-label">{{app_controller.translation.birthDate}}</label>
@@ -55,22 +64,34 @@
             </div>
         </div>
         <div class="row" style="margin-bottom: 15px">
-            <label class="col-lg-3 control-label">{{app_controller.translation.email}}</label>
-            <div class="col-lg-9">
-                {{input value = newEmail type = "text" class="form-control" }}
-            </div>
+            {{#view 'required-field' value=newEmail toChange='changeState_email'}}
+                <div class="form-group" id="changeState_email">
+                    <label class="col-lg-3 control-label">{{app_controller.translation.email}}</label>
+                    <div class="col-lg-9">
+                        {{input value = newEmail type = "text" class="form-control"}}
+                    </div>
+                </div>
+            {{/view}}
         </div>
         <div class="row" style="margin-bottom: 15px">
-            <label class="col-lg-3 control-label">{{app_controller.translation.username}}</label>
-            <div class="col-lg-9">
-                {{input value = newUsername type = "text" class="form-control" }}
-            </div>
+            {{#view 'required-field' value=newUsername toChange='changeState_username'}}
+                <div class="form-group" id="changeState_username">
+                    <label class="col-lg-3 control-label">{{app_controller.translation.username}}</label>
+                    <div class="col-lg-9">
+                        {{input value = newUsername type = "text" class="form-control" }}
+                    </div>
+                </div>
+            {{/view}}
         </div>
         <div class="row" style="margin-bottom: 15px">
-            <label class="col-lg-3 control-label">{{app_controller.translation.password}}</label>
-            <div class="col-lg-6">
-                {{input value = newPassword type = "password" class = 'form-control'}}
-            </div>
+            {{#view 'required-field' value=newPassword toChange='changeState_password'}}
+                <div class="form-group" id="changeState_password">
+                    <label class="col-lg-3 control-label">{{app_controller.translation.password}}</label>
+                    <div class="col-lg-6">
+                        {{input value = newPassword type = "password" class = 'form-control'}}
+                    </div>
+                </div>
+            {{/view}}
         </div>
         {{#if controller.newRecordDriver}}
             <div class="row" style="margin-bottom: 15px">
@@ -89,10 +110,14 @@
     {{/if}}
     {{#if controller.newRecordVehicle}}
         <div class="row" style="margin-bottom: 15px">
-            <label class="col-lg-3 control-label">{{app_controller.translation.name}}</label>
-            <div class="col-lg-9">
-                {{input value = newName type = "text" class = "form-control" }}
-            </div>
+            {{#view 'required-field' value=newName toChange='changeState_name'}}
+                <div class="form-group" id="changeState_name">
+                    <label class="col-lg-3 control-label">{{app_controller.translation.name}}</label>
+                    <div class="col-lg-9">
+                        {{input value = newName type = "text" class = "form-control" }}
+                    </div>
+                </div>
+            {{/view}}
         </div>
         <div class="row" style="margin-bottom: 15px">
             <label class="col-lg-3 control-label">{{app_controller.translation.brand}}</label>
@@ -124,7 +149,7 @@
                 {{date-picker date=newRegistrationYear valueFormat='YYYY-MM-DD' class="form-control"}}
             </div>
         </div>
-        {{#if newRecordTrailernewRecordTrailer}}
+        {{#if newRecordTrailer}}
             <div class="row" style="margin-bottom: 15px">
                 <label class="col-lg-3 control-label">{{app_controller.translation.chassisNumber}}</label>
                 <div class="col-lg-9">

@@ -5,13 +5,6 @@ export default Ember.Route.extend({
         var _this = this, app_controller = _this.controllerFor('application'), controller = _this.controllerFor('your-profile.main'),
             data = this.getProperties();
 
-        //imposto la tab company come default per 'your-profile'
-//        var uno = controller.tabList.company,
-//            due = controller.tabList.driver,
-//            tre = controller.tabList.truck,
-//            quattro = controller.tabList.trailer,
-//            cinque = controller.tabList.clerk;
-//        if( uno !== true &&  due !== true &&  tre !== true &&  quattro !== true &&  cinque !== true ) {
         controller.set('tabList.company', true);
         controller.set('tabList.driver', false);
         controller.set('tabList.truck', false);
@@ -19,9 +12,15 @@ export default Ember.Route.extend({
 
         controller.set('isView', true);
         controller.set('isView_docList', true);
-//        }
 
+        controller.set('record_isNew', false);
         app_controller.set('records_companyCertifier', this.store.find('company', { type: "certifier" }));
+
+        if( app_controller.user_type === 'driver' ){
+            _this.store.find( 'user', app_controller.user_id ).then(function( record ){
+                controller.set( 'sub_record', record );
+            });
+        }
 
         data.model = 'company';
         data.field = 'service';
@@ -99,7 +98,7 @@ export default Ember.Route.extend({
 
             this.controller.set('tabList.' + tabToActive, true);
             this.controller.set('transition_to_list', true);
-
+            this.controller.set('record_isNew', false);
             switch ( tabToActive ){
                 case 'company':
                     this.controller.set('isView', true);
@@ -149,11 +148,27 @@ export default Ember.Route.extend({
                case 'your-profile/partials/-company-document-edit':
                    this.controller.set( 'sub_record_document', record );
                    app_controller.company_record.get('certifier').then(function( record ){
-                       app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id') }));
+                       if( _this.controller.tabList.company ){
+                           app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id'), type: 'company' }));
+                       } else  if( _this.controller.tabList.driver ){
+                           app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id'), type: 'driver' }));
+                       } else  if( _this.controller.tabList.truck ){
+                           app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id'), type: 'truck' }));
+                       } else  if( _this.controller.tabList.trailer ){
+                           app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id'), type: 'trailer' }));
+                       }
                    });
 
+                   this.send('set_variable', var1, value1);
+                   this.send('set_variable', var2, value2);
+                   break;
+               case 'your-profile/partials/-company-document-list':
+                   if( this.controller.record_isNew ){
+                       record.deleteRecord();
+                       record.save();
+                   }
 
-
+                   this.controller.set( 'sub_record_document', record );
                    this.send('set_variable', var1, value1);
                    this.send('set_variable', var2, value2);
                    break;
@@ -182,15 +197,34 @@ export default Ember.Route.extend({
 
                         if( _this.controller.sub_record_document.get('type') === 'document' ){
                             _this.controller.sub_record_document.save().then(function( saved_record ){
-                                app_controller.send( 'message_manager', 'Success', 'You have successfully saved the document.' );
-                                _this.controller.set( path, value );
+                                if( _this.controller.tabList.company ){
+                                    this.controller.set('record_isNew', false);
+                                    app_controller.send( 'message_manager', 'Success', 'You have successfully saved the document.' );
+                                    _this.controller.set( path, value );
+                                } else {
+                                    _this.controller.sub_record.reload().then(function(){
+                                        this.controller.set('record_isNew', false);
+                                        app_controller.send( 'message_manager', 'Success', 'You have successfully saved the document.' );
+                                        _this.controller.set( path, value );
+                                    });
+                                }
+
                             });
                         } else {
                             _this.controller.sub_record_document.set('validityDate', null).set('deadline', null).set('grace', null).set('alert', null);
 
                             _this.controller.sub_record_document.save().then(function( saved_record ){
-                                app_controller.send( 'message_manager', 'Success', 'You have successfully saved the document.' );
-                                _this.controller.set( path, value );
+                                if( _this.controller.tabList.company ){
+                                    app_controller.send( 'message_manager', 'Success', 'You have successfully saved the document.' );
+                                    _this.controller.set('record_isNew', false);
+                                    _this.controller.set( path, value );
+                                } else {
+                                    _this.controller.sub_record.reload().then(function(){
+                                        app_controller.send( 'message_manager', 'Success', 'You have successfully saved the document.' );
+                                        _this.controller.set('record_isNew', false);
+                                        _this.controller.set( path, value );
+                                    });
+                                }
                             });
                         }
 
@@ -199,9 +233,8 @@ export default Ember.Route.extend({
                 case 'user_vehicle':
                     _this.controller.sub_record.save().then(function( saved_record ){
                         app_controller.send( 'message_manager', 'Success', 'You have successfully saved the post.' );
-
-//                        _this.controller.set( 'transition_to_list', true );
                         _this.controller.set( path, value );
+
                     }, function( text ){
                         app_controller.send( 'message_manager', 'Failure', text );
                     });
@@ -210,8 +243,8 @@ export default Ember.Route.extend({
                 case 'company_details':
                         companyRecord.save().then(function( saved_record ){
                             app_controller.send( 'message_manager', 'Success', 'You have successfully saved the post.' );
-
                             _this.controller.set( path, value );
+
                         }, function( text ){
                             app_controller.send( 'message_manager', 'Failure', text );
                         });
@@ -303,6 +336,7 @@ export default Ember.Route.extend({
 
                 new_record = this.store.createRecord('document', {
                     canEdit: true,
+                    canRemove: true,
                     entity: record_company.get('id'),
                     entityType: 'company',
                     date: moment(today).format('YYYY-MM-DD HH:mm:ss'),
@@ -310,7 +344,7 @@ export default Ember.Route.extend({
                     isCertified: false
                 });
 
-                app_controller.company_record.get('certifier').then(function( certifier ){
+                record_company.get('certifier').then(function( certifier ){
                     new_record.set('company', record_company);
                     new_record.set('certifier', certifier);
 
@@ -320,11 +354,12 @@ export default Ember.Route.extend({
                     ]).then(function() {
 
                         new_record.save().then(function( savedRecord ){
+                            _this.controller.set('record_isNew', true);
+                            //savedRecord
                             savedRecord.get('certifier').then(function( record ) {
                                 app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id'), type: 'company' }));
                             });
                         });
-
                     }.bind(this));
 
                     _this.controller.set( attr1, val1 );
@@ -335,6 +370,8 @@ export default Ember.Route.extend({
 
                 if( type === 'document' ){
                     new_record = this.store.createRecord('document', {
+                        canEdit: true,
+                        canRemove: true,
                         entity:  _this.controller.sub_record.get('id'),
                         entityType: 'user',
                         date: moment(today).format(),
@@ -342,7 +379,7 @@ export default Ember.Route.extend({
                         isCertified: false
                     });
 
-                    app_controller.company_record.get('certifier').then(function( certifier ){
+                    record_company.get('certifier').then(function( certifier ){
                         new_record.set('company', record_company);
                         new_record.set('certifier', certifier);
 
@@ -350,47 +387,36 @@ export default Ember.Route.extend({
                             new_record.get('company'),
                             new_record.get('certifier'),
                         ]).then(function() {
-
-                            new_record.get('certifier').then(function( record ) {
-                                app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id'), type: 'driver' }));
+                            new_record.save().then(function( savedRecord ){
+                                _this.controller.set('record_isNew', true);
+                                savedRecord.get('certifier').then(function( record ) {
+                                    app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id'), type: 'driver' }));
+                                });
                             });
+
                         }.bind(this));
 
                         _this.controller.set( attr1, val1 );
                         _this.controller.set( 'sub_record_document', new_record );
                     });
-                } else {
-//                    new_record = this.store.createRecord('user', {
-//                        type: 'user',
-//                        company: record_company,
-//                        profile: 'driver'
-//                    });
-//
-//                    _this.controller.set( 'isView', false );
-//                    _this.controller.set( 'sub_record', new_record );
-
                 }
             } else if ( _this.controller.tabList.clerk ) {
-//                new_record = this.store.createRecord('user', {
-//                    type: 'powerUser',
-//                    company: record_company,
-//                    profile: 'clerk'
-//                });
-//                _this.controller.set( 'isView', false );
-//                _this.controller.set( 'sub_record', new_record );
+
 
             } else if ( _this.controller.tabList.truck ) {
 
                 if( type === 'document' ){
                     new_record = this.store.createRecord('document', {
+                        canEdit: true,
+                        canRemove: true,
                         entity:  _this.controller.sub_record.get('id'),
-                        entityType: 'user',
+                        entityType: 'vehicle',
                         date: moment(today).format(),
                         status: 'active',
                         isCertified: false
                     });
 
-                    app_controller.company_record.get('certifier').then(function( certifier ){
+                    record_company.get('certifier').then(function( certifier ){
                         new_record.set('company', record_company);
                         new_record.set('certifier', certifier);
 
@@ -398,35 +424,32 @@ export default Ember.Route.extend({
                             new_record.get('company'),
                             new_record.get('certifier'),
                         ]).then(function() {
-
-                            new_record.get('certifier').then(function( record ) {
+                            new_record.save().then(function( savedRecord ){
+                                _this.controller.set('record_isNew', true);
+                                savedRecord.get('certifier').then(function( record ) {
                                 app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id'), type: 'truck' }));
+                            });
                             });
                         }.bind(this));
 
                         _this.controller.set( attr1, val1 );
                         _this.controller.set( 'sub_record_document', new_record );
                     });
-                } else {
-//                    new_record = this.store.createRecord('vehicle', {
-//                        type: 'truck',
-//                        company: record_company
-//                    });
-//                    _this.controller.set('isView', false);
-//                    _this.controller.set( 'sub_record', new_record );
                 }
 
             } else if ( _this.controller.tabList.trailer ) {
                 if( type === 'document' ){
                     new_record = this.store.createRecord('document', {
+                        canEdit: true,
+                        canRemove: true,
                         entity:  _this.controller.sub_record.get('id'),
-                        entityType: 'user',
+                        entityType: 'vehicle',
                         date: moment(today).format(),
                         status: 'active',
                         isCertified: false
                     });
 
-                    app_controller.company_record.get('certifier').then(function( certifier ){
+                    record_company.get('certifier').then(function( certifier ){
                         new_record.set('company', record_company);
                         new_record.set('certifier', certifier);
 
@@ -434,22 +457,17 @@ export default Ember.Route.extend({
                             new_record.get('company'),
                             new_record.get('certifier'),
                         ]).then(function() {
-
-                            new_record.get('certifier').then(function( record ) {
+                            new_record.save().then(function( savedRecord ){
+                                _this.controller.set('record_isNew', true);
+                                savedRecord.get('certifier').then(function( record ) {
                                 app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id'), type: 'trailer' }));
+                            });
                             });
                         }.bind(this));
 
                         _this.controller.set( attr1, val1 );
                         _this.controller.set( 'sub_record_document', new_record );
                     });
-                } else {
-//                    new_record = this.store.createRecord('vehicle', {
-//                        type: 'trailer',
-//                        company: record_company
-//                    });
-//                    _this.controller.set( 'isView', false );
-//                    _this.controller.set( 'sub_record', new_record );
                 }
             }
 
@@ -590,16 +608,27 @@ export default Ember.Route.extend({
             switch ( type ){
                 case 'service':
                     $.post('api/custom/companyServiceScore?token=' + app_controller.token, data).then(function(response){
-                        record.set('serviceScore', response.score);
+                        if( response.success ){
+                            record.set('serviceScore', response.score);
+                        } else {
+                            app_controller.send( 'message_manager', 'Failure', response.error );
+                        }
+
                     }, function( response ){
-                        new PNotify({ title: 'Warning', text: response, type: 'error', delay: 2000 });
+                        app_controller.send( 'message_manager', 'Failure', response.error );
+
                     });
                     break;
                 case 'certification':
                     $.post('api/custom/companyCertificationScore?token=' + app_controller.token, data).then(function(response){
-                        record.set('certificationScore', response.score);
+                        if( response.success ){
+                            record.set('certificationScore', response.score);
+                        } else {
+                            app_controller.send( 'message_manager', 'Failure', response.error );
+                        }
                     }, function(response){
-                        new PNotify({ title: 'Warning', text: response, type: 'error', delay: 2000 });
+                        app_controller.send( 'message_manager', 'Failure', response.error );
+
                     });
                     break;
             }

@@ -96,20 +96,28 @@ export default DS.Model.extend({
     }.property('status'),
 
     date_toString: function() {
-        return moment(this.get('date')).format('YYYY-MM-DD');
+        if( this.get('date') ){
+            return moment(this.get('date')).format('YYYY-MM-DD');
+        }
     }.property('date'),
     validityDate_toString: function() {
-        return moment(this.get('validityDate')).format('YYYY-MM-DD');
+        if( this.get('validityDate') ){
+            return moment(this.get('validityDate')).format('YYYY-MM-DD');
+        }
     }.property('validityDate'),
     deadline_toString: function() {
-        return moment(this.get('deadline')).format('YYYY-MM-DD');
+        if( this.get('deadline') ){
+            return moment(this.get('deadline')).format('YYYY-MM-DD');
+        }
     }.property('deadline'),
     grace_toString: function() {
-        return moment(this.get('grace')).format('YYYY-MM-DD');
+        if( this.get('grace') ){
+            return moment(this.get('grace')).format('YYYY-MM-DD');
+        }
     }.property('grace'),
     alert_toString: function() {
-        return moment(this.get('alert')).format('YYYY-MM-DD');
+        if( this.get('alert') ){
+            return moment(this.get('alert')).format('YYYY-MM-DD');
+        }
     }.property('alert')
-
-
 });

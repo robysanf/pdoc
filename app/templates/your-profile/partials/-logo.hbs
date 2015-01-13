@@ -1,7 +1,7 @@
-
-{{#if can_edit_company}}   <!-- può modificare solo il proprietario della company o i clerks-->
-<div class="row">
-    <div class="col-lg-1"></div>
+{{#if controller.tabList.driver}}
+    {{#if is_driver}}   <!-- se è un guidatore può modificare il suo profilo-->
+    <div class="row">
+        <div class="col-lg-1"></div>
         <div class="form-group">
             <div class="col-lg-1">
                 <!-------------------- pencil ---------------------->
@@ -20,6 +20,33 @@
             </div>
             <div class="col-lg-9" style="margin-top: 35px"><legend></legend></div>
         </div>
+        <div class="col-lg-1"></div>
+    </div>
+    {{/if}}
+{{/if}}
+
+
+{{#if can_edit_company}}   <!-- può modificare solo il proprietario della company o i clerks-->
+<div class="row">
+    <div class="col-lg-1"></div>
+    <div class="form-group">
+        <div class="col-lg-1">
+            <!-------------------- pencil ---------------------->
+            {{#if controller.isView_logo}}
+                <button class="btn btn-primary btn-50" {{action 'set_variable' 'isView_logo' false}}><span class="glyphicon glyphicon-pencil"></span></button>
+
+                <!-------------------- ok ---------------------->
+            {{else}}
+                {{#if controller.tabList.company}}
+                    <button class="btn btn-primary btn-50" {{action 'save_logo' this 'isView_logo' true}}><span class="glyphicon glyphicon-ok"></span></button>
+                {{else}}
+                    <button class="btn btn-primary btn-50" {{action 'save_logo' controller.sub_record 'isView_logo' true}}><span class="glyphicon glyphicon-ok"></span></button>
+                {{/if}}
+
+            {{/if}}
+        </div>
+        <div class="col-lg-9" style="margin-top: 35px"><legend></legend></div>
+    </div>
     <div class="col-lg-1"></div>
 </div>
 {{/if}}
@@ -81,65 +108,69 @@
         {{/if}}
     </div>
     <div class="col-lg-3">
-        {{#if is_admin_or_clerk}}
-            {{#if controller.tabList.company}}
-                {{#if show_serviceScore}}
-                    <div class="panel panel-primary">
-                        <div class="panel-heading"><h3>Service rating</h3></div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <a {{action 'open_modal' 'your-profile/modals/show-rating' null this 'service'}} style="cursor: pointer"><span class="label label-primary pull-right" style="margin-right: 8px">Show  {{totalServiceRating}} ratings</span>  </a>
-                            </div>
-                            <div class="row">
-                                {{speed-meter speed=serviceScore target='speed1' rateSize=55  custom_height=130}}
-                            </div>
+        {{#unless controller.is_certifier}}
+            {{#if is_admin_or_clerk}}
+                {{#if controller.tabList.company}}
+                    {{#if show_serviceScore}}
+                        <div class="panel panel-primary">
+                            <div class="panel-heading"><h3>Service rating</h3></div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <a {{action 'open_modal' 'your-profile/modals/show-rating' null this 'service'}} style="cursor: pointer"><span class="label label-primary pull-right" style="margin-right: 8px">Show  {{totalServiceRating}} ratings</span>  </a>
+                                </div>
+                                <div class="row">
+                                    {{speed-meter speed=serviceScore target='speed1' rateSize=55  custom_height=130}}
+                                </div>
 
+                            </div>
                         </div>
-                    </div>
-                {{else}}
-                    {{#view 'tooltip'}}
-                        <button type="button" class="btn btn-primary btn-group-justified" data-toggle="tooltip" data-placement="left" {{action 'custom_showRating' this 'service'}} title="You will be charged 1 credit to see the rating for 15 days.">Show service rating</button>
-                    {{/view}}
+                    {{else}}
+                        {{#view 'tooltip'}}
+                            <button type="button" class="btn btn-primary btn-group-justified" data-toggle="tooltip" data-placement="left" {{action 'custom_showRating' this 'service'}} title="You will be charged 1 credit to see the rating for 15 days.">Show service rating</button>
+                        {{/view}}
+                    {{/if}}
                 {{/if}}
             {{/if}}
-        {{/if}}
+        {{/unless}}
     </div>
     <div class="col-lg-3">
-        {{#if is_admin_or_clerk}}
-            {{#if controller.tabList.company}}
-                {{#if show_certificationScore}}
-                    <div class="panel panel-primary">
-                        <div class="panel-heading"><h3>Certific. rating</h3></div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <a {{action 'open_modal' 'your-profile/modals/show-certification-rating' null this 'certification'}} style="cursor: pointer"><span class="label label-primary pull-right" style="margin-right: 8px">Show {{totalCertificationRating}} ratings</span></a>
-                            </div>
-                            <div class="row">
-                                {{speed-meter speed=certificationScore target='speed2' rateSize=55  custom_height=130}}
+        {{#unless controller.is_certifier}}
+            {{#if is_admin_or_clerk}}
+                {{#if controller.tabList.company}}
+                    {{#if show_certificationScore}}
+                        <div class="panel panel-primary">
+                            <div class="panel-heading"><h3>Certific. rating</h3></div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <a {{action 'open_modal' 'your-profile/modals/show-certification-rating' null this 'certification'}} style="cursor: pointer"><span class="label label-primary pull-right" style="margin-right: 8px">Show {{totalCertificationRating}} ratings</span></a>
+                                </div>
+                                <div class="row">
+                                    {{speed-meter speed=certificationScore target='speed2' rateSize=55  custom_height=130}}
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    {{else}}
+                        {{#view 'tooltip'}}
+                            <button type="button" class="btn btn-primary btn-group-justified" data-toggle="tooltip" data-placement="right" title="You will be charged 1 credit to see the rating for 15 days." {{action 'custom_showRating' this 'certification'}}>Show certification rating</button>
+                        {{/view}}
+                    {{/if}}
                 {{else}}
-                    {{#view 'tooltip'}}
-                        <button type="button" class="btn btn-primary btn-group-justified" data-toggle="tooltip" data-placement="right" title="You will be charged 1 credit to see the rating for 15 days." {{action 'custom_showRating' this.id 'certification'}}>Show certification rating</button>
-                    {{/view}}
-                {{/if}}
-            {{else}}
-                {{#if show_certificationScore}}
-                    <div class="panel panel-primary">
-                        <div class="panel-heading"><h3>Certific. rating</h3></div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <a {{action 'open_modal' 'your-profile/modals/show-certification-rating' null this 'certification'}} style="cursor: pointer"><span class="label label-primary pull-right" style="margin-right: 8px">Show {{controller.sub_record.totalCertificationRating}} ratings</span></a>
-                            </div>
-                            <div class="row">
-                                {{speed-meter speed=controller.sub_record.certificationScore target='speed2' rateSize=55  custom_height=130}}
+                    {{#if show_certificationScore}}
+                        <div class="panel panel-primary">
+                            <div class="panel-heading"><h3>Certific. rating</h3></div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <a {{action 'open_modal' 'your-profile/modals/show-certification-rating' null this 'certification'}} style="cursor: pointer"><span class="label label-primary pull-right" style="margin-right: 8px">Show {{controller.sub_record.totalCertificationRating}} ratings</span></a>
+                                </div>
+                                <div class="row">
+                                    {{speed-meter speed=controller.sub_record.certificationScore target='speed2' rateSize=55  custom_height=130}}
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    {{/if}}
                 {{/if}}
             {{/if}}
-        {{/if}}
+        {{/unless}}
     </div>
     <div class="col-lg-1"></div>
 </div>

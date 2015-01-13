@@ -83,7 +83,7 @@
                             {{#if notification.isCertificationRating}}
                                 <td>{{notification.fromUserDetails}}</td>
                                 <td>
-                                    {{#each file in notification.files}}
+                                    {{#each file in notification.document.files}}
                                         <a href="#" {{action 'download_file' file.id}} >{{file.name}}</a>
                                     {{/each}}
                                 </td>

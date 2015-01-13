@@ -174,9 +174,11 @@ export default Ember.Route.extend({
                 $.post('api/custom/refill?token=' + app_controller.token, data).then(function(response){
 
                     if (response.success) {
-                        $btn.set('disabled', false);
-
-                        app_controller.send( 'message_manager', 'Success', 'You successfully save refill' );
+                        _this.store.find('company', company_id).then(function( record ){
+                            record.reload();
+                            $btn.set('disabled', false);
+                            app_controller.send( 'message_manager', 'Success', 'You successfully save refill' );
+                        });
                     }
                 }, function(response){
                     var json = response.responseText, obj = JSON.parse(json);
@@ -204,9 +206,12 @@ export default Ember.Route.extend({
                 });
         },
 
-        stripe_connect_to: function( company_id ) {
+        stripe_connect_to: function( companyId ) {
             var _this = this, app_controller = _this.controllerFor('application'),
-                path = 'https://connect.stripe.com/oauth/authorize?response_type=code&client_id='+ company_id;
+
+                // ca_5IMczau6eQsLD9di3EO21iwPkmr9iHqd (di sviluppo)
+                // ca_5IMcwMpeaH3m7bz7T8sWUztcF3NDmPAW (di produzione)
+                path = 'https://connect.stripe.com/oauth/authorize?response_type=code&state='+ companyId +'&client_id='+ 'ca_5IMczau6eQsLD9di3EO21iwPkmr9iHqd';
 
             $.post(path)
                 .done(function () { alert('File download a success!'); })

@@ -4,7 +4,9 @@
         <div class="form-group">
             <div class="col-lg-1">
                 {{#if can_create_doc}}
-                    <button class="btn btn-primary btn-50" {{action 'create_record' this 'isView_docList' false 'isView_docDetails' false}}><span class="glyphicon glyphicon-plus"></span></button>
+                    {{#unless controller.is_driver}}
+                        <button class="btn btn-primary btn-50" {{action 'create_record' this 'isView_docList' false 'isView_docDetails' false}}><span class="glyphicon glyphicon-plus"></span></button>
+                    {{/unless}}
                 {{/if}}
             </div>
             <div class="col-lg-11"><legend>{{app_controller.translation.documents}}</legend></div>
@@ -25,34 +27,44 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {{#each document in documents}}
-                        {{#if document.isActive}}
-                            <tr>
-                                <td {{action 'transition_to' 'your-profile/partials/-company-document-edit' document 'isView_docList' false 'isView_docDetails' true}} style="cursor: pointer">{{document.name}}</td>
-                                <td {{action 'transition_to' 'your-profile/partials/-company-document-edit' document 'isView_docList' false 'isView_docDetails' true}} style="cursor: pointer">{{document.docTemplate.name}}</td>
-                                <td {{action 'transition_to' 'your-profile/partials/-company-document-edit' document 'isView_docList' false 'isView_docDetails' true}} style="cursor: pointer">{{document.deadline_toString}}</td>
+                        {{#each document in documents}}
+                            {{#if document.isActive}}
+                                <tr>
+                                    <td {{action 'transition_to' 'your-profile/partials/-company-document-edit' document 'isView_docList' false 'isView_docDetails' true}} style="cursor: pointer">{{document.name}}</td>
+                                    <td {{action 'transition_to' 'your-profile/partials/-company-document-edit' document 'isView_docList' false 'isView_docDetails' true}} style="cursor: pointer">{{document.type}}</td>
+                                    <td {{action 'transition_to' 'your-profile/partials/-company-document-edit' document 'isView_docList' false 'isView_docDetails' true}} style="cursor: pointer">{{document.deadline_toString}}</td>
 
-                                <td>
-                                    {{#each file in document.files}}
-                                        <span {{action "download_file" file.id}} style="cursor: pointer;" class="btn-font-color">{{file.name}}</span>
-                                    {{/each}}
-                                </td>
-                                {{#if document.isDocument}}
-                                    {{#unless isCertified}}
-                                        <td><a {{action 'custom_notifyDocument' document}} style="cursor: pointer"><span class="glyphicon glyphicon-send"></span></a></td>
-                                    {{/unless}}
-                                {{else}}
-                                    <td></td>
-                                {{/if}}
+                                    <td>
+                                        {{#each file in document.files}}
+                                            <span {{action "download_file" file.id}} style="cursor: pointer;" class="btn-font-color">{{file.name}}</span>
+                                        {{/each}}
+                                    </td>
+                                    {{#if document.isDocument}}
+                                        {{#unless document.isCertified}}
+                                            <td><a {{action 'custom_notifyDocument' document}} style="cursor: pointer"><span class="glyphicon glyphicon-send"></span></a></td>
+                                        {{else}}
+                                            <td></td>
+                                        {{/unless}}
+                                    {{else}}
+                                        {{#if document.isInvoice}}
+                                            {{#unless document.isCertified}}
+                                                <td><a {{action 'custom_notifyDocument' document}} style="cursor: pointer"><span class="glyphicon glyphicon-send"></span></a></td>
+                                            {{else}}
+                                                <td></td>
+                                            {{/unless}}
+                                        {{else}}
+                                            <td></td>
+                                        {{/if}}
+                                    {{/if}}
 
-                                {{#if document.canRemove}}
-                                    <td><a {{action 'open_modal' 'your-profile/modals/delete-record' document this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
-                                {{else}}
-                                    <td></td>
-                                {{/if}}
-                            </tr>
-                        {{/if}}
-                    {{/each}}
+                                    {{#if document.canRemove}}
+                                        <td><a {{action 'open_modal' 'your-profile/modals/delete-record' document this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                    {{else}}
+                                        <td></td>
+                                    {{/if}}
+                                </tr>
+                            {{/if}}
+                        {{/each}}
                     </tbody>
                 </table>
             </div>

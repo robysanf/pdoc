@@ -13,9 +13,15 @@ export default Ember.ObjectController.extend({
 
     is_supplier: function(){
         return ( this.get('app_company_type') === 'supplier' );
-    }.property('app_user_type'),
+    }.property('app_company_type'),
     is_carrier: function(){
         return ( this.get('app_company_type') === 'carrier' );
+    }.property('app_company_type'),
+    is_certifier: function(){
+        return ( this.get('app_company_type') === 'certifier' );
+    }.property('app_company_type'),
+    is_driver: function(){
+        return ( this.get('app_user_type') === 'driver' );
     }.property('app_user_type'),
 
     is_admin_or_clerk: function(){       // l'utente è di tipo admin o clerk
@@ -23,10 +29,14 @@ export default Ember.ObjectController.extend({
         return ( type === 'admin' || type === 'clerk' );
     }.property('app_user_type'),
 
+    show_document: function(){
+
+    }.property('entity'),
+
     can_edit_company: function(){         //è admin di questa company se la sua company è uguale alla company loggata
         var user_type = this.get('is_admin_or_clerk');
         var my_company = String(this.get('id')) === String(this.get('app_company_id'));
-        return user_type && my_company;
+        return user_type && my_company ;
     }.property('app_user_type', 'app_company_id'),
 
     check_changePassword: function(){
@@ -37,8 +47,8 @@ export default Ember.ObjectController.extend({
     }.property('sub_record', 'app_user_id', 'can_edit_company'),
 
     can_create_doc: function(){
-       return ( this.get('app_is_linked') && this.get('is_admin_or_clerk') );        //solo un utente di tipo admin/clerk può creare un document e solo della company proprietaria o di una connessa
-    }.property('app_is_linked', 'is_admin_or_clerk'),
+       return ( this.get('app_is_linked') && this.get('is_admin_or_clerk') || this.get('is_driver'));        //solo un utente di tipo admin/clerk può creare un document e solo della company proprietaria o di una connessa
+    }.property('app_is_linked', 'is_admin_or_clerk', 'is_driver'),
 
     isView: true,
 
@@ -52,6 +62,7 @@ export default Ember.ObjectController.extend({
     record_to_delete: null,
     record_certifier: null,
     record_type: null,
+    record_isNew: false,
 
     newRecordClerk: function(){
         return this.get('record_type') === 'clerk';

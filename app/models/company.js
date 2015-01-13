@@ -84,10 +84,10 @@ export default DS.Model.extend({
      *      PROPERTIES
      */
     show_serviceScore: function(){
-        return this.get('serviceScore') !== undefined;
+        return this.get('serviceScore') !== undefined && this.get('serviceScore') !== null;
     }.property('serviceScore'),
     show_certificationScore: function(){
-        return this.get('certificationScore') !== undefined;
+        return this.get('certificationScore') !== undefined && this.get('certificationScore') !== null;
     }.property('certificationScore'),
 
     totalCertificationRating: function(){
