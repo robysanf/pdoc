@@ -33,11 +33,8 @@
     "broccoli-static-compiler": "~0.2.1",
     "ember-select-2": "~1.1.1-beta1",
     "ember-cli-datepicker": "~1.2.5",
-<<<<<<< HEAD
-    "ember-cli-calendar": "0.0.3"
-=======
+    "ember-cli-calendar": "0.0.3",
     "grunt": "~0.4.5",
     "grunt-s3": "~0.2.0-alpha.3"
->>>>>>> develop
   }
 }
