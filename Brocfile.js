@@ -31,25 +31,11 @@ app.import('vendor/stripe/stripe_key.js');
 app.import('vendor/pnotify/pnotify.custom.css');
 app.import('vendor/pnotify/pnotify.custom.js');
 
-// IMPORT FLIPPANT
-//app.import('vendor/flippant/flippant.css');
-//app.import('vendor/flippant/flippant.js');
-
 //// IMPORT MOMENT.JS
 app.import('vendor/moment/moment.js');
 
 // IMPORT FILE-DOWNLOAD.JS
 app.import('vendor/jquery-ui/jquery.fileDownload.js');
-
-app.import('vendor/validator/validator.js');
-//// IMPORT EMBER-SPIN-BOX
-//app.import('vendor/ember-spin-box/dist/ember-spin-box.min.css');
-//app.import('vendor/ember-spin-box/dist/ember-spin-box.min.js');
-//
-//// IMPORT EMBER-DATE-PICKER
-//app.import('vendor/ember-date-picker/dist/ember-date-picker-custom.css');
-//app.import('vendor/ember-date-picker/dist/ember-date-picker-custom.js');
-
 
 //module.exports = app.toTree();
 module.exports = mergeTrees([app.toTree(), extraAssets]);

@@ -11,7 +11,7 @@ export default DS.Model.extend({
     description: DS.attr('string'),
     currency : DS.attr('string'),
     visibility: DS.attr('string'), //public, private, root
-    type: DS.attr('string'), //certification, service
+    type: DS.attr('string'), //certification, visualization
 
     company:  DS.belongsTo('company',{
         async: true
@@ -21,7 +21,7 @@ export default DS.Model.extend({
      * PROPERTIES
      */
 
-    isService: function(){
-       return this.get('type') === 'service';
+    isVisualization: function(){
+       return this.get('type') === 'visualization';
     }.property('type')
 });

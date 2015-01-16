@@ -37,9 +37,9 @@
                 <div class="row">
                     {{#each payment in app_controller.records_paymentPlans}}
                         <div class="col-lg-4">
-                            {{#if payment.isService}}
+                            {{#if payment.isVisualization}}
                                 {{#view tooltip}}
-                                    <div class="panel panel-info" data-toggle="tooltip" data-placement="left" title="Service payment plan." >
+                                    <div class="panel panel-info" data-toggle="tooltip" data-placement="left" title="Visualization payment plan." >
                                         <div class="panel-heading" style="text-align: center">
                                             {{#if payment.canRemove}}
                                                 <button type="button" class="close" {{action 'delete_plan' 'paymentPlan' payment}}><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>

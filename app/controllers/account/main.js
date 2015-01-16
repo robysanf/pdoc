@@ -37,7 +37,7 @@ export default Ember.ObjectController.extend({
     ],
     listType: [
         'certification',
-        'service'
+        'visualization'
     ],
 
     // campi nel model new-payment-plan

@@ -19,5 +19,6 @@ export default Ember.ObjectController.extend({
         false,
         true,
     ],
-    description: null
+    description: null,
+    rating: null,
 });

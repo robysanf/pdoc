@@ -11,39 +11,34 @@ export default Ember.ObjectController.extend({
     app_company_type: Ember.computed.alias('controllers.application.company_type'),
     app_is_linked: Ember.computed.alias('controllers.application.isLinked'),
 
-    is_supplier: function(){
-        return ( this.get('app_company_type') === 'supplier' );
-    }.property('app_company_type'),
-    is_carrier: function(){
-        return ( this.get('app_company_type') === 'carrier' );
-    }.property('app_company_type'),
-    is_certifier: function(){
-        return ( this.get('app_company_type') === 'certifier' );
-    }.property('app_company_type'),
-    is_driver: function(){
-        return ( this.get('app_user_type') === 'driver' );
-    }.property('app_user_type'),
+//    is_supplier: function(){
+//        return ( this.get('app_company_type') === 'supplier' );
+//    }.property('app_company_type'),
+//    is_carrier: function(){
+//        return ( this.get('app_company_type') === 'carrier' );
+//    }.property('app_company_type'),
+//    is_certifier: function(){
+//        return ( this.get('app_company_type') === 'certifier' );
+//    }.property('app_company_type'),
+//    is_driver: function(){
+//        return ( this.get('app_user_type') === 'driver' );
+//    }.property('app_user_type'),
 
     is_admin_or_clerk: function(){       // l'utente è di tipo admin o clerk
         var type =  this.get('app_user_type');
         return ( type === 'admin' || type === 'clerk' );
     }.property('app_user_type'),
 
-    show_document: function(){
-
-    }.property('entity'),
-
     can_edit_company: function(){         //è admin di questa company se la sua company è uguale alla company loggata
         var user_type = this.get('is_admin_or_clerk');
         var my_company = String(this.get('id')) === String(this.get('app_company_id'));
         return user_type && my_company ;
-    }.property('app_user_type', 'app_company_id'),
+    }.property('is_admin_or_clerk', 'app_company_id', 'id'),
 
     check_changePassword: function(){
-        return (
-            String(this.sub_record.get('id')) === String(this.get('app_user_id')) ||
-                this.get('is_this_admin')
-            );
+        if( this.sub_record ){
+            return ( String(this.sub_record.get('id')) === String(this.get('app_user_id')) || this.get('is_this_admin') );
+        }
     }.property('sub_record', 'app_user_id', 'can_edit_company'),
 
     can_create_doc: function(){
@@ -57,6 +52,8 @@ export default Ember.ObjectController.extend({
     isView_docDetails: true,
 
     rating_type: null,
+    companyRecord: null,
+    sub_record_company: null,
 
     main_record: null,
     record_to_delete: null,

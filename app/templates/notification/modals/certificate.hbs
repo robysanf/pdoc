@@ -9,7 +9,9 @@
             {{app_controller.translation.company}}
         </div>
         <div class="col-lg-8">
-            <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.fromCompanyDetail}}</p>
+            {{#if controller.selectedRecord.fromCompanyDetail}}
+                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.fromCompanyDetail}}</p>
+            {{/if}}
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -19,7 +21,11 @@
             {{app_controller.translation.template}}
         </div>
         <div class="col-lg-8">
-            <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.docTemplate.name}}</p>
+            {{#if controller.selectedRecord.docTemplate}}
+                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">
+                    <a href="#" {{action 'download_file' controller.selectedRecord.docTemplate.id}} >{{controller.selectedRecord.docTemplate.name}}</a>
+                </p>
+            {{/if}}
         </div>
         <div class="col-lg-1"></div>
     </div>
@@ -30,7 +36,7 @@
         </div>
         <div class="col-lg-8">
             <div class="input-group">
-                {{input value = rating type = "number" class = "form-control"}}
+                {{input value = controller.rating type = "number" class = "form-control"}}
                 <span class="input-group-addon">%</span>
             </div>
         </div>
@@ -59,24 +65,27 @@
         </div>
         <div class="col-lg-1"></div>
     </div>
-    <div class="row" style="margin-top: 15px">
-        <div class="col-lg-12">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-2">
-                {{app_controller.translation.files}}
+    {{#if controller.selectedRecord.document.files}}
+        <div class="row" style="margin-top: 15px">
+            <div class="col-lg-12">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-2">
+                    {{app_controller.translation.files}}
+                </div>
+                <div class="col-lg-8">
+                    <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">
+                        {{#each file in controller.selectedRecord.document.files}}
+                            <a href="#" {{action 'download_file' file.id}} >{{file.name}}</a>
+                        {{/each}}
+                    </p>
+                </div>
+                <div class="col-lg-1"></div>
             </div>
-            <div class="col-lg-8">
-                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">
-                    {{#each file in controller.selectedRecord.document.files}}
-                        <a href="#" {{action 'download_file' file.id}} >{{file.name}}</a>
-                    {{/each}}
-                </p>
-            </div>
-            <div class="col-lg-1"></div>
         </div>
-    </div>
+    {{/if}}
+
 </div>
 <div class="modal-footer">
     <a href="#" class="btn" {{action 'custom_rateDocument' controller.selectedRecord.type rating isLimited controller.description controller.selectedRecord.actionToken 'overview' 'application' target="view"}}>{{app_controller.translation.send}}</a>
-    <a href="#" class="btn" {{action 'close' 'overview' 'application' target="view"}}>{{app_controller.translation.close}}</a>
+    <a href="#" class="btn" {{action 'close' 'overview' 'application' target="view"}}>{{app_controller.translation.Close}}</a>
 </div>

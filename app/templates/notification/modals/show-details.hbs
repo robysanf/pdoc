@@ -6,43 +6,32 @@
     {{#if controller.selectedRecord.isNewRating}}
         <div class="row">
             <div class="col-lg-6">
-                <label>{{app_controller.translation.date}}</label>
-                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.date}}</p>
-                <!--<div class="panel panel-default">-->
-                    <!--<div class="panel-body">-->
-                        <!--{{!{{controller.selectedRecord.date}}-->
-                    <!--</div>-->
-                <!--</div>-->
+                {{#if controller.selectedRecord.date}}
+                    <label>{{app_controller.translation.date}}</label>
+                    <p style="border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.date}}</p>
+                {{/if}}
+
             </div>
             <div class="col-lg-6">
-                <label>{{app_controller.translation.value}}</label>
-                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.valueNum}}</p>
-                <!--<div class="panel panel-default">-->
-                    <!--<div class="panel-body">-->
-                        <!--{{!{{controller.selectedRecord.valueNum}}-->
-                    <!--</div>-->
-                <!--</div>-->
+                {{#if controller.selectedRecord.valueNum}}
+                    <label>{{app_controller.translation.value}}</label>
+                    <p style="border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.valueNum}}</p>
+                {{/if}}
+
             </div>
         </div>
         <div class="row">
             <div class="col-lg-6">
-                <label>{{app_controller.translation.company}}</label>
-                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.fromCompanyDetail}}</p>
-                <!--<div class="panel panel-default">-->
-                    <!--<div class="panel-body">-->
-                        <!--{{!{{controller.selectedRecord.fromCompanyDetail}}-->
-                    <!--</div>-->
-                <!--</div>-->
+                {{#if controller.selectedRecord.fromCompanyDetail}}
+                    <label>{{app_controller.translation.company}}</label>
+                    <p style="border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.fromCompanyDetail}}</p>
+                {{/if}}
+
             </div>
             <div class="col-lg-6">
                 {{#if controller.selectedRecord.fromUserDetails}}
                     <label>{{app_controller.translation.user}}</label>
-                    <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.fromUserDetail}}</p>
-                    <!--<div class="panel panel-default">-->
-                        <!--<div class="panel-body">-->
-                            <!--{{!{{controller.selectedRecord.fromUserDetail}}-->
-                        <!--</div>-->
-                    <!--</div>-->
+                    <p style="border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.fromUserDetail}}</p>
                 {{/if}}
             </div>
         </div>
@@ -50,43 +39,32 @@
     {{#if controller.selectedRecord.isServiceRating}}
         <div class="row">
             <div class="col-lg-6">
-                <label>{{app_controller.translation.date}}</label>
-                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.date}}</p>
-                <!--<div class="panel panel-default">-->
-                    <!--<div class="panel-body">-->
-                        <!--{{!{{controller.selectedRecord.date}}-->
-                    <!--</div>-->
-                <!--</div>-->
+                {{#if controller.selectedRecord.date}}
+                    <label>{{app_controller.translation.date}}</label>
+                    <p style="border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.date}}</p>
+                {{/if}}
+
             </div>
             <div class="col-lg-6">
-                <label>{{app_controller.translation.value}}</label>
-                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.valueNum}}</p>
-                <!--<div class="panel panel-default">-->
-                    <!--<div class="panel-body">-->
-                        <!--{{!{{controller.selectedRecord.valueNum}}-->
-                    <!--</div>-->
-                <!--</div>-->
+                {{#if controller.selectedRecord.valueNum}}
+                    <label>{{app_controller.translation.value}}</label>
+                    <p style="border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.valueNum}}</p>
+                {{/if}}
+
             </div>
         </div>
         <div class="row">
             <div class="col-lg-6">
-                <label>{{app_controller.translation.company}}</label>
-                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.fromCompanyDetail}}</p>
-                <!--<div class="panel panel-default">-->
-                    <!--<div class="panel-body">-->
-                        <!--{{!{{controller.selectedRecord.fromCompanyDetails}}-->
-                    <!--</div>-->
-                <!--</div>-->
+                {{#if controller.selectedRecord.fromCompanyDetail}}
+                    <label>{{app_controller.translation.company}}</label>
+                    <p style="border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.fromCompanyDetail}}</p>
+                {{/if}}
+
             </div>
             <div class="col-lg-6">
                 {{#if controller.selectedRecord.fromUserDetails}}
                     <label>{{app_controller.translation.user}}</label>
-                    <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.fromUserDetail}}</p>
-                    <!--<div class="panel panel-default">-->
-                        <!--<div class="panel-body">-->
-                            <!--{{!{{controller.selectedRecord.fromUserDetails}}-->
-                        <!--</div>-->
-                    <!--</div>-->
+                    <p style="border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.fromUserDetail}}</p>
                 {{/if}}
             </div>
         </div>
@@ -94,43 +72,31 @@
     {{#if controller.selectedRecord.isCertificationRating}}
         <div class="row">
             <div class="col-lg-6">
-                <label>{{app_controller.translation.date}}</label>
-                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.date}}</p>
-                <!--<div class="panel panel-default">-->
-                    <!--<div class="panel-body">-->
-                        <!--{{!{{controller.selectedRecord.date}}-->
-                    <!--</div>-->
-                <!--</div>-->
+                {{#if controller.selectedRecord.date}}
+                    <label>{{app_controller.translation.date}}</label>
+                    <p style="border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.date}}</p>
+                {{/if}}
+
             </div>
             <div class="col-lg-6">
-                <label>{{app_controller.translation.value}}</label>
-                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.valueNum}}</p>
-                <!--<div class="panel panel-default">-->
-                    <!--<div class="panel-body">-->
-                        <!--{{!{{controller.selectedRecord.valueNum}}-->
-                    <!--</div>-->
-                <!--</div>-->
+                {{#if controller.selectedRecord.valueNum}}
+                    <label>{{app_controller.translation.value}}</label>
+                    <p style="border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.valueNum}}</p>
+                {{/if}}
+
             </div>
         </div>
         <div class="row">
             <div class="col-lg-6">
-                <label>{{app_controller.translation.company}}</label>
-                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.fromCompanyDetail}}</p>
-                <!--<div class="panel panel-default">-->
-                    <!--<div class="panel-body">-->
-                        <!--{{!{{controller.selectedRecord.fromCompanyDetails}}-->
-                    <!--</div>-->
-                <!--</div>-->
+                {{#if controller.selectedRecord.fromCompanyDetail}}
+                    <label>{{app_controller.translation.company}}</label>
+                    <p style="border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.fromCompanyDetail}}</p>
+                {{/if}}
             </div>
             <div class="col-lg-6">
                 {{#if controller.selectedRecord.fromUserDetails}}
                     <label>{{app_controller.translation.user}}</label>
-                    <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.fromUserDetail}}</p>
-                    <!--<div class="panel panel-default">-->
-                        <!--<div class="panel-body">-->
-                            <!--{{!{{controller.selectedRecord.fromUserDetails}}-->
-                        <!--</div>-->
-                    <!--</div>-->
+                    <p style="border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.fromUserDetail}}</p>
                 {{/if}}
             </div>
         </div>
@@ -139,66 +105,82 @@
     {{#if controller.selectedRecord.isDeadline}}
         <div class="row">
             <div class="col-lg-6">
-                <label>{{app_controller.translation.date}}</label>
-                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.date}}</p>
-                <!--<div class="panel panel-default">-->
-                    <!--<div class="panel-body">-->
-                        <!--{{!{{controller.selectedRecord.date}}-->
-                    <!--</div>-->
-                <!--</div>-->
+                {{#if controller.selectedRecord.date}}
+                    <label>{{app_controller.translation.date}}</label>
+                    <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.date}}</p>
+                {{/if}}
             </div>
             <div class="col-lg-6">
-                <label>{{app_controller.translation.company}}</label>
-                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.fromCompanyDetail}}</p>
-                <!--<div class="panel panel-default">-->
-                    <!--<div class="panel-body">-->
-                        <!--{{!{{controller.selectedRecord.fromCompanyDetails}}-->
-                    <!--</div>-->
-                <!--</div>-->
+                {{#if controller.selectedRecord.fromCompanyDetail}}
+                    <label>{{app_controller.translation.company}}</label>
+                    <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.fromCompanyDetail}}</p>
+                {{/if}}
             </div>
         </div>
         <div class="row">
             <div class="col-lg-6">
-                <label>{{app_controller.translation.deadline}}</label>
-                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.deadline}}</p>
-                <!--<div class="panel panel-default">-->
-                    <!--<div class="panel-body">-->
-                        <!--{{!{{controller.selectedRecord.deadline}}-->
-                    <!--</div>-->
-                <!--</div>-->
+                {{#if controller.selectedRecord.deadline}}
+                    <label>{{app_controller.translation.deadline}}</label>
+                    <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.deadline}}</p>
+                {{/if}}
             </div>
-            <div class="col-lg-6">
-                <label>{{app_controller.translation.gracePeriod}}</label>
-                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.selectedRecord.gracePeriod}}</p>
-                <!--<div class="panel panel-default">-->
-                    <!--<div class="panel-body">-->
-                        <!--{{!{{controller.selectedRecord.gracePeriod}}-->
-                    <!--</div>-->
-                <!--</div>-->
-            </div>
+            <div class="col-lg-6"></div>
         </div>
     {{/if}}
-
-    <div class="row" style="margin-top: 15px">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading"><strong>{{app_controller.translation.description}}</strong></div>
-                <div class="panel-body">
-                    {{controller.selectedRecord.detail}}
-                </div>
+    {{#unless controller.selectedRecord.isNewRating}}
+        <div class="row">
+            <div class="col-lg-6">
+                {{#if controller.selectedRecord.document.name}}
+                    <label>{{app_controller.translation.name}}</label>
+                    <p style="border-bottom: 1px solid #e5e5e5;"> {{controller.selectedRecord.document.name}}</p>
+                {{/if}}
+            </div>
+            <div class="col-lg-6">
+                {{#if controller.selectedRecord.document.type}}
+                    <label>{{app_controller.translation.type}}</label>
+                    <p style="border-bottom: 1px solid #e5e5e5;"> {{controller.selectedRecord.document.type}}</p>
+                {{/if}}
             </div>
         </div>
-    </div>
-    <div class="row" style="margin-top: 15px">
-        <div class="col-lg-12">
-            <label>{{app_controller.translation.files}}</label>
-            {{#each file in controller.selectedRecord.document.files}}
-                <a href="#" {{action 'download_file' file.id}} >{{file.name}}</a>
-            {{/each}}
-        </div>
-    </div>
+        {{#if controller.selectedRecord.document.note}}
+            <div class="row" style="margin-top: 15px">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><strong>{{app_controller.translation.note}}</strong></div>
+                        <div class="panel-body">
+                            {{controller.selectedRecord.document.note}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/if}}
+
+        {{#if controller.selectedRecord.document.files}}
+            <div class="row" style="margin-top: 15px">
+                <div class="col-lg-12">
+                    <label>{{app_controller.translation.files}}</label>
+                    {{#each file in controller.selectedRecord.document.files}}
+                        <p style="border-bottom: 1px solid #e5e5e5;">
+                            <a href="#" {{action 'download_file' file.id}} >{{file.name}}</a>
+                        </p>
+                    {{/each}}
+                </div>
+            </div>
+        {{/if}}
+        {{#if controller.selectedRecord.docTemplate}}
+            <div class="row" style="margin-top: 15px">
+                <div class="col-lg-12">
+                    <label>{{app_controller.translation.template}}</label>
+                    <p style="border-bottom: 1px solid #e5e5e5;">
+                        <a href="#" {{action 'download_file' controller.selectedRecord.docTemplate.id}} >{{controller.selectedRecord.docTemplate.name}}</a>
+                    </p>
+                </div>
+            </div>
+        {{/if}}
+
+    {{/unless}}
 
 </div>
 <div class="modal-footer">
-    <a href="#" class="btn" {{action 'close' 'overview' 'application' target="view"}}>{{app_controller.translation.close}}</a>
+    <a href="#" class="btn" {{action 'close' 'overview' 'application' target="view"}}>{{app_controller.translation.Close}}</a>
 </div>

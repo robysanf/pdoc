@@ -19,8 +19,10 @@ export default DS.Model.extend({
     status: DS.attr('string'),       //active/inactive
 
     company: DS.belongsTo('company', {
+        async: true}),
+    fakeCompany: DS.belongsTo('company', {
         async: true,
-        inverse: 'documents' }),
+        inverse: 'documents'}),
     docTemplate: DS.belongsTo('doc-template', {
         async: true}),
     certifier: DS.belongsTo('company', {

@@ -65,11 +65,10 @@ export default DS.Model.extend({
     ratings: DS.hasMany('rating', {
     async: true,
     inverse: 'company'}),
-    //parentCompany: DS.belongsTo('company'),
-    //childCompanies: DS.hasMany('company'),
+
     documents: DS.hasMany('document', {
         async: true,
-        inverse: 'company' }),
+        inverse: 'fakeCompany' }),
     files: DS.hasMany('file', {
         async: true}),
     grants: DS.hasMany('grant',{
@@ -78,8 +77,7 @@ export default DS.Model.extend({
         async: true}),
     paymentPlans: DS.hasMany('paymentPlan',{
         async: true}),
-//    authorizedCompanies: DS.hasMany('company',{
-//        async: true}),
+
     /****************************************************
      *      PROPERTIES
      */
@@ -126,6 +124,9 @@ export default DS.Model.extend({
         var card = String(this.get('cardNumber'));
         return '**************' + card;
     }.property('cardNumber'),
+    isCarrier: function() {
+        return ( this.get('type') === 'carrier' );
+    }.property('type'),
     isCertifier: function() {
         return ( this.get('type') === 'certifier' );
     }.property('type'),

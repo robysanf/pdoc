@@ -29,8 +29,8 @@ export default DS.Model.extend({
         async: true}),
     fromCompany: DS.belongsTo('company', {
         async: true}),
-    fromUser: DS.belongsTo('user', {
-        async: true }),
+//    fromUser: DS.belongsTo('user', {
+//        async: true }),
     company: DS.belongsTo('company', {
         async: true}),
     docTemplate: DS.belongsTo('docTemplate', {

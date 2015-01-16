@@ -90,6 +90,8 @@ export default Ember.Route.extend({
          @param {string} tab selezionata dall'utente - (company/driver/truck/trailer/clerk)
          */
         setTabs: function( tabToActive ){
+            var _this = this, app_controller = _this.controllerFor('application');
+
             this.controller.set('tabList.company',false);
             this.controller.set('tabList.driver',false);
             this.controller.set('tabList.truck',false);
@@ -198,12 +200,12 @@ export default Ember.Route.extend({
                         if( _this.controller.sub_record_document.get('type') === 'document' ){
                             _this.controller.sub_record_document.save().then(function( saved_record ){
                                 if( _this.controller.tabList.company ){
-                                    this.controller.set('record_isNew', false);
+                                    _this.controller.set('record_isNew', false);
                                     app_controller.send( 'message_manager', 'Success', 'You have successfully saved the document.' );
                                     _this.controller.set( path, value );
                                 } else {
                                     _this.controller.sub_record.reload().then(function(){
-                                        this.controller.set('record_isNew', false);
+                                        _this.controller.set('record_isNew', false);
                                         app_controller.send( 'message_manager', 'Success', 'You have successfully saved the document.' );
                                         _this.controller.set( path, value );
                                     });

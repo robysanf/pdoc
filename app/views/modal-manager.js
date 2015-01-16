@@ -62,7 +62,9 @@ export default Ember.View.extend({
         //azione custom per le azioni di certificazione da parte del certificatore e per i rating da parte delle company
         // che si sono fatte vicevolmente delle prestazioni
         custom_rateDocument: function( type, rating, isLimited, description, actionToken, outlet, parentView ){
-            var view = this, data = this.getProperties();
+            var view = this, data = this.getProperties(),
+                selectedRecord = view.controller.selectedRecord, controller = view.controller;
+
             data.rating = rating;
             data.isLimited = isLimited;
             data.description = description;
@@ -71,29 +73,33 @@ export default Ember.View.extend({
                 data.actionFn = 'certificationRateDocument';
                 $.post('api/action?actionToken=' + actionToken, data).then(function(response){
                     if (response.success) {
-                        view.controller.selectedRecord.set('highlighted', false);
-                        view.controller.selectedRecord.set('actionToken', null);
-                        view.controller.selectedRecord.save().then(function(){
+                        selectedRecord.set('highlighted', false);
+                        selectedRecord.set('actionToken', null);
+                        controller.set('rating', null);
+                        controller.set('description', null);
+                        selectedRecord.save().then(function(){
                             new PNotify({ title: 'Well done', text: 'You successfully send the rate.', type: 'success', delay: 2000 });
                         });
                     }
                 }, function( error ){
-                    view.controller.selectedRecord.set('actionToken', null);
+                    selectedRecord.set('actionToken', null);
                     new PNotify({ title: 'Warning', text: error, type: 'error', delay: 2000 });
                 });
             } else if ( type === 'serviceRating' ){
                 data.actionFn = 'serviceRateDocument';
                 $.post('api/action?actionToken=' + actionToken, data).then(function(response){
                     if (response.success) {
-                        view.controller.selectedRecord.set('highlighted', false);
-                        view.controller.selectedRecord.set('actionToken', null);
-                        view.controller.selectedRecord.save().then(function(){
+                        selectedRecord.set('highlighted', false);
+                        selectedRecord.set('actionToken', null);
+                        controller.set('rating', null);
+                        controller.set('description', null);
+                        selectedRecord.save().then(function(){
 
                             new PNotify({ title: 'Well done', text: 'You successfully send the rate.', type: 'success', delay: 2000 });
                         });
                     }
                 }, function( error ){
-                    view.controller.selectedRecord.set('actionToken', null);
+                    selectedRecord.set('actionToken', null);
                     new PNotify({ title: 'Warning', text: error, type: 'error', delay: 2000 });
                 });
             }

@@ -17,12 +17,12 @@
             <ul class="nav nav-pills nav-justified" style="margin-bottom: 15px;">
                 <!-------------------- label: company ---------------------->
                 <li {{bind-attr class="controller.tabList.company:active"}}>
-                    <a href="#"{{action setTabs "company"}}><h5>{{app_controller.translation.company}}</h5></a>
+                    <a href="#"{{action 'setTabs' "company"}}><h5>{{app_controller.translation.company}}</h5></a>
                 </li>
                 <!-------------------- label: drivers-list / driver ---------------------->
-                {{#unless controller.is_certifier}}
+                {{#if isCarrier}}
                     <li {{bind-attr class="controller.tabList.driver:active"}}>
-                        <a href="#" {{action setTabs "driver"}}>
+                        <a href="#" {{action 'setTabs' "driver"}}>
                             <h5>
                                 {{#unless controller.is_driver}}
                                     {{#if controller.tabList.driver}}
@@ -38,49 +38,46 @@
                             </h5>
                         </a>
                     </li>
-                {{/unless}}
-
-                {{#if controller.is_carrier}}
-                    {{#unless controller.is_driver}}
-                        <!-------------------- label: trucks-list / truck ---------------------->
-                        <li {{bind-attr class="controller.tabList.truck:active"}}>
-                            <a href="#" {{action setTabs "truck"}}>
+                    <!-------------------- label: trucks-list / truck ---------------------->
+                    <li {{bind-attr class="controller.tabList.truck:active"}}>
+                        <a href="#" {{action 'setTabs' "truck"}}>
+                            <h5>
+                                {{#if controller.tabList.truck}}
+                                    {{#if controller.transition_to_list}} {{app_controller.translation.trucksList}} {{else}} {{app_controller.translation.returnToList}} {{/if}}
+                                {{else}}
+                                    {{app_controller.translation.trucksList}}
+                                {{/if}}
+                            </h5>
+                        </a>
+                    </li>
+                    <!-------------------- label: trailers-list / trailer ---------------------->
+                    <li {{bind-attr class="controller.tabList.trailer:active"}}>
+                        <a href="#" {{action 'setTabs' "trailer"}}>
+                            <h5>
+                                {{#if controller.tabList.trailer}}
+                                    {{#if controller.transition_to_list}} {{app_controller.translation.trailersList}} {{else}} {{app_controller.translation.returnToList}} {{/if}}
+                                {{else}}
+                                    {{app_controller.translation.trailersList}}
+                                {{/if}}
+                            </h5>
+                        </a>
+                    </li>
+                {{/if}}
+                {{#if can_edit_company}}
+                    {{#unless is_driver}}
+                        <!-------------------- label: clerks-list / clerk ---------------------->
+                        <li {{bind-attr class="controller.tabList.clerk:active"}}>
+                            <a href="#" {{action 'setTabs' "clerk"}}>
                                 <h5>
-                                    {{#if controller.tabList.truck}}
-                                        {{#if controller.transition_to_list}} {{app_controller.translation.trucksList}} {{else}} {{app_controller.translation.returnToList}} {{/if}}
+                                    {{#if controller.tabList.clerk}}
+                                        {{#if controller.transition_to_list}} {{app_controller.translation.clerksList}} {{else}} {{app_controller.translation.returnToList}} {{/if}}
                                     {{else}}
-                                        {{app_controller.translation.trucksList}}
-                                    {{/if}}
-                                </h5>
-                            </a>
-                        </li>
-                        <!-------------------- label: trailers-list / trailer ---------------------->
-                        <li {{bind-attr class="controller.tabList.trailer:active"}}>
-                            <a href="#" {{action setTabs "trailer"}}>
-                                <h5>
-                                    {{#if controller.tabList.trailer}}
-                                        {{#if controller.transition_to_list}} {{app_controller.translation.trailersList}} {{else}} {{app_controller.translation.returnToList}} {{/if}}
-                                    {{else}}
-                                        {{app_controller.translation.trailersList}}
+                                        {{app_controller.translation.clerksList}}
                                     {{/if}}
                                 </h5>
                             </a>
                         </li>
                     {{/unless}}
-                {{/if}}
-                {{#if controller.can_edit_company}}
-                    <!-------------------- label: clerks-list / clerk ---------------------->
-                    <li {{bind-attr class="controller.tabList.clerk:active"}}>
-                        <a href="#" {{action setTabs "clerk"}}>
-                            <h5>
-                                {{#if controller.tabList.clerk}}
-                                    {{#if controller.transition_to_list}} {{app_controller.translation.clerksList}} {{else}} {{app_controller.translation.returnToList}} {{/if}}
-                                {{else}}
-                                    {{app_controller.translation.clerksList}}
-                                {{/if}}
-                            </h5>
-                        </a>
-                    </li>
                 {{/if}}
 
             </ul>
