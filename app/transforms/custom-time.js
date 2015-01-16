@@ -9,7 +9,7 @@ export default DS.Transform.extend({
 
     serialize: function(deserialized) {
         var isNull = (deserialized === null || deserialized === undefined || deserialized === '');
-        return isNull ? null : moment(deserialized).format("YYYY-MM-DD HH:mm:ss:SSS Z");
+        return isNull ? null : moment(deserialized).format("YYYY-MM-DD HH:mm:ss Z");
         //return Ember.isNone(deserialized) ? null : moment(deserialized).format("YYYY-MM-DD");
     }
 });

@@ -80,7 +80,7 @@
             <div class="col-lg-9">
                 {{#if controller.isView}}
                     {{#if controller.sub_record.vehicleConfigurations}}
-                        {{#each vehicleConfigurations}}
+                        {{#each controller.sub_record.vehicleConfigurations}}
                             <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{this}}</p>
                         {{/each}}
                     {{else}}

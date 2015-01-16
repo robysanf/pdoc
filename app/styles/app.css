@@ -2,6 +2,11 @@
 /*margin: 20px;*/
 /*}*/
 
+ /*per gestire la dimensione del modal, se il testo è troppo lungo finisce fuori dalla schermata e l'utente non può salvare*/
+.modal .modal-body {
+    max-height: 420px;
+    overflow-y: auto;
+}
 
 .square-icon-lg {
     overflow:hidden;

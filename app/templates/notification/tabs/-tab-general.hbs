@@ -76,9 +76,13 @@
                                 {{else}}
                                     <td></td>
                                 {{/if}}
-
                             {{/if}}
-
+                            <!-- TIPO INFO-->
+                            {{#if notification.isInfo}}
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            {{/if}}
                             <!-- TIPO CERTIFICATION RATING - SOLO PER IL CERTIFICATORE-->
                             {{#if notification.isCertificationRating}}
                                 <td>{{notification.fromUserDetails}}</td>

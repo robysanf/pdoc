@@ -10,7 +10,7 @@ export default DS.Model.extend({
     description: DS.attr('string'),
     visibility: DS.attr('string'),
 
-    date: DS.attr('custom-date'),
+    date: DS.attr('custom-time'),
 
     user: DS.belongsTo('user', {
         async: true }),

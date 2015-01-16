@@ -75,6 +75,9 @@ export default DS.Model.extend({
     isDeadline: function() {
         return ( this.get('type') === 'deadline' );
     }.property('type'),
+    isInfo: function() {
+        return ( this.get('type') === 'info' );
+    }.property('type'),
     isLink: function() {
         return ( this.get('type') === 'link' );
     }.property('type'),

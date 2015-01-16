@@ -23,7 +23,7 @@
         <div class="col-lg-8">
             {{#if controller.selectedRecord.docTemplate}}
                 <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">
-                    <a href="#" {{action 'download_file' controller.selectedRecord.docTemplate.id}} >{{controller.selectedRecord.docTemplate.name}}</a>
+                    {{controller.selectedRecord.docTemplate.name}}
                 </p>
             {{/if}}
         </div>
