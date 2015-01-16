@@ -51,8 +51,8 @@
             <label for="name" class="col-lg-3 control-label">{{app_controller.translation.model}}</label>
             <div class="col-lg-9">
                 {{#if controller.isView}}
-                    {{#if controller.sub_record.model}}
-                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.sub_record.model}}</p>
+                    {{#if controller.sub_record.vehicleModel}}
+                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{controller.sub_record.vehicleModel}}</p>
                     {{else}}
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
@@ -87,7 +87,7 @@
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{auto-suggest source=app_controller.auto_suggest_Configurations destination=controller.sub_record.configurations searchPath="value" usecase="customMode" minChars=0}}
+                    {{auto-suggest source=app_controller.auto_suggest_Configurations destination=controller.sub_record.vehicleConfigurations searchPath="value" usecase="customMode" minChars=0}}
                 {{/if}}
             </div>
         </div>
@@ -161,7 +161,7 @@
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{input value = controller.sub_record.category type = "string" class="form-control" disabled= controller.isView}}
+                    {{input value = controller.sub_record.category type ='text' class="form-control" disabled= controller.isView}}
                 {{/if}}
             </div>
         </div>

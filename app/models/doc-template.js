@@ -18,6 +18,7 @@ export default DS.Model.extend({
     graceNum: attr('number'),
     rateValue: attr('number'),      //punteggio da 0-100
     limit: attr('number'),
+    visibility: DS.attr('string'), //public, private, root
 
     name: attr('string'),
     type: attr('string'),          //company/driver/truck/trailer

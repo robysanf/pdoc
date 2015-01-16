@@ -7,5 +7,6 @@ export default DS.Model.extend({
     field:DS.attr('string'),  // tipologia: service/area/segment/configuration
     model:DS.attr('string'),  // company/vehicle/...
     isoCode:DS.attr('string'),
-    value:DS.attr('string')   // nome
+    value:DS.attr('string'),   // nome
+    visibility: DS.attr('string')
 });

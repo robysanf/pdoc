@@ -49,7 +49,7 @@
                             <!-- TIPO DEADLINE-->
                             {{#if notification.isDeadline}}
                                 <td {{action 'open_modal' 'notification/modals/show-details' notification}} style="cursor: pointer">{{notification.valueNum}} </td>
-                                <td {{action 'open_modal' 'notification/modals/show-details' notification}} style="cursor: pointer">{{notification.showDeadline}} </td>
+                                <td {{action 'open_modal' 'notification/modals/show-details' notification}} style="cursor: pointer">{{#if notification.deadline}}{{notification.showDeadline}}{{/if}} </td>
                                 <td></td>
                             {{/if}}
 

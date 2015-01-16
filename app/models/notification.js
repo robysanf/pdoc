@@ -22,6 +22,8 @@ export default DS.Model.extend({
                                 // link/
                                 // certificationRating/serviceRating/
                                 // newRating (no action)
+                                // info
+    visibility: DS.attr('string'), //public, private, root
 
     valueNum: DS.attr('number'),
 

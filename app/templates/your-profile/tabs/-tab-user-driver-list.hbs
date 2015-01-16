@@ -1,6 +1,6 @@
 
 <!-- se ad essere loggato è un driver gli si fà vedere solo la sua pagina altrimenti si mostra all'utelte la lista di drivers per la sua comany-->
-{{#unless controller.is_driver}}
+
 
     <!-------------------- SHOW DRIVERS LIST ---------------------->
     {{#if controller.transition_to_list}}
@@ -103,53 +103,4 @@
             </div>
         {{/if}}
     {{/if}}
-
-{{else}}
-
-    <!--------------------- image logo --------------------->
-    {{partial 'your-profile/partials/-logo'}}
-
-    <!-------------------- SHOW DRIVER RECORD ---------------------->
-    {{#if controller.isView}}
-        <div class="row row-margin-top-bottom">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-10">
-                {{partial 'your-profile/partials/-user-field'}}
-            </div>
-            <div class="col-lg-1"></div>
-        </div>
-    {{else}}
-        <div class="well well-sm">
-            <div class="row row-margin-top-bottom">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-10">
-                    {{partial 'your-profile/partials/-user-field'}}
-                </div>
-                <div class="col-lg-1"></div>
-            </div>
-        </div>
-    {{/if}}
-    <!--------------------- document - view --------------------->
-    {{#if controller.isView_docList}}
-        <div class="row row-margin-top-bottom">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-10">
-                {{partial 'your-profile/partials/-sub-record-document-list'}}
-            </div>
-            <div class="col-lg-1"></div>
-        </div>
-    {{else}}
-        <!--------------------- document - edit --------------------->
-        <div class="well well-sm">
-            <div class="row row-margin-top-bottom">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-10">
-                    {{partial 'your-profile/partials/-company-document-edit'}}
-                </div>
-                <div class="col-lg-1"></div>
-            </div>
-        </div>
-    {{/if}}
-
-{{/unless}}
 

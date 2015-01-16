@@ -11,6 +11,7 @@ export default DS.Model.extend({
 
     key: DS.attr('string'),
     currency: DS.attr('string'),
+    visibility: DS.attr('string'),
 
     company: DS.belongsTo('company'),
     paymentPlan: DS.belongsTo('paymentPlan'),

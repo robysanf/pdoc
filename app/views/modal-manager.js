@@ -126,7 +126,7 @@ export default Ember.View.extend({
                 });
 
                 if( type === 'driver' ){
-                    new_record.set('profile', 'user').set('patents', newPatents).set('languages', newLanguages).set('curriculum', newCurriculum).save().then(function( ){
+                    new_record.set('profile', 'user').set('visibility', 'public').set('patents', newPatents).set('languages', newLanguages).set('curriculum', newCurriculum).save().then(function( ){
 
                             view.controller.set('newFirstName', null).set('newLastName', null).set('newBirthDate', null).set('newPhone', null).set('newSkype', null).set('newEmail', null).set('newUsername', null).set('newPassword', null);
 
@@ -139,7 +139,7 @@ export default Ember.View.extend({
                         new PNotify({ title: 'Warning', text: obj.error, type: 'warning', delay: 2000 });
                     });
                 } else {
-                    new_record.save().then(function( response ){
+                    new_record.set('visibility', 'private').save().then(function( response ){
 
                             view.controller.set('newFirstName', null).set('newLastName', null).set('newBirthDate', null).set('newPhone', null).set('newSkype', null).set('newEmail', null).set('newUsername', null).set('newPassword', null);
 
@@ -167,14 +167,15 @@ export default Ember.View.extend({
                     company: this.controller.main_record,
                     name: newName,
                     brand: newBrand,
-                    model: newModel,
+                    vehicleModel: newModel,
                     description: newDescription,
-                    vehicleConfiguration: newConfigurations,
-                    registrationYear: newRegistrationYear
+                    vehicleConfigurations: newConfigurations,
+                    registrationYear: newRegistrationYear,
+                    category: newCategory
                 });
 
                 if( type === 'trailer' ){
-                    new_record.set('chassisNumber', 'newChassisNumber').set('weight', newWeight).set('tare', newTare).set('category', newCategory).save().then(function(){
+                    new_record.set('chassisNumber', newChassisNumber).set('weight', newWeight).set('tare', newTare).save().then(function(){
                         view.controller.set('newConfigurations', []).set('newName', null).set('newBrand', null).set('newModel', null).set('newDescription', null).set('newRegistrationYear', null).set('newChassisNumber', null).set('newWeight', null).set('newTare', null).set('newCategory', null);
 
                         view.controller.main_record.reload();

@@ -44,7 +44,7 @@
             <div class="row" style="margin-bottom: 10px">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
-                    {{view Ember.Select content=app_controller.nations optionLabelPath = "content.country" valueBinding='country' prompt="Please select a country" value=country class='form-control'}}
+                    {{view "select" content=app_controller.nations optionLabelPath = "content.country" valueBinding='country' prompt="Please select a country" value=country class='form-control'}}
                 </div>
                 <div class="col-lg-1"></div>
             </div>
@@ -58,7 +58,7 @@
             <div class="row" style="margin-bottom: 30px">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
-                    {{view Ember.Select id='companyType' valueBinding='companyType' prompt="Please select a company type"  content=companyTypeList value=companyType class='form-control'}}
+                    {{view "select" id='companyType' valueBinding='companyType' prompt="Please select a company type"  content=companyTypeList value=companyType class='form-control'}}
                 </div>
                 <div class="col-lg-1"></div>
             </div>

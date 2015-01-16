@@ -9,6 +9,7 @@ export default Ember.Route.extend({
         controller.set('tabList.driver', false);
         controller.set('tabList.truck', false);
         controller.set('tabList.trailer', false);
+        controller.set('tabList.clerk', false);
 
         controller.set('isView', true);
         controller.set('isView_docList', true);
@@ -200,11 +201,13 @@ export default Ember.Route.extend({
                         if( _this.controller.sub_record_document.get('type') === 'document' ){
                             _this.controller.sub_record_document.save().then(function( saved_record ){
                                 if( _this.controller.tabList.company ){
-                                    _this.controller.set('record_isNew', false);
-                                    app_controller.send( 'message_manager', 'Success', 'You have successfully saved the document.' );
-                                    _this.controller.set( path, value );
+                                    companyRecord.reload().then(function(){
+                                        _this.controller.set('record_isNew', false);
+                                        app_controller.send( 'message_manager', 'Success', 'You have successfully saved the document.' );
+                                        _this.controller.set( path, value );
+                                    });
                                 } else {
-                                    _this.controller.sub_record.reload().then(function(){
+                                    companyRecord.reload().then(function(){
                                         _this.controller.set('record_isNew', false);
                                         app_controller.send( 'message_manager', 'Success', 'You have successfully saved the document.' );
                                         _this.controller.set( path, value );
@@ -217,11 +220,14 @@ export default Ember.Route.extend({
 
                             _this.controller.sub_record_document.save().then(function( saved_record ){
                                 if( _this.controller.tabList.company ){
-                                    app_controller.send( 'message_manager', 'Success', 'You have successfully saved the document.' );
-                                    _this.controller.set('record_isNew', false);
-                                    _this.controller.set( path, value );
+                                    companyRecord.reload().then(function(){
+                                        app_controller.send( 'message_manager', 'Success', 'You have successfully saved the document.' );
+                                        _this.controller.set('record_isNew', false);
+                                        _this.controller.set( path, value );
+                                    });
+
                                 } else {
-                                    _this.controller.sub_record.reload().then(function(){
+                                    companyRecord.reload().then(function(){
                                         app_controller.send( 'message_manager', 'Success', 'You have successfully saved the document.' );
                                         _this.controller.set('record_isNew', false);
                                         _this.controller.set( path, value );
@@ -612,6 +618,7 @@ export default Ember.Route.extend({
                     $.post('api/custom/companyServiceScore?token=' + app_controller.token, data).then(function(response){
                         if( response.success ){
                             record.set('serviceScore', response.score);
+                            record.set('visualizationCredit', response.visualizationCredit);
                         } else {
                             app_controller.send( 'message_manager', 'Failure', response.error );
                         }
@@ -620,11 +627,14 @@ export default Ember.Route.extend({
                         app_controller.send( 'message_manager', 'Failure', response.error );
 
                     });
+
+
                     break;
                 case 'certification':
                     $.post('api/custom/companyCertificationScore?token=' + app_controller.token, data).then(function(response){
                         if( response.success ){
                             record.set('certificationScore', response.score);
+                            record.set('visualizationCredit', response.visualizationCredit);
                         } else {
                             app_controller.send( 'message_manager', 'Failure', response.error );
                         }

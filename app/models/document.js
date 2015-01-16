@@ -17,6 +17,7 @@ export default DS.Model.extend({
     note: DS.attr('string'),
     type: DS.attr('string'),      //invoice/document/other
     status: DS.attr('string'),       //active/inactive
+    visibility: DS.attr('string'), //public, private, root
 
     company: DS.belongsTo('company', {
         async: true}),

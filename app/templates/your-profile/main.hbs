@@ -24,16 +24,13 @@
                     <li {{bind-attr class="controller.tabList.driver:active"}}>
                         <a href="#" {{action 'setTabs' "driver"}}>
                             <h5>
-                                {{#unless controller.is_driver}}
+
                                     {{#if controller.tabList.driver}}
                                         {{#if controller.transition_to_list}}
                                             {{app_controller.translation.driversList}} {{else}} {{app_controller.translation.returnToList}} {{/if}}
                                     {{else}}
                                         {{app_controller.translation.driversList}}
                                     {{/if}}
-                                {{else}}
-                                    {{app_controller.translation.yourProfile}}
-                                {{/unless}}
 
                             </h5>
                         </a>
@@ -86,18 +83,22 @@
                 <div class="tab-pane fade active in">
                     {{#if controller.tabList.company}}
                         {{partial "your-profile/tabs/-tab-company"}}
-                    {{/if}}
-                    {{#if controller.tabList.driver}}
-                        {{partial "your-profile/tabs/-tab-user-driver-list"}}
-                    {{/if}}
-                    {{#if controller.tabList.truck}}
-                        {{partial "your-profile/tabs/-tab-vehicle-truck-list"}}
-                    {{/if}}
-                    {{#if controller.tabList.trailer}}
-                        {{partial "your-profile/tabs/-tab-vehicle-trailer-list"}}
-                    {{/if}}
-                    {{#if controller.tabList.clerk}}
-                        {{partial "your-profile/tabs/-tab-user-clerk-list"}}
+                    {{else}}
+                        {{#if controller.tabList.driver}}
+                            {{partial "your-profile/tabs/-tab-user-driver-list"}}
+                        {{else}}
+                            {{#if controller.tabList.truck}}
+                                {{partial "your-profile/tabs/-tab-vehicle-truck-list"}}
+                            {{else}}
+                                {{#if controller.tabList.trailer}}
+                                    {{partial "your-profile/tabs/-tab-vehicle-trailer-list"}}
+                                {{else}}
+                                    {{#if controller.tabList.clerk}}
+                                        {{partial "your-profile/tabs/-tab-user-clerk-list"}}
+                                    {{/if}}
+                                {{/if}}
+                            {{/if}}
+                        {{/if}}
                     {{/if}}
                 </div>
             </div>

@@ -20,9 +20,9 @@ export default Ember.ObjectController.extend({
 //    is_certifier: function(){
 //        return ( this.get('app_company_type') === 'certifier' );
 //    }.property('app_company_type'),
-//    is_driver: function(){
-//        return ( this.get('app_user_type') === 'driver' );
-//    }.property('app_user_type'),
+    is_driver: function(){
+        return ( this.get('app_user_type') === 'driver' );
+    }.property('app_user_type'),
 
     is_admin_or_clerk: function(){       // l'utente è di tipo admin o clerk
         var type =  this.get('app_user_type');

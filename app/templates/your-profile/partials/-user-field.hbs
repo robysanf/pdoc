@@ -3,7 +3,7 @@
 
     <div class="form-group">
         <div class="col-lg-1">
-            {{#if is_driver}}         <!-- se è un guidatore può modificare il suo profilo-->
+            {{#if controller.sub_record.canEdit}}         <!-- se è un guidatore può modificare il suo profilo-->
                 {{#if controller.isView}}
                     <!-------------------- pencil ---------------------->
                     <button class="btn btn-primary btn-50" {{action 'change_state' 'your-profile/main' false}}><span class="glyphicon glyphicon-pencil"></span></button>
@@ -14,16 +14,16 @@
                 {{/if}}
             {{/if}}
 
-            {{#if controller.sub_record.canEdit}}   <!-- può modificare solo il proprietario della company o i clerks-->
-                {{#if controller.isView}}
-                    <!-------------------- pencil ---------------------->
-                    <button class="btn btn-primary btn-50" {{action 'change_state' 'your-profile/main' false}}><span class="glyphicon glyphicon-pencil"></span></button>
-                {{else}}
+            <!--{{!{{#if controller.sub_record.canEdit}}   &lt;!&ndash; può modificare solo il proprietario della company o i clerks&ndash;&gt;-->
+                <!--{{!{{#if controller.isView}}-->
+                    <!--&lt;!&ndash;------------------ pencil --------------------&ndash;&gt;-->
+                    <!--<button class="btn btn-primary btn-50" {{!{{action 'change_state' 'your-profile/main' false}}><span class="glyphicon glyphicon-pencil"></span></button>-->
+                <!--{{!{{else}}-->
 
-                    <!-------------------- ok ---------------------->
-                    <button class="btn btn-primary btn-50" {{action 'set_record' 'user_vehicle' 'isView' true }}><span class="glyphicon glyphicon-ok"></span></button>
-                {{/if}}
-            {{/if}}
+                    <!--&lt;!&ndash;------------------ ok --------------------&ndash;&gt;-->
+                    <!--<button class="btn btn-primary btn-50" {{!{{action 'set_record' 'user_vehicle' 'isView' true }}><span class="glyphicon glyphicon-ok"></span></button>-->
+                <!--{{!{{/if}}-->
+            <!--{{!{{/if}}-->
         </div>
         <div class="col-lg-11"><legend>{{app_controller.translation.details}}</legend> </div>
     </div>

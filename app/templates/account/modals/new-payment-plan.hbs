@@ -8,7 +8,7 @@
         <div class="col-lg-10">
             <label>{{app_controller.translation.type}}</label>
             <div class="form-group">
-                {{view Ember.Select content=controller.listType value=type prompt=app_controller.translation.selectTheType class='form-control'}}
+                {{view "select" content=controller.listType value=type prompt=app_controller.translation.selectTheType class='form-control'}}
             </div>
         </div>
         <div class="col-lg-1"></div>
@@ -48,7 +48,7 @@
         <div class="col-lg-10">
             <label>{{app_controller.translation.currency}}</label>
             <div class="form-group">
-                {{view Ember.Select content=controller.listCurrency value=planCurrency prompt=app_controller.translation.selectTheCurrency class='form-control'}}
+                {{view "select" content=controller.listCurrency value=planCurrency prompt=app_controller.translation.selectTheCurrency class='form-control'}}
             </div>
         </div>
         <div class="col-lg-1"></div>

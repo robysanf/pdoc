@@ -8,6 +8,7 @@ export default DS.Model.extend({
     name: DS.attr('string'),
     title: DS.attr('string'),
     description: DS.attr('string'),
+    visibility: DS.attr('string'),
 
     date: DS.attr('custom-date'),
 

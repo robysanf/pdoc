@@ -43,9 +43,9 @@
                     {{/if}}
                 {{else}}
                     {{#unless is_supplier}}
-                        {{view Ember.Select content = documentTypes value = sub_record_document.type class = "form-control"}}
+                        {{view "select" content = documentTypes value = sub_record_document.type class = "form-control"}}
                     {{else}}
-                        {{view Ember.Select content = documentTypes_supplier value = sub_record_document.type class = "form-control"}}
+                        {{view "select" content = documentTypes_supplier value = sub_record_document.type class = "form-control"}}
                     {{/unless}}
 
                 {{/if}}

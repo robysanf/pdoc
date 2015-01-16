@@ -39,7 +39,7 @@
                                 </div>
                                 <label for="name" class="col-lg-2 control-label">{{app_controller.translation.type}}</label>
                                 <div class="col-lg-4">
-                                    {{view Ember.Select
+                                    {{view "select"
                                     content=types_list
                                     value=controller.search_type
                                     prompt="Choose a company type"

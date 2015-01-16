@@ -16,7 +16,7 @@ export default DS.Model.extend({
         inverse: 'files'}),
 //    authorizedCompanies: DS.hasMany('company',{
 //        async: true})
-//    visibility: DS.attr('string') //public, private, root
+    visibility: DS.attr('string'), //public, private, root
 
     /*********************************************
      *

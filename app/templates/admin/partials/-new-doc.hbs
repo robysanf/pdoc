@@ -161,7 +161,7 @@
                 {{input value = new_record.validityNum type = "number" class = 'form-control' disabled=new_record.isDeadline }}
             </div>
             <div class="col-lg-2">
-                {{view Ember.Select
+                {{view "select"
                 content=type_period
                 value=new_record.validityType
                 placeholder="Choose a period"
@@ -186,7 +186,7 @@
                     {{input value = new_record.alertNum type = "number" class = 'form-control'}}
                 </div>
                 <div class="col-lg-2">
-                    {{view Ember.Select
+                    {{view "select"
                     content=type_period
                     value=new_record.alertType
                     placeholder="Choose a period"
@@ -205,7 +205,7 @@
                     {{input value = new_record.graceNum type = "number" class = 'form-control'}}
                 </div>
                 <div class="col-lg-2">
-                    {{view Ember.Select
+                    {{view "select"
                     content=type_period
                     value=new_record.graceType
                     placeholder="Choose a period"

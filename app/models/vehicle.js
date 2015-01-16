@@ -18,7 +18,7 @@ export default DS.Model.extend({
     name: DS.attr('string'),
     type: DS.attr('string'),    // truck/trailer
     vehicleModel:  DS.attr('string'),       //modello: Stralis
-
+    visibility: DS.attr('string'),
 
     vehicleConfigurations: DS.attr('raw'),
 

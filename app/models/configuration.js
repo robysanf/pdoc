@@ -9,6 +9,7 @@ export default DS.Model.extend({
     name: DS.attr('string'),
     code: DS.attr('string'),
     valueStr: DS.attr('string'),
+    visibility: DS.attr('string'), //public, private, root
 
     company: DS.belongsTo('company', {
         async: true})

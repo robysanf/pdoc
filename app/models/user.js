@@ -18,6 +18,7 @@ export default DS.Model.extend({
     type: DS.attr('string'),   //clerk/driver
     curriculum: DS.attr('string'),
     email: DS.attr('string'),
+    visibility: DS.attr('string'),
 
     patents: DS.attr('raw'),
     languages: DS.attr('raw'),
