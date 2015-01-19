@@ -11,18 +11,17 @@ export default Ember.ObjectController.extend({
     app_company_type: Ember.computed.alias('controllers.application.company_type'),
     app_is_linked: Ember.computed.alias('controllers.application.isLinked'),
 
-//    is_supplier: function(){
-//        return ( this.get('app_company_type') === 'supplier' );
-//    }.property('app_company_type'),
-//    is_carrier: function(){
-//        return ( this.get('app_company_type') === 'carrier' );
-//    }.property('app_company_type'),
-//    is_certifier: function(){
-//        return ( this.get('app_company_type') === 'certifier' );
-//    }.property('app_company_type'),
+    is_admin: function(){
+        return ( this.get('app_user_type') === 'admin');
+    }.property('app_user_type'),
+
     is_driver: function(){
         return ( this.get('app_user_type') === 'driver' );
     }.property('app_user_type'),
+
+    is_driver_and_canEdit: function(){
+        return ( this.get('app_user_type') === 'driver' && this.get('sub_record').get('id') === this.get('app_user_id') );
+    }.property('app_user_type', 'id', 'sub_record', 'app_user_id'),
 
     is_admin_or_clerk: function(){       // l'utente è di tipo admin o clerk
         var type =  this.get('app_user_type');
@@ -35,15 +34,22 @@ export default Ember.ObjectController.extend({
         return user_type && my_company ;
     }.property('is_admin_or_clerk', 'app_company_id', 'id'),
 
+    canEdit_userProfile: function(){         //è admin di questa company se la sua company è uguale alla company loggata
+        return this.get('is_driver_and_canEdit') || this.get('can_edit_company') ;
+    }.property('is_driver_and_canEdit', 'can_edit_company'),
+
     check_changePassword: function(){
         if( this.sub_record ){
             return ( String(this.sub_record.get('id')) === String(this.get('app_user_id')) || this.get('is_this_admin') );
         }
     }.property('sub_record', 'app_user_id', 'can_edit_company'),
 
+    canCreate_subRecord_doc: function(){
+        return ( this.get('app_is_linked') && this.get('is_admin_or_clerk') || this.get('is_driver_and_canEdit') );
+    }.property( 'app_is_linked', 'is_admin_or_clerk', 'is_driver_and_canEdit' ),
     can_create_doc: function(){
-       return ( this.get('app_is_linked') && this.get('is_admin_or_clerk') || this.get('is_driver'));        //solo un utente di tipo admin/clerk può creare un document e solo della company proprietaria o di una connessa
-    }.property('app_is_linked', 'is_admin_or_clerk', 'is_driver'),
+       return ( this.get('app_is_linked') && this.get('is_admin_or_clerk') );        //solo un utente di tipo admin/clerk può creare un document e solo della company proprietaria o di una connessa
+    }.property('app_is_linked', 'is_admin_or_clerk'),
 
     isView: true,
 

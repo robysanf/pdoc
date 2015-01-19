@@ -3,7 +3,9 @@
         <div class="form-group">
             <div class="col-lg-1">
                 {{#if certifier}}
-                    <button class="btn btn-primary btn-50" {{action 'create_record' this 'isView_docList' false 'isView_docDetails' false 'document'}}><span class="glyphicon glyphicon-plus"></span></button>
+                    {{#if canCreate_subRecord_doc}}
+                        <button class="btn btn-primary btn-50" {{action 'create_record' this 'isView_docList' false 'isView_docDetails' false 'document'}}><span class="glyphicon glyphicon-plus"></span></button>
+                    {{/if}}
                 {{/if}}
             </div>
             <div class="col-lg-11"><legend>{{app_controller.translation.documents}}</legend></div>
@@ -37,13 +39,21 @@
                                 </td>
                                 {{#if document.isDocument}}
                                     {{#unless document.isCertified}}
-                                        <td><a {{action 'custom_notifyDocument' document}} style="cursor: pointer"><span class="glyphicon glyphicon-send"></span></a></td>
+                                        {{#if canEdit_userProfile}}
+                                            <td><a {{action 'custom_notifyDocument' document}} style="cursor: pointer"><span class="glyphicon glyphicon-send"></span></a></td>
+                                        {{else}}
+                                            <td></td>
+                                        {{/if}}
                                     {{else}}
                                         <td></td>
                                     {{/unless}}
                                 {{else}}
                                     {{#if document.isInvoice}}
-                                        <td><a {{action 'custom_notifyDocument' document}} style="cursor: pointer"><span class="glyphicon glyphicon-send"></span></a></td>
+                                        {{#if canEdit_userProfile}}
+                                            <td><a {{action 'custom_notifyDocument' document}} style="cursor: pointer"><span class="glyphicon glyphicon-send"></span></a></td>
+                                        {{else}}
+                                             <td></td>
+                                        {{/if}}
                                     {{else}}
                                         <td></td>
                                     {{/if}}

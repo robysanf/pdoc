@@ -1,5 +1,5 @@
 {{#if controller.tabList.driver}}
-    {{#if is_driver}}   <!-- se è un guidatore può modificare il suo profilo-->
+    {{#if is_driver_and_canEdit}}   <!-- se è un guidatore può modificare il suo profilo-->
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="form-group">
@@ -7,7 +7,6 @@
                 <!-------------------- pencil ---------------------->
                 {{#if controller.isView_logo}}
                     <button class="btn btn-primary btn-50" {{action 'set_variable' 'isView_logo' false}}><span class="glyphicon glyphicon-pencil"></span></button>
-
                     <!-------------------- ok ---------------------->
                 {{else}}
                     {{#if controller.tabList.company}}
@@ -15,7 +14,6 @@
                     {{else}}
                         <button class="btn btn-primary btn-50" {{action 'save_logo' controller.sub_record 'isView_logo' true}}><span class="glyphicon glyphicon-ok"></span></button>
                     {{/if}}
-
                 {{/if}}
             </div>
             <div class="col-lg-9" style="margin-top: 35px"><legend></legend></div>
@@ -145,7 +143,7 @@
                                     <a {{action 'open_modal' 'your-profile/modals/show-certification-rating' null this 'certification'}} style="cursor: pointer"><span class="label label-primary pull-right" style="margin-right: 8px">Show {{totalCertificationRating}} ratings</span></a>
                                 </div>
                                 <div class="row">
-                                    {{speed-meter speed=certificationScore target='speed2' rateSize=55  custom_height=130}}
+                                    {{speed-meter speed=allCertificationScore target='speed2' rateSize=55  custom_height=130}}
                                 </div>
                             </div>
                         </div>

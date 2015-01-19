@@ -208,21 +208,18 @@ export default Ember.Route.extend({
 
         stripe_connect_to: function( companyId ) {
             var _this = this, app_controller = _this.controllerFor('application'),
+                path = 'https://connect.stripe.com/oauth/authorize?response_type=code&state='+ companyId +'&client_id='+ stripe_clientKey;
 
-                // ca_5IMczau6eQsLD9di3EO21iwPkmr9iHqd (di sviluppo)
-                // ca_5IMcwMpeaH3m7bz7T8sWUztcF3NDmPAW (di produzione)
-                path = 'https://connect.stripe.com/oauth/authorize?response_type=code&state='+ companyId +'&client_id='+ 'ca_5IMczau6eQsLD9di3EO21iwPkmr9iHqd';
-
-            $.post(path)
-                .done(function () { alert('File download a success!'); })
-                .fail(function ( response ) {
-                    new PNotify({
-                        title: 'Error',
-                        text: 'An error was occurred',
-                        type: 'error',
-                        delay: 4000
-                    });
-                });
+//            $.post(path)
+//                .done(function () { alert('File download a success!'); })
+//                .fail(function ( response ) {
+//                    new PNotify({
+//                        title: 'Error',
+//                        text: 'An error was occurred',
+//                        type: 'error',
+//                        delay: 4000
+//                    });
+//                });
         }
     }
 });

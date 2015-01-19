@@ -8,7 +8,8 @@ export default DS.Model.extend({
     certificationCredit:DS.attr('number'),     //ammontare del credito per ottenere certificazioni
     visualizationCredit:DS.attr('number'),     //ammontare del credito per visualizzare
 
-    certificationScore:DS.attr('number'),      //punteggio per certificazione
+    certificationScore: DS.attr('number'),      //punteggio per certificazione
+    allCertificationScore: DS.attr('number'),
     serviceScore:DS.attr('number'),            //punteggio per servizi offerti
     driverScore:DS.attr('number'),             //punteggio per autisti
     truckScore:DS.attr('number'),              //punteggio per camion

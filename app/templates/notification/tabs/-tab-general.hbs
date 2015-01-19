@@ -70,7 +70,7 @@
                             <!-- TIPO SERVICE RATING-->
                             {{#if notification.isServiceRating}}
                                 <td {{action 'open_modal' 'notification/modals/show-details' notification}} style="cursor: pointer">{{notification.valueNum}} </td>
-                                <td {{action 'open_modal' 'notification/modals/show-details' notification}} style="cursor: pointer">{{notification.showDeadline}} </td>
+                                <td {{action 'open_modal' 'notification/modals/show-details' notification}} style="cursor: pointer">{{#if notification.deadline}}{{notification.showDeadline}}{{/if}}</td>
                                 {{#if notification.actionToken}}
                                     <td><a href="#" {{action 'open_modal' 'notification/modals/certificate' notification}}><span class="glyphicon glyphicon-pencil"></span></a></td>
                                 {{else}}

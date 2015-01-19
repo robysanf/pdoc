@@ -2,7 +2,7 @@
     <fieldset>
     <div class="form-group">
         <div class="col-lg-1">
-            {{#if sub_record_document.canEdit}}
+            {{#if canEdit_userProfile}}
                 {{#if isView_docDetails}}
                     <button class="btn btn-primary btn-50" {{action 'set_variable' 'isView_docDetails' false}}><span class="glyphicon glyphicon-pencil"></span></button>
                 {{else}}

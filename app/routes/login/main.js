@@ -6,6 +6,10 @@ export default Ember.Route.extend({
     },
 
     actions: {
+        changeLanguage: function(val){
+            this.get('controller').set('isEnglish', val);
+        },
+
         change_newLog: function( val ) {
             this.get('controller').set('newLog', val);
         },
@@ -90,8 +94,8 @@ export default Ember.Route.extend({
         open_modal: function( path ) {
             this.render( path, {
                 into: 'application',
-                outlet: 'overview',
-                view: 'modal-manager'
+                outlet: 'overview'//,
+                //view: 'modal-manager'
             });
         }
     }

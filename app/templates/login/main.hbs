@@ -14,14 +14,9 @@
 
 <div class="footer navbar-fixed-bottom" style="background-color: #f5f5f5; padding: 18px 0 0;height: 60px;">
     <div class="container">
-        chi siamo condizioni privacy
-        <!--<div class="d-block d-block-menu g-menu-global-footer">-->
-        <!--<ul class="menu nav clearfix" role="menu"><li class="first leaf" role="menuitem"><a href="https://about.twitter.com/" target="_blank">Chi siamo</a></li>-->
-        <!--<li class="leaf" role="menuitem"><a href="https://support.twitter.com/">Supporto</a></li>-->
-        <!--<li class="leaf" role="menuitem"><a href="https://twitter.com/tos">Condizioni</a></li>-->
-        <!--<li class="leaf" role="menuitem"><a href="https://twitter.com/privacy" target="_blank">Privacy</a></li>-->
-        <!--<li class="last leaf" role="menuitem"><a href="https://support.twitter.com/articles/20170514" target="_blank">Cookie</a></li>-->
-        <!--</ul></div>        <span class="copyright">© 2014 Twitter, Inc.</span>-->
+        <a style="cursor: pointer" {{action 'open_modal' 'login/modals/about'}}> {{controller.translation.about}} </a> &nbsp;
+        <a style="cursor: pointer" {{action 'open_modal' 'login/modals/terms'}}> {{controller.translation.terms}}</a> &nbsp;
+        <a style="cursor: pointer" {{action 'open_modal' 'login/modals/privacy'}}>{{controller.translation.privacy}} </a> &nbsp;
     </div>
 </div>
 

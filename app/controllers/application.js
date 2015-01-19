@@ -26,6 +26,7 @@ export default Ember.Controller.extend({
     user_id: localStorage['user_id'],
     user_type: localStorage['user_type'],
     is_admin: localStorage['is_admin'],
+    comp_country: localStorage['comp_country'],
 
     tokenChanged: function() {localStorage.token = this.token;this.app_init.set('token', this.token);}.observes('token'),
     company_idChanged: function() { localStorage.company_id = this.company_id; }.observes('company_id'),
@@ -33,6 +34,16 @@ export default Ember.Controller.extend({
     user_idChanged: function() { localStorage.user_id = this.user_id; }.observes('user_id'),
     user_typeChanged: function() { localStorage.user_type = this.user_type; }.observes('user_type'),
     is_adminChanged: function() { localStorage.is_admin = this.is_admin; }.observes('is_admin'),
+    comp_country_changed: function() {
+        localStorage.comp_country = this.comp_country;
+
+        if( this.comp_country === 'Italy') {
+            this.isEnglish = 'italian';
+        } else {
+            this.isEnglish =  'english';
+        }
+
+    }.observes('comp_country'),
 
     formData: new FormData(),
     formData_size: null,
@@ -102,7 +113,19 @@ export default Ember.Controller.extend({
     /*****************************
      * LANGUAGE
      */
-    isEnglish: 'default',
+    isEnglish: null,
+
+    translationType: function(){
+        switch(this.isEnglish){
+            case 'english':
+                return this.lan_en.english;
+            case 'italian':
+                return this.lan_it.italian;
+            default:
+                return this.lan_en.english;
+        }
+    }.property('isEnglish'),
+
     translation: function(){
         switch(this.isEnglish){
             case 'english':

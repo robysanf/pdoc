@@ -39,7 +39,7 @@
             </ul>
             <ul class="nav navbar-nav pull-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{controller.translation.language}}<b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{controller.translation.language}}: {{controller.translationType}}<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#" {{action 'changeLanguage' 'english'}}>{{controller.translation.english}}</a></li>
                         <li><a href="#" {{action 'changeLanguage' 'italian'}}>{{controller.translation.italian}}</a></li>

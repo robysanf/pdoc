@@ -44,6 +44,23 @@
                                         </tr>
                                     {{/if}}
                                 {{/each}}
+                                {{#if is_admin}}
+                                    {{#each user in users}}
+                                        {{#if user.isAdmin}}
+                                            <tr>
+                                                <td {{action 'transition_to' 'your-profile/partials/-user-field' user 'isView' true}} style="cursor: pointer">{{user.firstName}}</td>
+                                                <td {{action 'transition_to' 'your-profile/partials/-user-field' user 'isView' true}} style="cursor: pointer">{{user.lastName}}</td>
+
+                                                {{#if user.canRemove}}
+                                                    <td><a {{action 'open_modal' 'your-profile/modals/delete-record' user this}} style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                                {{else}}
+                                                    <td></td>
+                                                {{/if}}
+                                            </tr>
+                                        {{/if}}
+                                    {{/each}}
+                                {{/if}}
+
                                 </tbody>
                             </table>
                         </div>

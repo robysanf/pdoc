@@ -46,6 +46,9 @@ export default DS.Model.extend({
 
         return totRatings;
     }.property('ratings.@each.type'),
+    isAdmin: function(){
+        return this.get('type') === 'admin';
+    }.property('type'),
     isClerk: function(){
         return this.get('type') === 'clerk';
     }.property('type'),

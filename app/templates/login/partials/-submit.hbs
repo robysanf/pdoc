@@ -7,6 +7,15 @@
                 {{#if loggedIn}}
                     <p>You are already logged in!</p>
                 {{else}}
+                    <div class="row pull-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #ffffff">{{controller.translation.language}}: {{controller.translationType}}<b class="caret"></b></a>
+                            <ul class="dropdown-menu" >
+                                <li><a href="#" {{action 'changeLanguage' 'english'}}>{{controller.translation.english}}</a></li>
+                                <li><a href="#" {{action 'changeLanguage' 'italian'}}>{{controller.translation.italian}}</a></li>
+                            </ul>
+                        </li>
+                    </div>
                     <div class="row" style="text-align: center">
                         <h2 style="color: white"><strong>Padroncino Doc</strong></h2>
                     </div>
@@ -31,9 +40,9 @@
                         <div class="col-lg-3"></div>
                         <div class="col-lg-6">
                             <button type="button" class="btn btn-default btn-160 pull-left" {{action 'change_newLog' 1}}>
-                                Sign up
+                                {{controller.translation.signUp}}
                             </button>
-                            <button type="button" class="btn btn-default btn-160 pull-right" {{action 'login'}}>Login</button>
+                            <button type="button" class="btn btn-default btn-160 pull-right" {{action 'login'}}>{{controller.translation.login}}</button>
                         </div>
                         <div class="col-lg-3"></div>
                     </div>

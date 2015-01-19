@@ -4,6 +4,7 @@
 /dist
 /tmp
 /.idea
+/vendor/stripe/stripe_key.js
 
 aws-keys-test.json
 aws-keys-production.json
