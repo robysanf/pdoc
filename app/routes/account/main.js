@@ -204,22 +204,22 @@ export default Ember.Route.extend({
                         delay: 4000
                     });
                 });
-        },
+        }//,
 
-        stripe_connect_to: function( companyId ) {
-            var _this = this, app_controller = _this.controllerFor('application'),
-                path = 'https://connect.stripe.com/oauth/authorize?response_type=code&state='+ companyId +'&client_id='+ stripe_clientKey;
-
-//            $.post(path)
-//                .done(function () { alert('File download a success!'); })
-//                .fail(function ( response ) {
-//                    new PNotify({
-//                        title: 'Error',
-//                        text: 'An error was occurred',
-//                        type: 'error',
-//                        delay: 4000
-//                    });
-//                });
-        }
+//        stripe_connect_to: function( companyId ) {
+//            var _this = this, app_controller = _this.controllerFor('application'),
+//                path = 'https://connect.stripe.com/oauth/authorize?response_type=code&state='+ companyId +'&client_id='+ stripe_clientKey;
+//
+////            $.post(path)
+////                .done(function () { alert('File download a success!'); })
+////                .fail(function ( response ) {
+////                    new PNotify({
+////                        title: 'Error',
+////                        text: 'An error was occurred',
+////                        type: 'error',
+////                        delay: 4000
+////                    });
+////                });
+//        }
     }
 });

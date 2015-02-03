@@ -37,12 +37,17 @@
         {{/view}}
 
         </div>
-        <div class="row" style="margin-bottom: 15px">
-            <label class="col-lg-3 control-label">{{app_controller.translation.birthDate}}</label>
-            <div class="col-lg-9">
-                {{date-picker date= newBirthDate valueFormat='YYYY-MM-DD' class="form-control" }}
-            </div>
-        </div>
+        <!--<div class="row" style="margin-bottom: 15px">-->
+            <!--<label class="col-lg-3 control-label">{{!{{app_controller.translation.birthDate}}</label>-->
+            <!--<div class="col-lg-9">-->
+                <!--{{!{{bootstrap-datepicker-->
+                <!--date= newBirthDate-->
+                <!--clearBtn=true-->
+                <!--placeholder="Click to play"-->
+                <!--class="form-control"}}-->
+                <!--{{!{{date-picker date= newBirthDate valueFormat='YYYY-MM-DD' class="form-control" }}-->
+            <!--</div>-->
+        <!--</div>-->
         {{#if controller.newRecordDriver}}
             <div class="row" style="margin-bottom: 15px">
                 <label class="col-lg-3 control-label">{{app_controller.translation.patents}}</label>
@@ -141,12 +146,6 @@
             <label class="col-lg-3 control-label">{{app_controller.translation.configuration}}</label>
             <div class="col-lg-9">
                 {{auto-suggest source=app_controller.auto_suggest_Configurations destination=controller.newConfigurations searchPath="value" usecase="customMode" minChars=0}}
-            </div>
-        </div>
-        <div class="row" style="margin-bottom: 15px">
-            <label class="col-lg-3 control-label">{{app_controller.translation.registrationYear}}</label>
-            <div class="col-lg-9">
-                {{date-picker date=newRegistrationYear valueFormat='YYYY-MM-DD' class="form-control"}}
             </div>
         </div>
         {{#if newRecordTrailer}}

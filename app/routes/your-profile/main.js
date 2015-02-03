@@ -612,38 +612,43 @@ export default Ember.Route.extend({
         custom_showRating: function( record, type ){
             var _this = this, data = _this.getProperties(), app_controller = _this.controllerFor('application');
 
-            data.company = record.get('id');
-            switch ( type ){
-                case 'service':
-                    $.post('api/custom/companyServiceScore?token=' + app_controller.token, data).then(function(response){
-                        if( response.success ){
-                            record.set('serviceScore', response.score);
-                            record.set('visualizationCredit', response.visualizationCredit);
-                        } else {
-                            app_controller.send( 'message_manager', 'Failure', response.error );
-                        }
-
-                    }, function( response ){
-                        app_controller.send( 'message_manager', 'Failure', response.error );
-
-                    });
+                record.get('ratings').then(function( ratings ){
 
 
-                    break;
-                case 'certification':
-                    $.post('api/custom/companyCertificationScore?token=' + app_controller.token, data).then(function(response){
-                        if( response.success ){
-                            record.set('certificationScore', response.score);
-                            record.set('visualizationCredit', response.visualizationCredit);
-                        } else {
-                            app_controller.send( 'message_manager', 'Failure', response.error );
-                        }
-                    }, function(response){
-                        app_controller.send( 'message_manager', 'Failure', response.error );
 
-                    });
-                    break;
-            }
+                    data.company = record.get('id');
+                    switch ( type ){
+                        case 'service':
+                            $.post('api/custom/companyServiceScore?token=' + app_controller.token, data).then(function(response){
+                                if( response.success ){
+                                    record.set('serviceScore', response.score);
+                                    record.set('visualizationCredit', response.visualizationCredit);
+                                } else {
+                                    app_controller.send( 'message_manager', 'Failure', response.error );
+                                }
+
+                            }, function( response ){
+                                app_controller.send( 'message_manager', 'Failure', response.error );
+
+                            });
+
+
+                            break;
+                        case 'certification':
+                            $.post('api/custom/companyCertificationScore?token=' + app_controller.token, data).then(function(response){
+                                if( response.success ){
+                                    record.set('certificationScore', response.score);
+                                    record.set('visualizationCredit', response.visualizationCredit);
+                                } else {
+                                    app_controller.send( 'message_manager', 'Failure', response.error );
+                                }
+                            }, function(response){
+                                app_controller.send( 'message_manager', 'Failure', response.error );
+
+                            });
+                            break;
+                    }
+                });
         }
     }
 });

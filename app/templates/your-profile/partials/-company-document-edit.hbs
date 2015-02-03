@@ -85,7 +85,12 @@
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{date-picker date=sub_record_document.validityDate valueFormat='YYYY-MM-DD' class="form-control"}}
+                    {{bootstrap-datepicker
+                    date=sub_record_document.validityDate
+                    clearBtn=true
+                    placeholder="Select a date"
+                    class="form-control"}}
+                    {{!{{date-picker date=sub_record_document.validityDate valueFormat='YYYY-MM-DD' class="form-control"}}
                 {{!{{input value = sub_record_document.validityDate type = "date" class = "form-control"}}
                 {{/if}}
             </div>
@@ -101,7 +106,13 @@
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{date-picker date=sub_record_document.deadline valueFormat='YYYY-MM-DD' class="form-control" disabled= true}}
+                    {{bootstrap-datepicker
+                    date=sub_record_document.deadline
+                    clearBtn=true
+                    placeholder="Select a date"
+                    class="form-control"
+                    disabled= true}}
+                    {{!{{date-picker date=sub_record_document.deadline valueFormat='YYYY-MM-DD' class="form-control" disabled= true}}
                 {{!{{input value = sub_record_document.grace type = "date" class = "form-control"}}
                 {{/if}}
             </div>
@@ -116,7 +127,13 @@
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{date-picker date=sub_record_document.alert valueFormat='YYYY-MM-DD' class="form-control" disabled= true}}
+                    {{bootstrap-datepicker
+                    date=sub_record_document.alert
+                    clearBtn=true
+                    placeholder="Select a date"
+                    class="form-control"
+                    disabled= true}}
+                    {{!{{date-picker date=sub_record_document.alert valueFormat='YYYY-MM-DD' class="form-control" disabled= true}}
                 {{!{{input value = sub_record_document.deadLine type = "date" class = "form-control"}}
                 {{/if}}
             </div>
@@ -132,7 +149,13 @@
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{date-picker date=sub_record_document.grace valueFormat='YYYY-MM-DD' class="form-control" disabled= true}}
+                    {{bootstrap-datepicker
+                    date=sub_record_document.grace
+                    clearBtn=true
+                    placeholder="Select a date"
+                    class="form-control"
+                    disabled= true}}
+                    {{!{{date-picker date=sub_record_document.grace valueFormat='YYYY-MM-DD' class="form-control" disabled= true}}
                 {{!{{input value = sub_record_document.grace type = "date" class = "form-control"}}
                 {{/if}}
             </div>

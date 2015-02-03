@@ -47,7 +47,7 @@ export default Ember.Controller.extend({
 
     formData: new FormData(),
     formData_size: null,
-
+    stripe_clientKey: stripe_clientKey,
     is_certifier: function(){
         return ( this.get('company_type') === 'certifier' );
     }.property('company_type'),

@@ -69,7 +69,15 @@
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
-                    {{date-picker date=controller.sub_record.birthDate valueFormat='YYYY-MM-DD' class="form-control" disabled= controller.isView}}
+                    {{bootstrap-datepicker
+                    value=controller.sub_record.birthDate
+                    clearBtn=true
+                    autoclose=true
+                    placeholder="Click to play"
+                    class="form-control"
+                    disabled= controller.isView}}
+
+                    {{!{{date-picker date=controller.sub_record.birthDate valueFormat='YYYY-MM-DD' class="form-control" disabled= controller.isView}}
                     {{!{{input value = controller.sub_record.birthDate type = "text" class = "form-control" disabled= controller.isView}}
                 {{/if}}
             </div>
