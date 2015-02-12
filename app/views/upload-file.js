@@ -52,7 +52,7 @@ export default Ember.View.extend({
 
                     //https://test.zenointelligence.com/seaforward/
                     $.ajax({
-                        url: 'api/files?token='+ view.get('controller.controllers.application').token +'&entity='+this.value,
+                        url: 'api/files?token='+ view.get('controller.controllers.application').token_pdoc +'&entity='+this.value,
                         type: "POST",
                         data: formData,
                         processData: false,

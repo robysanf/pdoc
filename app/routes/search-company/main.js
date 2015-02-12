@@ -9,7 +9,7 @@ export default Ember.Route.extend({
 
         data.model = 'company';
         data.field = 'service';
-        $.post('api/custom/tag?token=' + app_controller.token, data).then(function(response){
+        $.post('api/custom/tag?token=' + app_controller.token_pdoc, data).then(function(response){
                 app_controller.set('auto_suggest_Services', response.tags);
         }, function( response ){
             app_controller.send( 'message_manager', 'Failure', response );

@@ -33,7 +33,7 @@ export default Ember.Route.extend({
                 data = this.getProperties();
 
             data.company = record_id;
-            $.post('api/custom/unbindLinkedCompanies?token=' + app_controller.token, data).then(function(response){
+            $.post('api/custom/unbindLinkedCompanies?token=' + app_controller.token_pdoc, data).then(function(response){
                 if (response.success) {
                     company.reload();
                     //NOT SAVED
@@ -61,7 +61,7 @@ export default Ember.Route.extend({
             data.company = record.get('id');
 //            this.store.find('company', app_controller.company).then(function( record ){
 
-                $.post('api/custom/linkCompanies?token=' + app_controller.token, data).then(function(response){
+                $.post('api/custom/linkCompanies?token=' + app_controller.token_pdoc, data).then(function(response){
                     if (response.success) {
                         controller.set('company_to_link', null);
                         controller.set( attr, value );

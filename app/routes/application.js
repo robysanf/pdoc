@@ -21,7 +21,7 @@ export default Ember.Route.extend({
         }
 
         /** se non è presente in memoria il token l'utente viene ri-direzionato alla pagina di login **/
-        if ( !app_controller.token ){
+        if ( !app_controller.token_pdoc ){
             this.redirectToLogin();
         } else {
             this.redirectToDashboard();

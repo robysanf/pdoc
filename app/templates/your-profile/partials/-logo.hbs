@@ -59,13 +59,13 @@
                     {{#if controller.tabList.company}}
                         {{#each file in files}}
                             {{#if file.isLogo}}
-                                <img src="api/files/{{unbound file.id}}?token={{unbound app_controller.token}}&stream=true">
+                                <img src="api/files/{{unbound file.id}}?token={{unbound app_controller.token_pdoc}}&stream=true">
                             {{/if}}
                         {{/each}}
                     {{else}}
                         {{#each file in controller.sub_record.files}}
                             {{#if file.isLogo}}
-                                <img src="api/files/{{unbound file.id}}?token={{unbound app_controller.token}}&stream=true">
+                                <img src="api/files/{{unbound file.id}}?token={{unbound app_controller.token_pdoc}}&stream=true">
                             {{/if}}
                         {{/each}}
                     {{/if}}
@@ -80,13 +80,13 @@
                         {{#if controller.tabList.company}}
                             {{#each file in files}}
                                 {{#if file.isLogo}}
-                                    <img src="api/files/{{unbound file.id}}?token={{unbound app_controller.token}}&stream=true" style="opacity: 0.4;">
+                                    <img src="api/files/{{unbound file.id}}?token={{unbound app_controller.token_pdoc}}&stream=true" style="opacity: 0.4;">
                                 {{/if}}
                             {{/each}}
                         {{else}}
                             {{#each file in controller.sub_record.files}}
                                 {{#if file.isLogo}}
-                                    <img src="api/files/{{unbound file.id}}?token={{unbound app_controller.token}}&stream=true" style="opacity: 0.4;">
+                                    <img src="api/files/{{unbound file.id}}?token={{unbound app_controller.token_pdoc}}&stream=true" style="opacity: 0.4;">
                                 {{/if}}
                             {{/each}}
                         {{/if}}

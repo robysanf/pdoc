@@ -19,13 +19,13 @@ export default Ember.View.extend({
             var view = this, data = this.getProperties();
 
             data.user = view.controller.sub_record.get('username');
-            data.token = view.get('controller.controllers.application').token;
+            data.token = view.get('controller.controllers.application').token_pdoc;
             data.curr_pwd = curr_pwd;
             data.new_pwd = new_pwd;
             data.confirm_pwd = confirm_pwd;
 
             if( data.new_pwd === data.confirm_pwd ){
-                $.post('api/custom/changePassword?token=' + view.get('controller.controllers.application').token, data).then(function(response){
+                $.post('api/custom/changePassword?token=' + view.get('controller.controllers.application').token_pdoc, data).then(function(response){
                     if (response.success) {
                         new PNotify({ title: 'Well done', text: 'You successfully changed password.', type: 'success', delay: 2000 });
                     }

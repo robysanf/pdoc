@@ -20,7 +20,7 @@ export default Ember.Controller.extend({
      */
     user_grants: JSON.parse(localStorage["user_grants"] ? localStorage["user_grants"] : "[\" \"]"),
 
-    token: localStorage['token'],
+    token_pdoc: localStorage['token_pdoc'],
     company_id: localStorage['company_id'],
     company_type: localStorage['company_type'],
     user_id: localStorage['user_id'],
@@ -28,7 +28,7 @@ export default Ember.Controller.extend({
     is_admin: localStorage['is_admin'],
     comp_country: localStorage['comp_country'],
 
-    tokenChanged: function() {localStorage.token = this.token;this.app_init.set('token', this.token);}.observes('token'),
+    tokenChanged: function() {localStorage.token_pdoc = this.token_pdoc; this.app_init.set('token_pdoc', this.token_pdoc);}.observes('token_pdoc'),
     company_idChanged: function() { localStorage.company_id = this.company_id; }.observes('company_id'),
     company_typeChanged: function() { localStorage.company_type = this.company_type; }.observes('company_type'),
     user_idChanged: function() { localStorage.user_id = this.user_id; }.observes('user_id'),
@@ -206,8 +206,8 @@ export default Ember.Controller.extend({
             this.set('grantsValue', null);
             this.set('user_record', null);
             this.set('userId', null);
-            this.set('token', null);
-            this.app_init.set('token', this.token);
+            this.set('token_pdoc', null);
+            this.app_init.set('token_pdoc', this.token_pdoc);
             this.set('username', null);
             this.set('selectedDepot', null);
             this.set('userProfile', null);
@@ -218,7 +218,7 @@ export default Ember.Controller.extend({
             localStorage.removeItem('user_record');
             localStorage.removeItem('grantsValue');
             localStorage.removeItem('userId');
-            localStorage.removeItem('token');
+            localStorage.removeItem('token_pdoc');
             localStorage.removeItem('username');
             localStorage.removeItem('selectedDepot');
             localStorage.removeItem('userProfile');

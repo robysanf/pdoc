@@ -12,5 +12,5 @@ export default {
 };
 
 var app_init = Ember.Object.extend({
-    token: localStorage['token']
+    token_pdoc: localStorage['token_pdoc']
 });

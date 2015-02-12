@@ -71,7 +71,7 @@
                                 <td {{action 'transition_to' 'your-profile/main' link}} style="cursor: pointer">
                                     {{#each file in link.files}}
                                         {{#if file.isLogo}}
-                                            <img width="30px" src="api/files/{{unbound file.id}}?token={{unbound app_controller.token}}&stream=true">
+                                            <img width="30px" src="api/files/{{unbound file.id}}?token={{unbound app_controller.token_pdoc}}&stream=true">
                                         {{/if}}
                                     {{/each}}
                                 </td>

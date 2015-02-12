@@ -111,7 +111,7 @@ export default Ember.Route.extend({
                             customerData.token = response.id;
                             customerData.user_id = app_controller.user_id;
 
-                            $.post('api/custom/customerCard?token=' + app_controller.token, customerData).then(function(response){
+                            $.post('api/custom/customerCard?token=' + app_controller.token_pdoc, customerData).then(function(response){
                                 if (response.success) {
                                     new PNotify({
                                         title: 'Well done',
@@ -171,7 +171,7 @@ export default Ember.Route.extend({
                 data.company = company_id;
                 data.user = user_id;
 
-                $.post('api/custom/refill?token=' + app_controller.token, data).then(function(response){
+                $.post('api/custom/refill?token=' + app_controller.token_pdoc, data).then(function(response){
 
                     if (response.success) {
                         _this.store.find('company', company_id).then(function( record ){
@@ -192,7 +192,7 @@ export default Ember.Route.extend({
 
         download_file: function( fileId ) {
             var _this = this, app_controller = _this.controllerFor('application'),
-                path = 'api/files/' + fileId + '?token=' + app_controller.token + '&download=true';
+                path = 'api/files/' + fileId + '?token=' + app_controller.token_pdoc + '&download=true';
 
             $.fileDownload(path)
                 // .done(function () { alert('File download a success!'); })

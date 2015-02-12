@@ -25,21 +25,21 @@ export default Ember.Route.extend({
 
         data.model = 'company';
         data.field = 'service';
-        $.post('api/custom/tag?token=' + app_controller.token, data).then(function(response){
+        $.post('api/custom/tag?token=' + app_controller.token_pdoc, data).then(function(response){
             app_controller.set('auto_suggest_Services', response.tags);
         }, function( response ){
             app_controller.send( 'message_manager', 'Failure', response );
         });
 
         data.field = 'segment';
-        $.post('api/custom/tag?token=' + app_controller.token, data).then(function(response){
+        $.post('api/custom/tag?token=' + app_controller.token_pdoc, data).then(function(response){
             app_controller.set('auto_suggest_Segments', response.tags);
         }, function( response ){
             app_controller.send( 'message_manager', 'Failure', response );
         });
 
         data.field = 'area';
-        $.post('api/custom/tag?token=' + app_controller.token, data).then(function(response){
+        $.post('api/custom/tag?token=' + app_controller.token_pdoc, data).then(function(response){
             app_controller.set('auto_suggest_Areas', response.tags);
         }, function( response ){
             app_controller.send( 'message_manager', 'Failure', response );
@@ -282,7 +282,7 @@ export default Ember.Route.extend({
                                 }
                                 if(files_length === index + 1 ){
                                     $.ajax({
-                                        url: 'api/files?token='+ app_controller.token +'&entity='+record.get('id')+'&type=logo',
+                                        url: 'api/files?token='+ app_controller.token_pdoc +'&entity='+record.get('id')+'&type=logo',
                                         type: "POST",
                                         data: app_controller.formData,
                                         processData: false,
@@ -303,7 +303,7 @@ export default Ember.Route.extend({
                             });
                         } else {
                             $.ajax({
-                                url: 'api/files?token='+ app_controller.token +'&entity='+record.get('id')+'&type=logo',
+                                url: 'api/files?token='+ app_controller.token_pdoc +'&entity='+record.get('id')+'&type=logo',
                                 type: "POST",
                                 data: app_controller.formData,
                                 processData: false,
@@ -548,7 +548,7 @@ export default Ember.Route.extend({
          */
         download_file: function( fileId ) {
             var self = this, app_controller = self.controllerFor('application'),
-                path = 'api/files/' + fileId + '?token=' + app_controller.token + '&download=true';
+                path = 'api/files/' + fileId + '?token=' + app_controller.token_pdoc + '&download=true';
 
             $.fileDownload(path)
                 // .done(function () { alert('File download a success!'); })
@@ -573,7 +573,7 @@ export default Ember.Route.extend({
 
             data.document = document_record.get('id');
 
-            $.post('api/custom/notifyDocument?token=' + app_controller.token, data).then(function(response){
+            $.post('api/custom/notifyDocument?token=' + app_controller.token_pdoc, data).then(function(response){
                 if (response.success) {
                     document_record.set('isCertified', true).save();
                     app_controller.send( 'message_manager', 'Success', 'You have successfully sent the document.' );
@@ -598,7 +598,7 @@ export default Ember.Route.extend({
 
             data.company = company_id;
 
-            $.post('api/custom/setCertifier?token=' + app_controller.token, data).then(function(response){
+            $.post('api/custom/setCertifier?token=' + app_controller.token_pdoc, data).then(function(response){
                 if (response.success) {
                     app_controller.send( 'message_manager', 'Success', 'You have successfully sent the request.' );
                 }
@@ -619,7 +619,7 @@ export default Ember.Route.extend({
                     data.company = record.get('id');
                     switch ( type ){
                         case 'service':
-                            $.post('api/custom/companyServiceScore?token=' + app_controller.token, data).then(function(response){
+                            $.post('api/custom/companyServiceScore?token=' + app_controller.token_pdoc, data).then(function(response){
                                 if( response.success ){
                                     record.set('serviceScore', response.score);
                                     record.set('visualizationCredit', response.visualizationCredit);
@@ -635,7 +635,7 @@ export default Ember.Route.extend({
 
                             break;
                         case 'certification':
-                            $.post('api/custom/companyCertificationScore?token=' + app_controller.token, data).then(function(response){
+                            $.post('api/custom/companyCertificationScore?token=' + app_controller.token_pdoc, data).then(function(response){
                                 if( response.success ){
                                     record.set('certificationScore', response.score);
                                     record.set('visualizationCredit', response.visualizationCredit);

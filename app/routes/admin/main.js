@@ -175,7 +175,7 @@ export default Ember.Route.extend({
          */
         download_file: function( fileId ) {
             var self = this, app_controller = self.controllerFor('application'),
-                path = 'api/files/' + fileId + '?token=' + app_controller.token + '&download=true';
+                path = 'api/files/' + fileId + '?token=' + app_controller.token_pdoc + '&download=true';
 
             $.fileDownload(path)
                 // .done(function () { alert('File download a success!'); })

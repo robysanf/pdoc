@@ -5,8 +5,8 @@ export default DS.RESTAdapter.extend({
     namespace: "p-doc/api",
 
     buildURL: function() {
-        var token = this.app_init.get('token');
+        var token_pdoc = this.app_init.get('token_pdoc');
         var normalURL = this._super.apply(this, arguments);
-        return normalURL + '?token=' + token;
+        return normalURL + '?token=' + token_pdoc;
     }
 });

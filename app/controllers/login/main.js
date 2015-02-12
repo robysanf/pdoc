@@ -78,7 +78,7 @@ export default Ember.Controller.extend({
 
                     //inizializzo variabili globali in application
                     self.get('controllers.application').set('company_id', response.company_id);
-                    self.get('controllers.application').set('token', response.token);
+                    self.get('controllers.application').set('token_pdoc', response.token);
                     self.get('controllers.application').set('company_type', response.company_type);
                     self.get('controllers.application').set('user_id', response.user_id);
                     self.get('controllers.application').set('user_type', response.userType);
