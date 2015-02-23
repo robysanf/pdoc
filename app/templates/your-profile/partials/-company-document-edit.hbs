@@ -86,13 +86,13 @@
                     {{/if}}
                 {{else}}
                     {{bootstrap-datepicker
-                    date=sub_record_document.validityDate
+                    value=controller.sub_record_document.validityDate
                     clearBtn=true
                     placeholder="Select a date"
-                    class="form-control"
-                    format="yyyy-mm-dd"}}
+                    class="form-control"}}
+
                     {{!{{date-picker date=sub_record_document.validityDate valueFormat='YYYY-MM-DD' class="form-control"}}
-                {{!{{input value = sub_record_document.validityDate type = "date" class = "form-control"}}
+                    {{!{{input value = sub_record_document.validityDate type = "date" class = "form-control"}}
                 {{/if}}
             </div>
             <div class="col-lg-1"></div>
