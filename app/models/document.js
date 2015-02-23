@@ -37,17 +37,20 @@ export default DS.Model.extend({
     set_alert: function(){
         var new_date;
         if( this.get('type') === 'document'){
+            var docTemp_grace = this.get('docTemplate').get('alertNum');
+            var validity = this.get('validityDate');
+
             switch (this.get('docTemplate').get('alertType')){
                 case 'days':
-                    new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('alertNum'), 'day');
+                    new_date = moment( validity ).add( docTemp_grace, 'day');
                     this.set('alert', new_date);
                     break;
                 case 'months':
-                    new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('alertNum'), 'month');
+                    new_date = moment( validity ).add( docTemp_grace, 'month');
                     this.set('alert', new_date);
                     break;
                 case 'years':
-                    new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('alertNum'), 'year');
+                    new_date = moment( validity ).add( docTemp_grace, 'year');
                     this.set('alert', new_date);
                     break;
             }
@@ -57,17 +60,19 @@ export default DS.Model.extend({
     set_grace: function(){
         var new_date;
         if( this.get('type') === 'document'){
+            var docTemp_grace = this.get('docTemplate').get('graceNum');
+
             switch (this.get('docTemplate').get('graceType')){
                 case 'days':
-                    new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('graceNum'), 'day');
+                    new_date = moment(this.get('validityDate')).add( docTemp_grace, 'day');
                     this.set('grace', new_date);
                     break;
                 case 'months':
-                    new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('graceNum'), 'month');
+                    new_date = moment(this.get('validityDate')).add( docTemp_grace, 'month');
                     this.set('grace', new_date);
                     break;
                 case 'years':
-                    new_date = moment(this.get('validityDate')).add(this.get('docTemplate').get('graceNum'), 'year');
+                    new_date = moment(this.get('validityDate')).add( docTemp_grace, 'year');
                     this.set('grace', new_date);
                     break;
             }
