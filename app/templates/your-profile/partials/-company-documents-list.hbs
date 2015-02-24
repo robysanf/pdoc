@@ -41,14 +41,22 @@
                                     </td>
                                     {{#if doc.isDocument}}
                                         {{#unless doc.isCertified}}
-                                            <td><a {{action 'custom_notifyDocument' doc}} style="cursor: pointer"><span class="glyphicon glyphicon-send"></span></a></td>
+                                            {{#if doc.isOwnerCompany}}
+                                                <td><a {{action 'custom_notifyDocument' doc}} style="cursor: pointer"><span class="glyphicon glyphicon-send"></span></a></td>
+                                            {{else}}
+                                                <td></td>
+                                            {{/if}}
                                         {{else}}
                                             <td></td>
                                         {{/unless}}
                                     {{else}}
                                         {{#if doc.isInvoice}}
                                             {{#unless doc.isCertified}}
-                                                <td><a {{action 'custom_notifyDocument' doc}} style="cursor: pointer"><span class="glyphicon glyphicon-send"></span></a></td>
+                                                {{#if doc.isOwnerCompany}}
+                                                    <td><a {{action 'custom_notifyDocument' doc}} style="cursor: pointer"><span class="glyphicon glyphicon-send"></span></a></td>
+                                                {{else}}
+                                                    <td></td>
+                                                {{/if}}
                                             {{else}}
                                                 <td></td>
                                             {{/unless}}

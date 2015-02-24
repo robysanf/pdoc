@@ -39,7 +39,7 @@
                                 </td>
                                 {{#if document.isDocument}}
                                     {{#unless document.isCertified}}
-                                        {{#if canEdit_userProfile}}
+                                        {{#if document.isOwnerCompany}}
                                             <td><a {{action 'custom_notifyDocument' document}} style="cursor: pointer"><span class="glyphicon glyphicon-send"></span></a></td>
                                         {{else}}
                                             <td></td>
@@ -49,14 +49,19 @@
                                     {{/unless}}
                                 {{else}}
                                     {{#if document.isInvoice}}
-                                        {{#if canEdit_userProfile}}
-                                            <td><a {{action 'custom_notifyDocument' document}} style="cursor: pointer"><span class="glyphicon glyphicon-send"></span></a></td>
+                                        {{#unless document.isCertified}}
+                                            {{#if document.isOwnerCompany}}
+                                                <td><a {{action 'custom_notifyDocument' document}} style="cursor: pointer"><span class="glyphicon glyphicon-send"></span></a></td>
+                                            {{else}}
+                                                <td></td>
+                                            {{/if}}
                                         {{else}}
-                                             <td></td>
-                                        {{/if}}
+                                            <td></td>
+                                        {{/unless}}
                                     {{else}}
                                         <td></td>
                                     {{/if}}
+
                                 {{/if}}
 
                                 {{#if document.canRemove}}

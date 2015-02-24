@@ -9,8 +9,8 @@
                     <div class="form-group">
                         <div class="col-lg-1">
                             <!-------------------- altre tab - cambio button tra edit/view/add ---------------------->
-                            {{#if can_edit_company}}
-                                <button class="btn btn-primary btn-50" {{action 'open_modal' 'your-profile/modals/new-record' null this 'clerk'}}{{!{{action 'create_record' this 'your-profile/main' false}}><span class="glyphicon glyphicon-plus"></span></button>
+                            {{#if is_admin_for_this_company}}
+                                <button class="btn btn-primary btn-50" {{action 'open_modal' 'your-profile/modals/new-record' null this 'clerk'}}><span class="glyphicon glyphicon-plus"></span></button>
                             {{/if}}
 
                         </div>

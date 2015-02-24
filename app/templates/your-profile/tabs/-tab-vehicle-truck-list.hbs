@@ -21,6 +21,7 @@
                             <table class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
+                                    <th>{{app_controller.translation.name}}</th>
                                     <th>{{app_controller.translation.description}}</th>
                                     <th>{{app_controller.translation.brand}}</th>
                                     <th>{{app_controller.translation.vehicleModel}}</th>
@@ -33,6 +34,7 @@
                                 {{#each vehicle in vehicles}}
                                     {{#if vehicle.isTruck}}
                                         <tr>
+                                            <td {{action 'transition_to' 'your-profile/partials/-vehicle-field' vehicle 'isView' true}} style="cursor: pointer">{{vehicle.name}}</td>
                                             <td {{action 'transition_to' 'your-profile/partials/-vehicle-field' vehicle 'isView' true}} style="cursor: pointer">{{vehicle.description}}</td>
                                             <td {{action 'transition_to' 'your-profile/partials/-vehicle-field' vehicle 'isView' true}} style="cursor: pointer">{{vehicle.brand}}</td>
                                             <td {{action 'transition_to' 'your-profile/partials/-vehicle-field' vehicle 'isView' true}} style="cursor: pointer">{{vehicle.model}}</td>

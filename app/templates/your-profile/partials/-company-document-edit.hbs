@@ -2,7 +2,12 @@
     <fieldset>
     <div class="form-group">
         <div class="col-lg-1">
-            {{#if canEdit_userProfile}}
+
+            <!--------   modifica del documento
+                         grants -  canEdit sul modello e nel caso in cui il document sia un NewDocument
+            -------------------------------->
+
+            {{#if controller.canEdit_companyDocument}}
                 {{#if isView_docDetails}}
                     <button class="btn btn-primary btn-50" {{action 'set_variable' 'isView_docDetails' false}}><span class="glyphicon glyphicon-pencil"></span></button>
                 {{else}}
@@ -42,6 +47,7 @@
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
                 {{else}}
+
                     {{#unless is_supplier}}
                         {{view "select" content = documentTypes value = sub_record_document.type class = "form-control"}}
                     {{else}}
@@ -89,7 +95,8 @@
                     value=controller.sub_record_document.validityDate
                     clearBtn=true
                     placeholder="Select a date"
-                    class="form-control"}}
+                    class="form-control"
+                    autoclose=true}}
 
                     {{!{{date-picker date=sub_record_document.validityDate valueFormat='YYYY-MM-DD' class="form-control"}}
                     {{!{{input value = sub_record_document.validityDate type = "date" class = "form-control"}}
@@ -99,66 +106,41 @@
             <div class="col-lg-2">
                 <label class="col-lg-3 control-label">{{app_controller.translation.deadLine}} </label>
             </div>
+
             <div class="col-lg-3">
-                {{#if isView_docDetails}}
-                    {{#if sub_record_document.deadLine}}
-                        <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record_document.deadLine_toString}}</p>
-                    {{else}}
-                        <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
-                    {{/if}}
+
+                {{#if sub_record_document.deadline}}
+                    <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record_document.deadline_toString}}</p>
                 {{else}}
-                    {{bootstrap-datepicker
-                    date=sub_record_document.deadline
-                    clearBtn=true
-                    placeholder="Select a date"
-                    class="form-control"
-                    disabled= true}}
-                    {{!{{date-picker date=sub_record_document.deadline valueFormat='YYYY-MM-DD' class="form-control" disabled= true}}
-                {{!{{input value = sub_record_document.grace type = "date" class = "form-control"}}
+                    <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                 {{/if}}
+
             </div>
+
         </div>
         <div class="form-group">
             <label class="col-lg-3 control-label">{{app_controller.translation.alert}}</label>
             <div class="col-lg-3">
-                {{#if isView_docDetails}}
+
                     {{#if sub_record_document.alert}}
                         <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record_document.alert_toString}}</p>
                     {{else}}
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
-                {{else}}
-                    {{bootstrap-datepicker
-                    date=sub_record_document.alert
-                    clearBtn=true
-                    placeholder="Select a date"
-                    class="form-control"
-                    disabled= true}}
-                    {{!{{date-picker date=sub_record_document.alert valueFormat='YYYY-MM-DD' class="form-control" disabled= true}}
-                {{!{{input value = sub_record_document.deadLine type = "date" class = "form-control"}}
-                {{/if}}
+
             </div>
             <div class="col-lg-1"></div>
             <div class="col-lg-2">
                 <label class="col-lg-3 control-label">{{app_controller.translation.grace}}</label>
             </div>
             <div class="col-lg-3">
-                {{#if isView_docDetails}}
+
                     {{#if sub_record_document.grace}}
                         <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record_document.grace_toString}}</p>
                     {{else}}
                         <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                     {{/if}}
-                {{else}}
-                    {{bootstrap-datepicker
-                    date=sub_record_document.grace
-                    clearBtn=true
-                    placeholder="Select a date"
-                    class="form-control"
-                    disabled= true}}
-                    {{!{{date-picker date=sub_record_document.grace valueFormat='YYYY-MM-DD' class="form-control" disabled= true}}
-                {{!{{input value = sub_record_document.grace type = "date" class = "form-control"}}
-                {{/if}}
+
             </div>
         </div>
         {{/if}}

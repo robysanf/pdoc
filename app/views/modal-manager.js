@@ -16,7 +16,7 @@ export default Ember.View.extend({
         },
 
         change_password: function( curr_pwd, new_pwd, confirm_pwd, outlet, parentView ){
-            var view = this, data = this.getProperties();
+            var view = this, data = view.getProperties();
 
             data.user = view.controller.sub_record.get('username');
             data.token = view.get('controller.controllers.application').token_pdoc;
@@ -28,14 +28,20 @@ export default Ember.View.extend({
                 $.post('api/custom/changePassword?token=' + view.get('controller.controllers.application').token_pdoc, data).then(function(response){
                     if (response.success) {
                         new PNotify({ title: 'Well done', text: 'You successfully changed password.', type: 'success', delay: 2000 });
+
+                        view.controller.set('curr_pwd', null).set('new_pwd', null).set('confirm_pwd', null);
+                        view.send( 'close', outlet, parentView);
                     }
                 }, function(){
                     new PNotify({ title: 'Warning', text: 'Password incorrect, please check it.', type: 'error', delay: 2000 });
+                    view.send( 'close', outlet, parentView);
                 });
             }else{
                 new PNotify({ title: 'Warning', text: 'The new passwords do not match, please check them.', type: 'error', delay: 2000 });
+                view.send( 'close', outlet, parentView);
             }
-            this.send( 'close', outlet, parentView);
+
+
         },
 
         //creazione di un nuovo payment plan da parte di un certificatore

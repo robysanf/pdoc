@@ -31,10 +31,10 @@
     "glob": "^4.0.5",
     "broccoli-merge-trees": "~0.2.1",
     "broccoli-static-compiler": "~0.2.1",
-    "ember-select-2": "~1.1.1-beta1",
+    "ember-select-2": "1.1.1-beta1",
     "grunt": "~0.4.5",
     "grunt-s3": "~0.2.0-alpha.3",
-    "ember-cli-bootstrap-datepicker": "~0.3.0"
+    "ember-cli-bootstrap-datepicker": "0.3.0"
   },
   "dependencies": {
     "broccoli-uglify-js": "~0.1.3",

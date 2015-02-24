@@ -83,6 +83,12 @@ export default Ember.Route.extend({
     },
 
     actions: {
+
+
+        set_variable: function( attr, value ){
+            this.controller.set( attr, value );
+        },
+
         /**
          Gestione della tab navigation in 'your-profile'; rende attiva la tab selezionata dall'utente
 
@@ -150,17 +156,23 @@ export default Ember.Route.extend({
                    break;
                case 'your-profile/partials/-company-document-edit':
                    this.controller.set( 'sub_record_document', record );
-                   app_controller.company_record.get('certifier').then(function( record ){
-                       if( _this.controller.tabList.company ){
-                           app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id'), type: 'company' }));
-                       } else  if( _this.controller.tabList.driver ){
-                           app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id'), type: 'driver' }));
-                       } else  if( _this.controller.tabList.truck ){
-                           app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id'), type: 'truck' }));
-                       } else  if( _this.controller.tabList.trailer ){
-                           app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id'), type: 'trailer' }));
-                       }
-                   });
+
+                   /** se non è un supplier inizializzo la lista di doc-template in base al certificatore della company in questione */
+                   if( app_controller.company_type !== "supplier" ) {
+                       app_controller.company_record.get('certifier').then(function( record ){
+
+                           if( _this.controller.tabList.company ){
+                               app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id'), type: 'company' }));
+                           } else  if( _this.controller.tabList.driver ){
+                               app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id'), type: 'driver' }));
+                           } else  if( _this.controller.tabList.truck ){
+                               app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id'), type: 'truck' }));
+                           } else  if( _this.controller.tabList.trailer ){
+                               app_controller.set('records_docTemplate', _this.store.find('docTemplate', { company: record.get('id'), type: 'trailer' }));
+                           }
+                       });
+                   }
+
 
                    this.send('set_variable', var1, value1);
                    this.send('set_variable', var2, value2);
@@ -332,13 +344,16 @@ export default Ember.Route.extend({
         },
 
 
-        set_variable: function( attr, value ){
-            this.controller.set( attr, value );
-        },
+
+        /**
+         *   creazione di un nuovo record
+         *
+         * */
 
         create_record: function( record_company, path, value, attr1, val1, type ){
             var _this = this, app_controller = _this.controllerFor('application'), new_record;
 
+            /** COMPANY TAB */
             if ( _this.controller.tabList.company ) {
                 var today = new Date();
 
@@ -374,6 +389,7 @@ export default Ember.Route.extend({
                     _this.controller.set( 'sub_record_document', new_record );
                 });
 
+                /** DRIVER TAB */
             } else if ( _this.controller.tabList.driver ) {
 
                 if( type === 'document' ){
@@ -408,9 +424,12 @@ export default Ember.Route.extend({
                         _this.controller.set( 'sub_record_document', new_record );
                     });
                 }
+
+                /** CLERK TAB */
             } else if ( _this.controller.tabList.clerk ) {
 
 
+                /** TRUCK TAB */
             } else if ( _this.controller.tabList.truck ) {
 
                 if( type === 'document' ){
@@ -445,6 +464,7 @@ export default Ember.Route.extend({
                     });
                 }
 
+                /** TRAILER TAB */
             } else if ( _this.controller.tabList.trailer ) {
                 if( type === 'document' ){
                     new_record = this.store.createRecord('document', {
@@ -485,7 +505,7 @@ export default Ember.Route.extend({
 
         },
 
-        /************************************************************
+        /**
          * apertura di un modale nella pagina corrente
          * 
          * @param path
@@ -497,7 +517,7 @@ export default Ember.Route.extend({
 
             switch (path){
                 case 'your-profile/modals/delete-record':
-                    controller.set('main_record', record);
+                    //controller.set('main_record', record);
                     controller.set('record_to_delete', record_to_delete);
                     break;
                 case 'your-profile/modals/new-record':
@@ -516,14 +536,14 @@ export default Ember.Route.extend({
             var _this = this, app_controller = _this.controllerFor('application'), controller = _this.controllerFor('your-profile/main');
 
             controller.record_to_delete.deleteRecord();
-            controller.record_to_delete.save().then(function(){
-                controller.main_record.reload();
-            });
+            controller.record_to_delete.save();//.then(function(){
+               // controller.main_record.reload();
+//            });
         },
 
-        /*  FILES TAB
-         * ******************
-        faccio il reload del record a cui sono stati aggiunti i files
+
+        /**
+         faccio il reload del record a cui sono stati aggiunti i files
 
          @action update_files
          @for Booking - Files Tab
@@ -531,11 +551,12 @@ export default Ember.Route.extend({
          @param {String}
          @param {String}
          */
+
         update_files: function(mod, val, $btn){
             this.store.find( mod, val ).then(function( record ){
                 record.save();
                 $btn.button('reset');
-                record.reload();
+                //record.reload();
             });
         },
 
@@ -582,8 +603,6 @@ export default Ember.Route.extend({
                 app_controller.send( 'message_manager', 'Failure', response );
             });
         },
-
-        /*********************************** FUNZIONI CUSTOM ***********************************/
 
         /**
          invio richiesta per cambio certificatore

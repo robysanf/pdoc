@@ -19,14 +19,23 @@ export default Ember.ObjectController.extend({
         return ( this.get('app_user_type') === 'driver' );
     }.property('app_user_type'),
 
+    is_supplier: function(){     //nella creazione di documenti, per decidere se far vedere la lista completa o solo 'other' and 'invoice'
+        return ( this.get('app_company_type') === 'supplier' );
+    }.property('app_company_type'),
+
     is_driver_and_canEdit: function(){
-        return ( this.get('app_user_type') === 'driver' && this.get('sub_record').get('id') === this.get('app_user_id') );
-    }.property('app_user_type', 'id', 'sub_record', 'app_user_id'),
+        return ( this.get('is_driver') && String(this.get('sub_record').get('id')) === String(this.get('app_user_id')) );
+    }.property('is_driver', 'id', 'sub_record', 'app_user_id'),
 
     is_admin_or_clerk: function(){       // l'utente è di tipo admin o clerk
         var type =  this.get('app_user_type');
         return ( type === 'admin' || type === 'clerk' );
     }.property('app_user_type'),
+
+    is_admin_for_this_company: function(){
+        var my_company = String(this.get('id')) === String(this.get('app_company_id'));
+        return  this.get('is_admin') && my_company ;
+    }.property('is_admin', 'app_company_id', 'id'),
 
     can_edit_company: function(){         //è admin di questa company se la sua company è uguale alla company loggata
         var user_type = this.get('is_admin_or_clerk');
@@ -34,9 +43,17 @@ export default Ember.ObjectController.extend({
         return user_type && my_company ;
     }.property('is_admin_or_clerk', 'app_company_id', 'id'),
 
+    canEdit: function(){
+        return this.get('sub_record_document').get('canEdit');
+    }.property('sub_record_document'),
+
+    canEdit_companyDocument: function(){
+        return this.get('record_isNew') || this.get('canEdit');
+    }.property('record_isNew', 'canEdit'),
+
     canEdit_userProfile: function(){         //è admin di questa company se la sua company è uguale alla company loggata
-        return this.get('is_driver_and_canEdit') || this.get('can_edit_company') ;
-    }.property('is_driver_and_canEdit', 'can_edit_company'),
+        return this.get('record_isNew') || this.get('is_driver_and_canEdit') || this.get('can_edit_company') ;
+    }.property('record_isNew', 'is_driver_and_canEdit', 'can_edit_company'),
 
     check_changePassword: function(){
         if( this.sub_record ){
@@ -47,8 +64,11 @@ export default Ember.ObjectController.extend({
     canCreate_subRecord_doc: function(){
         return ( this.get('app_is_linked') && this.get('is_admin_or_clerk') || this.get('is_driver_and_canEdit') );
     }.property( 'app_is_linked', 'is_admin_or_clerk', 'is_driver_and_canEdit' ),
+
     can_create_doc: function(){
-       return ( this.get('app_is_linked') && this.get('is_admin_or_clerk') );        //solo un utente di tipo admin/clerk può creare un document e solo della company proprietaria o di una connessa
+        var isLink = this.get('app_is_linked');
+        var hadPermission = this.get('is_admin_or_clerk');
+       return ( isLink && hadPermission );        //solo un utente di tipo admin/clerk può creare un document e solo della company proprietaria o di una connessa
     }.property('app_is_linked', 'is_admin_or_clerk'),
 
     isView: true,
@@ -146,5 +166,10 @@ export default Ember.ObjectController.extend({
     newChassisNumber: null,
     newWeight: null,
     newTare: null,
-    newCategory: null
+    newCategory: null,
+
+    /** change pwd */
+    curr_pwd: null,
+    new_pwd: null,
+    confirm_pwd: null
  });

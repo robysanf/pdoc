@@ -4,6 +4,7 @@ export default DS.Model.extend({
     canEdit: DS.attr('boolean'),
     canRemove: DS.attr('boolean'),
     isCertified: DS.attr('boolean'),
+    isOwnerCompany: DS.attr('boolean'),
 
     date: DS.attr('custom-date'),
     validityDate: DS.attr('custom-date'),
@@ -79,12 +80,36 @@ export default DS.Model.extend({
         }
 
     }.observes('validityDate', 'type'),
+
+
     set_deadline: function(){
+        var new_date;
         if( this.get('type') === 'document'){
-            this.set('deadline', this.get('docTemplate').get('deadline'));
+            if( this.get('docTemplate').get('validityNum') ){
+                var docTemp_validity = this.get('docTemplate').get('validityNum');
+
+                switch (this.get('docTemplate').get('validityType')){
+                    case 'days':
+                        new_date = moment(this.get('validityDate')).add( docTemp_validity, 'day');
+                        this.set('deadline', new_date);
+                        break;
+                    case 'months':
+                        new_date = moment(this.get('validityDate')).add( docTemp_validity, 'month');
+                        this.set('deadline', new_date);
+                        break;
+                    case 'years':
+                        new_date = moment(this.get('validityDate')).add( docTemp_validity, 'year');
+                        this.set('deadline', new_date);
+                        break;
+                }
+
+            } else {
+                this.set('deadline', this.get('docTemplate').get('deadline'));
+            }
+
         }
 
-    }.observes('docTemplate.deadline', 'type'),
+    }.observes('validityDate', 'type'),
 
     /*******************************************************
      * PROPERTIES
