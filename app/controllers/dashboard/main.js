@@ -5,6 +5,7 @@ export default Ember.ArrayController.extend({
     app_controller: Ember.computed.alias('controllers.application'),
 
     postTitle: null,
-    postDescription: null
+    postDescription: null,
 
+    orderedPosts: null
 });

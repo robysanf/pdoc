@@ -158,6 +158,14 @@ export default Ember.Route.extend({
             });
         },
 
+        link_to: function( path, id ){
+             if( id ){
+                 this.transitionTo(path, id);
+             } else {
+                 this.transitionTo(path);
+             }
+        },
+
         new_refill: function(payment_id, company_id, user_id, $btn) {
             var _this = this, app_controller = _this.controllerFor('application'),
                 today = new Date(), data = this.getProperties();

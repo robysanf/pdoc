@@ -53,13 +53,13 @@ export default DS.Model.extend({
        return this.get('actionToken') !== null;
     }.property('actionToken'),
     showDate: function(){
-      return moment(this.get('date')).format("YYYY-MM-DD");
+      return moment(this.get('date')).format("LL");
     }.property('date'),
     showDeadline: function(){
-        return moment(this.get('deadline')).format("YYYY-MM-DD");
+        return moment(this.get('deadline')).format("LL");
     }.property('deadline'),
     showGracePeriod: function(){
-        return moment(this.get('gracePeriod')).format("YYYY-MM-DD");
+        return moment(this.get('gracePeriod')).format("LL");
     }.property('gracePeriod'),
 
     status_hide: function(){

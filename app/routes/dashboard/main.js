@@ -2,43 +2,65 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-    model: function( ) {
-        return this.store.find('post');
+    model: function() {
+        var _this = this, controller = _this.controllerFor('dashboard.main');
+        //return this.store.find('post');
+        return this.store.filter('post', { sortOrder: 'descendent', sortBy: 'date' }, function( post ) {
+            return post;
+        });
+//
+//        controller.set('orderedPosts', allPosts);
+
     },
 
     actions: {
-            submit: function( record ){
-                var _this = this, app_controller = _this.controllerFor('application');
+        delete_record: function( record_to_remove ){
+            record_to_remove.deleteRecord();
+            record_to_remove.save();
 
-                var new_record = _this.store.createRecord('post', {
-                    name: "Post",
-                    title: _this.controller.postTitle,
-                    description: _this.controller.postDescription,
-                    date: moment().format()
-                });
+        },
 
-                // belongsTo set() here
-                new_record.set('company', record);
+        submit: function( record ){
+            var _this = this, app_controller = _this.controllerFor('application');
 
-                Ember.RSVP.all([
-                    new_record.get('company'),
-                ]).then(function() {
+            var new_record = _this.store.createRecord('post', {
+                name: "Post",
+                title: _this.controller.postTitle,
+                description: _this.controller.postDescription,
+                date: moment().format()
+            });
 
-                    var onSuccess = function() {
-                        app_controller.send( 'message_manager', 'Success', 'You have successfully saved the record.' );
-                        _this.controller.set('postTitle', null);
-                        _this.controller.set('postDescription', null);
-                    }.bind(this);
+            // belongsTo set() here
+            new_record.set('company', record);
 
-                    var onFail = function() {
-                        app_controller.send( 'message_manager', 'Failure', 'Something went wrong, the record was not saved.' );
-                    }.bind(this);
+            Ember.RSVP.all([
+                new_record.get('company'),
+            ]).then(function() {
 
-                    // Save inside then() after I call get() on promises
-                    new_record.save().then(onSuccess, onFail);
+                var onSuccess = function( ) {
+                    app_controller.send( 'message_manager', 'Success', 'You have successfully saved the record.' );
 
-                }.bind(this));
-            }
+                    _this.controller.set('postTitle', null);
+                    _this.controller.set('postDescription', null);
+
+
+//                        var allPosts = this.store.filter('post', { sortOrder: 'descendent', sortBy: 'date' }, function( post ) {
+//                            return post;
+//                        });
+//
+//                        _this.controller.set('orderedPosts', allPosts );
+
+                }.bind(this);
+
+                var onFail = function() {
+                    app_controller.send( 'message_manager', 'Failure', 'Something went wrong, the record was not saved.' );
+                }.bind(this);
+
+                // Save inside then() after I call get() on promises
+                new_record.save().then(onSuccess, onFail);
+
+            }.bind(this));
+        }
     }
 
 

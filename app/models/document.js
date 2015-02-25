@@ -8,7 +8,8 @@ export default DS.Model.extend({
 
     date: DS.attr('custom-date'),
     validityDate: DS.attr('custom-date'),
-    deadline: DS.attr('custom-date'),
+    //deadline: DS.attr('custom-date'),
+    expirationDate: DS.attr('custom-date'),
     grace: DS.attr('custom-date'),
     alert: DS.attr('custom-date'),
 
@@ -57,7 +58,8 @@ export default DS.Model.extend({
             }
         }
 
-    }.observes('validityDate', 'type'),
+    }.observes('docTemplate', 'validityDate', 'type'),
+
     set_grace: function(){
         var new_date;
         if( this.get('type') === 'document'){
@@ -79,37 +81,40 @@ export default DS.Model.extend({
             }
         }
 
-    }.observes('validityDate', 'type'),
+    }.observes('docTemplate', 'validityDate', 'type'),
 
-
-    set_deadline: function(){
+    set_expirationDate: function(){
         var new_date;
         if( this.get('type') === 'document'){
-            if( this.get('docTemplate').get('validityNum') ){
-                var docTemp_validity = this.get('docTemplate').get('validityNum');
 
-                switch (this.get('docTemplate').get('validityType')){
-                    case 'days':
-                        new_date = moment(this.get('validityDate')).add( docTemp_validity, 'day');
-                        this.set('deadline', new_date);
-                        break;
-                    case 'months':
-                        new_date = moment(this.get('validityDate')).add( docTemp_validity, 'month');
-                        this.set('deadline', new_date);
-                        break;
-                    case 'years':
-                        new_date = moment(this.get('validityDate')).add( docTemp_validity, 'year');
-                        this.set('deadline', new_date);
-                        break;
+            var docTemp = this.get('docTemplate');
+
+            if( docTemp ){
+                var docTemp_deadline = docTemp.get('validityNum');
+                if( docTemp_deadline ){
+                    switch ( this.get('docTemplate').get('validityType')){
+                        case 'days':
+                            new_date = moment(this.get('validityDate')).add( docTemp_deadline, 'day');
+                            this.set('expirationDate', new_date);
+                            break;
+                        case 'months':
+                            new_date = moment(this.get('validityDate')).add( docTemp_deadline, 'month');
+                            this.set('expirationDate', new_date);
+                            break;
+                        case 'years':
+                            new_date = moment(this.get('validityDate')).add( docTemp_deadline, 'year');
+                            this.set('expirationDate', new_date);
+                            break;
+                    }
+
+                } else {
+                    this.set('expirationDate', docTemp.get('deadline'));
                 }
-
-            } else {
-                this.set('deadline', this.get('docTemplate').get('deadline'));
             }
-
         }
 
-    }.observes('validityDate', 'type'),
+    }.observes('docTemplate', 'validityDate', 'type'),
+
 
     /*******************************************************
      * PROPERTIES
@@ -130,27 +135,32 @@ export default DS.Model.extend({
 
     date_toString: function() {
         if( this.get('date') ){
-            return moment(this.get('date')).format('YYYY-MM-DD');
+            return moment(this.get('date')).format('LL');
         }
     }.property('date'),
     validityDate_toString: function() {
         if( this.get('validityDate') ){
-            return moment(this.get('validityDate')).format('YYYY-MM-DD');
+            return moment(this.get('validityDate')).format('LL');
         }
     }.property('validityDate'),
-    deadline_toString: function() {
-        if( this.get('deadline') ){
-            return moment(this.get('deadline')).format('YYYY-MM-DD');
+    showExpirationDate: function() {
+        if( this.get('expirationDate') ){
+            return moment(this.get('expirationDate')).format('LL');
         }
-    }.property('deadline'),
+    }.property('expirationDate'),
+//    deadline_toString: function() {
+//        if( this.get('deadline') ){
+//            return moment(this.get('deadline')).format('LL');
+//        }
+//    }.property('deadline'),
     grace_toString: function() {
         if( this.get('grace') ){
-            return moment(this.get('grace')).format('YYYY-MM-DD');
+            return moment(this.get('grace')).format('LL');
         }
     }.property('grace'),
     alert_toString: function() {
         if( this.get('alert') ){
-            return moment(this.get('alert')).format('YYYY-MM-DD');
+            return moment(this.get('alert')).format('LL');
         }
     }.property('alert')
 });

@@ -619,7 +619,12 @@ export default Ember.Route.extend({
 
             $.post('api/custom/setCertifier?token=' + app_controller.token_pdoc, data).then(function(response){
                 if (response.success) {
-                    app_controller.send( 'message_manager', 'Success', 'You have successfully sent the request.' );
+
+                    self.store.find('company', company_id).then(function( record ){
+                        Stripe.setPublishableKey( record.get('publishableKey') );
+                    });
+
+                    app_controller.send( 'message_manager', 'Success', 'You have successfully add the certifier.' );
                 }
             }, function( response ){
                 var json = response.responseText, result = JSON.parse(json);
@@ -627,6 +632,30 @@ export default Ember.Route.extend({
                 app_controller.send( 'message_manager', 'Failure', error );
             });
         },
+
+        /**
+         invio richiesta per rimozione certificatore
+
+         @action custom_removeCertifier
+         @for your-profile/partials/-field-company.hbs
+
+         */
+        custom_removeCertifier: function( record ){
+            var self = this, app_controller = self.controllerFor('application');
+
+            $.post('api/custom/removeCertifier?token=' + app_controller.token_pdoc).then(function(response){
+                if (response.success) {
+                    record.set('certifier', null);
+                    Stripe.setPublishableKey( null );
+                    app_controller.send( 'message_manager', 'Success', 'You have successfully remove the certifier.' );
+                }
+            }, function( response ){
+                var json = response.responseText, result = JSON.parse(json);
+                var error = result.error;
+                app_controller.send( 'message_manager', 'Failure', error );
+            });
+        },
+
 
         custom_showRating: function( record, type ){
             var _this = this, data = _this.getProperties(), app_controller = _this.controllerFor('application');

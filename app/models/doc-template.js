@@ -53,6 +53,12 @@ export default DS.Model.extend({
         return (this.get('type') === 'trailer' );
     }.property('type'),
 
+    showDeadline: function(){
+        if( this.get('deadline') ){
+            return moment(this.get('deadline')).format('LL');
+        }
+    }.property('deadline'),
+
     setBool: function(){
         if(this.get('goodsConfiscation')){
             this.set('vehicleConfiscation', false);

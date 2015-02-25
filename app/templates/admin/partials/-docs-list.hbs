@@ -165,9 +165,21 @@
             {{/if}}
 
             {{#if mode_view}}
-                {{input value = docTemp.deadline type = "date" class = 'form-control' format="YYYY-MM-DD" disabled = true}}
+                {{input value = docTemp.showDeadline type = "text" class = 'form-control' disabled = true}}
             {{else}}
-                {{input value = docTemp.deadline type = "date" class = 'form-control' format="YYYY-MM-DD" disabled = docTemp.isValidity}}
+                {{#if docTemp.isValidity}}
+                    {{input value = docTemp.showDeadline type = "text" class = 'form-control' disabled = true}}
+                {{else}}
+                    {{bootstrap-datepicker
+                    value = docTemp.deadline
+                    clearBtn = true
+                    placeholder = "Select a date"
+                    class = "form-control"
+                    autoclose = true}}
+                {{/if}}
+
+
+                {{!{{input value = docTemp.deadline type = "date" class = 'form-control' format="YYYY-MM-DD" disabled = docTemp.isValidity}}
             {{/if}}
             {{!{{date-picker date=docTemp.deadline valueFormat='YYYY-MM-DD' class="form-control" disabled= controller.isValidity}}
 

@@ -55,7 +55,9 @@
     {{#each post in this}}
         <div class="panel panel-default">
             <div class="panel-body">
-                <!--<button type="button" class="close" data-dismiss="alert">×</button>-->
+                {{#if post.canRemove}}
+                    <button type="button" class="close" data-dismiss="alert" {{action 'delete_record' post}}>×</button>
+                {{/if}}
                 <div class="row">
                     <div class="col-lg-1"></div>
                     <div class="col-lg-2">

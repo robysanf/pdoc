@@ -143,7 +143,7 @@ export default Ember.Controller.extend({
         byNow: 'Acquista ora!', amount: 'Importo', cardNumber: 'Numero di carta', account: 'Account', general: 'Generale', postToYourLinks: 'Pubblica alla tua rete di contatti', submit: 'Pubblica',
         news: 'Nuove', hideNotifications: 'Notifiche nascoste', emas: 'Emas', admin: 'Admin', extra: 'Extra', certifier: 'Certificatore', send: 'Invia', template: 'Template',
         paymentDetails: 'dettagli pagamento', credits: 'Crediti', orderHistory: 'Storico cliente', buyCredits: 'Acquisto crediti', newDocument: 'documento', hideLinkRequests: 'Richieste di connessione nascoste',
-        showHideLinkRequests: 'Mostra le richieste di connessione nascoste...', resume: 'Rigenera', date: 'Data', Close: 'Chiudi', gracePeriod: 'Periodo di grazia',
+        showHideLinkRequests: 'Mostra le richieste di connessione nascoste...', resume: 'Rigenera', date: 'Data', Close: 'Chiudi', gracePeriod: 'Periodo di grazia', removeCertifier: 'Rimuovi',
         more: 'Dettagli', deadline: 'Scadenza', value: 'Valore', certificate: 'Certifica', download: 'Scarica', hide: 'Nascondi', note: 'Note', highlight: 'In evidenza',
         showHideNotifications: 'Mostra le notifiche nascoste...', linkRequests: 'Richieste di connessione', notifications: 'Notifiche', save: 'Salva', type: 'Tipo',
         edit: 'Modifica', country: 'Paese', logo: 'Logo', links: 'Links', new: 'Nuovo', return: 'Indietro', chassisNumber: 'Targa', registrationYear: 'Anno di immatricolazione',
@@ -160,14 +160,14 @@ export default Ember.Controller.extend({
         NewPassword:'Nuova password', ConfirmNewPassword:'Conferma password', AreYouSureYouWantToDeleteThisRecord: 'Sei sicuro di voler cancellare questo record', AddFiles:'Add files',
         newPaymentPlan: 'Nuovo piano di pagamento', selectTheCurrency: 'seleziona la valuta', currency: 'valuta', selectTheType: 'Seleziona il tipo', rating: 'Punteggio',
         isLimited: 'Punteggio limitato', newClerk: 'Nuovo impiegato', newDriver: 'New autista', newTruck: 'New camion', newTrailer: 'Nuovo traino', pricePlan: 'Tariffario', visualizationCredit: 'credito per la visualizzazione',
-        certificationCredit: 'credito per la certificazione', yourCompany: 'La tua società', setCertifier: 'Assegna certificatore', vehicleModel: 'Modello'
+        certificationCredit: 'credito per la certificazione', yourCompany: 'La tua società', setCertifier: 'Aggiungi', vehicleModel: 'Modello'
     },
 
     lan_en: {
         publicToYourContactsNetwork: 'Public to your contacts network', companyDetails: 'Company Details', invoiceNumber: 'Invoice number', rate: 'Rate', limit: 'Limit', goodsConfiscation: 'Goods Confisc.', vehicleConfiscation: 'Vehicle Confisc.',
         fiscalResponsibility: 'Fiscal Resp.', emas: 'Emas', validity: 'Validity', alert: 'Alert', grace: 'Grace', loadModel: 'Load model', attach: 'Attach', premium: 'Premium', medium: 'Medium',
         smart: 'Smart', for: 'For', euro: 'Euro', buyNow: 'Buy now!', amount: 'Amount', cardNumber: 'Card number', account: 'Account', general: 'General', postToYourLinks: 'Post to your links',
-        submit: 'Submit', news: 'News', hideNotifications: 'Hide notifications', linksRequest: 'Links request', generals: 'Generals', admin: 'Admin', extra: 'Extra', send: 'Send',
+        submit: 'Submit', news: 'News', hideNotifications: 'Hide notifications', linksRequest: 'Links request', generals: 'Generals', admin: 'Admin', extra: 'Extra', send: 'Send', removeCertifier: 'Remove',
         paymentDetails: 'Payment details', credits: 'Credits', orderHistory: 'Order history', buyCredits: 'Buy credits', document: 'document', hideLinkRequests: 'Hide link requests',
         showHideLinkRequests: 'Show hidden link requests...', resume: 'Resume', date: 'Date', Close: 'Close', gracePeriod: 'Grace period', more: 'More', deadline: 'Deadline',
         value: 'Value', certificate: 'Certificate', download: 'Download', hide: 'Hide', note: 'Note', highlight: 'Highlight', showHideNotifications: 'Show hidden notifications...',
@@ -185,7 +185,7 @@ export default Ember.Controller.extend({
         CurrentPassword:'Current password', NewPassword:'New password', ConfirmNewPassword:'Confirm new password', AreYouSureYouWantToDeleteThisRecord: 'Are you sure you want to delete this record',
         AddFiles:'aggiungi files', newPaymentPlan: 'New payment plan', selectTheCurrency: 'select the currency', currency: 'Currency', selectTheType: 'Select the type', rating: 'Rating',
         isLimited: 'Limited rating', newClerk: 'New clerk', newDriver: 'New driver', newTruck: 'New truck', newTrailer: 'New trailer', pricePlan: 'Price plan', visualizationCredit: 'Visualization credit',
-        certificationCredit: 'Certification credit', yourCompany: 'Your company', setCertifier: 'Set certifier', vehicleModel: 'Vehicle model'
+        certificationCredit: 'Certification credit', yourCompany: 'Your company', setCertifier: 'Set', vehicleModel: 'Vehicle model'
     },
 
     actions:{

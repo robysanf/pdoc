@@ -30,7 +30,7 @@
                             <tr>
                                 <td {{action 'transition_to' 'your-profile/partials/-company-document-edit' document 'isView_docList' false 'isView_docDetails' true}} style="cursor: pointer">{{document.name}}</td>
                                 <td {{action 'transition_to' 'your-profile/partials/-company-document-edit' document 'isView_docList' false 'isView_docDetails' true}} style="cursor: pointer">{{document.docTemplate.name}}</td>
-                                <td {{action 'transition_to' 'your-profile/partials/-company-document-edit' document 'isView_docList' false 'isView_docDetails' true}} style="cursor: pointer">{{document.deadline_toString}}</td>
+                                <td {{action 'transition_to' 'your-profile/partials/-company-document-edit' document 'isView_docList' false 'isView_docDetails' true}} style="cursor: pointer">{{document.showExpirationDate}}</td>
 
                                 <td>
                                     {{#each file in document.files}}

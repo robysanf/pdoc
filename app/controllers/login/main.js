@@ -85,19 +85,28 @@ export default Ember.Controller.extend({
                     self.get('controllers.application').set('is_admin', String(response.isAdmin));
                     self.get('controllers.application').set('comp_country', String(response.country));
 
-                    if( stripe_publishableKey !== '' ){
-                        Stripe.setPublishableKey(stripe_publishableKey);
-                    } else {
-                        this.store.find('company', response.company_id).then(function( record ){
+
+                    /**DICHIARO PUBLISHABLE KEY.
+                     * se siamo in test stripe_publishableKey è inizializzata con un valore
+                     * */
+
+//                    if( stripe_publishableKey !== '' ){
+//                        Stripe.setPublishableKey(stripe_publishableKey);
+//                    } else {
+                        /** se siamo in produzione se sono un certificatore uso la mia key */
+
+                        self.store.find('company', response.company_id).then(function( record ){
                             if( record.get('type') === 'certifier' ) {
                                 Stripe.setPublishableKey(record.get('publishableKey'));
                             } else {
+                                /** se non sono un certificatore uso la key del mio certificatore */
+
                                 record.get('certifier').then(function( subRecord ){
                                     Stripe.setPublishableKey(subRecord.get('publishableKey'));
                                 });
                             }
                         });
-                    }
+//                    }
 
 
                     self.store.find('company', response.company_id ).then(function( val ){

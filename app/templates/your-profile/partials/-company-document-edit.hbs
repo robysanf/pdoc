@@ -109,8 +109,8 @@
 
             <div class="col-lg-3">
 
-                {{#if sub_record_document.deadline}}
-                    <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record_document.deadline_toString}}</p>
+                {{#if sub_record_document.expirationDate}}
+                    <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{sub_record_document.showExpirationDate}}</p>
                 {{else}}
                     <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
                 {{/if}}

@@ -66,14 +66,14 @@
             typeaheadNoMatchesText="No document type found for '%@'"
             typeaheadErrorText="Loading failed: %@"
             enabled=true
-            allowClear=true
             disabled= controller.isView
             }}
         {{/if}}
     </div>
     <div class="col-lg-3">
         {{#unless controller.isView}}
-            <button type="button" class="btn btn-primary btn-group-justified" {{action 'custom_setCertifier' certifier.id}}>{{app_controller.translation.setCertifier}}</button>
+            <button type="button" class="btn btn-primary btn-100" {{action 'custom_setCertifier' certifier.id}}>{{app_controller.translation.setCertifier}}</button>
+            <button type="button" class="btn btn-danger btn-100" {{action 'custom_removeCertifier' this}}>{{app_controller.translation.removeCertifier}}</button>
         {{/unless}}
     </div>
 </div>

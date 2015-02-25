@@ -32,7 +32,7 @@
                                 <tr>
                                     <td {{action 'transition_to' 'your-profile/partials/-company-document-edit' doc 'isView_docList' false 'isView_docDetails' true}} style="cursor: pointer">{{doc.name}}</td>
                                     <td {{action 'transition_to' 'your-profile/partials/-company-document-edit' doc 'isView_docList' false 'isView_docDetails' true}} style="cursor: pointer">{{doc.type}}</td>
-                                    <td {{action 'transition_to' 'your-profile/partials/-company-document-edit' doc 'isView_docList' false 'isView_docDetails' true}} style="cursor: pointer">{{doc.deadline_toString}}</td>
+                                    <td {{action 'transition_to' 'your-profile/partials/-company-document-edit' doc 'isView_docList' false 'isView_docDetails' true}} style="cursor: pointer">{{doc.showExpirationDate}}</td>
 
                                     <td>
                                         {{#each file in doc.files}}
