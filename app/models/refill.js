@@ -18,5 +18,11 @@ export default DS.Model.extend({
     user: DS.belongsTo('user'),
 
     files: DS.hasMany('files', {
-        async: true})
+        async: true}),
+
+    /** PROPERTIES */
+
+    showDate: function(){
+        return moment(this.get('date')).format('LL');
+    }.property('date')
 });

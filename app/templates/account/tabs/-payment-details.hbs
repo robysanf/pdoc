@@ -3,6 +3,7 @@
     <div class="col-lg-4">
         {{#unless certifier}}
             {{#unless app_controller.is_certifier}}
+                <br />
                 <div class="alert alert-dismissable alert-danger">
                     <button type="button" class="close" data-dismiss="alert">×</button>
                     <strong>Connect with a certifier to set your payment details.</strong><br />
@@ -33,7 +34,8 @@
                         </div>
                         <div class="col-lg-11"><legend style="margin-top: 35px"></legend></div>
                     </div>
-                {{/if}}
+
+
 
                 <!-------------------- FIELDS ---------------------->
                 {{#if controller.mode_view}}
@@ -106,6 +108,8 @@
                         </div>
                     </div>
                 {{/unless}}
+
+                {{/if}}
             </fieldset>
         </form>
     </div>

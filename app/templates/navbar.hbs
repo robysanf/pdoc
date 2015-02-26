@@ -1,22 +1,21 @@
-
-
-<div class="navbar navbar-default navbar-fixed-top" style="max-height: 40px">
+<div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <a class="navbar-brand" {{action 'link_to' 'dashboard/main'}} style="cursor: pointer">Dashboard</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            {{#link-to 'dashboard/main'}}<div class="navbar-brand">Dashboard</div>{{/link-to}}
         </div>
-        <div class="navbar-collapse navbar-responsive-collapse collapse in" aria-expanded="true">
+        <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
-                <li>{{#link-to 'your-profile/main' company_id}} {{controller.translation.yourCompany}} {{/link-to}}</li>
+                <li>{{#link-to 'your-profile/main' company_id}} {{controller.translation.yourCompany}} {{/link-to}} </li>
                 <li>{{#link-to 'search-company/main'}} {{controller.translation.searchCompanies}} {{/link-to}}</li>
                 {{#if controller.user_type_admin}}
                     <li>{{#link-to 'link/main' company_id}} {{controller.translation.links}} {{/link-to}}</li>
                 {{/if}}
+
                 <li>
                     {{#if controller.company_record.firedNotifications}}
                         {{#link-to 'notification/main' company_id}}
@@ -29,26 +28,29 @@
                         {{/link-to}}
                     {{/if}}
                 </li>
+
                 {{#if is_certifier}}
                     <li>{{#link-to 'admin/main' company_id}} {{controller.translation.admin}} {{/link-to}}</li>
                 {{/if}}
                 {{#if controller.user_type_admin}}
                     <li>{{#link-to 'account/main' company_id}} {{controller.translation.account}} {{/link-to}}</li>
                 {{/if}}
-
             </ul>
-            <ul class="nav navbar-nav pull-right">
+
+            <ul class="nav navbar-nav navbar-right">
+
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{controller.translation.language}}: {{controller.translationType}}<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">{{controller.translation.language}}: {{controller.translationType}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu" aria-labelledby="themes">
                         <li><a href="#" {{action 'changeLanguage' 'english'}}>{{controller.translation.english}}</a></li>
                         <li><a href="#" {{action 'changeLanguage' 'italian'}}>{{controller.translation.italian}}</a></li>
                     </ul>
                 </li>
+
+
                 <li class="active"><a href="#" {{action 'logout'}}>Logout</a></li>
             </ul>
 
         </div>
     </div>
 </div>
-

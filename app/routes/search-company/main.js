@@ -48,7 +48,7 @@ export default Ember.Route.extend({
             //recupero l'id del booking scelto
             if(controller.search_country != "" && controller.search_country != null ){
 //                searchPath = "country"; queryExpression[searchPath] = controller.search_country;
-                queryExpression = queryExpression+'&country="'+controller.search_country+'"';
+                queryExpression = queryExpression+'&country='+controller.search_country;
             }
 
             if(controller.search_services != "" && controller.search_services != null ){

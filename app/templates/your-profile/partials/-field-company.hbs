@@ -47,36 +47,40 @@
         {{/if}}
     </div>
 </div>
-<div class="form-group">
-    <label for="profile" class="col-lg-3 control-label">{{app_controller.translation.certifier}}</label>
-    <div class="col-lg-6">
-        {{#if controller.isView}}
-            {{#if certifier}}
-                <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{certifier.name}}</p>
+
+{{#unless controller.is_certifier}}
+    <div class="form-group">
+        <label for="profile" class="col-lg-3 control-label">{{app_controller.translation.certifier}}</label>
+        <div class="col-lg-6">
+            {{#if controller.isView}}
+                {{#if certifier}}
+                    <p style="margin-top: 10px; border-bottom: 1px solid #e5e5e5;">{{certifier.name}}</p>
+                {{else}}
+                    <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+                {{/if}}
             {{else}}
-                <p style="margin-top: 25px; border-bottom: 1px solid #e5e5e5;"></p>
+            {{!{{auto-complete source=app_controller.records_companyCertifier destination=certifier searchPath="name" minChars=0}}
+                {{select-2
+                content=app_controller.records_companyCertifier
+                value= certifier
+                optionLabelPath="name"
+                placeholder="Choose a document type"
+                typeaheadNoMatchesText="No document type found for '%@'"
+                typeaheadErrorText="Loading failed: %@"
+                enabled=true
+                disabled= controller.isView
+                }}
             {{/if}}
-        {{else}}
-        {{!{{auto-complete source=app_controller.records_companyCertifier destination=certifier searchPath="name" minChars=0}}
-            {{select-2
-            content=app_controller.records_companyCertifier
-            value= certifier
-            optionLabelPath="name"
-            placeholder="Choose a document type"
-            typeaheadNoMatchesText="No document type found for '%@'"
-            typeaheadErrorText="Loading failed: %@"
-            enabled=true
-            disabled= controller.isView
-            }}
-        {{/if}}
+        </div>
+        <div class="col-lg-3">
+            {{#unless controller.isView}}
+                <button type="button" class="btn btn-primary btn-100" {{action 'custom_setCertifier' certifier.id}}>{{app_controller.translation.setCertifier}}</button>
+                <button type="button" class="btn btn-danger btn-100" {{action 'custom_removeCertifier' this}}>{{app_controller.translation.removeCertifier}}</button>
+            {{/unless}}
+        </div>
     </div>
-    <div class="col-lg-3">
-        {{#unless controller.isView}}
-            <button type="button" class="btn btn-primary btn-100" {{action 'custom_setCertifier' certifier.id}}>{{app_controller.translation.setCertifier}}</button>
-            <button type="button" class="btn btn-danger btn-100" {{action 'custom_removeCertifier' this}}>{{app_controller.translation.removeCertifier}}</button>
-        {{/unless}}
-    </div>
-</div>
+{{/unless}}
+
 
 <div class="form-group">
     <label for="transportListCode" class="col-lg-3 control-label">{{app_controller.translation.street}}</label>

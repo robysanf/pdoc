@@ -8,8 +8,8 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 var app = new EmberApp();
 
 // IMPORT BOOTSTRAP
-app.import('vendor/bootstrap/dist/css/bootstrap.min.css');
-app.import('vendor/bootstrap/dist/css/select2-bootstrap.css');
+app.import('vendor/readable-bootstrap/bootstrap.min.css');
+app.import('vendor/select2-bootstrap/select2-bootstrap.css');
 app.import('vendor/jasny-bootstrap/dist/css/jasny-bootstrap.min.css');    //per load image
 app.import('vendor/bootstrap/dist/js/bootstrap.min.js');
 app.import('vendor/jasny-bootstrap/dist/js/jasny-bootstrap.min.js');     //per load image

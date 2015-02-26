@@ -15,6 +15,10 @@ export default Ember.ObjectController.extend({
         return ( this.get('app_user_type') === 'admin');
     }.property('app_user_type'),
 
+    is_certifier: function() {
+        return ( this.get('app_company_type') === 'certifier' );
+    }.property('app_company_type'),
+
     is_driver: function(){
         return ( this.get('app_user_type') === 'driver' );
     }.property('app_user_type'),

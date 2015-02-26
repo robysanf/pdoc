@@ -240,6 +240,14 @@ export default Ember.Route.extend({
             this.transitionTo(path, record_id);
         },
 
+        link_to: function( path, id) {
+            if ( id ){
+                this.transitionTo(path, id);
+            } else {
+                this.transitionTo(path);
+            }
+        },
+
         message_manager: function( type, text ){
 
             switch ( type ){
