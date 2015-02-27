@@ -11,7 +11,7 @@ export default Ember.Route.extend({
 
         var today = Date();
         var queryExpression = 'company='+app_controller.company_id;
-       queryExpression = queryExpression+'&date={"lt":"'+moment(today).format('YYYY-MM-DD HH:mm:ss')+'"}';
+       queryExpression = queryExpression+'&sortBy=date&sortOrder=descendent&date={"lt":"'+moment(today).format('YYYY-MM-DD HH:mm:ss')+'"}';
 
         app_controller.set('records_notifications', this.store.findQuery('notification', queryExpression));
 
@@ -22,6 +22,9 @@ export default Ember.Route.extend({
     },
 
     actions: {
+        set_variable: function( attr, val ){
+             this.controller.set(attr, val);
+        },
         /**
          Gestione della tab navigation in 'your-profile'; rende attiva la tab selezionata dall'utente
 

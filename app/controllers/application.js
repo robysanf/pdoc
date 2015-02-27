@@ -72,6 +72,7 @@ export default Ember.Controller.extend({
     records_companyCertifier: Ember.A(),
     records_notifications: Ember.A(),
     records_paymentPlans: Ember.A(),
+    records_posts: Ember.A(),
 
     autocompleteUser: [],
     autocompleteCompany: [],
@@ -160,7 +161,7 @@ export default Ember.Controller.extend({
         NewPassword:'Nuova password', ConfirmNewPassword:'Conferma password', AreYouSureYouWantToDeleteThisRecord: 'Sei sicuro di voler cancellare questo record', AddFiles:'Add files',
         newPaymentPlan: 'Nuovo piano di pagamento', selectTheCurrency: 'seleziona la valuta', currency: 'valuta', selectTheType: 'Seleziona il tipo', rating: 'Punteggio',
         isLimited: 'Punteggio limitato', newClerk: 'Nuovo impiegato', newDriver: 'New autista', newTruck: 'New camion', newTrailer: 'Nuovo traino', pricePlan: 'Tariffario', visualizationCredit: 'credito per la visualizzazione',
-        certificationCredit: 'credito per la certificazione', yourCompany: 'La tua società', setCertifier: 'Aggiungi', vehicleModel: 'Modello'
+        certificationCredit: 'credito per la certificazione', yourCompany: 'La tua società', setCertifier: 'Aggiungi', vehicleModel: 'Modello', approved: 'Approvato', booleanRating: 'Punteggio booleano'
     },
 
     lan_en: {
@@ -185,7 +186,7 @@ export default Ember.Controller.extend({
         CurrentPassword:'Current password', NewPassword:'New password', ConfirmNewPassword:'Confirm new password', AreYouSureYouWantToDeleteThisRecord: 'Are you sure you want to delete this record',
         AddFiles:'aggiungi files', newPaymentPlan: 'New payment plan', selectTheCurrency: 'select the currency', currency: 'Currency', selectTheType: 'Select the type', rating: 'Rating',
         isLimited: 'Limited rating', newClerk: 'New clerk', newDriver: 'New driver', newTruck: 'New truck', newTrailer: 'New trailer', pricePlan: 'Price plan', visualizationCredit: 'Visualization credit',
-        certificationCredit: 'Certification credit', yourCompany: 'Your company', setCertifier: 'Set', vehicleModel: 'Vehicle model'
+        certificationCredit: 'Certification credit', yourCompany: 'Your company', setCertifier: 'Set', vehicleModel: 'Vehicle model', approved: 'Approved' , booleanRating: 'Boolean rating'
     },
 
     actions:{

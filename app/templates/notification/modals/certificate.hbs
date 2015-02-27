@@ -30,17 +30,32 @@
         <div class="col-lg-1"></div>
     </div>
     <div class="row" style="margin-bottom: 15px">
-        <div class="col-lg-1"></div>
-        <div class="col-lg-2">
-            {{app_controller.translation.rating}}
-        </div>
-        <div class="col-lg-8">
-            <div class="input-group">
-                {{input value = controller.rating type = "number" class = "form-control"}}
-                <span class="input-group-addon">%</span>
+        {{#if controller.selectedRecord.docTemplate.booleanRating}}
+
+            <div class="col-lg-3"> </div>
+            <div class="col-lg-8">
+                {{#if new_record.emas}}
+                    <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_variable' 'rating' 0}}></span>
+                {{else}}
+                    <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_variable' 'rating' 100}}></span>
+                {{/if}}
+                {{app_controller.translation.approved}}
             </div>
-        </div>
-        <div class="col-lg-1"></div>
+            <div class="col-lg-1"></div>
+
+        {{else}}
+            <div class="col-lg-1"></div>
+            <div class="col-lg-2">
+                {{app_controller.translation.rating}}
+            </div>
+            <div class="col-lg-8">
+                <div class="input-group">
+                    {{input value = controller.rating type = "number" class = "form-control"}}
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+            <div class="col-lg-1"></div>
+        {{/if}}
     </div>
     {{#unless controller.selectedRecord.isServiceRating}}
         <div class="row" style="margin-bottom: 15px">

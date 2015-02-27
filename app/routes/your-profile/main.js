@@ -15,7 +15,20 @@ export default Ember.Route.extend({
         controller.set('isView_docList', true);
 
         controller.set('record_isNew', false);
-        app_controller.set('records_companyCertifier', this.store.find('company', { type: "certifier" }));
+
+        this.store.find('company', app_controller.company_id).then(function( record ){
+            record.get('links').then(function( allRecord ){
+                  var allCompany = allRecord.filter( function( company ){
+                       if( company.get('type') === 'certifier' && company.get('publishableKey') ){
+                           return company;
+                       }
+                  });
+
+                app_controller.set('records_companyCertifier', allCompany);
+            });
+        });
+
+        //app_controller.set('records_companyCertifier', this.store.find('company', { type: "certifier",  }));
 
         if( app_controller.user_type === 'driver' ){
             _this.store.find( 'user', app_controller.user_id ).then(function( record ){

@@ -61,7 +61,7 @@ export default Ember.ObjectController.extend({
 
     check_changePassword: function(){
         if( this.sub_record ){
-            return ( String(this.sub_record.get('id')) === String(this.get('app_user_id')) || this.get('is_this_admin') );
+            return ( String(this.sub_record.get('id')) === String(this.get('app_user_id')) || this.get('is_admin_for_this_company') );
         }
     }.property('sub_record', 'app_user_id', 'can_edit_company'),
 

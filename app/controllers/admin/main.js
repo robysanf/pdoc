@@ -23,6 +23,7 @@ export default Ember.ObjectController.extend({
         'months',
         'years'
     ],
+    selectedValidity: 'years',
 //    types: [
 //        {name: "Days", id: "days"},
 //        {name: "Months", id: "months"},

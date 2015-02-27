@@ -44,15 +44,15 @@ export default DS.Model.extend({
 
             switch (this.get('docTemplate').get('alertType')){
                 case 'days':
-                    new_date = moment( validity ).add( docTemp_grace, 'day');
+                    new_date = moment( validity , 'YYYY-MM-DD').add( docTemp_grace, 'day');
                     this.set('alert', new_date);
                     break;
                 case 'months':
-                    new_date = moment( validity ).add( docTemp_grace, 'month');
+                    new_date = moment( validity , 'YYYY-MM-DD').add( docTemp_grace, 'month');
                     this.set('alert', new_date);
                     break;
                 case 'years':
-                    new_date = moment( validity ).add( docTemp_grace, 'year');
+                    new_date = moment( validity , 'YYYY-MM-DD').add( docTemp_grace, 'year');
                     this.set('alert', new_date);
                     break;
             }
@@ -67,15 +67,15 @@ export default DS.Model.extend({
 
             switch (this.get('docTemplate').get('graceType')){
                 case 'days':
-                    new_date = moment(this.get('validityDate')).add( docTemp_grace, 'day');
+                    new_date = moment(this.get('validityDate'), 'YYYY-MM-DD').add( docTemp_grace, 'day');
                     this.set('grace', new_date);
                     break;
                 case 'months':
-                    new_date = moment(this.get('validityDate')).add( docTemp_grace, 'month');
+                    new_date = moment(this.get('validityDate'), 'YYYY-MM-DD').add( docTemp_grace, 'month');
                     this.set('grace', new_date);
                     break;
                 case 'years':
-                    new_date = moment(this.get('validityDate')).add( docTemp_grace, 'year');
+                    new_date = moment(this.get('validityDate'), 'YYYY-MM-DD').add( docTemp_grace, 'year');
                     this.set('grace', new_date);
                     break;
             }
@@ -94,15 +94,15 @@ export default DS.Model.extend({
                 if( docTemp_deadline ){
                     switch ( this.get('docTemplate').get('validityType')){
                         case 'days':
-                            new_date = moment(this.get('validityDate')).add( docTemp_deadline, 'day');
+                            new_date = moment(this.get('validityDate'), 'YYYY-MM-DD').add( docTemp_deadline, 'day');
                             this.set('expirationDate', new_date);
                             break;
                         case 'months':
-                            new_date = moment(this.get('validityDate')).add( docTemp_deadline, 'month');
+                            new_date = moment(this.get('validityDate'), 'YYYY-MM-DD').add( docTemp_deadline, 'month');
                             this.set('expirationDate', new_date);
                             break;
                         case 'years':
-                            new_date = moment(this.get('validityDate')).add( docTemp_deadline, 'year');
+                            new_date = moment(this.get('validityDate'), 'YYYY-MM-DD').add( docTemp_deadline, 'year');
                             this.set('expirationDate', new_date);
                             break;
                     }
@@ -135,17 +135,17 @@ export default DS.Model.extend({
 
     date_toString: function() {
         if( this.get('date') ){
-            return moment(this.get('date')).format('LL');
+            return moment(this.get('date'), 'YYYY-MM-DD').format('LL');
         }
     }.property('date'),
     validityDate_toString: function() {
         if( this.get('validityDate') ){
-            return moment(this.get('validityDate')).format('LL');
+            return moment(this.get('validityDate'), 'YYYY-MM-DD').format('LL');
         }
     }.property('validityDate'),
     showExpirationDate: function() {
         if( this.get('expirationDate') ){
-            return moment(this.get('expirationDate')).format('LL');
+            return moment(this.get('expirationDate'), 'YYYY-MM-DD').format('LL');
         }
     }.property('expirationDate'),
 //    deadline_toString: function() {
@@ -155,12 +155,12 @@ export default DS.Model.extend({
 //    }.property('deadline'),
     grace_toString: function() {
         if( this.get('grace') ){
-            return moment(this.get('grace')).format('LL');
+            return moment(this.get('grace'), 'YYYY-MM-DD').format('LL');
         }
     }.property('grace'),
     alert_toString: function() {
         if( this.get('alert') ){
-            return moment(this.get('alert')).format('LL');
+            return moment(this.get('alert'), 'YYYY-MM-DD').format('LL');
         }
     }.property('alert')
 });

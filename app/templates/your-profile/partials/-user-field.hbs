@@ -3,6 +3,8 @@
 
     <div class="form-group">
         <div class="col-lg-1">
+<!------------------------------------------- BUTTON ------------------------------------------->
+
             {{#if canEdit_userProfile}}
                 {{#if controller.isView}}
                     <!-------------------- pencil ---------------------->
@@ -17,6 +19,7 @@
         <div class="col-lg-11"><legend>{{app_controller.translation.details}}</legend> </div>
     </div>
 
+    <!------------------------------------------- first name ------------------------------------------->
         <div class="form-group">
             <label for="name" class="col-lg-3 control-label">{{app_controller.translation.firstName}}</label>
             <div class="col-lg-9">
@@ -31,6 +34,8 @@
                 {{/if}}
             </div>
         </div>
+
+    <!------------------------------------------- last name ------------------------------------------->
         <div class="form-group">
             <label for="lastName" class="col-lg-3 control-label">{{app_controller.translation.lastName}}</label>
             <div class="col-lg-9">
@@ -45,6 +50,8 @@
                 {{/if}}
             </div>
         </div>
+
+    <!------------------------------------------- username ------------------------------------------->
         <div class="form-group">
             <label for="skype" class="col-lg-3 control-label">{{app_controller.translation.username}}</label>
             <div class="col-lg-9">
@@ -59,6 +66,8 @@
                 {{/if}}
             </div>
         </div>
+
+    <!------------------------------------------- birth date ------------------------------------------->
         <div class="form-group">
             <label for="lastName" class="col-lg-3 control-label">{{app_controller.translation.birthDate}}</label>
             <div class="col-lg-9">
@@ -82,6 +91,7 @@
                 {{/if}}
             </div>
         </div>
+    <!------------------------------------------- patent ------------------------------------------->
         {{#if controller.sub_record.isDriver}}
             <div class="form-group">
                 <label for="patents" class="col-lg-3 control-label">{{app_controller.translation.patents}}</label>
@@ -100,6 +110,8 @@
                 </div>
             </div>
         {{/if}}
+
+    <!------------------------------------------- phone ------------------------------------------->
         <div class="form-group">
             <label for="phone" class="col-lg-3 control-label">{{app_controller.translation.phone}}</label>
             <div class="col-lg-9">
@@ -114,6 +126,7 @@
                 {{/if}}
             </div>
         </div>
+    <!------------------------------------------- skype ------------------------------------------->
         <div class="form-group">
             <label for="skype" class="col-lg-3 control-label">{{app_controller.translation.skype}}</label>
             <div class="col-lg-9">
@@ -128,6 +141,7 @@
                 {{/if}}
             </div>
         </div>
+    <!------------------------------------------- email ------------------------------------------->
         <div class="form-group">
             <label for="skype" class="col-lg-3 control-label">{{app_controller.translation.email}}</label>
             <div class="col-lg-9">
@@ -142,6 +156,7 @@
                 {{/if}}
             </div>
         </div>
+    <!------------------------------------------- username ------------------------------------------->
         {{#if controller.sub_record.isClerk}}
             <div class="form-group">
                 <label for="skype" class="col-lg-3 control-label">{{app_controller.translation.username}}</label>
@@ -158,7 +173,7 @@
                 </div>
             </div>
         {{/if}}
-
+    <!------------------------------------------- channge password ------------------------------------------->
         {{#if check_changePassword}}
             {{#unless controller.isView}}
                 <div class="form-group">
@@ -173,6 +188,7 @@
             {{/unless}}
         {{/if}}
 
+    <!------------------------------------------- languages ------------------------------------------->
         {{#if controller.sub_record.isDriver}}
             <div class="form-group">
                 <label class="col-lg-3 control-label">{{app_controller.translation.languages}}</label>
@@ -191,6 +207,8 @@
                     {{/if}}
                 </div>
             </div>
+
+            <!------------------------------------------- curriculum ------------------------------------------->
             <div class="form-group">
                 <label for="curriculum" class="col-lg-3 control-label">{{app_controller.translation.curriculum}}</label>
                 <div class="col-lg-9">

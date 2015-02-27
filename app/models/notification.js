@@ -5,7 +5,7 @@ export default DS.Model.extend({
     canRemove: DS.attr('boolean'),
     highlighted: DS.attr('boolean'),
 
-    date: DS.attr('custom-date'),
+    date: DS.attr('custom-time'),
     deadline: DS.attr('custom-date'),
     gracePeriod: DS.attr('custom-date'),
 
@@ -53,13 +53,14 @@ export default DS.Model.extend({
        return this.get('actionToken') !== null;
     }.property('actionToken'),
     showDate: function(){
-      return moment(this.get('date')).format("LL");
+
+        return moment.utc(this.get('date')).fromNow();
     }.property('date'),
     showDeadline: function(){
-        return moment(this.get('deadline')).format("LL");
+        return moment(this.get('deadline'),"YYYY-MM-DD" ).format("LL");
     }.property('deadline'),
     showGracePeriod: function(){
-        return moment(this.get('gracePeriod')).format("LL");
+        return moment(this.get('gracePeriod'),"YYYY-MM-DD").format("LL");
     }.property('gracePeriod'),
 
     status_hide: function(){

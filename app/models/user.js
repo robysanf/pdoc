@@ -6,7 +6,7 @@ export default DS.Model.extend({
 
     certificationScore:DS.attr('number'),
 
-    birthDate: DS.attr('custom-date'),
+    birthDate: DS.attr('custom-time'),
 
     username:DS.attr('string'),
     password:DS.attr('string'),
@@ -57,6 +57,6 @@ export default DS.Model.extend({
     }.property('type'),
 
     birthDate_toString: function(){
-        return moment(this.get('birthDate')).format('YYYY-MM-DD');
+        return moment(this.get('birthDate')).format('LL');
     }.property('birthDate')
 });

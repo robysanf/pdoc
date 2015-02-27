@@ -1,17 +1,22 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+    beforeModel: function(){
+        var app_controller = this.controllerFor('application');
 
-    model: function() {
-        var _this = this, controller = _this.controllerFor('dashboard.main');
-        //return this.store.find('post');
-        return this.store.filter('post', { sortOrder: 'descendent', sortBy: 'date' }, function( post ) {
-            return post;
-        });
-//
-//        controller.set('orderedPosts', allPosts);
-
+        app_controller.set('records_posts', this.store.findQuery('post', { sortOrder: 'descendent', sortBy: 'date' } ));
     },
+
+//    model: function() {
+//        var _this = this, controller = _this.controllerFor('dashboard.main');
+//        //return this.store.find('post');
+//        return this.store.filter('post', { sortOrder: 'descendent', sortBy: 'date' }, function( post ) {
+//            return post;
+//        });
+////
+////        controller.set('orderedPosts', allPosts);
+//
+//    },
 
     actions: {
         delete_record: function( record_to_remove ){
@@ -43,12 +48,8 @@ export default Ember.Route.extend({
                     _this.controller.set('postTitle', null);
                     _this.controller.set('postDescription', null);
 
+                    app_controller.set('records_posts', _this.store.findQuery('post', { sortOrder: 'descendent', sortBy: 'date' } ));
 
-//                        var allPosts = this.store.filter('post', { sortOrder: 'descendent', sortBy: 'date' }, function( post ) {
-//                            return post;
-//                        });
-//
-//                        _this.controller.set('orderedPosts', allPosts );
 
                 }.bind(this);
 

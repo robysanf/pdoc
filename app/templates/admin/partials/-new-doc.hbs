@@ -153,6 +153,19 @@
             </div>
             <label class="col-lg-9">{{app_controller.translation.emas}}</label>
         </div>
+    <!------------------------------- booleanRating - boolean ------------------------------------->
+    <div class="form-group">
+        <label class="col-lg-2 control-label"></label>
+        <div class="col-lg-1">
+            {{#if new_record.booleanRating}}
+                <span class="glyphicon glyphicon glyphicon-check" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'booleanRating' false}}></span>
+            {{else}}
+                <span class="glyphicon glyphicon glyphicon-unchecked" style="cursor: pointer; margin-top: 5px" {{action 'set_record' new_record 'booleanRating' true}}></span>
+            {{/if}}
+        </div>
+        <label class="col-lg-9">{{app_controller.translation.booleanRating}}</label>
+    </div>
+
         <!------------------------------- validity ------------------------------------->
     {{#view 'required-field' value=new_record.validityNum toChange='changeState_validity' valueToMatch=new_record.deadline }}
         <div class="form-group" style="margin-top: 20px" id="changeState_validity">
@@ -166,7 +179,7 @@
                 value=new_record.validityType
                 placeholder="Choose a period"
                 class='form-control'
-                }}
+                selection=selectedValidity}}
             </div>
             <!------------------------------- deadline ------------------------------------->
             <label class="col-lg-2 control-label">{{app_controller.translation.deadline}}</label>

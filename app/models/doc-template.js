@@ -8,7 +8,7 @@ export default DS.Model.extend({
     vehicleConfiscation: attr('boolean'),    //sequestro
     fiscalResponsibility: attr('boolean'),   //responsabilità economica
     emas: attr('boolean'),
-
+    booleanRating: attr('boolean'),
     isLimited: attr('boolean'),    // se il certificato è scaduto il suo punteggio può arrivare ad un massimo prestabilito
 
     deadline: attr('custom-date'),         //scadenza

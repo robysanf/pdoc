@@ -22,7 +22,7 @@ export default DS.Model.extend({
      * PROPERTIES
      */
     timeFrom: function(){
-        return moment(this.get('date')).fromNow() ;
+        return moment.utc(this.get('date'), 'YYYY-MM-DD HH:mm:ss Z').fromNow();
     }.property('date')
 
 });
