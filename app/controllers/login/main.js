@@ -87,26 +87,25 @@ export default Ember.Controller.extend({
 
 
                     /**DICHIARO PUBLISHABLE KEY.
-                     * se siamo in test stripe_publishableKey è inizializzata con un valore
+                     *
                      * */
 
-//                    if( stripe_publishableKey !== '' ){
-//                        Stripe.setPublishableKey(stripe_publishableKey);
-//                    } else {
-                        /** se siamo in produzione se sono un certificatore uso la mia key */
+                    if( record.get('type') !== 'certifier' ) {
+                        Stripe.setPublishableKey(stripe_publishableKey);
+                    }
 
-                        self.store.find('company', response.company_id).then(function( record ){
-                            if( record.get('type') === 'certifier' ) {
-                                Stripe.setPublishableKey(record.get('publishableKey'));
-                            } else {
-                                /** se non sono un certificatore uso la key del mio certificatore */
+//                        self.store.find('company', response.company_id).then(function( record ){
+//                            if( record.get('type') === 'certifier' ) {
+//                                Stripe.setPublishableKey(record.get('publishableKey'));
+//                            } else {
+//                                /** se non sono un certificatore uso la key del mio certificatore */
+//
+//                                record.get('certifier').then(function( subRecord ){
+//                                    Stripe.setPublishableKey(subRecord.get('publishableKey'));
+//                                });
+//                            }
+//                        });
 
-                                record.get('certifier').then(function( subRecord ){
-                                    Stripe.setPublishableKey(subRecord.get('publishableKey'));
-                                });
-                            }
-                        });
-//                    }
 
 
                     self.store.find('company', response.company_id ).then(function( val ){

@@ -633,9 +633,9 @@ export default Ember.Route.extend({
             $.post('api/custom/setCertifier?token=' + app_controller.token_pdoc, data).then(function(response){
                 if (response.success) {
 
-                    self.store.find('company', company_id).then(function( record ){
-                        Stripe.setPublishableKey( record.get('publishableKey') );
-                    });
+//                    self.store.find('company', company_id).then(function( record ){
+//                        Stripe.setPublishableKey( record.get('publishableKey') );
+//                    });
 
                     app_controller.send( 'message_manager', 'Success', 'You have successfully add the certifier.' );
                 }
@@ -659,7 +659,7 @@ export default Ember.Route.extend({
             $.post('api/custom/removeCertifier?token=' + app_controller.token_pdoc).then(function(response){
                 if (response.success) {
                     record.set('certifier', null);
-                    Stripe.setPublishableKey( null );
+//                    Stripe.setPublishableKey( null );
                     app_controller.send( 'message_manager', 'Success', 'You have successfully remove the certifier.' );
                 }
             }, function( response ){
