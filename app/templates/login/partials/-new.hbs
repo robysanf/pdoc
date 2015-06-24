@@ -7,9 +7,9 @@
             <div class="row" style="margin-top: 30px; margin-bottom: 10px">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
-{{!{{#view 'verify-sing-up-fields' model_val='company' val=name}}
+                    {{#view 'verify-field' model_val='company' val=controller.name}}
                         {{input id='name' value=controller.name type="text"  placeholder= controller.translation.name class='form-control'}}
-                    {{!{{/view}}
+                    {{/view}}
                 </div>
                 <div class="col-lg-1"></div>
             </div>
@@ -87,9 +87,10 @@
             <div class="row" style="margin-bottom: 10px">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
-{{!{{#view 'verify-sing-up-fields' model_val='user' val=username}}
+                    {{#view 'verify-field' model_val='user' val=controller.username}}
+                {{!    {{#view 'verify-sing-up-fields' model_val='user' val=username}}
                         {{input id='username' value=controller.username type="text"  placeholder= controller.translation.userName class='form-control'}}
-   {{!                 {{/view}}
+                    {{/view}}
                 </div>
                 <div class="col-lg-1"></div>
             </div>

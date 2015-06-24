@@ -117,51 +117,68 @@ export default Ember.View.extend({
         createRecord_user: function( type, newFirstName, newLastName, newUsername, newBirthDate, newPatents, newPhone, newSkype, newEmail, newPassword, newLanguages, newCurriculum, outlet, parentView ){
             var view = this;
 
-            if( newFirstName && newLastName && newEmail && newUsername && newPassword ){
-                var new_record = this.controller.get('store').createRecord('user', {
-                    type: type,
-                    company: this.controller.main_record,
-                    firstName: newFirstName,
-                    lastName: newLastName,
-                    username: newUsername,
-                    birthDate: newBirthDate,
-                    phone: newPhone,
-                    skype: newSkype,
-                    email: newEmail,
-                    password: newPassword
-                });
-
-                if( type === 'driver' ){
-                    new_record.set('profile', 'user').set('visibility', 'public').set('patents', newPatents).set('languages', newLanguages).set('curriculum', newCurriculum).save().then(function( ){
-
-                            view.controller.set('newFirstName', null).set('newLastName', null).set('newBirthDate', null).set('newPhone', null).set('newSkype', null).set('newEmail', null).set('newUsername', null).set('newPassword', null);
-
-                            view.controller.main_record.reload();
-                            view.send( 'close', outlet, parentView);
-
-
-                    }, function( response ){
-                        var json = response.responseText, obj = JSON.parse(json);
-                        new PNotify({ title: 'Warning', text: obj.error, type: 'warning', delay: 2000 });
+            $.post('api/verifyUser', {username: newUsername}).then(function(response){
+                if ( !response.success ) {
+                    new PNotify({
+                        title: 'Attention',
+                        text: 'A user with this username already exists, please change it.',
+                        type: 'info'
                     });
-                } else {
-                    new_record.set('visibility', 'private').save().then(function( response ){
-
-                            view.controller.set('newFirstName', null).set('newLastName', null).set('newBirthDate', null).set('newPhone', null).set('newSkype', null).set('newEmail', null).set('newUsername', null).set('newPassword', null);
-
-                            view.controller.main_record.reload();
-                            view.send( 'close', outlet, parentView);
-
-                        }, function( response ){
-                        var json = response.responseText, obj = JSON.parse(json);
-                        new PNotify({ title: 'Warning', text: obj.error, type: 'warning', delay: 2000 });
-                        });
                 }
-            } else {
-                $('[id^="changeState_"]').addClass("has-error");
-                new PNotify({ title: 'Warning', text: 'Controllare di aver compilato tutti i campi obbligatori.', type: 'warning', delay: 2000 });
-            }
+                else
+                {
+                    if( newFirstName && newLastName && newEmail && newUsername && newPassword ){
+                        var new_record = view.controller.get('store').createRecord('user', {
+                            type: type,
+                            company: view.controller.main_record,
+                            firstName: newFirstName,
+                            lastName: newLastName,
+                            username: newUsername,
+                            birthDate: newBirthDate,
+                            phone: newPhone,
+                            skype: newSkype,
+                            email: newEmail,
+                            password: newPassword
+                        });
 
+                        if( type === 'driver' ){
+                            new_record.set('profile', 'user').set('visibility', 'public').set('patents', newPatents).set('languages', newLanguages).set('curriculum', newCurriculum).save().then(function( ){
+
+                                view.controller.set('newFirstName', null).set('newLastName', null).set('newBirthDate', null).set('newPhone', null).set('newSkype', null).set('newEmail', null).set('newUsername', null).set('newPassword', null);
+
+                                view.controller.main_record.reload();
+                                view.send( 'close', outlet, parentView);
+
+
+                            }, function( response ){
+                                var json = response.responseText, obj = JSON.parse(json);
+                                new PNotify({ title: 'Warning', text: obj.error, type: 'warning', delay: 2000 });
+                            });
+                        } else {
+                            new_record.set('visibility', 'private').save().then(function( response ){
+
+                                view.controller.set('newFirstName', null).set('newLastName', null).set('newBirthDate', null).set('newPhone', null).set('newSkype', null).set('newEmail', null).set('newUsername', null).set('newPassword', null);
+
+                                view.controller.main_record.reload();
+                                view.send( 'close', outlet, parentView);
+
+                            }, function( response ){
+                                var json = response.responseText, obj = JSON.parse(json);
+                                new PNotify({ title: 'Warning', text: obj.error, type: 'warning', delay: 2000 });
+                            });
+                        }
+                    } else {
+                        $('[id^="changeState_"]').addClass("has-error");
+                        new PNotify({ title: 'Warning', text: 'Controllare di aver compilato tutti i campi obbligatori.', type: 'warning', delay: 2000 });
+                    }
+                }
+            }, function(){
+                new PNotify({
+                    title: 'Error',
+                    text: 'A problem was occurred.',
+                    type: 'error'
+                });
+            });
         },
 
         createRecord_vehicle: function( type, newName, newBrand, newModel, newDescription, newConfigurations, newRegistrationYear, newChassisNumber, newWeight, newTare, newCategory, outlet, parentView ){

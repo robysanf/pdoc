@@ -89,10 +89,11 @@ export default Ember.Controller.extend({
                     /**DICHIARO PUBLISHABLE KEY.
                      *
                      * */
-
-                    if( record.get('type') !== 'certifier' ) {
-                        Stripe.setPublishableKey(stripe_publishableKey);
-                    }
+                    self.store.find('company', response.company_id).then(function( record ){
+                        if( record.get('type') !== 'certifier' ) {
+                            Stripe.setPublishableKey(stripe_publishableKey);
+                        }
+                    });
 
 //                        self.store.find('company', response.company_id).then(function( record ){
 //                            if( record.get('type') === 'certifier' ) {
